@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+//Importar funcion y css
+//TODO cambiar
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

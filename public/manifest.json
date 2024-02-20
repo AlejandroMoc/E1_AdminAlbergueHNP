@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Albergue HNP",
+  "name": "Administración de albergue del HNP",
   "icons": [
     {
       "src": "favicon.ico",
