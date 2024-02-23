@@ -1,45 +1,18 @@
 /*CSS Global de App*/
 
 .App-global {
-  text-align: left;
-  background-color: #dededd;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-navbar {
-  background-color: #072a58;
   text-align: center;
-  display: flex;
-  font-size: calc(6px + 2vmin);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  margin: 0;
 }
 
-.App-title {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(6px + 2vmin);
-  color: black;
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: left; */
-  font-size: calc(6px + 2vmin);
-  color: black;
-}
-
-.App-footer {
-  text-align: center;
-}
+/* TODO cambiar diseño universal de botones y links */
 
 /* Miscelaneos */
-.App-link {
+/* .App-link {
   color: #058844;
-}
+} */
+
+/* .App-button{
+  font-size: 25px;
+} */

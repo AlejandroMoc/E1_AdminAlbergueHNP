@@ -1,0 +1,14 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(35, 38, 41);
+}
+
+.footer-text {
+    color: white;
+    text-align: center;
+}
+
+.footer-link {
+    color: #058844;
+}

@@ -1,0 +1,30 @@
+.header {
+    /*TODO poner vertical correspondiente*/
+    min-height: 100vh;
+    background: linear-gradient(rgba(213, 213, 213, 1), rgb(213, 213, 213));
+}
+
+.header-title{
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 1.2;
+    /*background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue)); */
+}
+
+.header-logo {
+    height: 40vmin;
+    /*pointer-events: none;*/
+}
+
+.header-linkbutton {
+    color: #058844;
+    font-size: 25px;
+}
+
+/* .App-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(6px + 2vmin);
+    color: black;
+  } */
