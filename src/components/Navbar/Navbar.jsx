@@ -1,21 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./Navbar.css";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     // const [navToggle, setNavToggle] = useState(false);
     // const navHandler = () => {
     //     setNavToggle(prevData => !prevData);
     // }
-  return (
-
-    //TODO escribir toda la navbar
-    //verificar anchura    
+  return ( 
     <nav className="navbar">
         <ul>
-          <a className= 'navbar-text' href="#">Inicio</a>
-          <a className= 'navbar-text' href="#">Salas</a>
-          <a className= 'navbar-text' href="#">Usuarios</a>
-          <a className= 'navbar-text' href="#">Acerca de</a>
+          <Link className= 'navbar-text' to="/"> Inicio </Link>
+          <Link className= 'navbar-text' to="/rooms"> Salas </Link>
+          <Link className= 'navbar-text' to="/users"> Usuarios </Link>
+          <Link className= 'navbar-text' to="/help"> Acerca de </Link>
         </ul>
     </nav>
   )

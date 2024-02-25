@@ -1,13 +1,14 @@
 .header {
     /*TODO poner vertical correspondiente*/
-    min-height: 100vh;
-    background: linear-gradient(rgba(213, 213, 213, 1), rgb(213, 213, 213));
+    min-height: 85vh;
 }
 
 .header-title{
     font-size: 50px;
     font-weight: 900;
     line-height: 1.2;
+    margin: 0;
+    padding: 20px;
     /*background: linear-gradient(to right, var(--clr-robin-blue), var(--clr-crazy-blue)); */
 }
 
