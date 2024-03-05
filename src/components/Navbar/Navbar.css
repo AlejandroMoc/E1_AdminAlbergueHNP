@@ -1,15 +1,6 @@
-/* .navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 90px;
-} */
 .navbar {
-    /* top: 0;
-    left: 0;
-    position: fixed; */
-    /* background-color: #072a58; */
-    background: linear-gradient(to right, rgb(12, 67, 102), rgb(100, 171, 174));
+    /* background: linear-gradient(to right, rgb(12, 67, 102), rgb(100, 171, 174)); */
+    background: linear-gradient(to right, #C7FCFF, #0063E8);
     display: flex;
     font-size: calc(5px + 2vmin);
 }
@@ -21,7 +12,14 @@
 
 /* Botton left right top */
 .navbar-text{
-    color: rgb(202, 202, 202);
     text-decoration: none;
     margin: 10px 10px 10px 10px;
+}
+
+.navbar-blacktext{
+    color: rgb(20, 20, 20);
+}
+
+.navbar-whitetext{
+    color: rgb(255, 255, 255);
 }

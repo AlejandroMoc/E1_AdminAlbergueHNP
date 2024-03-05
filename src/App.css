@@ -2,7 +2,9 @@
 
 .App-global {
   text-align: center;
-  background: linear-gradient(#D5D5D5, #D5D5D5);
+  /* background: linear-gradient(#D5D5D5, #D5D5D5); */
+  /* background: linear-gradient(to right, #FFFFFF, #C9FDFF); */
+    /* background: linear-gradient(to right, #D5D5D5, #D5D5D5); */
   margin: 0;
   color: #232629;
 }

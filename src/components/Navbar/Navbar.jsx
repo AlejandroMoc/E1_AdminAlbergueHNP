@@ -14,14 +14,14 @@ const Navbar = () => {
   return ( 
     <nav className="navbar">
         <ul>
-          <Link className= 'navbar-text' to="/"> Inicio </Link>
-          <Link className= 'navbar-text' to="/rooms"> Salas </Link>
-          <Link className= 'navbar-text' to="/users"> Usuarios </Link>
-          <Link className= 'navbar-text' to="/help"> Acerca de </Link>
+          <Link className= 'navbar-text navbar-blacktext' to="/"> Inicio </Link>
+          <Link className= 'navbar-text navbar-blacktext' to="/rooms"> Salas </Link>
+          <Link className= 'navbar-text navbar-blacktext' to="/users"> Usuarios </Link>
+          <Link className= 'navbar-text navbar-blacktext' to="/help"> Acerca de </Link>
         </ul>
         {/*Para usuarios*/}
         <ul className='navbar-right'>
-          <Link className= 'navbar-text' to="/profile"> <FaUser/> </Link>
+          <Link className= 'navbar-text navbar-whitetext' to="/profile"> <FaUser/> </Link>
         </ul>
     </nav>
   )
