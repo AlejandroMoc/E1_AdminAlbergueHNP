@@ -1,11 +1,11 @@
 .footer {
     display: flex;
     flex-direction: column;
-    background-color: rgb(35, 38, 41);
+    background-color: #232629;
 }
 
 .footer-text {
-    color: white;
+    color: #D5D5D5;
     text-align: center;
 }
 

@@ -13,6 +13,7 @@ import Home from "./components/sites/Home";
 import Users from "./components/sites/Users";
 import Rooms from "./components/sites/Rooms";
 import Help from "./components/sites/Help";
+import Profile from "./components/sites/Profile";
 
 //Dibujar elementos
 function App() {
@@ -38,7 +39,10 @@ function App() {
 						path="/help"
 						element={<Help />}
 					/>
-
+          			<Route
+						path="/profile"
+						element={<Profile />}
+					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}
 					<Route

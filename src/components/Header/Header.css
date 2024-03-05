@@ -17,6 +17,12 @@
     /*pointer-events: none;*/
 }
 
+.header-table {
+    min-width: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .header-linkbutton {
     color: #058844;
     font-size: 25px;

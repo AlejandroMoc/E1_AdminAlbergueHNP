@@ -14,6 +14,11 @@
     font-size: calc(5px + 2vmin);
 }
 
+.navbar-right{
+    margin-left: auto; 
+    margin-right: 20px;
+}
+
 /* Botton left right top */
 .navbar-text{
     color: rgb(202, 202, 202);

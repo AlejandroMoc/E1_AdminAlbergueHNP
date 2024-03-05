@@ -2,8 +2,9 @@
 
 .App-global {
   text-align: center;
-  background: linear-gradient(rgba(213, 213, 213, 1), rgb(213, 213, 213));
+  background: linear-gradient(#D5D5D5, #D5D5D5);
   margin: 0;
+  color: #232629;
 }
 
 /* TODO cambiar diseño universal de botones y links */

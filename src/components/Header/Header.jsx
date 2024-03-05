@@ -14,13 +14,31 @@ const Header = () => {
       <h1 className='header-title'>Administrador del albergue</h1>
       <p>Administrador de servicios para el albergue del Hospital del Niño Poblano.</p>
       <img src={logohnp} className ="header-logo" alt="logo"/>
-      <p>
+      
+      {/* <p>
         <Link className= 'header-linkbutton' to="/rooms"> <FaBed/> Administrar salas </Link>
       </p>
       <p>
       <Link className= 'header-linkbutton' to="/users"> <FaUser/> Administrar usuarios </Link>
-      </p>
+      </p> */}
+
+      {/*Tabla de enlaces*/}
+      <table className='header-table'>
+        <tbody>
+          <tr>
+            <td><Link className= 'header-linkbutton' to="/rooms"> <FaUser/> Link 1 </Link></td>
+            <td><Link className= 'header-linkbutton' to="/rooms"> <FaBed/> Link 2 </Link></td>
+          </tr>
+          <tr>
+            <td><Link className= 'header-linkbutton' to="/rooms"> <FaBed/> Link 3 </Link></td>
+            <td><Link className= 'header-linkbutton' to="/rooms"> <FaBed/> Link 4 </Link></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+
+    //Tabla de botones
   )
 }
 
