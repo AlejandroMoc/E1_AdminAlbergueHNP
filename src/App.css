@@ -2,14 +2,18 @@
 
 .App-global {
   text-align: center;
-  /* background: linear-gradient(#D5D5D5, #D5D5D5); */
-  /* background: linear-gradient(to right, #FFFFFF, #C9FDFF); */
-    /* background: linear-gradient(to right, #D5D5D5, #D5D5D5); */
   margin: 0;
   color: #232629;
 }
 
-/* TODO cambiar diseño universal de botones y links */
+.App-bluebackground {
+  background: linear-gradient(to right, #EAFEFF, #9EC3F6);
+  /* opacity: 0.68; */
+}
+
+.App-minheight {
+  min-height: 85vh;
+}
 
 /* Miscelaneos */
 /* .App-link {
@@ -17,5 +21,5 @@
 } */
 
 /* .App-button{
-  font-size: 25px;
+  font-size: calc(10px + 2vmin);
 } */

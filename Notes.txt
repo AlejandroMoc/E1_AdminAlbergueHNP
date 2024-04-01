@@ -1,0 +1,4 @@
+Modificados colores de barra de título.
+
+
+Rehecha barra de título en base a nuevos mockups. Creados sitios necesarios para barra de tareas en el router. Creados banners para componentes de sitios. Añadido espacio correspondiente a banners. Rehecha página de menú principal con CSS y enlaces funcionales. Creada interfaz primeriza de la página de administradores.

@@ -1,20 +1,19 @@
-//Pagina de habitaciones
-
+//Creación de usuarios
 import React from "react";
 
 //Importar componentes
 import Navbar from '../Universal/Navbar';
 import Footer from '../Universal/Footer';
-import RoomAdmin from "../Admins/RoomAdmin";
+import UserNewAdmin from "../Admins/UserNewAdmin";
 
-const Rooms = () => {
+const UserNew = () => {
 	return (
 		<div className="App-global">
 			<Navbar/>
-			<RoomAdmin/>
+			<UserNewAdmin/>
 			<Footer/>
 		</div>
 	);
 };
 
-export default Rooms;
+export default UserNew;

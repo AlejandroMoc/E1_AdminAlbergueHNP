@@ -1,20 +1,19 @@
-//Pagina de habitaciones
-
+//Administracion de usuarios ya existentes
 import React from "react";
 
 //Importar componentes
 import Navbar from '../Universal/Navbar';
 import Footer from '../Universal/Footer';
-import RoomAdmin from "../Admins/RoomAdmin";
+import UserListAdmin from "../Admins/UserListAdmin";
 
-const Rooms = () => {
+const UserList = () => {
 	return (
 		<div className="App-global">
 			<Navbar/>
-			<RoomAdmin/>
+			<UserListAdmin/>
 			<Footer/>
 		</div>
 	);
 };
 
-export default Rooms;
+export default UserList;

@@ -1,20 +1,19 @@
-//Pagina de habitaciones
-
+//Generacion de reportes
 import React from "react";
 
 //Importar componentes
 import Navbar from '../Universal/Navbar';
 import Footer from '../Universal/Footer';
-import RoomAdmin from "../Admins/RoomAdmin";
+import ReportsAdmin from "../Admins/ReportsAdmin";
 
-const Rooms = () => {
+const Reports = () => {
 	return (
 		<div className="App-global">
 			<Navbar/>
-			<RoomAdmin/>
+			<ReportsAdmin/>
 			<Footer/>
 		</div>
 	);
 };
 
-export default Rooms;
+export default Reports;

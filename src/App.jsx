@@ -10,10 +10,11 @@ import {
 
 //Importar páginas
 import Home from "./components/sites/Home";
-import Users from "./components/sites/Users";
+import UserNew from "./components/sites/UserNew";
 import Rooms from "./components/sites/Rooms";
-import Help from "./components/sites/Help";
+import UserList from "./components/sites/UserList";
 import Profile from "./components/sites/Profile";
+import Reports from "./components/sites/Reports";
 
 //Dibujar elementos
 function App() {
@@ -28,20 +29,24 @@ function App() {
 						element={<Home />}
 					/>
 					<Route
-						path="/users"
-						element={<Users />}
-					/>
-					<Route
-						path="/rooms"
-						element={<Rooms />}
+						path="/usernew"
+						element={<UserNew />}
 					/>
           			<Route
-						path="/help"
-						element={<Help />}
+						path="/userlist"
+						element={<UserList />}
+					/>
+					<Route
+						path="/beds"
+						element={<Rooms />}
 					/>
           			<Route
 						path="/profile"
 						element={<Profile />}
+					/>
+          			<Route
+						path="/reports"
+						element={<Reports />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}
