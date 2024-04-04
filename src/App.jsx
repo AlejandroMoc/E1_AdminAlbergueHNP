@@ -15,6 +15,7 @@ import Rooms from "./components/sites/Rooms";
 import UserList from "./components/sites/UserList";
 import Profile from "./components/sites/Profile";
 import Reports from "./components/sites/Reports";
+import Signup from "./components/sites/Signup";
 
 //Dibujar elementos
 function App() {
@@ -47,6 +48,10 @@ function App() {
           			<Route
 						path="/reports"
 						element={<Reports />}
+					/>
+					<Route
+						path="/signup"
+						element={<Signup />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}
