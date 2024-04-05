@@ -17,13 +17,14 @@ const ProfilePasswordAdmin = () => {
         <p className= 'header-text' to="/"><IoKey/>Cambiar contraseña</p>
 
         {/*Formato de cambiar contraseña*/}
-        <p><input className= 'header-input' type="password" id="oldpass" name="oldpassword" minlength="8" maxlength="16" required placeholder="Contraseña actual" /></p>
-        <p><input className= 'header-input' type="password" id="pass" name="password" minlength="8" maxlength="16" required placeholder="Nueva Contraseña" /></p>
-        <p><input className= 'header-input' type="password" id="pass2" name="password2" minlength="8" maxlength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
+        <p><input type="password" id="oldpass" name="oldpassword" minlength="8" maxlength="16" required placeholder="Contraseña actual" /></p>
+        <p><input type="password" id="pass" name="password" minlength="8" maxlength="16" required placeholder="Nueva Contraseña" /></p>
+        <p><input type="password" id="pass2" name="password2" minlength="8" maxlength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
 
 
         {/*Tabla de botones*/}
         <p>
+          <button class="button">Iniciar Sesión</button>
             <input className= 'header-inputbutton header-colorcancel' type="submit" value="Cancelar" />
             <input className= 'header-inputbutton header-coloraccept' type="submit" value="Cambiar contraseña" />
         </p>

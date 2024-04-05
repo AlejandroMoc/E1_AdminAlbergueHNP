@@ -35,3 +35,40 @@
   min-height: 93vh;
 }
 
+  /* TODO añadir clase input que simplifique el type(con lo que todos los types usan pues) */
+  input[type="text"] {
+    /* width: 12em;
+    height: 2.8em; */
+    margin: 5px ;
+    padding: 10px;
+    border: 1px solid #D9D9D8;
+    border:none;
+    border-radius: 1vh;
+    /* box-sizing: border-box; */
+    background-color: #D9D9D8;
+    font-size: calc(2px + 2vmin) ;
+    font-style: italic;
+  }
+
+  input[type="password"] {
+    /* width: 12em;
+    height: 2em; */
+    margin: 5px ;
+    padding: 10px;
+    border: 1px solid #D9D9D8;
+    border: none;
+    border-radius: 1vh;
+    /* box-sizing: border-box; */
+    background-color: #D9D9D8;
+    font-size: calc(2px + 2vmin) ;
+    font-style: italic;
+  }
+
+  /* border: none;
+  border-radius: 1vh;
+  background-color: #ececec;
+  font-size: calc(2px + 2vmin);
+  margin: 5px;
+  padding: 10px;
+  font-style: italic; */
+

@@ -2,7 +2,7 @@
 import React from "react";
 
 //Importar componentes
-import Navbar from '../Universal/Navbar';
+//import Navbar from '../Universal/Navbar';
 import Footer from '../Universal/Footer';
 import SignupAdmin from "../Admins/SignupAdmin";
 

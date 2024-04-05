@@ -71,22 +71,13 @@
 }
 
 .header-textclosesession{
-    
+    color: #ee7171;
     font-size: calc(5px + 2vmin);
     text-decoration: none;
     font-style: normal;
     font-weight: 500;
 }
 
-.header-input{
-    border: none;
-    border-radius: 1vh;
-    background-color: #ececec;
-    font-size: calc(2px + 2vmin);
-    margin: 5px;
-    padding: 10px;
-    font-style: italic;
-}
 
 .header-inputbutton{
     border-radius: 1vh;

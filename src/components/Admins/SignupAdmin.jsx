@@ -7,7 +7,7 @@ const SignupAdmin = () => {
     <div className='App-minheight1' >
       <br />
       <h1 className='titulo-grande1'>Administrador del Albergue</h1>
-      <p className='titulo-grande2'>Hospital del niño Poblano</p> 
+      <p className='titulo-grande2'>Hospital del Niño Poblano</p> 
 
       <div>
         <center>
