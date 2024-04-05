@@ -20,7 +20,7 @@ const SignupAdmin = () => {
             <td><input type="text" id="usuario" name="usuario" placeholder="Usuario"></input></td>
             </tr>
             <tr> 
-            <td><input type="text" id="contraseña" name="contraseña" placeholder="Contraseña"></input></td>
+            <td><input type="password" id="contraseña" name="contraseña" placeholder="Contraseña"></input></td>
             </tr>
             <tr> 
             <button class="button">Iniciar Sesión</button>

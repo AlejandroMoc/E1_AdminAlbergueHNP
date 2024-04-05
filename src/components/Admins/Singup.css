@@ -50,6 +50,18 @@
     font-size: calc(8px + 2vmin) ;
     text-align: center;
   }
+  input[type="password"] {
+    width: 12em;
+    height: 2.8em;
+    padding: 5px;
+    margin: 5px ;
+    border: 1px solid #D9D9D8;
+    border-radius: 10px; /* Aumentamos el valor del border-radius para hacer los bordes más redondos */
+    box-sizing: border-box;
+    background-color: #D9D9D8; /* Cambiamos el color de fondo a gris */
+    font-size: calc(8px + 2vmin) ;
+    text-align: center;
+  }
   /*BOTON*/
   .button {
     width: 10em;
