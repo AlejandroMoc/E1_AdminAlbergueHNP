@@ -10,6 +10,7 @@ const UserList = () => {
 	return (
 		<div className="App-global">
 			<Navbar/>
+			<my_Dropdown/>
 			<UserListAdmin/>
 			<Footer/>
 		</div>

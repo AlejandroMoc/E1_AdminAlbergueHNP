@@ -1,10 +1,10 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UserListAdmin = () => {
   return (
     <div className='App-minheight'>
-      <h1>Usuarios ya existentes</h1>
-			<p>Aquí va la administración de usuarios ya existentes</p>
+      <h1>Administración de Usuarios</h1>
     </div>
   )
 }
