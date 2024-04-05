@@ -14,6 +14,7 @@ import UserNew from "./components/sites/UserNew";
 import Rooms from "./components/sites/Rooms";
 import UserList from "./components/sites/UserList";
 import Profile from "./components/sites/Profile";
+import ProfilePassword from "./components/sites/ProfilePassword";
 import Reports from "./components/sites/Reports";
 
 //Dibujar elementos
@@ -43,6 +44,10 @@ function App() {
           			<Route
 						path="/profile"
 						element={<Profile />}
+					/>
+					<Route
+						path="/changepassword"
+						element={<ProfilePassword />}
 					/>
           			<Route
 						path="/reports"

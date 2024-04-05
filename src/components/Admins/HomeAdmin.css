@@ -50,8 +50,16 @@
     border-spacing: 15px 15px;
     background-color: rgb(255, 255, 255);
     border-radius: 1vh;
-    height: 40vh;
+    height: 60vh;
+    min-height: 60vh;
     width: 60vh;
+}
+
+/*TODO dividir colores en clases propias y referenciar esas*/
+/*TODO mover a partir de aquí a clase universal de p*/
+.header-text {
+    color: #232629;
+    font-size: calc(8px + 2vmin);
 }
 
 .header-textlink {
@@ -63,9 +71,34 @@
 }
 
 .header-textclosesession{
-    color: #ee7171;
+    
     font-size: calc(5px + 2vmin);
     text-decoration: none;
     font-style: normal;
     font-weight: 500;
+}
+
+.header-input{
+    border: none;
+    border-radius: 1vh;
+    background-color: #ececec;
+    font-size: calc(2px + 2vmin);
+    margin: 5px;
+    padding: 10px;
+    font-style: italic;
+}
+
+.header-inputbutton{
+    border-radius: 1vh;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+}
+
+.header-coloraccept{
+    background-color: #A5CFFD;
+}
+
+.header-colorcancel{
+    background-color: #ee7171;
 }
