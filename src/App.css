@@ -25,3 +25,13 @@
 /* .App-button{
   font-size: calc(10px + 2vmin);
 } */
+/*INICIO SESIÓN*/
+.App-bluebackground2 {
+  background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
+  background-size: cover; /* ajusta el tamaño de la imagen para cubrir el contenedor */
+  background-position: center; /* posición de la imagen centrada */
+}
+.App-minheight1 {
+  min-height: 93vh;
+}
+

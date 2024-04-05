@@ -16,7 +16,7 @@ const ProfileAdmin = () => {
         <FaUserCircle size={160}/>
         <h1>Administradora</h1>
         <Link className= 'header-textlink' to="/changepassword"><p><IoKey/>Cambiar contraseña</p></Link>
-        <Link className= 'header-textclosesession header-colorcancel' to="/"><p>Cerrar sesión</p></Link>
+        <Link className= 'header-textclosesession header-colorcancel' to="/Signup"><p>Cerrar sesión</p></Link>
       </table>
 
     </div>
