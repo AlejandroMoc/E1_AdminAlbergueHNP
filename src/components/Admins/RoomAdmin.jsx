@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './RoomAdmin.scss';
 
 import iconocama from '../../assets/logos/iconocama.svg';
@@ -20,11 +19,11 @@ const RoomAdmin = () => {
                         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   return (
-    <div className='App-minheight'>
+    <div class='App-minheight'>
       <div class="titulosZonas container">
         <span class="tituloZona">ZONA DE MUJERES</span>
         <div class="indicadoresDiv">
-          <span class="indicadorText"><FaCircle id="circuloAzul"/> Dispoible</span>
+          <span class="indicadorText"><FaCircle id="circuloAzul"/> Disponible</span>
           <span class="indicadorText"><FaCircle id="circuloGris"/> Ocupado</span>
           <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
         </div>
@@ -48,7 +47,7 @@ const RoomAdmin = () => {
       <div class="titulosZonas container">
         <span class="tituloZona">ZONA DE HOMBRES</span>
         <div class="indicadoresDiv">
-          <span class="indicadorText"><FaCircle id="circuloAzul"/> Dispoible</span>
+          <span class="indicadorText"><FaCircle id="circuloAzul"/> Disponible</span>
           <span class="indicadorText"><FaCircle id="circuloGris"/> Ocupado</span>
           <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
         </div>
@@ -70,7 +69,7 @@ const RoomAdmin = () => {
       <div class="titulosZonas container">
         <span class="tituloZona">ZONA DE AISLADOS</span>
         <div class="indicadoresDiv">
-          <span class="indicadorText"><FaCircle id="circuloAzul"/> Dispoible</span>
+          <span class="indicadorText"><FaCircle id="circuloAzul"/> Disponible</span>
           <span class="indicadorText"><FaCircle id="circuloGris"/> Ocupado</span>
           <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
         </div>

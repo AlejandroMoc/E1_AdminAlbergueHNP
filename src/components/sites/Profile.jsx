@@ -8,7 +8,7 @@ import ProfileAdmin from "../Admins/ProfileAdmin";
 
 const Profile = () => {
 	return (
-		<div className="App-global App-bluebackground">
+		<div class="App-global App-bluebackground">
 			<Navbar/>
 			<ProfileAdmin/>
 			<Footer/>

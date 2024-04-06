@@ -9,6 +9,14 @@ Desarrollada aplicación del 19 de febrero al _ de _ de 2024.
 
 Entrega prevista para el _ de _ de 2024.
 
+## Ejecución
+
+Para ejecutar el proyecto es necesario ejecutar los siguientes comandos:
+
+npm install
+
+npm start
+
 ### Desarrolladores
  A01736149 - Hugo Muñoz Rodríguez
 
