@@ -1,0 +1,78 @@
+.cama{
+    width: 80px;
+    margin: 10px;
+    background-color: #E6E6E6;
+    align-self: flex-end;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    //background-color: green;
+    justify-content: left
+}
+
+.numerazo{
+    margin-top: -67%;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.addCama{
+    //background-color: red;
+    width: 80px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+}
+
+#addCamaButton{
+    font-size: 200%;
+    color: black;
+    border-width: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.titulosZonas{
+    //background-color: red;
+    margin-top: 30px;
+    display: flex;
+    //flex-direction: column;
+    align-items: center;
+    gap:0px 100px;
+}
+
+.tituloZona{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.indicadorText{
+    font-size: large;
+    font-style: italic;
+}
+
+#circuloRojo{
+    color: #EE7171;
+    font-size: small;
+}
+
+#circuloGris{
+    color: #C2C2C2;
+    font-size: small;
+}
+
+#circuloAzul{
+    color: #6B99D6;
+    font-size: small;
+}
+
+.indicadoresDiv{
+    display: flex;
+    gap: 20px;
+}
