@@ -1,4 +1,6 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
+import ReactTable from "react-table";
+// import "react-table/react-table.css"; 
 import { Form } from 'react-bootstrap'; 
 import "./UserListAdmin.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const UserListAdmin = () => {
   const [select_Filters, set_Select_Filters] = useState([]); 
   const [isOpen, setIsOpen] = useState(false); 
-  const courses = [
+  const filters = [
     { id: 1, label: 'Hombres' }, 
     { id: 2, label: 'Mujeres' }, 
     { id: 3, label: 'Huéspedes' }, 
@@ -27,6 +29,7 @@ const UserListAdmin = () => {
       set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
     } 
   };
+
   return (
     <div className='App-minheight'>
       <h1>Administración de Usuarios</h1>
@@ -47,7 +50,7 @@ const UserListAdmin = () => {
                                 {`custom-dropdown-menu  
                                     ${isOpen ? 'show' : ''}`}  
                                 aria-labelledby="multiSelectDropdown"> 
-                            {courses.map((option) => ( 
+                            {filters.map((option) => ( 
                                 <Form.Check 
                                     className="custom-checkbox"
                                     key={option.id} 
@@ -68,14 +71,41 @@ const UserListAdmin = () => {
                     <ul> 
                         {select_Filters.map((optionId) => ( 
                             <li key={optionId}> 
-                                {courses.find(option =>  
+                                {filters.find(option =>  
                                     option.id === optionId)?.label} 
                             </li> 
                         ))} 
                     </ul> 
                 </div> 
             </div>
-            
+      
+        {/* <ReactTable data={[{"noCama": "1", "nombre": "César", "fechaIngreso": "1/1/1", "paciente": "Odin", "noCarnet": "11111", "nSocioE": "0"}]} columns={[
+          {
+            Header: "No. Cama",
+            accessor: "noCama"
+          },
+          {
+            Header: "Nombre",
+            accessor: "nombre"
+          },
+          {
+            Header: "Fecha de Ingreso",
+            accessor: "fechaIngreso"
+          },
+          {
+            Header: "Paciente",
+            accessor: "paciente"
+          },
+          {
+            Header: "No. Carnet",
+            accessor: "noCarnet"
+          },
+          {
+            Header: "N. Socio-económico",
+            accessor: "nSocioE"
+          }
+        ]}
+        /> */}
     </div>
   )
 }
