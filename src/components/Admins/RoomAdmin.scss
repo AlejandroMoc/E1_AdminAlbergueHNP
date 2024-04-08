@@ -1,9 +1,38 @@
 .cama{
     width: 80px;
     margin: 10px;
-    background-color: #E6E6E6;
+    //background-color: #E6E6E6;
     align-self: flex-end;
 }
+
+.camaGris{
+    background-color: #f5f5f5;
+}
+
+.camaRoja{
+    background-color: #EE7171;
+}
+
+.camaAzul{
+    background-color: #8cbcfc;
+}
+
+.camaGris:hover{
+    transform: scale(1.1);
+    background-color: #e6e6e6;
+}
+
+.camaRoja:hover{
+    transform: scale(1.1);
+    background-color: #cc6161;
+}
+
+
+.camaAzul:hover{
+    transform: scale(1.1);
+    background-color: #7aa5de;
+}
+
 
 .container{
     display: flex;
@@ -68,11 +97,25 @@
 }
 
 #circuloAzul{
-    color: #6B99D6;
+    color: #8cbcfc;
     font-size: small;
 }
 
 .indicadoresDiv{
     display: flex;
     gap: 20px;
+}
+
+
+.numCamaText{
+    font-weight: bold;
+    font-size: large;
+    //margin-left: 10px;
+    
+}
+
+
+.botonReg{
+    border: solid 1px;
+    border-color: #C2C2C2;
 }

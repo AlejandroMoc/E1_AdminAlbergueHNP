@@ -14,6 +14,7 @@ const Footer = () => {
             >
             ReactJS
             </a>
+            .
         </p>
       </div>
     </div>
