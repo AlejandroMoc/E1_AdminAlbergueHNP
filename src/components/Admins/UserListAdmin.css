@@ -1,0 +1,17 @@
+.d-flex {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.custom-dropdown {
+    text-align: left;
+}
+
+.custom-dropdown-toggle {
+    width: 200px;
+    text-align: left;
+    border-radius: 8px;
+    padding: 1px 10px;
+    background: rgb(236, 230, 230);
+}
+
