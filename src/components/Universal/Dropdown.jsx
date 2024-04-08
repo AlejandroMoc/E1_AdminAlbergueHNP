@@ -1,23 +1,32 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { useState } from "react";
+import "./Dropdown.css";
 
-const my_Dropdown = () => {
-    return (
-      <div className='dropdown'>
-        <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
+const Dropdown = ({ selected, setSelected }) => {
+  const [isActive, setIsActive] = useState(false);
+  const options = ["React", "Vue", "Angular"];
+  return (
+    <div className="dropdown">
+      <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
+        {selected}
+        <span className="fas fa-caret-down"></span>
       </div>
-    )
-  }
-  
-  export default my_Dropdown
+      {isActive && (
+        <div className="dropdown-content">
+          {options.map((option) => (
+            <div
+              onClick={(e) => {
+                setSelected(option);
+                setIsActive(false);
+              }}
+              className="dropdown-item"
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Dropdown;
