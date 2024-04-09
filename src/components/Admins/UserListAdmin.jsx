@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap'; 
+import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
@@ -7,7 +8,6 @@ import "./UserListAdmin.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //FALTA:
-  //OCULTAR Y REVELAR RANGO DE DEUDA
   //GUARDAR EN DEUDA1 Y DEUDA2
 
 const UserListAdmin = () => {
@@ -39,10 +39,15 @@ const UserListAdmin = () => {
     setIsDebt(!isDebt); 
   }; 
   
+  //Función para mostrar que filtros fueron seleccionados
   const filterChange = (event) => {
     const filterId = parseInt(event.target.value); 
-    const choosen = event.target.checked; 
-  
+    const choosen = event.target.checked;
+
+    if (filterId == 7) {
+      handleIsDebt();
+    }
+
     if (choosen) { 
       set_Select_Filters([...select_Filters, filterId]); 
     } else { 
@@ -114,57 +119,44 @@ const UserListAdmin = () => {
         </div>
         )}
       </div>
+
+      <div class='table-container'>
+        <Table>
+          <thead>
+            <tr>
+              <th>No. Cama</th>
+              <th>Nombre</th>
+              <th>Fecha de Ingreso</th>
+              <th>Lugar de Origen</th>
+              <th>Nombre del Paciente</th>
+              <th>No. Carnet</th>
+              <th>N. Socio-económico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>01/04/2024</td>
+              <td>Champoton</td>
+              <td>Mark</td>
+              <td>1234567890</td>
+              <td>-5</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jacob</td>
+              <td>02/03/2002</td>
+              <td>El Paso</td>
+              <td>Jacobo</td>
+              <td>0987654321</td>
+              <td>100</td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
     </div>
   )
 }
-
-    // <div className='App-minheight'>
-    //   <h1>Administración de Usuarios</h1>
-
-      {/* // <div className="d-flex"> 
-      //           <div className="custom-dropdown"> 
-      //               <button 
-      //                   className= 
-      //                       "custom-dropdown-toggle"
-      //                   type="button"
-      //                   id="multiSelectDropdown"
-      //                   onClick={handleIsDebt} 
-      //               > 
-      //                   Filtros
-      //               </button> 
-      //               {isOpen && ( 
-      //                   <div className= 
-      //                           {`custom-dropdown-menu  
-      //                               ${isOpen ? 'show' : ''}`}  
-      //                           aria-labelledby="multiSelectDropdown"> 
-      //                       {filters.map((option) => ( 
-      //                           <Form.Check 
-      //                               className="custom-checkbox"
-      //                               key={option.id} 
-      //                               type="checkbox"
-      //                               id={`option_${option.id}`} 
-      //                               label={option.label} 
-      //                               checked= 
-      //                                   {select_Filters.includes(option.id)} 
-      //                               onChange={filterChange} 
-      //                               value={option.id} 
-      //                           /> 
-      //                       ))} 
-      //                   </div> 
-      //               )} 
-      //           </div> 
-      //           <div style={{ marginLeft: '20px', width: '50%' }}> 
-      //               <h2>Selected Items:</h2> 
-      //               <ul> 
-      //                   {select_Filters.map((optionId) => ( 
-      //                       <li key={optionId}> 
-      //                           {filters.find(option =>  
-      //                               option.id === optionId)?.label} 
-      //                       </li> 
-      //                   ))} 
-      //               </ul> 
-      //           </div> 
-            // </div> */}
-    // </div>
 
 export default UserListAdmin
