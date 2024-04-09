@@ -20,6 +20,13 @@ const UserListAdmin = () => {
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
 
+  const handleInputChange = (e, setter) => {
+    const inputValue = e.target.value;
+    if (/^\d*$/.test(inputValue)) {
+      setter(inputValue);
+    }
+  };
+
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 
 
@@ -65,20 +72,20 @@ const UserListAdmin = () => {
         <div class='fecha-picker-container'>
           {/* Div para fecha 1 */}
           <DatePicker
+            class='fecha-input'
             selected={fecha1}
             onChange={date => setFecha1(date)}
             placeholderText='DD/MM/YY'
-            class='fecha-input'
             dateFormat='dd/MM/yy'
           />
         </div>
         <div class='fecha-picker-container'>
           {/* Div para fecha 2 */}
           <DatePicker
+            class='fecha-input'
             selected={fecha2}
             onChange={date => setFecha2(date)}
             placeholderText='DD/MM/YY'
-            class='fecha-input'
             dateFormat='dd/MM/yy'
           />
         </div>
@@ -113,9 +120,19 @@ const UserListAdmin = () => {
         {isDebt && (
           <div class='deuda-input'>
           {/* Div para deuda 1 */}
-          <input name='Deuda1'/>
+          <input
+            class='deuda-input'
+            type='number'
+            onChange={(e) => handleInputChange(e, setDeuda1)}
+            placeholder='Deuda'
+          />
           {/* Div para deuda 2*/}
-          <input name='Deuda2'/>
+          <input
+            class='deuda-input'
+            type='number'
+            onChange={(e) => handleInputChange(e, setDeuda2)}
+            placeholder='Deuda'
+          />
         </div>
         )}
       </div>
