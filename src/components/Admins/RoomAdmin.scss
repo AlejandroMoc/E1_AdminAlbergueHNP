@@ -17,9 +17,9 @@
     background-color: #8cbcfc;
 }
 
-.camaGris:hover{
+.cama:hover{
     transform: scale(1.1);
-    background-color: #e6e6e6;
+    filter: brightness(95%);
 }
 
 .camaRoja:hover{
@@ -109,13 +109,26 @@
 
 .numCamaText{
     font-weight: bold;
-    font-size: large;
+    font-size: x-large;
     //margin-left: 10px;
     
 }
 
-
 .botonReg{
     border: solid 1px;
     border-color: #C2C2C2;
+}
+
+
+.letraMenu{
+    font-size: large;
+}
+
+
+.iconStyle{
+    margin-right: 10px;
+}
+
+.regServo{
+    width: 200px;
 }
