@@ -1,5 +1,5 @@
 import React from 'react';
-import "./HomeAdmin.css";
+import "./HomeAdmin.scss";
 
 //Importar elementos
 ///Iconos
@@ -10,13 +10,13 @@ import {Link} from "react-router-dom";
 
 const ProfileAdmin = () => {
   return (
-    <div className='App-minheight'>
+    <div class='App-minheight'>
       
-      <table className= 'header-table3'>
+      <table class= 'header-table3'>
         <FaUserCircle size={160}/>
-        <h1>Administradora</h1>
-        <Link className= 'header-textlink' to="/"><p><IoKey/>Cambiar contraseña</p></Link>
-        <Link className= 'header-textclosesession' to="/"><p>Cerrar sesión</p></Link>
+        <h1 class="header-textitle">Administradora</h1>
+        <Link class= 'header-textlink' to="/changepassword"><p><IoKey/>Cambiar contraseña</p></Link>
+        <Link class= 'header-textclosesession header-colorcancel' to="/Signup"><p>Cerrar sesión</p></Link>
       </table>
 
     </div>

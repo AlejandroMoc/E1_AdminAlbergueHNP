@@ -1,5 +1,6 @@
 //Importar CSS y elementos correspondientes
-import './App.css';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
 	BrowserRouter as Router,
@@ -14,7 +15,9 @@ import UserNew from "./components/sites/UserNew";
 import Rooms from "./components/sites/Rooms";
 import UserList from "./components/sites/UserList";
 import Profile from "./components/sites/Profile";
+import ProfilePassword from "./components/sites/ProfilePassword";
 import Reports from "./components/sites/Reports";
+import Signup from "./components/sites/Signup";
 
 //Dibujar elementos
 function App() {
@@ -44,9 +47,17 @@ function App() {
 						path="/profile"
 						element={<Profile />}
 					/>
+					<Route
+						path="/changepassword"
+						element={<ProfilePassword />}
+					/>
           			<Route
 						path="/reports"
 						element={<Reports />}
+					/>
+					<Route
+						path="/signup"
+						element={<Signup />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}

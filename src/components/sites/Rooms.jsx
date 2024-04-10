@@ -9,7 +9,7 @@ import RoomAdmin from "../Admins/RoomAdmin";
 
 const Rooms = () => {
 	return (
-		<div className="App-global">
+		<div class="App-global">
 			<Navbar/>
 			<RoomAdmin/>
 			{/*<Footer/> */}

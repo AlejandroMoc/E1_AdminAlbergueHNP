@@ -4,16 +4,16 @@ import React from "react";
 //Importar componentes
 import Navbar from '../Universal/Navbar';
 import Footer from '../Universal/Footer';
-import ProfileAdmin from "../Admins/ProfileAdmin";
+import ProfilePasswordAdmin from "../Admins/ProfilePasswordAdmin";
 
-const Profile = () => {
+const ProfilePassword = () => {
 	return (
 		<div class="App-global App-bluebackground">
 			<Navbar/>
-			<ProfileAdmin/>
+			<ProfilePasswordAdmin/>
 			<Footer/>
 		</div>
 	);
 };
 
-export default Profile;
+export default ProfilePassword;
