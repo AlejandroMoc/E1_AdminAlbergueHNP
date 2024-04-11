@@ -4,7 +4,7 @@ import logohnp from '../../assets/logos/logo_hnp.svg';
 
 const SignupAdmin = () => {
   return (
-    <div className='App-minheight' >
+    <div className='App-minheightSU' >
       <br />
       <h1>Administrador del Albergue</h1>
       <h2>Hospital del Niño Poblano</h2> 
