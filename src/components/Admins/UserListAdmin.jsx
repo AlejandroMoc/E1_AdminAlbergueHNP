@@ -63,45 +63,21 @@ const UserListAdmin = () => {
   };
 
   return (
-    <div class='App-minheight'>
+    <div className='App-minheight'>
       {/* Div para los campos de entrada */}
       <h1>Administración de Usuarios</h1>
 
-      <div class='fecha-input-container'>
-        {/* Div para fechas */}
-        <div class='fecha-picker-container'>
-          {/* Div para fecha 1 */}
-          <DatePicker
-            class='fecha-input'
-            selected={fecha1}
-            onChange={date => setFecha1(date)}
-            placeholderText='DD/MM/YY'
-            dateFormat='dd/MM/yy'
-          />
-        </div>
-        <div class='fecha-picker-container'>
-          {/* Div para fecha 2 */}
-          <DatePicker
-            class='fecha-input'
-            selected={fecha2}
-            onChange={date => setFecha2(date)}
-            placeholderText='DD/MM/YY'
-            dateFormat='dd/MM/yy'
-          />
-        </div>
-      </div>
-
-      <div class='dropdown-container'>
+      <div className='dropdown-container'>
         {/* Div para dropdown */}
         <Dropdown>
-            <Dropdown.Toggle variant='success' id='dropdown-basic' class='dropdown-toggle-custom'>
+            <Dropdown.Toggle variant='success' id='dropdown-basic' className='dropdown-toggle-custom'>
               Filtros
             </Dropdown.Toggle>
-            <Dropdown.Menu class='dropdown-menu-custom'>
+            <Dropdown.Menu className='dropdown-menu-custom'>
               {/* Checkbox de Filtros*/}
               {filters.map((option) => (
                 <Form.Check
-                  class='custom-checkbox'
+                  className='custom-checkbox'
                   key={option.id}
                   type='checkbox'
                   id='option_${option.id}'
@@ -115,20 +91,44 @@ const UserListAdmin = () => {
           </Dropdown>
       </div>
 
-      <div class='deuda-input-container'>
+      <div className='fecha-input-container'>
+        {/* Div para fechas */}
+        <div className='fecha-picker-container'>
+          {/* Div para fecha 1 */}
+          <DatePicker
+            className='fecha-input'
+            selected={fecha1}
+            onChange={date => setFecha1(date)}
+            placeholderText='DD/MM/YY'
+            dateFormat='dd/MM/yy'
+          />
+        </div>
+        <div className='fecha-picker-container'>
+          {/* Div para fecha 2 */}
+          <DatePicker
+            className='fecha-input'
+            selected={fecha2}
+            onChange={date => setFecha2(date)}
+            placeholderText='DD/MM/YY'
+            dateFormat='dd/MM/yy'
+          />
+        </div>
+      </div>
+
+      <div className='deuda-input-container'>
         {/* Div para deudas */}
         {isDebt && (
-          <div class='deuda-input'>
+          <div className='deuda-input'>
           {/* Div para deuda 1 */}
           <input
-            class='deuda-input'
+            className='deuda-input'
             type='number'
             onChange={(e) => handleInputChange(e, setDeuda1)}
             placeholder='Deuda'
           />
           {/* Div para deuda 2*/}
           <input
-            class='deuda-input'
+            className='deuda-input'
             type='number'
             onChange={(e) => handleInputChange(e, setDeuda2)}
             placeholder='Deuda'
@@ -137,7 +137,7 @@ const UserListAdmin = () => {
         )}
       </div>
 
-      <div class='table-container'>
+      <div className='table-container'>
         <Table>
           <thead>
             <tr>
