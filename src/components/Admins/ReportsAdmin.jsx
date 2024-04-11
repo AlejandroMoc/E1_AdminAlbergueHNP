@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './HomeAdmin.scss'; // Importa tu archivo CSS aquí
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-// import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
 
@@ -12,7 +12,7 @@ const ReportsAdmin = () => {
   const [fecha2, setFecha2] = useState(null);
   const [esHuesped, setEsHuesped] = useState(false);
   const [huéspedSeleccionado, setHuéspedSeleccionado] = useState('Huésped'); // Estado para almacenar el nombre del huésped seleccionado
-  const [esGeneral, setEsGeneral] = useState(false); // Nuevo estado para el checkbox "General"
+  const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
   const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
 
   // Estado para los servicios individuales
@@ -25,7 +25,10 @@ const ReportsAdmin = () => {
     deuda: false,
     vetados: false
   });
+
   
+
+
   // Función para manejar el cambio del checkbox de General
   const handleEsGeneralChange = () => {
     if (!esGeneral) {
@@ -77,9 +80,9 @@ const ReportsAdmin = () => {
   };
 
   return (
-    <div className='App-minheight App-minpadding'>
-      {/* Div para agrupar los campos de entrada */}
-      <div className="fecha-input-container">
+        <div className='App-minheight App-minpadding'>
+        {/* Div para agrupar los campos de entrada */}
+        <div className="fecha-input-container">
           {/* Campo de entrada para la fecha 1 */}
           <div className="fecha-picker-container">
             <DatePicker
@@ -88,6 +91,7 @@ const ReportsAdmin = () => {
               placeholderText="DD/MM/YY"
               className="fecha-input"
               dateFormat="dd/MM/yy" // Cambia el formato de la fecha
+
             />
           </div>
 
@@ -99,48 +103,49 @@ const ReportsAdmin = () => {
               placeholderText="DD/MM/YY"
               className="fecha-input"
               dateFormat="dd/MM/yy" // Cambia el formato de la fecha
+
             />
           </div>
 
-          {/* Checkbox para marcar si es General */}
-          <input
-            type="checkbox"
-            id="esGeneral"
-            checked={esGeneral}
-            onChange={handleEsGeneralChange}
-            style={{ display: 'none' }} // Oculta el checkbox nativo
-          />
-          <label htmlFor="esGeneral" className="checkbox-label">
-            <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
-            General
-          </label>
+        {/* Checkbox para marcar si es General */}
+        <input
+          type="checkbox"
+          id="esGeneral"
+          checked={esGeneral}
+          onChange={handleEsGeneralChange}
+          style={{ display: 'none' }} // Oculta el checkbox nativo
+        />
+        <label htmlFor="esGeneral" className="checkbox-label">
+          <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
+          General
+        </label>
 
-          {/* Checkbox para marcar si es huésped */}
-          <input
-            type="checkbox"
-            id="esHuesped"
-            checked={esHuesped}
-            onChange={handleEsHuespedChange}
-            style={{ display: 'none' }} // Oculta el checkbox nativo
-          />
-          <label htmlFor="esHuesped" className="checkbox-label">
-            <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
-            Huésped
-          </label>
+        {/* Checkbox para marcar si es huésped */}
+        <input
+          type="checkbox"
+          id="esHuesped"
+          checked={esHuesped}
+          onChange={handleEsHuespedChange}
+          style={{ display: 'none' }} // Oculta el checkbox nativo
+        />
+        <label htmlFor="esHuesped" className="checkbox-label"> 
+          <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
+          Huésped
+        </label>
 
-          {/* Checkbox para marcar si es Servicio */}
-          <input
-            type="checkbox"
-            id="esServicio"
-            checked={esServicio}
-            onChange={handleEsServicioChange}
-            style={{ display: 'none' }} // Oculta el checkbox nativo
-          />
-          <label htmlFor="esServicio" className="checkbox-label">
-            <span className={`checkbox-circle ${esServicio ? 'checked' : ''}`}></span>
-            Servicios
-          </label>
-        </div>
+        <label htmlFor="esServicio" className="checkbox-label">
+
+        {/* Checkbox para marcar si es Servicio */}
+        <input
+          type="checkbox"
+          id="esServicio"
+          checked={esServicio}
+          onChange={handleEsServicioChange}
+          //style={{ display: 'none' }} // Oculta el checkbox nativo
+        />
+          Servicios
+        </label>
+      </div>
 
       {/* Div para el dropdown de huésped */}
       <div className="dropdown-container">
@@ -231,6 +236,8 @@ const ReportsAdmin = () => {
           </div>
         )}
       </div>
+      
+        
 
       <div className="report-container">
         {/* Input rectángulo gris */}

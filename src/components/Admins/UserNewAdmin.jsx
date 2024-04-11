@@ -69,7 +69,7 @@ const UserNewAdmin = () => {
       {/* TODO aqui intentar reacomodar todo en una tabla */}
 
 
-      {/* <table className='usernew-table'>
+      <table className='usernew-table'>
         <tr>
           <td>Visitante previo</td>
           <td>
@@ -109,7 +109,7 @@ const UserNewAdmin = () => {
         </tr>
 
       </table>
- */}
+
 
 
 

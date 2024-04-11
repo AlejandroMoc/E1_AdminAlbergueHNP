@@ -1,12 +1,12 @@
-// table {
-//     border-collapse: collapse;
-//     border: 1px solid black; /* Change the color and thickness as needed */
-// }
+table {
+    border-collapse: collapse;
+    border: 1px solid black; /* Change the color and thickness as needed */
+}
 
-// td {
-//     border: 1px solid black; /* Change the color and thickness as needed */
-//     padding: 8px; /* Optional: Add padding to the table cells */
-// }
+td {
+    border: 1px solid black; /* Change the color and thickness as needed */
+    padding: 8px; /* Optional: Add padding to the table cells */
+}
 
 .usernew-table{
     width: 100%;
@@ -173,8 +173,6 @@ input:checked + .slider:before {
     width: 30vw;
     height: 25vh;
     padding: 3vh;
-    margin-bottom: 0vh;
-    margin-top: 5vh;
     border: 0vh solid #9b9898;
     border-radius: 1vh;
     box-sizing: border-box;
