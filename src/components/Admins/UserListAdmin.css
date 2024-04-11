@@ -1,0 +1,49 @@
+.fecha-input-container {
+
+}
+
+.dropdown-container {
+    margin-top: 5vh;
+    margin-left: 8vh;
+    text-align: left;
+}
+
+.dropdown-toggle-custom {
+    width: 45vh;
+    background-color: #f2f2f2 !important;
+    color: black !important;
+    border-color: #d9d9d8 !important;
+}
+
+.dropdown-menu-custom {
+    width: 45vh;
+}
+
+.fecha-picker-container {
+
+}
+
+.fecha-input {
+
+}
+
+.deuda-input-container {
+
+}
+
+.deuda-input {
+
+}
+
+.table-container {
+    
+}
+
+/* .custom-dropdown-toggle {
+    width: 200px;
+    text-align: left;
+    border-radius: 8px;
+    padding: 1px 10px;
+    background: rgb(236, 230, 230);
+} */
+
