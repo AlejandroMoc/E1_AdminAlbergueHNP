@@ -4,18 +4,18 @@ import logohnp from '../../assets/logos/logo_hnp.svg';
 
 const SignupAdmin = () => {
   return (
-    <div class='App-minheight' >
+    <div className='App-minheight' >
       <br />
-      <h1 class='titulo-grande1'>Administrador del Albergue</h1>
-      <p class='titulo-grande2'>Hospital del Niño Poblano</p> 
+      <h1>Administrador del Albergue</h1>
+      <h2>Hospital del Niño Poblano</h2> 
 
       <div>
         <center>
-        <table class='table1'>
+        <table className='table1'>
           <center>
           <thead><tr><img src={logohnp} class ="header-logo" alt="logo"/></tr></thead>
           <tbody >
-            <tr><p class='titulo-bienvenido'>¡Bienvenido!</p></tr>
+            <tr><h3 className='titulo-bienvenido'>¡Bienvenido!</h3></tr>
             <tr> 
             <td><input type="text" id="usuario" name="usuario" placeholder="Usuario"></input></td>
             </tr>

@@ -3,11 +3,11 @@ import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <div class='footer'>
+    <div className='footer'>
       <div>
-        <p class='footer-text'>
+        <p className='footer-text'>
             Con tecnología de{' '}
-            <a class='footer-link'
+            <a className='footer-link'
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"

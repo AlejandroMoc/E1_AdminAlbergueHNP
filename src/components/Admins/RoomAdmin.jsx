@@ -31,13 +31,13 @@ function Cama({color, iconocama, numCama}){
       
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" class="iconStyle"/>} title={<span class="letraMenu">Pagar $20.00</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Pagar</span>
-            <input type="text" class="form-control" placeholder="$20.00" aria-label="Username" aria-describedby="basic-addon1" />
+          <div>
+            <span id="basic-addon1">Pagar</span>
+            <input type="text" placeholder="$20.00" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label" for="flexCheckDefault">
+            <input type="checkbox" value="" id="flexCheckDefault" />
+            <label for="flexCheckDefault">
               Condonar Pago
             </label>
           </div>
@@ -45,20 +45,20 @@ function Cama({color, iconocama, numCama}){
       </Menu.SubMenu>
       <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" class="iconStyle"/>} title={<span class="letraMenu">Servicios</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Desayuno: 0" aria-label="Amount (to the nearest dollar)" />
+          <div class="regServo">
+            <span>+</span>
+            <span>-</span>
+            <input type="text" placeholder="Desayuno: 0" aria-label="Amount (to the nearest dollar)" />
           </div>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Comida: 0" aria-label="Amount (to the nearest dollar)" />
+          <div class="regServo">
+            <span>+</span>
+            <span>-</span>
+            <input type="text" placeholder="Comida: 0" aria-label="Amount (to the nearest dollar)" />
           </div>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Cena: 0" aria-label="Amount (to the nearest dollar)" />
+          <div class="regServo">
+            <span>+</span>
+            <span>-</span>
+            <input type="text" placeholder="Cena: 0" aria-label="Amount (to the nearest dollar)" />
           </div>
           <button type="button" class="btn btn-light botonReg">Registrar</button>
         </Menu.Item>
@@ -92,12 +92,7 @@ const RoomAdmin = () => {
   const camasMujeres = Array(cantidadMujeres).fill(null);
   const camasAislados = Array(cantidadAislados).fill(null);
 
-  const aisladoLetras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I',
-                        'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
-                        'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-  
-  
+  const aisladoLetras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I','J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   return (
     <div className='App-minheight'>
         <div class="titulosZonas container">

@@ -7,7 +7,7 @@ import Navbar from '../Universal/Navbar';
 
 const Home = () => {
 	return (
-		<div class="App-global App-bluebackground">
+		<div className="App-global App-bluebackground">
 			<Navbar/>
 			<HomeAdmin/>
 			<Footer/>

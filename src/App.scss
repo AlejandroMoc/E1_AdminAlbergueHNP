@@ -6,6 +6,24 @@
   color: #232629;
 }
 
+.App-global h1{
+  font-size: calc(30px + 2vmin);
+  text-decoration: none;
+}
+
+.App-global h2{
+  font-size: calc(10px + 2vmin);
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.App-global h3{
+  font-size: calc(10px + 2vmin);
+  margin-top: -4vh;
+  margin-bottom: -5px;
+  font-weight: bold;
+}
+
 .App-bluebackground {
   background: linear-gradient(to right, #EAFEFF, #9EC3F6);
   /* opacity: 0.68; */
@@ -15,16 +33,19 @@
   min-height: 85vh;
 }
 
-.App-bluebackground2 {
+.App-picturebackground {
   background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
   background-size: cover; /* ajusta el tamaño de la imagen para cubrir el contenedor */
   background-position: center; /* posición de la imagen centrada */
 }
-.App-minheight {
-  min-height: 93vh;
+
+.App-minpadding {
+  padding: 5vh;
 }
 
-/* TODO añadir clase input que simplifique el type(con lo que todos los types usan pues) */
+//ELEMENTOS GLOBALES
+
+///input
 input{
   width: 14em;
   margin: 5px ;
@@ -51,3 +72,7 @@ input[type="password"] {
 //   margin-top: 1rem;
 //   margin-bottom: 1rem;
 // }
+
+///button
+
+//TODO mover las clases de los botones AQUÍ (resolver por qué fallan)

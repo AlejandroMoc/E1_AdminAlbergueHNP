@@ -1,15 +1,4 @@
-.titulo-grande1{
-  font-size: calc(30px + 2vmin);
-  text-decoration: none;
-}
-  
-.titulo-grande2{
-  font-size: calc(10px + 2vmin);
-  text-decoration: none;
-  margin-bottom: 40px;
-}
-
-  .table1{
+.table1{
   padding: 10px;
   border-collapse: separate;
   border-spacing: 15px 15px;
@@ -20,30 +9,23 @@
   text-align: center; /* Centra el contenido de la tabla */
 }
 
-  .header-logo {
+.header-logo {
   margin-top: -25px;
   height: 15vmin;
   padding: 0;
 }
-
-.titulo-bienvenido{
-  font-size: calc(10px + 2vmin);
-  margin-top: -4vh;
-  margin-bottom: -5px;
-  font-weight: bold;
-}
-
 /*BOTON*/
+//TODO unificar con diseño de button
 button {
   width: 14em;
   height: 2.6em;
-  padding: 5px;
-  margin: 5px;
   border: 1px solid #A5CFFD;
-  border-radius: 1vh; /* Aumentamos el valor del border-radius para hacer los bordes más redondos */
+  border-radius: 1vh;
   background-color: #A5CFFD;
   font-size: calc(2px + 2vmin);
   text-align: center;
+  border: none;
+  border-radius: 1vh;
   cursor: pointer; /* Cambiamos el cursor cuando se pasa sobre el botón */
   display: inline-block; /* Hacemos que el botón se comporte como un elemento en línea */
   text-decoration: none; /* Quitamos la subrayado predeterminado en el botón */

@@ -1,0 +1,283 @@
+// table {
+//     border-collapse: collapse;
+//     border: 1px solid black; /* Change the color and thickness as needed */
+// }
+
+// td {
+//     border: 1px solid black; /* Change the color and thickness as needed */
+//     padding: 8px; /* Optional: Add padding to the table cells */
+// }
+
+.usernew-table{
+    width: 100%;
+    text-align: left;
+}
+
+.usernew-table td{
+    width: 50%;
+}
+
+
+
+
+.label-grande {
+
+    color: #535353;
+}
+  
+input[type="text"]::placeholder {
+    font-style: italic;
+
+}
+
+  
+.div {
+    margin-left: 10%;
+}
+  
+.div_to_icons {
+    margin-left: 2%;
+}
+  
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 8vh;
+    height: 5vh;
+    margin-left: -35vh;
+}
+  
+.switch input {
+    opacity: 0vh;
+    width: 0vh;
+    height: 0vh;
+}
+  
+.switch-label {
+    margin-top: -4vh;
+
+    color: #535353;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0vh;
+    left: 0vh;
+    right: 0vh;
+    bottom: 0vh;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34vh;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 5vh;
+    width: 5vh;
+    left: 0vh;
+    bottom: 0vh;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .slider {
+    background-color: #60e283;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1vh #60e283;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(3vh);
+    -ms-transform: translateX(3vh);
+    transform: translateX(3vh);
+}
+  
+.header-table2 {
+    padding-bottom: 15vh;
+}
+  
+#anchoEspecifico {
+    width: 20vh !important;
+}
+  
+.desplazar-izquierda {
+    margin-left: -0;
+
+}
+  
+.row {
+    margin-bottom: 1.7vh;
+}
+
+.rowSwitch {
+    display: block;
+}
+  
+.columnIcon {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20vh;
+    margin-left: -90vh;
+    margin-right: 8vh;
+}
+
+.columnIcon2 {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25vh;
+
+}
+
+.columnIcon3 {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 32vh;
+
+}
+  
+
+
+.rowshower{
+    margin-top: 40vh;
+    margin-bottom: 8vh;
+}
+
+.rowcoin{
+    margin-top: 9.5vh;
+}
+
+.column1 {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 4vh;
+    margin-left: 0;
+
+    margin-bottom: -50vh; 
+}
+  
+.column4 {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: -90vh;
+    margin-left: -5vh;
+}
+  
+#nota {
+    width: 30vw;
+    height: 25vh;
+    padding: 3vh;
+    margin-bottom: 0vh;
+    margin-top: 5vh;
+    border: 0vh solid #9b9898;
+    border-radius: 1vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    resize: none;
+}
+  
+.auto-scroll-textarea {
+    width: 90vw;
+    height: 40vh;
+    padding: 2vh;
+    margin-bottom: 2vh;
+    border: 1vh solid #9b9898;
+    border-radius: 4vh;
+    box-sizing: border-box;
+    background-color: #e2dfdf;
+    overflow-y: auto;
+    resize: none;
+}
+  
+.numero-seleccion {
+    margin: 1vh;
+}
+  
+.numero-seleccion label {
+    color: #535353;
+}
+  
+.numero-seleccion select {
+    padding: 1vh;
+    border: -20vh solid #9b9898;
+    border-radius: 1vh;
+    background-color: #e2dfdf;
+}
+  
+.registrar-button {
+    bottom: 2vh;
+    right: 20vh;
+}
+  
+.btn-registrar {
+    background-color: #007bff;
+    color: #ffffff;
+}
+  
+.btn-registrar:hover {
+    background-color: #0056b3;
+}
+  
+.contador {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vh;
+}
+  
+.contador button {
+    background-color: #9b9898;
+    color: #ffffff;
+    border: none;
+    padding: 1vh 2vh;
+    border-radius: 50%;
+    font-size: 2vh;
+    cursor: pointer;
+    margin: 0 1vh;
+}
+  
+.contador button:hover {
+    background-color: #9b9898;
+}
+  
+.contador input[type="number"] {
+    width: 8vh;
+    height: 6vh;
+    font-size: 2vh;
+    text-align: center;
+    margin: 0 1vh;
+}
+  
+.contador span {
+    font-size: 2vh;
+    margin: 0 1vh;
+}
+  
+.servicio {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.servicio1 {
+    margin-bottom: 6vh;
+}
+  
+.input-amount {
+    width: 8vh;
+    height: 6vh;
+    font-size: 2vh;
+    text-align: center;
+    margin: 0 1vh;
+    padding-left: 2vh;
+}
+  
+.contador span {
+    font-size: 2vh;
+    margin: 0 1vh;
+    display: inline-block;
+}

@@ -8,7 +8,7 @@ import ReportsAdmin from "../Admins/ReportsAdmin";
 
 const Reports = () => {
 	return (
-		<div class="App-global">
+		<div className="App-global">
 			<Navbar/>
 			<ReportsAdmin/>
 			<Footer/>

@@ -10,11 +10,11 @@ import {Link} from "react-router-dom";
 
 const ProfilePasswordAdmin = () => {
   return (
-    <div class='App-minheight'>
+    <div className='App-minheight'>
       
-      <table class= 'header-table3'>
-        <h1 class="header-textitle">Administradora</h1>
-        <p class= 'header-text' to="/"><IoKey/>Cambiar contraseña</p>
+      <table className= 'header-table3'>
+        <h1 className="header-textitle">Administradora</h1>
+        <p className= 'header-text' to="/"><IoKey/>Cambiar contraseña</p>
 
         {/*Formato de cambiar contraseña*/}
         <p><input type="password" id="oldpass" name="oldpassword" minlength="8" maxlength="16" required placeholder="Contraseña actual" /></p>
@@ -23,12 +23,12 @@ const ProfilePasswordAdmin = () => {
         
         {/*Botones*/}
         {/* <p>
-          <input class= 'header-inputbutton header-colorcancel' type="submit" value="Cancelar" />
-          <input class= 'header-inputbutton header-coloraccept' type="submit" value="Cambiar contraseña" />
+          <input className= 'header-inputbutton header-colorcancel' type="submit" value="Cancelar" />
+          <input className= 'header-inputbutton header-coloraccept' type="submit" value="Cambiar contraseña" />
         </p> */}
 
-        <p><button class="header-colorcancel">Cancelar</button></p>
-        <p><button class="header-coloraccept">Cambiar constraseña</button></p>
+        <p><button className="header-colorcancel">Cancelar</button></p>
+        <p><button className="header-coloraccept">Cambiar constraseña</button></p>
 
       </table>
     </div>

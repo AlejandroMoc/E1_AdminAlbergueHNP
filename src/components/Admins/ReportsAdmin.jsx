@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './HomeAdmin.scss'; // Importa tu archivo CSS aquí
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
 
@@ -25,10 +25,7 @@ const ReportsAdmin = () => {
     deuda: false,
     vetados: false
   });
-
   
-
-
   // Función para manejar el cambio del checkbox de General
   const handleEsGeneralChange = () => {
     if (!esGeneral) {
@@ -80,82 +77,80 @@ const ReportsAdmin = () => {
   };
 
   return (
-        <div class='App-minheight'>
-        {/* Div para agrupar los campos de entrada */}
-        <div class="fecha-input-container">
+    <div className='App-minheight App-minpadding'>
+      {/* Div para agrupar los campos de entrada */}
+      <div className="fecha-input-container">
           {/* Campo de entrada para la fecha 1 */}
-          <div class="fecha-picker-container">
+          <div className="fecha-picker-container">
             <DatePicker
               selected={fecha1}
               onChange={date => setFecha1(date)}
               placeholderText="DD/MM/YY"
-              class="fecha-input"
+              className="fecha-input"
               dateFormat="dd/MM/yy" // Cambia el formato de la fecha
-
             />
           </div>
 
           {/* Campo de entrada para la fecha 2 */}
-          <div class="fecha-picker-container">
+          <div className="fecha-picker-container">
             <DatePicker
               selected={fecha2}
               onChange={date => setFecha2(date)}
               placeholderText="DD/MM/YY"
-              class="fecha-input"
+              className="fecha-input"
               dateFormat="dd/MM/yy" // Cambia el formato de la fecha
-
             />
           </div>
 
-        {/* Checkbox para marcar si es General */}
-        <input
-          type="checkbox"
-          id="esGeneral"
-          checked={esGeneral}
-          onChange={handleEsGeneralChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-        <label htmlFor="esGeneral" class="checkbox-label">
-          <span class={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
-          General
-        </label>
+          {/* Checkbox para marcar si es General */}
+          <input
+            type="checkbox"
+            id="esGeneral"
+            checked={esGeneral}
+            onChange={handleEsGeneralChange}
+            style={{ display: 'none' }} // Oculta el checkbox nativo
+          />
+          <label htmlFor="esGeneral" className="checkbox-label">
+            <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
+            General
+          </label>
 
-        {/* Checkbox para marcar si es huésped */}
-        <input
-          type="checkbox"
-          id="esHuesped"
-          checked={esHuesped}
-          onChange={handleEsHuespedChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-        <label htmlFor="esHuesped" class="checkbox-label">
-          <span class={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
-          Huésped
-        </label>
+          {/* Checkbox para marcar si es huésped */}
+          <input
+            type="checkbox"
+            id="esHuesped"
+            checked={esHuesped}
+            onChange={handleEsHuespedChange}
+            style={{ display: 'none' }} // Oculta el checkbox nativo
+          />
+          <label htmlFor="esHuesped" className="checkbox-label">
+            <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
+            Huésped
+          </label>
 
-        {/* Checkbox para marcar si es Servicio */}
-        <input
-          type="checkbox"
-          id="esServicio"
-          checked={esServicio}
-          onChange={handleEsServicioChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-        <label htmlFor="esServicio" class="checkbox-label">
-          <span class={`checkbox-circle ${esServicio ? 'checked' : ''}`}></span>
-          Servicios
-        </label>
-      </div>
+          {/* Checkbox para marcar si es Servicio */}
+          <input
+            type="checkbox"
+            id="esServicio"
+            checked={esServicio}
+            onChange={handleEsServicioChange}
+            style={{ display: 'none' }} // Oculta el checkbox nativo
+          />
+          <label htmlFor="esServicio" className="checkbox-label">
+            <span className={`checkbox-circle ${esServicio ? 'checked' : ''}`}></span>
+            Servicios
+          </label>
+        </div>
 
       {/* Div para el dropdown de huésped */}
-      <div class="dropdown-container">
+      <div className="dropdown-container">
         {/* Dropdown que se muestra si es huésped */}
         {esHuesped && (
           <Dropdown onSelect={(eventKey) => handleHuéspedSelect(eventKey)}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" class="dropdown-toggle-custom">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
             {huéspedSeleccionado}
             </Dropdown.Toggle>
-            <Dropdown.Menu  class="dropdown-menu-custom">
+            <Dropdown.Menu  className="dropdown-menu-custom">
               <Dropdown.Item eventKey="34 - Gianpiero Chiellini">34 - Gianpiero Chiellini</Dropdown.Item>
               <Dropdown.Item eventKey="25 - Juan Rosas">25 - Juan Rosas</Dropdown.Item>
               <Dropdown.Item eventKey="53 - Rodri Mere">59 - Rodri Mere</Dropdown.Item>
@@ -173,10 +168,10 @@ const ReportsAdmin = () => {
         )}
       </div>
       {/* Div para los checkboxes de servicios */}
-      <div class="servicios-container">
+      <div className="servicios-container">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div class="servicios-checkboxes">
+          <div className="servicios-checkboxes">
             <div>
               <input
                 type="checkbox"
@@ -236,21 +231,19 @@ const ReportsAdmin = () => {
           </div>
         )}
       </div>
-      
-        
 
-      <div class="report-container">
+      <div className="report-container">
         {/* Input rectángulo gris */}
         <input
           type="text"
-          class="gray-rectangle-input"
+          className="gray-rectangle-input"
         />
       </div>
-      <div class="export-button">
+      <div className="export-button">
         {/* Botón de exportar reporte a PDF */}
         <button
           type="button"
-          class="color-button"
+          className="color-button"
         >
           Exportar
         </button>

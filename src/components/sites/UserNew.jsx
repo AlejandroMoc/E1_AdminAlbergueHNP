@@ -8,7 +8,7 @@ import UserNewAdmin from "../Admins/UserNewAdmin";
 
 const UserNew = () => {
 	return (
-		<div class="App-global">
+		<div className="App-global">
 			<Navbar/>
 			<UserNewAdmin/>
 			<Footer/>

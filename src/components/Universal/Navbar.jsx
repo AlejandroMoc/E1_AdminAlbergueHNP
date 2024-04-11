@@ -13,7 +13,7 @@ const Navbar = () => {
   return ( 
     <nav class = "navbar">
         <ul class = "navbar-left">
-          <div class="navbar-logo-div"><Link to="/"><img src={logohnp} class="navbar-logo-color" alt="logo"/></Link></div>
+          <div className="navbar-logo-div"><Link to="/"><img src={logohnp} className="navbar-logo-color" alt="logo"/></Link></div>
         </ul>
         <ul class ='navbar-right'>
           <Link class = 'navbar-text' to ="/beds"> Camas </Link>

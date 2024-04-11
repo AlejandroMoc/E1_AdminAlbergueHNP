@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
-import "./UserListAdmin.css"
+import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //FALTA:
@@ -63,21 +63,20 @@ const UserListAdmin = () => {
   };
 
   return (
-    <div className='App-minheight'>
+    <div className='App-minheight App-minpadding'>
       {/* Div para los campos de entrada */}
-      <h1>Administración de Usuarios</h1>
+      {/* <h1>Administración de Usuarios</h1> */}
 
       <div className='dropdown-container'>
         {/* Div para dropdown */}
         <Dropdown>
-            <Dropdown.Toggle variant='success' id='dropdown-basic' className='dropdown-toggle-custom'>
+            <Dropdown.Toggle  className='dropdown-toggle-custom' variant='success' id='dropdown-basic'>
               Filtros
             </Dropdown.Toggle>
             <Dropdown.Menu className='dropdown-menu-custom'>
               {/* Checkbox de Filtros*/}
               {filters.map((option) => (
                 <Form.Check
-                  className='custom-checkbox'
                   key={option.id}
                   type='checkbox'
                   id='option_${option.id}'
@@ -137,7 +136,7 @@ const UserListAdmin = () => {
         )}
       </div>
 
-      <div className='table-container'>
+      <div>
         <Table>
           <thead>
             <tr>

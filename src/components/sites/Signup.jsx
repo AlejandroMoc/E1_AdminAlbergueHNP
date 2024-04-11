@@ -8,7 +8,7 @@ import SignupAdmin from "../Admins/SignupAdmin";
 
 const Signup = () => {
 	return (
-		<div class="App-global App-bluebackground2">
+		<div className="App-global App-picturebackground">
 			<SignupAdmin/>
 			<Footer/>
 		</div>
