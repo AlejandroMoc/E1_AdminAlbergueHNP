@@ -111,6 +111,8 @@
   margin-top: 25px;
 }
 
+
+
 .checkbox-circle {
   position: relative;
   display: inline-block;
@@ -148,7 +150,7 @@ width: 90%;
 height: 300px;
 background-color: #d9d9d8;
 border: none;
-margin-top: 80px;
+margin-top: 20px;
 margin-left: 20px;
 margin-right: 20px;
 }

@@ -12,7 +12,7 @@ const ReportsAdmin = () => {
   const [fecha2, setFecha2] = useState(null);
   const [esHuesped, setEsHuesped] = useState(false);
   const [huéspedSeleccionado, setHuéspedSeleccionado] = useState('Huésped'); // Estado para almacenar el nombre del huésped seleccionado
-  const [esGeneral, setEsGeneral] = useState(false); // Nuevo estado para el checkbox "General"
+  const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
   const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
 
   // Estado para los servicios individuales
@@ -128,10 +128,12 @@ const ReportsAdmin = () => {
           onChange={handleEsHuespedChange}
           style={{ display: 'none' }} // Oculta el checkbox nativo
         />
-        <label htmlFor="esHuesped" className="checkbox-label">
+        <label htmlFor="esHuesped" className="checkbox-label"> 
           <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
           Huésped
         </label>
+
+        <label htmlFor="esServicio" className="checkbox-label">
 
         {/* Checkbox para marcar si es Servicio */}
         <input
@@ -139,10 +141,8 @@ const ReportsAdmin = () => {
           id="esServicio"
           checked={esServicio}
           onChange={handleEsServicioChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
+          //style={{ display: 'none' }} // Oculta el checkbox nativo
         />
-        <label htmlFor="esServicio" className="checkbox-label">
-          <span className={`checkbox-circle ${esServicio ? 'checked' : ''}`}></span>
           Servicios
         </label>
       </div>
