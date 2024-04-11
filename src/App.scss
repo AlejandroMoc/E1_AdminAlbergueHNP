@@ -1,0 +1,53 @@
+/*CSS Global de App*/
+
+.App-global {
+  text-align: center;
+  margin: 0;
+  color: #232629;
+}
+
+.App-bluebackground {
+  background: linear-gradient(to right, #EAFEFF, #9EC3F6);
+  /* opacity: 0.68; */
+}
+
+.App-minheight {
+  min-height: 85vh;
+}
+
+.App-bluebackground2 {
+  background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
+  background-size: cover; /* ajusta el tamaño de la imagen para cubrir el contenedor */
+  background-position: center; /* posición de la imagen centrada */
+}
+.App-minheight {
+  min-height: 93vh;
+}
+
+/* TODO añadir clase input que simplifique el type(con lo que todos los types usan pues) */
+input{
+  width: 14em;
+  margin: 5px ;
+  padding: 10px;
+  border: 1px solid #D9D9D8;
+  border: none;
+  border-radius: 1vh;
+  background-color: #D9D9D8;
+  font-size: calc(2px + 2vmin);
+  font-style: italic;
+}
+
+input[type="text"] {
+  font-size: calc(2px + 2vmin);
+  font-style: italic;
+}
+
+input[type="password"] {
+  font-size: calc(2px + 2vmin);
+  font-style: italic;
+}
+
+// div{
+//   margin-top: 1rem;
+//   margin-bottom: 1rem;
+// }

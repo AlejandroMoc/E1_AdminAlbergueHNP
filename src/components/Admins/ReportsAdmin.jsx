@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HomeAdmin.css'; // Importa tu archivo CSS aquí
+import './HomeAdmin.scss'; // Importa tu archivo CSS aquí
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';

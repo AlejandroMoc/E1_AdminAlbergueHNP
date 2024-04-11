@@ -8,7 +8,7 @@ import UserListAdmin from "../Admins/UserListAdmin";
 
 const UserList = () => {
 	return (
-		<div className="App-global">
+		<div class="App-global">
 			<Navbar/>
 			<UserListAdmin/>
 			<Footer/>

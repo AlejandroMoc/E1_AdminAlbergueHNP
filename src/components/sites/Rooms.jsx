@@ -4,15 +4,15 @@ import React from "react";
 
 //Importar componentes
 import Navbar from '../Universal/Navbar';
-import Footer from '../Universal/Footer';
+//import Footer from '../Universal/Footer';
 import RoomAdmin from "../Admins/RoomAdmin";
 
 const Rooms = () => {
 	return (
-		<div className="App-global">
+		<div class="App-global">
 			<Navbar/>
 			<RoomAdmin/>
-			<Footer/>
+			{/*<Footer/> */}
 		</div>
 	);
 };

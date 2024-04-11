@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserListAdmin = () => {
   return (
-    <div className='App-minheight'>
+    <div class='App-minheight'>
       <h1>Usuarios ya existentes</h1>
 			<p>Aquí va la administración de usuarios ya existentes</p>
     </div>

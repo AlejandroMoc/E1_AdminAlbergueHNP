@@ -1,72 +1,104 @@
 .header-title{
-  font-size: calc(20px + 4vmin);
-  font-weight: 800;
-  line-height: 1.2;
-  margin: 0;
-  padding: 20px 0 0 0;
+    font-size: calc(20px + 4vmin);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0;
+    /* Bottom left right top */
+    padding: 20px 0 0 0;
 }
 
 .header-subtitle{
-  font-size: calc(10px + 2vmin);
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0;
-  padding: 10;
+    font-size: calc(10px + 2vmin);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    padding: 10;
 }
 
 .header-logo {
-  height: 40vmin;
-  padding: 0;
+    height: 40vmin;
+    padding: 0;
 }
 
 .header-table {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  border-collapse: separate;
-  border-spacing: 15px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
 }
 
 .header-linksquare{
-  background-color: rgb(255, 255, 255);
-  border-radius: 1vh;
-  height: 40vh;
-  width: 40vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1vh;
+    height: 40vh;
+    width: 40vh;
 }
 
 .header-table2{
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header-table3 {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 105px;
-  padding: 20px;
-  border-collapse: separate;
-  border-spacing: 15px 15px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 1vh;
-  height: 40vh;
-  width: 60vh;
+    /* Bottom left right top */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 105px;
+    padding: 20px;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1vh;
+    height: 60vh;
+    min-height: 60vh;
+    width: 60vh;
+}
+
+/*TODO dividir colores en clases propias y referenciar esas*/
+/*TODO mover a partir de aquí a clase universal de p*/
+.header-textitle{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.header-text {
+    color: #232629;
+    font-size: calc(8px + 2vmin);
 }
 
 .header-textlink {
-  color: #232629;
-  font-size: calc(10px + 2vmin);
-  text-decoration: none;
-  font-style: italic;
-  font-weight: 500;
+    color: #232629;
+    font-size: calc(10px + 2vmin);
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
 }
 
 .header-textclosesession{
-  color: #ee7171;
-  font-size: calc(5px + 2vmin);
-  text-decoration: none;
-  font-style: normal;
-  font-weight: 500;
+    color: #ee7171;
+    font-size: calc(5px + 2vmin);
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
 }
+
+.header-inputbutton{
+    border-radius: 1vh;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+}
+
+.header-coloraccept{
+    background-color: #A5CFFD;
+}
+
+.header-colorcancel{
+    background-color: #ee7171;
+}
+
+
 
 .fecha-input {
   border: 0px solid #ccc;
@@ -91,6 +123,7 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 72px;
+  margin-top: 25px;
 }
 .fecha-picker-container {
   margin-right: 20px;
@@ -108,7 +141,6 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top: 25px;
 }
 
 

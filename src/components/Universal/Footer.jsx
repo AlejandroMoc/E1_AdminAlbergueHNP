@@ -1,19 +1,20 @@
 import React from 'react';
-import "./Footer.css";
+import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div class='footer'>
       <div>
-        <p className='footer-text'>
+        <p class='footer-text'>
             Con tecnología de{' '}
-            <a className='footer-link'
+            <a class='footer-link'
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
             >
             ReactJS
             </a>
+            .
         </p>
       </div>
     </div>

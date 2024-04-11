@@ -9,6 +9,8 @@
     margin-left: auto; 
     margin-right: 20px;
     padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* Botton left right top */
@@ -20,13 +22,12 @@
 }
 
 .navbar-left{
-    margin: 10px 20px auto 10px;
-    padding: 0;
+    margin: 0;
+    padding: 0 0 0 10px;
 }
 
 .navbar-logo-div{
     width: calc(5px + 8vmin);
-    margin: 0;
     padding: 0;
 }
 
