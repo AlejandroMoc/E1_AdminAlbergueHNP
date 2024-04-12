@@ -67,9 +67,10 @@ const UserListAdmin = () => {
       {/* Div para los campos de entrada */}
       {/* <h1>Administración de Usuarios</h1> */}
 
-      <div className='dropdown-container'>
+      {/*Barra de filtros y fechas*/}
+      <div className='dropdown-container '>
         {/* Div para dropdown */}
-        <Dropdown>
+        <Dropdown className='dropdown-container-dropdown'>
             <Dropdown.Toggle  className='dropdown-toggle-custom' variant='success' id='dropdown-basic'>
               Filtros
             </Dropdown.Toggle>
@@ -87,54 +88,57 @@ const UserListAdmin = () => {
                 />
               ))}
             </Dropdown.Menu>
-          </Dropdown>
-      </div>
+        </Dropdown>
 
-      <div className='fecha-input-container'>
-        {/* Div para fechas */}
-        <div className='fecha-picker-container'>
-          {/* Div para fecha 1 */}
-          <DatePicker
-            className='fecha-input'
-            selected={fecha1}
-            onChange={date => setFecha1(date)}
-            placeholderText='DD/MM/YY'
-            dateFormat='dd/MM/yy'
-          />
+        {/*TODO mover inputs al lado derecho de filtros*/}
+        <div className='fecha-input-container'>
+          {/* Div para fechas */}
+          <div className='fecha-picker-container'>
+            {/* Div para fecha 1 */}
+            <DatePicker
+              className='fecha-input'
+              selected={fecha1}
+              onChange={date => setFecha1(date)}
+              placeholderText='DD/MM/YY'
+              dateFormat='dd/MM/yy'
+            />
+          </div>
+          <div className='fecha-picker-container'>
+            {/* Div para fecha 2 */}
+            <DatePicker
+              className='fecha-input'
+              selected={fecha2}
+              onChange={date => setFecha2(date)}
+              placeholderText='DD/MM/YY'
+              dateFormat='dd/MM/yy'
+            />
+          </div>
         </div>
-        <div className='fecha-picker-container'>
-          {/* Div para fecha 2 */}
-          <DatePicker
-            className='fecha-input'
-            selected={fecha2}
-            onChange={date => setFecha2(date)}
-            placeholderText='DD/MM/YY'
-            dateFormat='dd/MM/yy'
-          />
-        </div>
-      </div>
 
-      <div className='deuda-input-container'>
-        {/* Div para deudas */}
-        {isDebt && (
-          <div className='deuda-input'>
-          {/* Div para deuda 1 */}
-          <input
-            className='deuda-input'
-            type='number'
-            onChange={(e) => handleInputChange(e, setDeuda1)}
-            placeholder='Deuda'
-          />
-          {/* Div para deuda 2*/}
-          <input
-            className='deuda-input'
-            type='number'
-            onChange={(e) => handleInputChange(e, setDeuda2)}
-            placeholder='Deuda'
-          />
+        <div className='deuda-input-container'>
+          {/* Div para deudas */}
+          {isDebt && (
+            <div className='deuda-input'>
+            {/* Div para deuda 1 */}
+            <input
+              className='deuda-input'
+              type='number'
+              onChange={(e) => handleInputChange(e, setDeuda1)}
+              placeholder='Deuda'
+            />
+            {/* Div para deuda 2*/}
+            <input
+              className='deuda-input'
+              type='number'
+              onChange={(e) => handleInputChange(e, setDeuda2)}
+              placeholder='Deuda'
+            />
+          </div>
+          )}
         </div>
-        )}
       </div>
+      
+
 
       <div>
         <Table>
