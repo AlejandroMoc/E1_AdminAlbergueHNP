@@ -212,10 +212,12 @@
 .servicios-checkboxes {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .servicios-checkboxes > div {
   margin-right: 20px;
+  
 }
 
 .servicios-checkboxes > div:last-child {
@@ -224,15 +226,34 @@
 
 .servicios-checkboxes input[type="checkbox"] {
   margin-right: 5px;
+  
 }
 
 .dropdown-toggle-custom {
   background-color: #f2f2f2 !important;
   color: black !important;
   border-color: #d9d9d8 !important;
+  max-width: 200px; /* Ajusta este valor según sea necesario */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dropdown-menu-custom {
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: 200px; /* Ajusta este valor según sea necesario */
+  max-width: 200px; /* Ajusta este valor según sea necesario */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
 }
+
+/* Estilo específico para los checkboxes dentro de ReportsAdmin */
+.ReportsAdmin-checkbox input[type="checkbox"] {
+  width: 15px; /* O cualquier otro ancho deseado */
+  margin: 0 5px 0 20px; /* Ajusta el margen según sea necesario */
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+
+

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './HomeAdmin.scss'; // Importa tu archivo CSS aquí
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
 
@@ -25,9 +24,6 @@ const ReportsAdmin = () => {
     deuda: false,
     vetados: false
   });
-
-  
-
 
   // Función para manejar el cambio del checkbox de General
   const handleEsGeneralChange = () => {
@@ -66,6 +62,7 @@ const ReportsAdmin = () => {
       });
     }
   };
+
   // Función para manejar el cambio de los checkboxes de servicios individuales
   const handleServicioChange = (servicio) => {
     setServiciosSeleccionados({
@@ -80,71 +77,71 @@ const ReportsAdmin = () => {
   };
 
   return (
-        <div className='App-minheight App-minpadding'>
-        {/* Div para agrupar los campos de entrada */}
-        <div className="fecha-input-container">
-          {/* Campo de entrada para la fecha 1 */}
-          <div className="fecha-picker-container">
-            <DatePicker
-              selected={fecha1}
-              onChange={date => setFecha1(date)}
-              placeholderText="DD/MM/YY"
-              className="fecha-input"
-              dateFormat="dd/MM/yy" // Cambia el formato de la fecha
+    <div className='App-minheight App-minpadding'>
+      {/* Div para agrupar los campos de entrada */}
+      <div className="fecha-input-container">
+        {/* Campo de entrada para la fecha 1 */}
+        <div className="fecha-picker-container">
+          <DatePicker
+            selected={fecha1}
+            onChange={date => setFecha1(date)}
+            placeholderText="DD/MM/YY"
+            className="fecha-input"
+            dateFormat="dd/MM/yy" // Cambia el formato de la fecha
+          />
+        </div>
 
+        {/* Campo de entrada para la fecha 2 */}
+        <div className="fecha-picker-container">
+          <DatePicker
+            selected={fecha2}
+            onChange={date => setFecha2(date)}
+            placeholderText="DD/MM/YY"
+            className="fecha-input"
+            dateFormat="dd/MM/yy" // Cambia el formato de la fecha
+          />
+        </div>
+
+        {/* Contenedor flex para los checkbox */}
+        <div className="checkbox-container">
+          {/* Checkbox para marcar si es General */}
+          <input
+            type="checkbox"
+            id="esGeneral"
+            checked={esGeneral}
+            onChange={handleEsGeneralChange}
+            style={{ display: 'none' }} // Oculta el checkbox nativo
+          />
+          <label htmlFor="esGeneral" className="checkbox-label">
+            <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
+            General
+          </label>
+
+          {/* Checkbox para marcar si es huésped */}
+          <input
+            type="checkbox"
+            id="esHuesped"
+            checked={esHuesped}
+            onChange={handleEsHuespedChange}
+            style={{ display: 'none' }} // Oculta el checkbox nativo
+          />
+          <label htmlFor="esHuesped" className="checkbox-label"> 
+            <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
+            Huésped
+          </label>
+
+          {/* Checkbox para marcar si es Servicio */}
+          <label htmlFor="esServicio" className="servicios-checkboxes ReportsAdmin-checkbox">
+            <input
+              type="checkbox"
+              id="esServicio"
+              checked={esServicio}
+              onChange={handleEsServicioChange}
+              class="lol"
             />
-          </div>
-
-          {/* Campo de entrada para la fecha 2 */}
-          <div className="fecha-picker-container">
-            <DatePicker
-              selected={fecha2}
-              onChange={date => setFecha2(date)}
-              placeholderText="DD/MM/YY"
-              className="fecha-input"
-              dateFormat="dd/MM/yy" // Cambia el formato de la fecha
-
-            />
-          </div>
-
-        {/* Checkbox para marcar si es General */}
-        <input
-          type="checkbox"
-          id="esGeneral"
-          checked={esGeneral}
-          onChange={handleEsGeneralChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-        <label htmlFor="esGeneral" className="checkbox-label">
-          <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
-          General
-        </label>
-
-        {/* Checkbox para marcar si es huésped */}
-        <input
-          type="checkbox"
-          id="esHuesped"
-          checked={esHuesped}
-          onChange={handleEsHuespedChange}
-          style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-        <label htmlFor="esHuesped" className="checkbox-label"> 
-          <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
-          Huésped
-        </label>
-
-        <label htmlFor="esServicio" className="checkbox-label">
-
-        {/* Checkbox para marcar si es Servicio */}
-        <input
-          type="checkbox"
-          id="esServicio"
-          checked={esServicio}
-          onChange={handleEsServicioChange}
-          //style={{ display: 'none' }} // Oculta el checkbox nativo
-        />
-          Servicios
-        </label>
+            Servicios
+          </label>
+        </div>
       </div>
 
       {/* Div para el dropdown de huésped */}
@@ -153,7 +150,7 @@ const ReportsAdmin = () => {
         {esHuesped && (
           <Dropdown onSelect={(eventKey) => handleHuéspedSelect(eventKey)}>
             <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
-            {huéspedSeleccionado}
+              {huéspedSeleccionado}
             </Dropdown.Toggle>
             <Dropdown.Menu  className="dropdown-menu-custom">
               <Dropdown.Item eventKey="34 - Gianpiero Chiellini">34 - Gianpiero Chiellini</Dropdown.Item>
@@ -172,11 +169,12 @@ const ReportsAdmin = () => {
           </Dropdown>
         )}
       </div>
+
       {/* Div para los checkboxes de servicios */}
       <div className="servicios-container">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="servicios-checkboxes">
+          <div className="servicios-checkboxes ReportsAdmin-checkbox">
             <div>
               <input
                 type="checkbox"
@@ -236,8 +234,6 @@ const ReportsAdmin = () => {
           </div>
         )}
       </div>
-      
-        
 
       <div className="report-container">
         {/* Input rectángulo gris */}
