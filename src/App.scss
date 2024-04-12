@@ -1,9 +1,13 @@
 /*CSS Global de App*/
+/*CSS Global de App*/
+// Importar la fuente Roboto
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .App-global {
   text-align: center;
   margin: 0;
   color: #232629;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App-global h1{
