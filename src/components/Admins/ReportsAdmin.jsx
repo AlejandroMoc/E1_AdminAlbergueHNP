@@ -102,45 +102,47 @@ const ReportsAdmin = () => {
           />
         </div>
 
-        {/* Contenedor flex para los checkbox */}
         <div className="checkbox-container">
-          {/* Checkbox para marcar si es General */}
+        {/* Checkbox para marcar si es General */}
+        <div className="form-check">
           <input
-            type="checkbox"
+            className="form-check-input checkboxHM"
+            type="radio"
             id="esGeneral"
             checked={esGeneral}
             onChange={handleEsGeneralChange}
-            style={{ display: 'none' }} // Oculta el checkbox nativo
           />
-          <label htmlFor="esGeneral" className="checkbox-label">
-            <span className={`checkbox-circle ${esGeneral ? 'checked' : ''}`}></span>
-            General
+          <label className="form-check-label labelRadio" htmlFor="esGeneral">
+          <span class="textoHM">General</span>
           </label>
+        </div>
 
-          {/* Checkbox para marcar si es huésped */}
+        {/* Checkbox para marcar si es huésped */}
+        <div className="form-check">
           <input
-            type="checkbox"
+            className="form-check-input checkboxHM"
+            type="radio"
             id="esHuesped"
             checked={esHuesped}
             onChange={handleEsHuespedChange}
-            style={{ display: 'none' }} // Oculta el checkbox nativo
           />
-          <label htmlFor="esHuesped" className="checkbox-label"> 
-            <span className={`checkbox-circle ${esHuesped ? 'checked' : ''}`}></span>
-            Huésped
+          <label className="form-check-label labelRadio" htmlFor="esHuesped">
+            <span class="textoHM">Huésped</span>
           </label>
+        </div>
 
-          {/* Checkbox para marcar si es Servicio */}
-          <label htmlFor="esServicio" className="servicios-checkboxes ReportsAdmin-checkbox">
-            <input
-              type="checkbox"
-              id="esServicio"
-              checked={esServicio}
-              onChange={handleEsServicioChange}
-              class="lol"
-            />
-            Servicios
+        <div className="form-check">
+          <input
+            className="form-check-input checkboxHM"
+            type="checkbox"
+            id="esServicio"
+            checked={esServicio}
+            onChange={handleEsServicioChange}
+          />
+          <label className="form-check-label labelRadio" htmlFor="esServicio">
+            <span class="textoHM">Servicios</span>
           </label>
+          </div>
         </div>
       </div>
 
@@ -174,64 +176,94 @@ const ReportsAdmin = () => {
       <div className="servicios-container">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="servicios-checkboxes ReportsAdmin-checkbox">
-            <div>
+          <div className="checkbox-container">
+            {/* Checkbox para cada servicio */}
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="desayuno"
                 checked={serviciosSeleccionados.desayuno}
                 onChange={() => handleServicioChange('desayuno')}
               />
-              <label htmlFor="desayuno">Desayuno</label>
+              <label className="form-check-label labelRadio" htmlFor="desayuno">
+                <span class="textoHM">Desayuno</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="comida"
                 checked={serviciosSeleccionados.comida}
                 onChange={() => handleServicioChange('comida')}
               />
-              <label htmlFor="comida">Comida</label>
+              <label className="form-check-label labelRadio" htmlFor="comida">
+                <span class="textoHM">Comida</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="cena"
                 checked={serviciosSeleccionados.cena}
                 onChange={() => handleServicioChange('cena')}
               />
-              <label htmlFor="cena">Cena</label>
+              <label className="form-check-label labelRadio" htmlFor="cena">
+                <span class="textoHM">Cena</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="baño"
                 checked={serviciosSeleccionados.baño}
                 onChange={() => handleServicioChange('baño')}
               />
-              <label htmlFor="baño">Baño</label>
+              <label className="form-check-label labelRadio" htmlFor="baño">
+                <span class="textoHM">Baño</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="hospedaje"
                 checked={serviciosSeleccionados.hospedaje}
                 onChange={() => handleServicioChange('hospedaje')}
               />
-              <label htmlFor="hospedaje">Hospedaje</label>
+              <label className="form-check-label labelRadio" htmlFor="hospedaje">
+                <span class="textoHM">Hospedaje</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="deuda"
                 checked={serviciosSeleccionados.deuda}
                 onChange={() => handleServicioChange('deuda')}
               />
-              <label htmlFor="deuda">Deuda</label>
+              <label className="form-check-label labelRadio" htmlFor="deuda">
+                <span class="textoHM">Deuda</span>
+              </label>
             </div>
-            <div>
+            <div className="form-check">
               <input
+                className="form-check-input checkboxHM"
                 type="checkbox"
+                id="vetados"
                 checked={serviciosSeleccionados.vetados}
                 onChange={() => handleServicioChange('vetados')}
               />
-              <label htmlFor="vetados">Vetados</label>
+              <label className="form-check-label labelRadio" htmlFor="vetados">
+                <span class="textoHM">Vetados</span>
+              </label>
             </div>
           </div>
+
         )}
       </div>
 

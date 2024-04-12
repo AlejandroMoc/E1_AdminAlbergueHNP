@@ -1,13 +1,12 @@
-.header-title{
+.header-title {
   font-size: calc(20px + 4vmin);
   font-weight: 800;
   line-height: 1.2;
   margin: 0;
-  /* Bottom left right top */
   padding: 20px 0 0 0;
 }
 
-.header-subtitle{
+.header-subtitle {
   font-size: calc(10px + 2vmin);
   font-weight: 500;
   line-height: 1.2;
@@ -28,20 +27,19 @@
   border-spacing: 15px 15px;
 }
 
-.header-linksquare{
+.header-linksquare {
   background-color: rgb(255, 255, 255);
   border-radius: 1vh;
   height: 40vh;
   width: 40vh;
 }
 
-.header-table2{
+.header-table2 {
   margin-left: auto;
   margin-right: auto;
 }
 
 .header-table3 {
-  /* Bottom left right top */
   margin-left: auto;
   margin-right: auto;
   margin-top: 105px;
@@ -55,9 +53,7 @@
   width: 60vh;
 }
 
-/*TODO dividir colores en clases propias y referenciar esas*/
-/*TODO mover a partir de aquí a clase universal de p*/
-.header-textitle{
+.header-textitle {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -75,7 +71,7 @@
   font-weight: 500;
 }
 
-.header-textclosesession{
+.header-textclosesession {
   color: #ee7171;
   font-size: calc(5px + 2vmin);
   text-decoration: none;
@@ -83,18 +79,18 @@
   font-weight: 500;
 }
 
-.header-inputbutton{
+.header-inputbutton {
   border-radius: 1vh;
   margin: 5px;
   padding: 10px;
   border: none;
 }
 
-.header-coloraccept{
-  background-color: #A5CFFD;
+.header-coloraccept {
+  background-color: #a5cffd;
 }
 
-.header-colorcancel{
+.header-colorcancel {
   background-color: #ee7171;
 }
 
@@ -141,8 +137,6 @@
   cursor: pointer;
 }
 
-
-
 .checkbox-circle {
   position: relative;
   display: inline-block;
@@ -155,7 +149,7 @@
 }
 
 .checkbox-circle.checked {
-  background-color: #d9d9d8;
+  background-color: blue;
 }
 
 .checkbox-circle.checked::after {
@@ -166,7 +160,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #3f94f0;
+  background-color: white;
   transition: opacity 0.3s ease;
   opacity: 0;
 }
@@ -212,12 +206,10 @@
 .servicios-checkboxes {
   display: flex;
   flex-wrap: wrap;
-  
 }
 
 .servicios-checkboxes > div {
   margin-right: 20px;
-  
 }
 
 .servicios-checkboxes > div:last-child {
@@ -226,34 +218,44 @@
 
 .servicios-checkboxes input[type="checkbox"] {
   margin-right: 5px;
-  
 }
 
 .dropdown-toggle-custom {
   background-color: #f2f2f2 !important;
   color: black !important;
   border-color: #d9d9d8 !important;
-  max-width: 200px; /* Ajusta este valor según sea necesario */
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .dropdown-menu-custom {
-  max-height: 200px; /* Ajusta este valor según sea necesario */
-  max-width: 200px; /* Ajusta este valor según sea necesario */
-  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+  max-height: 200px;
+  max-width: 200px;
+  overflow-y: auto;
 }
 
 /* Estilo específico para los checkboxes dentro de ReportsAdmin */
 .ReportsAdmin-checkbox input[type="checkbox"] {
-  width: 15px; /* O cualquier otro ancho deseado */
-  margin: 0 5px 0 20px; /* Ajusta el margen según sea necesario */
+  width: 15px;
+  margin: 0 5px 0 20px;
   padding: 0;
   border: none;
   border-radius: 0;
   background-color: transparent;
 }
 
+.labelRadio {
+  margin-right: 20px;
+  font-size: larger;
+}
 
+.checkboxHM {
+  border-color: #aaaaaa;
+}
 
+.textoHM {
+  margin-left: 5px;
+  margin-right: 20px;
+}
