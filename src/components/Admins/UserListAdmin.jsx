@@ -63,117 +63,124 @@ const UserListAdmin = () => {
   };
 
   return (
-    <div className='App-minheight App-minpadding'>
-      {/* Div para los campos de entrada */}
-      {/* <h1>Administración de Usuarios</h1> */}
-
-      {/*Barra de filtros y fechas*/}
-      <div className='dropdown-container '>
-        {/* Div para dropdown */}
-        <Dropdown className='dropdown-container-dropdown'>
-            <Dropdown.Toggle  className='dropdown-toggle-custom' variant='success' id='dropdown-basic'>
-              Filtros
-            </Dropdown.Toggle>
-            <Dropdown.Menu className='dropdown-menu-custom'>
-              {/* Checkbox de Filtros*/}
-              {filters.map((option) => (
-                <Form.Check
-                  key={option.id}
-                  type='checkbox'
-                  id='option_${option.id}'
-                  label={option.label}
-                  checked={select_Filters.includes(option.id)}
-                  onChange={filterChange}
-                  value={option.id}
-                />
-              ))}
-            </Dropdown.Menu>
-        </Dropdown>
-
-        {/*TODO mover inputs al lado derecho de filtros*/}
-        <div className='fecha-input-container'>
-          {/* Div para fechas */}
-          <div className='fecha-picker-container'>
-            {/* Div para fecha 1 */}
-            <DatePicker
-              className='fecha-input'
-              selected={fecha1}
-              onChange={date => setFecha1(date)}
-              placeholderText='DD/MM/YY'
-              dateFormat='dd/MM/yy'
-            />
+    <div className='App-minheight'>
+      <div className='flex-contenedor'>
+        <div className='upper-contenedor'>  
+          <div className='dropdown-container'>
+            {/* Div para dropdown */}
+            <Dropdown className='dropdown-container-dropdown'>
+              <Dropdown.Toggle  className='dropdown-toggle-custom' variant='success' id='dropdown-basic'>
+                Filtros
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='dropdown-menu-custom'>
+                {/* Checkbox de Filtros*/}
+                {filters.map((option) => (
+                  <Form.Check
+                    key={option.id}
+                    type='checkbox'
+                    id='option_${option.id}'
+                    label={option.label}
+                    checked={select_Filters.includes(option.id)}
+                    onChange={filterChange}
+                    value={option.id}
+                  />
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
-          <div className='fecha-picker-container'>
-            {/* Div para fecha 2 */}
-            <DatePicker
-              className='fecha-input'
-              selected={fecha2}
-              onChange={date => setFecha2(date)}
-              placeholderText='DD/MM/YY'
-              dateFormat='dd/MM/yy'
-            />
+
+          <div className='fecha-input-container'>
+            {/* Div para fechas */}
+            <div className='fecha-picker-container'>
+              {/* Div para fecha 1 */}
+              <DatePicker
+                className='fecha-input'
+                selected={fecha1}
+                onChange={date => setFecha1(date)}
+                placeholderText='DD/MM/YY'
+                dateFormat='dd/MM/yy'
+              />
+            </div>
+            <div className='fecha-picker-container'>
+              {/* Div para fecha 2 */}
+              <DatePicker
+                className='fecha-input'
+                selected={fecha2}
+                onChange={date => setFecha2(date)}
+                placeholderText='DD/MM/YY'
+                dateFormat='dd/MM/yy'
+              />
+            </div>
+          </div>
+
+          <div className='deuda-input-container'>
+            <div className='deuda-picker-container'>
+              {/* Div para deudas */}
+              {isDebt && (
+                <div className='deuda-box-container'>
+                  {/* Div para deuda 1 */}
+                  <input
+                    className='deuda-input'
+                    type='number'
+                    onChange={(e) => handleInputChange(e, setDeuda1)}
+                    placeholder='Deuda'
+                  />
+                </div>
+              )}
+            </div>
+            <div className='deuda-picker-container'>
+              {/* Div para deudas */}
+              {isDebt && (
+                <div className='deuda-box-container'>
+                  {/* Div para deuda 2*/}
+                  <input
+                    className='deuda-input'
+                    type='number'
+                    onChange={(e) => handleInputChange(e, setDeuda2)}
+                    placeholder='Deuda'
+                  />
+              </div>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className='deuda-input-container'>
-          {/* Div para deudas */}
-          {isDebt && (
-            <div className='deuda-input'>
-            {/* Div para deuda 1 */}
-            <input
-              className='deuda-input'
-              type='number'
-              onChange={(e) => handleInputChange(e, setDeuda1)}
-              placeholder='Deuda'
-            />
-            {/* Div para deuda 2*/}
-            <input
-              className='deuda-input'
-              type='number'
-              onChange={(e) => handleInputChange(e, setDeuda2)}
-              placeholder='Deuda'
-            />
-          </div>
-          )}
+        <div className='lower-contenedor'>
+          <Table>
+            <thead>
+              <tr>
+                <th>No. Cama</th>
+                <th>Nombre</th>
+                <th>Fecha de Ingreso</th>
+                <th>Lugar de Origen</th>
+                <th>Nombre del Paciente</th>
+                <th>No. Carnet</th>
+                <th>N. Socio-económico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>01/04/2024</td>
+                <td>Champoton</td>
+                <td>Mark</td>
+                <td>1234567890</td>
+                <td>-5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>02/03/2002</td>
+                <td>El Paso</td>
+                <td>Jacobo</td>
+                <td>0987654321</td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
-      </div>
-      
 
-
-      <div>
-        <Table>
-          <thead>
-            <tr>
-              <th>No. Cama</th>
-              <th>Nombre</th>
-              <th>Fecha de Ingreso</th>
-              <th>Lugar de Origen</th>
-              <th>Nombre del Paciente</th>
-              <th>No. Carnet</th>
-              <th>N. Socio-económico</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>01/04/2024</td>
-              <td>Champoton</td>
-              <td>Mark</td>
-              <td>1234567890</td>
-              <td>-5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>02/03/2002</td>
-              <td>El Paso</td>
-              <td>Jacobo</td>
-              <td>0987654321</td>
-              <td>100</td>
-            </tr>
-          </tbody>
-        </Table>
       </div>
     </div>
   )
