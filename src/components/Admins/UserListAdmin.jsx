@@ -20,6 +20,15 @@ const UserListAdmin = () => {
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
 
+  //Estado para los filtros TRAMPA
+  const [isHombre, setIsHombre] = useState(false);
+  const [isMujer, setIsMujer] = useState(false);
+  const [isHuesped, setIsHuesped] = useState(false);
+  const [isUnico, setIsUnico] = useState(false);
+  const [isVetado, setIsVetado] = useState(false);
+  const [isNoVetado, setIsNoVetado] = useState(false);
+
+
   const handleInputChange = (e, setter) => {
     const inputValue = e.target.value;
     if (/^\d*$/.test(inputValue)) {
@@ -40,7 +49,27 @@ const UserListAdmin = () => {
     { id: 6, label: 'No Vetados' },
     { id: 7, label: 'Deudores' }
   ]; 
-  
+
+  //Función para mostrar resultados de filtro TRAMPA
+  const handleIsHombre = () => {
+    setIsHombre(!isHombre); 
+  }; 
+  const handleIsMujer = () => {
+    setIsMujer(!isMujer); 
+  }; 
+  const handleIsHuesped = () => {
+    setIsHuesped(!isHuesped); 
+  }; 
+  const handleIsUnico = () => {
+    setIsUnico(!isUnico); 
+  }; 
+  const handleIsVetado = () => {
+    setIsVetado(!isVetado); 
+  }; 
+  const handleIsNoVetado = () => {
+    setIsNoVetado(!isNoVetado); 
+  }; 
+
   //Función para mostrar o no el rango de deudas
   const handleIsDebt = () => {
     setIsDebt(!isDebt); 
@@ -59,7 +88,27 @@ const UserListAdmin = () => {
       set_Select_Filters([...select_Filters, filterId]); 
     } else { 
       set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
-    } 
+    }
+
+    //TRAMPA
+    if (filterId == 1) {
+      handleIsHombre();
+    }
+    else if (filterId == 2) {
+      handleIsMujer();
+    }
+    else if (filterId == 3) {
+      handleIsHuesped();
+    }
+    else if (filterId == 4) {
+      handleIsUnico();
+    }
+    else if (filterId == 5) {
+      handleIsVetado();
+    }
+    else if (filterId == 6) {
+      handleIsNoVetado();
+    }
   };
 
   return (
@@ -159,24 +208,73 @@ const UserListAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>01/04/2024</td>
-                <td>Champoton</td>
-                <td>Mark</td>
-                <td>1234567890</td>
-                <td>-5</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>02/03/2002</td>
-                <td>El Paso</td>
-                <td>Jacobo</td>
-                <td>0987654321</td>
-                <td>100</td>
-              </tr>
+              {/* TABLA TRAMPA */}
+              {(isHombre || select_Filters.length === 0) && (
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td>01/04/2024</td>
+                  <td>Champoton</td>
+                  <td>Mark</td>
+                  <td>1234567890</td>
+                  <td>-5</td>
+                </tr>
+              )}
+              {(isMujer || select_Filters.length === 0) && (
+                <tr>
+                  <td>2</td>
+                  <td>Maria</td>
+                  <td>01/04/2022</td>
+                  <td>Lomas</td>
+                  <td>Mark</td>
+                  <td>1234567890</td>
+                  <td>2</td>
+                </tr>
+              )}
+              {(isHuesped || select_Filters.length === 0) && (
+                <tr>
+                  <td>3</td>
+                  <td>Marko</td>
+                  <td>05/07/2014</td>
+                  <td>Champoton</td>
+                  <td>Mark</td>
+                  <td>1234567890</td>
+                  <td>0</td>
+                </tr>
+              )}
+              {(isUnico || select_Filters.length === 0) && (
+                <tr>
+                  <td>4</td>
+                  <td>Marcelo</td>
+                  <td>01/04/2024</td>
+                  <td>Tabasco</td>
+                  <td>Mark</td>
+                  <td>1234567890</td>
+                  <td>-5</td>
+                </tr>
+              )}
+              {(isVetado || select_Filters.length === 0) && (
+                <tr>
+                  <td>5</td>
+                  <td>Marisol</td>
+                  <td>01/01/2024</td>
+                  <td>Chiapas</td>
+                  <td>Carla</td>
+                  <td>127890</td>
+                  <td>4</td>
+                </tr>
+              )}
+              {(isNoVetado || select_Filters.length === 0) && (
+                <tr>
+                  <td>6</td>
+                  <td>Cortisol</td>
+                  <td>01/04/2022</td>
+                  <td>Salina Cruz</td>
+                  <td>Javier</td>
+                  <td>12340</td>
+                  <td>2</td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </div>
