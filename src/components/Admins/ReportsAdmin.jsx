@@ -176,7 +176,7 @@ const ReportsAdmin = () => {
       <div className="servicios-container">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="checkbox-container">
+          <div className="checkbox-container2">
             {/* Checkbox para cada servicio */}
             <div className="form-check">
               <input
