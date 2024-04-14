@@ -11,6 +11,9 @@ const UserNew = () => {
 		<div class="App-global">
 			<Navbar/>
 			<UserNewAdmin/>
+
+
+
 			<Footer/>
 		</div>
 	);

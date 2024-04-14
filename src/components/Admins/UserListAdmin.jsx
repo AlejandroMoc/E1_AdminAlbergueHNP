@@ -1,10 +1,25 @@
 import React from 'react';
+import './UserListAdmin.scss';
 
 const UserListAdmin = () => {
   return (
     <div class='App-minheight'>
-      <h1>Usuarios ya existentes</h1>
-			<p>Aquí va la administración de usuarios ya existentes</p>
+      <div className='upper-contenedor'>
+        <div className='JAJAJAJA lol'>
+          <p>PUPUPUPUPUPUPUPUPUPUP</p>
+        </div>
+        <div className='JAJAJAJA'>
+          <p>PUPUPUPUPUPUPUPUPUPUP</p>
+        </div>
+        <div className='JAJAJAJA'>
+          <p>PUPUPUPUPUPUPUPUPUPUP</p>
+        </div>
+      </div>
+      <div className='lower-contenedor'>
+
+      </div>
+
+      <button type="button" class="btn btn-primary botonReg">Primary</button>
     </div>
   )
 }

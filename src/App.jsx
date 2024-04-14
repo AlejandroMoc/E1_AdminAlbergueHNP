@@ -18,6 +18,7 @@ import Profile from "./components/sites/Profile";
 import ProfilePassword from "./components/sites/ProfilePassword";
 import Reports from "./components/sites/Reports";
 import Signup from "./components/sites/Signup";
+import InfoUser from "./components/sites/InfoUser";
 
 //Dibujar elementos
 function App() {
@@ -34,6 +35,10 @@ function App() {
 					<Route
 						path="/usernew"
 						element={<UserNew />}
+					/>
+					<Route
+						path="/infouser"
+						element={<InfoUser />}
 					/>
           			<Route
 						path="/userlist"

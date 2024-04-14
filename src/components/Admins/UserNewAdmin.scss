@@ -1,0 +1,132 @@
+.contenedorEspaciosReg{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10px;
+    //justify-content: center;
+    height: 100%;
+    //background-color: red;
+    width: 450px;
+    //margin-left: 150px;
+    margin-top: 50px;
+}
+
+.espReg{
+    background-color: #f0f0f0;
+    height: 62px;
+}
+
+.spanEspIcon{
+    background-color: white;
+    font-size: xx-large;
+}
+
+.spanEspL{
+    background-color: white;
+    font-size: larger;
+    margin-bottom: 15px;
+}
+
+
+.divRadio{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    //align-items: center;
+    justify-content: left;
+    //background-color: red;
+    width: 100%;
+    height: 100%;
+}
+
+.labelRadio{
+    margin-right: 20px;
+    font-size: larger;
+}
+
+
+.checkboxHM{
+    border-color: #aaaaaa;
+}
+
+.textoHM{
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+.checkerito{
+    margin-left: 15px;
+}
+
+.inputNotas{
+    border: solid 1px black;
+    background-color: white;
+    height: 100px;
+    width: 450px;
+    padding-top: 10px;
+}
+
+.espNot{
+    margin-top: 50px;
+    //background-color: red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 50px;
+
+}
+
+.labelX{
+    text-align: left;
+    margin-left: 5px;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.selecti{
+    width: 70px;
+    border-color: #aaaaaa;
+}
+
+
+.contenedorGral{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px 150px;
+}
+
+.spanNotIcon{
+    font-size: larger;
+}
+
+
+.spanNotText{
+    background-color: white;
+    font-size: larger;
+}
+
+.servoSocs{
+    margin-top: 30px;
+}
+
+.botonReg{
+    background-color: #aaaaaa;
+    border: 1px solid;
+    //border-color: black;
+    font-size: larger;
+    border-radius: 100px;
+    width: 150px;
+    align-self: flex-end;
+}
+
+.botonReg:hover{
+    background-color: #aaaaaa;
+    filter: brightness(80%);
+}
