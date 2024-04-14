@@ -1,8 +1,10 @@
 /*CSS Global de App*/
-/*CSS Global de App*/
 // Importar la fuente Roboto
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+//CLASES GLOBALES
+
+///Clases globales generales
 .App-global {
   text-align: center;
   margin: 0;
@@ -10,49 +12,26 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-.App-global h1{
-  font-size: calc(30px + 2vmin);
-  text-decoration: none;
+//Clases globales de fondos
+.App-minheight {
+  min-height: 85vh;
 }
 
-.App-global h2{
-  font-size: calc(10px + 2vmin);
-  text-decoration: none;
-  margin-bottom: 40px;
-}
-
-.App-global h3{
-  font-size: calc(10px + 2vmin);
-  margin-top: -4vh;
-  margin-bottom: -5px;
-  font-weight: bold;
+.App-minheight2 {
+  height: 95vh;
 }
 
 .App-bluebackground {
   background: linear-gradient(to right, #EAFEFF, #9EC3F6);
-  /* opacity: 0.68; */
-}
-
-.App-minheight {
-  min-height: 85vh;
-}
-.App-minheightSU {
-  min-height: 92.35vh;
 }
 
 .App-picturebackground {
   background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
-  background-size: cover; /* ajusta el tamaño de la imagen para cubrir el contenedor */
-  background-position: center; /* posición de la imagen centrada */
+  background-size: cover;
+  background-position: center;
 }
 
-.App-minpadding {
-  padding: 5vh;
-}
-
-//ELEMENTOS GLOBALES
-
-///input
+///Clases globales de inputs
 input{
   width: 14em;
   margin: 5px ;
@@ -61,25 +40,49 @@ input{
   border: none;
   border-radius: 1vh;
   background-color: #D9D9D8;
-  font-size: calc(2px + 2vmin);
   font-style: italic;
 }
 
 input[type="text"] {
-  font-size: calc(2px + 2vmin);
   font-style: italic;
 }
 
 input[type="password"] {
-  font-size: calc(2px + 2vmin);
   font-style: italic;
 }
 
-// div{
-//   margin-top: 1rem;
-//   margin-bottom: 1rem;
-// }
+///Clases globales de los botones
+.App-global button {
+  width: 14em;
+  height: 2.6em;
+  border-radius: 1vh;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
 
-///button
+.Appglobal-buttonaccept {
+  background-color: #a5cffd;
+}
+.Appglobal-buttonaccept:hover {
+  background-color: #4383c7;
+}
+.Appglobal-buttonaccept:active {
+  background-color: #376faa;
+}
+.Appglobal-buttoncancel {
+  background-color: #ee7171;
+}
+.Appglobal-buttoncancel:hover {
+  background-color: #d84949;
+}
+.Appglobal-buttoncancel:active {
+  background-color: #7c2e2e;
+}
 
-//TODO mover las clases de los botones AQUÍ (resolver por qué fallan)
+//TODO convertir a elemento individual para pag de Reportes
+.App-minpadding {
+  padding: 5vh;
+}

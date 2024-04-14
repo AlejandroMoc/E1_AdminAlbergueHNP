@@ -68,7 +68,7 @@ const UserListAdmin = () => {
   }; 
   const handleIsNoVetado = () => {
     setIsNoVetado(!isNoVetado); 
-  }; 
+  };
 
   //Función para mostrar o no el rango de deudas
   const handleIsDebt = () => {

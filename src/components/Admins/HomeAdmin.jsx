@@ -2,21 +2,15 @@ import React from 'react';
 import "./HomeAdmin.scss";
 
 //Importar elementos
-///Iconos
 import {RiUserAddFill} from "react-icons/ri";
 import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
-///Link e imagenes
 import {Link} from "react-router-dom";
-// import logohnp from '../../assets/logos/logo_hnp.svg';
 
 const HomeAdmin = () => {
   return (
     <div className='App-minheight'>
-      {/* <h1 className='header-title'>Administrador del albergue</h1> */}
-      {/* <h2 className='header-subtitle'>Hospital del Niño Poblano</h2> */}
-      {/* <img src={logohnp} class ="header-logo" alt="logo"/> */}
 
       <table className='header-table'>
         <tbody>

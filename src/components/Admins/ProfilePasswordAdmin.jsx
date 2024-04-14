@@ -2,10 +2,7 @@ import React from 'react';
 import "./HomeAdmin.scss";
 
 //Importar elementos
-///Iconos
 import {IoKey} from "react-icons/io5";
-import {FaUserCircle} from "react-icons/fa";
-///Link e imagenes
 import {Link} from "react-router-dom";
 
 const ProfilePasswordAdmin = () => {
@@ -21,14 +18,8 @@ const ProfilePasswordAdmin = () => {
         <p><input type="password" id="pass" name="password" minlength="8" maxlength="16" required placeholder="Nueva Contraseña" /></p>
         <p><input type="password" id="pass2" name="password2" minlength="8" maxlength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
         
-        {/*Botones*/}
-        {/* <p>
-          <input className= 'header-inputbutton header-colorcancel' type="submit" value="Cancelar" />
-          <input className= 'header-inputbutton header-coloraccept' type="submit" value="Cambiar contraseña" />
-        </p> */}
-
-        <p><button className="header-colorcancel">Cancelar</button></p>
-        <p><button className="header-coloraccept">Cambiar constraseña</button></p>
+        <p><button className="Appglobal-buttoncancel">Cancelar</button></p>
+        <p><button className="Appglobal-buttonaccept">Cambiar constraseña</button></p>
 
       </table>
     </div>

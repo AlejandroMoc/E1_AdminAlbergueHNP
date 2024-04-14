@@ -103,7 +103,7 @@ const RoomAdmin = () => {
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE MUJERES</span>
           <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Dispoible</span>
+            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
             <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
             <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
           </div>
@@ -123,7 +123,7 @@ const RoomAdmin = () => {
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE HOMBRES</span>
           <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Dispoible</span>
+            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
             <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
             <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
           </div>
@@ -142,7 +142,7 @@ const RoomAdmin = () => {
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE AISLADOS</span>
           <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Dispoible</span>
+            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
             <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
             <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
           </div>

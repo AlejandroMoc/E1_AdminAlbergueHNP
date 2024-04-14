@@ -1,3 +1,7 @@
+Este es un documento de apoyo en caso de que requieras hacer alguna anotación para copiarla más adelante. No tiene influencia alguna en el proyecto y será borrada en el commit final.
+
+
+##
 Modificados colores de barra de título.
 
 ##

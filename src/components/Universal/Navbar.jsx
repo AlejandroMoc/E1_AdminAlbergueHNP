@@ -16,8 +16,8 @@ const Navbar = () => {
           <div className="navbar-logo-div"><Link to="/"><img src={logohnp} className="navbar-logo-color" alt="logo"/></Link></div>
         </ul>
         <ul class ='navbar-right'>
+          <Link class = 'navbar-text' to ="/usernew"> Registro </Link>
           <Link class = 'navbar-text' to ="/beds"> Camas </Link>
-          <Link class = 'navbar-text' to ="/usernew"> Nuevo Usuario </Link>
           <Link class = 'navbar-text' to ="/userlist"> Usuarios </Link>
           <Link class = 'navbar-text' to ="/reports"> Reporte </Link>
           <Link class = 'navbar-text' to ="/profile"> <FaUser/> </Link>

@@ -8,11 +8,11 @@ const Footer = () => {
         <p className='footer-text'>
             Con tecnología de{' '}
             <a className='footer-link'
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            ReactJS
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              ReactJS
             </a>
             .
         </p>

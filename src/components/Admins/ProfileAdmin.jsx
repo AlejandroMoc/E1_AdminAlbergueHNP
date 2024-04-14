@@ -2,10 +2,8 @@ import React from 'react';
 import "./HomeAdmin.scss";
 
 //Importar elementos
-///Iconos
 import {IoKey} from "react-icons/io5";
 import {FaUserCircle} from "react-icons/fa";
-///Link e imagenes
 import {Link} from "react-router-dom";
 
 const ProfileAdmin = () => {
@@ -16,9 +14,8 @@ const ProfileAdmin = () => {
         <FaUserCircle size={160}/>
         <h1 className="header-textitle">Administradora</h1>
         <Link className= 'header-textlink' to="/changepassword"><p><IoKey/>Cambiar contraseña</p></Link>
-        <Link className= 'header-textclosesession header-colorcancel' to="/Signup"><p>Cerrar sesión</p></Link>
+        <Link className= 'header-textred Appglobal-buttoncancel' to="/login"><h4>Cerrar sesión</h4></Link>
       </table>
-
     </div>
   )
 }

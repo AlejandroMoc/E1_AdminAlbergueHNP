@@ -17,7 +17,7 @@ import UserList from "./components/sites/UserList";
 import Profile from "./components/sites/Profile";
 import ProfilePassword from "./components/sites/ProfilePassword";
 import Reports from "./components/sites/Reports";
-import Signup from "./components/sites/Signup";
+import Login from "./components/sites/Login";
 
 //Dibujar elementos
 function App() {
@@ -56,8 +56,8 @@ function App() {
 						element={<Reports />}
 					/>
 					<Route
-						path="/signup"
-						element={<Signup />}
+						path="/login"
+						element={<Login />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}
