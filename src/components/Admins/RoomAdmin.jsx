@@ -4,7 +4,7 @@ import './RoomAdmin.scss';
 import { Dropdown, Menu } from 'antd';
 
 import iconocama from '../../assets/logos/iconocama.svg';
-import { IoAddCircleOutline, IoBookOutline, IoCopyOutline, IoPersonOutline } from "react-icons/io5";
+import { IoAddCircleOutline  } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlineFastfood } from "react-icons/md";
@@ -22,7 +22,7 @@ function Cama({color, iconocama, numCama}){
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="nombreCompleto" icon={<LuUser size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">Greko García</span>
+        <span class="letraMenu">Nombre</span>
       </Menu.Item>
       
       <Menu.Item key="carnet" icon={<FaRegAddressCard size="20px" class="iconStyle"/>}>
