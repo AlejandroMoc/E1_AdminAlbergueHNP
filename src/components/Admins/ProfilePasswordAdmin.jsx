@@ -19,7 +19,7 @@ const ProfilePasswordAdmin = () => {
         <p><input type="password" id="pass2" name="password2" minlength="8" maxlength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
         
         <p><button className="Appglobal-buttoncancel">Cancelar</button></p>
-        <p><button className="Appglobal-buttonaccept">Cambiar constraseña</button></p>
+        <p><button className="Appglobal-buttonaccept">Cambiar contraseña</button></p>
 
       </table>
     </div>

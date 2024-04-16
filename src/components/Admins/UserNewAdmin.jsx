@@ -175,7 +175,7 @@ const UserNewAdmin = () => {
               <span class="input-group-text spanNotText" id="basic-addon1">0</span>
             </div>
           </div>
-          <button type="button" class="btn btn-primary botonReg">Registrar</button>
+          <button type="button" class="botonReg Appglobal-buttonaccept">Registrar</button>
         </div>
       </div>
     </div>

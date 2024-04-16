@@ -13,8 +13,10 @@ const ProfileAdmin = () => {
       <table className= 'header-table3'>
         <FaUserCircle size={160}/>
         <h1 className="header-textitle">Administradora</h1>
-        <Link className= 'header-textlink' to="/changepassword"><p><IoKey/>Cambiar contraseña</p></Link>
-        <Link className= 'header-textred Appglobal-buttoncancel' to="/login"><h4>Cerrar sesión</h4></Link>
+        {/* TODO URGENTE cambiar elementos a botones */}
+
+        <Link to="/changepassword"><p><button className="Appglobal-buttonaccept"><IoKey/>Cambiar contraseña</button></p></Link>
+        <Link to="/login"><p><button className="Appglobal-buttoncancel">Cerrar sesión</button></p></Link>
       </table>
     </div>
   )
