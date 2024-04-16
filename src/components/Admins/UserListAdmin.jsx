@@ -20,15 +20,6 @@ const UserListAdmin = () => {
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
 
-  //Estado para los filtros TRAMPA
-  const [isHombre, setIsHombre] = useState(false);
-  const [isMujer, setIsMujer] = useState(false);
-  const [isHuesped, setIsHuesped] = useState(false);
-  const [isUnico, setIsUnico] = useState(false);
-  const [isVetado, setIsVetado] = useState(false);
-  const [isNoVetado, setIsNoVetado] = useState(false);
-
-
   const handleInputChange = (e, setter) => {
     const inputValue = e.target.value;
     if (/^\d*$/.test(inputValue)) {
@@ -37,6 +28,14 @@ const UserListAdmin = () => {
     Console.log(deuda1);
     Conssole.log(deuda2);
   };
+
+  //Estado para los filtros TRAMPA
+  const [isHombre, setIsHombre] = useState(false);
+  const [isMujer, setIsMujer] = useState(false);
+  const [isHuesped, setIsHuesped] = useState(false);
+  const [isUnico, setIsUnico] = useState(false);
+  const [isVetado, setIsVetado] = useState(false);
+  const [isNoVetado, setIsNoVetado] = useState(false);
 
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 

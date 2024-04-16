@@ -25,6 +25,56 @@ const UserNewAdmin = () => {
     }
   };
   
+  const [shower, setShower] = useState(0);
+  const [bathroom, setBathroom] = useState(0);
+  const [breakfast, setBreakfast] = useState(0);
+  const [meal, setMeal] = useState(0);
+  const [dinner, setDinner] = useState(0);
+
+  const handleSetShower = (sh) => {
+    if (sh === 1) {
+      setShower(pShower => pShower + 1);
+    }
+    else if (sh === 0 && shower != 0) {
+      setShower(pShower => pShower - 1);
+    }
+  }
+
+  const handleSetBathroom = (ba) => {
+    if (ba === 1) {
+      setBathroom(pBathroom => pBathroom + 1);
+    }
+    else if (ba === 0 && bathroom != 0) {
+      setBathroom(pBathroom => pBathroom - 1);
+    }
+  }
+
+  const handleSetBreakfast = (br) => {
+    if (br === 1) {
+      setBreakfast(pBreakfast => pBreakfast + 1);
+    }
+    else if (br === 0 && breakfast != 0) {
+      setBreakfast(pBreakfast => pBreakfast - 1);
+    }
+  }
+
+  const handleSetMeal = (me) => {
+    if (me === 1) {
+      setMeal(pMeal => pMeal + 1);
+    }
+    else if (me === 0 && meal != 0) {
+      setMeal(pMeal => pMeal - 1);
+    }
+  }
+
+  const handleSetDinner = (di) => {
+    if (di === 1) {
+      setDinner(pDinner => pDinner + 1);
+    }
+    else if (di === 0 && dinner != 0) {
+      setDinner(pDinner => pDinner - 1);
+    }
+  }
 
   return (
     <div class='App-minheight'>
@@ -152,38 +202,38 @@ const UserNewAdmin = () => {
           {showServices && (
           <div class="servoSocs">
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
+              <span className='button-serv' class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
+              <span className='button-serv' class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
               <span class="input-group-text spanNotText" id="basic-addon1">Regadera</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">0</span>
+              <span class="input-group-text spanNotText" id="basic-addon1">{shower}</span>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
               <span class="input-group-text spanNotText" id="basic-addon1">Baño</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">0</span>
+              <span class="input-group-text spanNotText" id="basic-addon1">{bathroom}</span>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
               <span class="input-group-text spanNotText" id="basic-addon1">Desayuno</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">0</span>
+              <span class="input-group-text spanNotText" id="basic-addon1">{breakfast}</span>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
               <span class="input-group-text spanNotText" id="basic-addon1">Comida</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">0</span>
+              <span class="input-group-text spanNotText" id="basic-addon1">{meal}</span>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
-              <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
+              <span class="input-group-text spanNotIcon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
               <span class="input-group-text spanNotText" id="basic-addon1">Cena</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">0</span>
+              <span class="input-group-text spanNotText" id="basic-addon1">{dinner}</span>
             </div>
           </div>
            )}
-          <button type="button" class="botonReg Appglobal-buttonaccept">Registrar</button>
+          <button type="button" className="botonReg Appglobal-buttonaccept">Registrar</button>
         </div>
       </div>
     </div>
