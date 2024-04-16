@@ -32,8 +32,10 @@ const UserListAdmin = () => {
   const handleInputChange = (e, setter) => {
     const inputValue = e.target.value;
     if (/^\d*$/.test(inputValue)) {
-      setter(inputValue);
+      setter(parseInt(inputValue));
     }
+    Console.log(deuda1);
+    Conssole.log(deuda2);
   };
 
   //Estado para almacenar los filtros
@@ -146,9 +148,12 @@ const UserListAdmin = () => {
                 className='fecha-input'
                 selected={fecha1}
                 onChange={date => setFecha1(date)}
-                placeholderText='DD/MM/YY'
+                placeholderText='Fecha de Inicio'
                 dateFormat='dd/MM/yy'
               />
+            </div>
+            <div className='guion-container'>
+              <h1> - </h1>
             </div>
             <div className='fecha-picker-container'>
               {/* Div para fecha 2 */}
@@ -156,7 +161,7 @@ const UserListAdmin = () => {
                 className='fecha-input'
                 selected={fecha2}
                 onChange={date => setFecha2(date)}
-                placeholderText='DD/MM/YY'
+                placeholderText='Fecha de Fin'
                 dateFormat='dd/MM/yy'
               />
             </div>
@@ -172,9 +177,14 @@ const UserListAdmin = () => {
                     className='deuda-input'
                     type='number'
                     onChange={(e) => handleInputChange(e, setDeuda1)}
-                    placeholder='Deuda'
+                    placeholder='Deuda Mínima'
                   />
                 </div>
+              )}
+            </div>
+            <div className='guion-container'>
+              {isDebt && (
+                <h1> - </h1>
               )}
             </div>
             <div className='deuda-picker-container'>
@@ -186,7 +196,7 @@ const UserListAdmin = () => {
                     className='deuda-input'
                     type='number'
                     onChange={(e) => handleInputChange(e, setDeuda2)}
-                    placeholder='Deuda'
+                    placeholder='Deuda Máxima'
                   />
               </div>
               )}
