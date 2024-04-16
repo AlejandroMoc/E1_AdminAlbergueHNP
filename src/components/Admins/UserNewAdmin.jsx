@@ -1,7 +1,6 @@
-import React from 'react';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React, { useRef, useState } from 'react';
 import { LuUser } from "react-icons/lu";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -13,14 +12,19 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 const UserNewAdmin = () => {
+  const [showServices, setShowServices] = useState(false);
+  const [showBedNumber, setShowBedNumber] = useState(true);
 
   const handleRadioChange = (event) => {
-    if (event.target.value === "opcion3") {
-      setShowNumbersSelect(true);
+    if (event.target.value === "op2") {
+      setShowServices(true);
+      setShowBedNumber(false); 
     } else {
-      setShowNumbersSelect(false);
+      setShowServices(false);
+      setShowBedNumber(true); 
     }
   };
+  
 
   return (
     <div class='App-minheight'>
@@ -119,19 +123,20 @@ const UserNewAdmin = () => {
           <div class="input-group mb-3 checkerito">
             <div class="divRadio">
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" value="op1" name="huesEU" id="flexRadioDefaultHuesEU"></input>
+                <input class="form-check-input checkboxHM" type="radio" value="op1" name="huesEU" id="flexRadioDefaultHuesEU" onChange={handleRadioChange} ></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">Huésped</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" value="op2" name="huesEU" id="flexRadioDefaultHuesEU"></input>
+                <input class="form-check-input checkboxHM" type="radio" value="op2" name="huesEU" id="flexRadioDefaultHuesEU" onChange={handleRadioChange}></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                   <span class="textoHM">Entrada Única</span>
                 </label>
               </div>
             </div>
           </div>
+          {showBedNumber && (
           <div class="labelX">
             <span>Número de Cama</span>
             <select class="form-select selecti sm" aria-label="Default select example">
@@ -143,6 +148,8 @@ const UserNewAdmin = () => {
               <option value="3">37</option>
             </select>
           </div>
+          )}
+          {showServices && (
           <div class="servoSocs">
             <div class="input-group mb-3">
               <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
@@ -156,8 +163,6 @@ const UserNewAdmin = () => {
               <span class="input-group-text spanNotText" id="basic-addon1">Baño</span>
               <span class="input-group-text spanNotText" id="basic-addon1">0</span>
             </div>
-          </div>
-          <div>
             <div class="input-group mb-3">
               <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdAddCircleOutline /></span>
               <span class="input-group-text spanNotIcon" id="basic-addon1"><IoMdRemoveCircleOutline /></span>
@@ -177,6 +182,7 @@ const UserNewAdmin = () => {
               <span class="input-group-text spanNotText" id="basic-addon1">0</span>
             </div>
           </div>
+           )}
           <button type="button" class="botonReg Appglobal-buttonaccept">Registrar</button>
         </div>
       </div>
