@@ -13,31 +13,72 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa";
 import { LuUser } from "react-icons/lu";
 
-function Cama({color, iconocama, numCama}){
+import { useState } from 'react';
 
-  const menu = (
+
+function TuComponente({texto}) {
+  const [servoCount, setservoCount] = useState(0);
+  const [clicked, setClicked] = useState(false);
+
+  const handleChange = (event) => {
+    setservoCount(parseInt(event.target.value) || 0);
+  };
+
+  const sumarservo = () => {
+    setservoCount(servoCount + 1);
+    setClicked(true);
+  };
+
+  const restarservo = () => {
+    if (servoCount > 0) {
+      setservoCount(servoCount - 1);
+      setClicked(true);
+    }
+  };
+
+  return (
+    <div className="input-group mb-3 regServo">
+      <span className="input-group-text" onClick={sumarservo}>+</span>
+      <span className="input-group-text" onClick={restarservo}>-</span>
+      <input
+        type="text"
+        className="form-control"
+        value={clicked ? servoCount : ''}
+        onChange={handleChange}
+        placeholder={clicked ? '' : texto + ': 0'}
+        aria-label="Amount (to the nearest dollar)"
+      />
+    </div>
+  );
+}
+
+function Cama({color, iconocama, numCama, numCamaMenu}){
+
+  let menu;
+
+  const menuOcupadas = (
     <Menu>
       <Menu.Item key="numeroCama">
-        <span class="numCamaText">Cama #X</span>
+        <span class="numCamaText">Cama {numCamaMenu}</span>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="nombreCompleto" icon={<LuUser size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">Nombre</span>
+        <span class="letraMenu">Jonás Aguilera Ortega</span>
       </Menu.Item>
       
       <Menu.Item key="carnet" icon={<FaRegAddressCard size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">#198JR672</span>
+        <span class="letraMenu">1HE3-12FT-1823</span>
       </Menu.Item>
       
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" class="iconStyle"/>} title={<span class="letraMenu">Pagar $20.00</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 divPago">
             <span class="input-group-text" id="basic-addon1">Pagar</span>
             <input type="text" class="form-control" placeholder="$20.00" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label" for="flexCheckDefault">
+            <input class="form-check-input checkCondo" type="checkbox" value="" id="flexCheckDefault" />
+            <label class="form-check-label checkCondoTxt" for="flexCheckDefault">
               Condonar Pago
             </label>
           </div>
@@ -45,26 +86,15 @@ function Cama({color, iconocama, numCama}){
       </Menu.SubMenu>
       <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" class="iconStyle"/>} title={<span class="letraMenu">Servicios</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Desayuno: 0" aria-label="Amount (to the nearest dollar)" />
-          </div>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Comida: 0" aria-label="Amount (to the nearest dollar)" />
-          </div>
-          <div class="input-group mb-3 regServo">
-            <span class="input-group-text">+</span>
-            <span class="input-group-text">-</span>
-            <input type="text" class="form-control" placeholder="Cena: 0" aria-label="Amount (to the nearest dollar)" />
-          </div>
+          <TuComponente texto="Desayuno"></TuComponente>
+          <TuComponente texto="Comida"></TuComponente>
+          <TuComponente texto="Cena"></TuComponente>
           <button type="button" class="btn btn-light botonReg">Registrar</button>
         </Menu.Item>
       </Menu.SubMenu>
+      <Menu.Divider />
       <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">Eliminar Usuario</span>
+        <span class="letraMenu">Registrar Salida</span>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" class="iconStyle"/>} danger="true">
@@ -72,6 +102,25 @@ function Cama({color, iconocama, numCama}){
       </Menu.Item>
     </Menu>
   )
+
+  const menuDisponibles = (
+    <Menu>
+      <Menu.Item key="numeroCama">
+        <span class="numCamaText">Cama {numCamaMenu}</span>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" class="iconStyle"/>}>
+        <span class="letraMenu">Añadir Huésped</span>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" class="iconStyle"/>} danger="true">
+        <span class="letraMenu">Eliminar Cama</span>
+      </Menu.Item>
+    </Menu>
+  )
+
+  if(color == '#e6e6e6'){ menu = menuDisponibles;}
+  else if(color == '#8cbcfc' || color == '#EE7171'){ menu = menuOcupadas;}
 
   return(
     <Dropdown overlay={menu} trigger={["contextMenu"]}>
@@ -81,6 +130,7 @@ function Cama({color, iconocama, numCama}){
       </div>
     </Dropdown>
   );
+
 }
 
 const RoomAdmin = () => {
@@ -111,7 +161,7 @@ const RoomAdmin = () => {
         
         <div class="container">
           {camasHombres.map((_, index) => (
-            <Cama color="#e6e6e6" iconocama={iconocama} numCama={index+1}></Cama>
+            <Cama color="#e6e6e6" iconocama={iconocama} numCama={index+1} numCamaMenu={index+1}></Cama>
           ))}
           <div class="card addCama">
             <button id="addCamaButton"><IoAddCircleOutline /></button>
@@ -130,7 +180,7 @@ const RoomAdmin = () => {
         </div>
         <div class="container">
           {camasMujeres.map((_, index) => (
-            <Cama color="#e6e6e6" iconocama={iconocama} numCama={index+32}></Cama>
+            <Cama color="#8cbcfc" iconocama={iconocama} numCama={index+32} numCamaMenu={index+32}></Cama>
           ))}
           <div class="card addCama">
             <button id="addCamaButton"><IoAddCircleOutline /></button>
@@ -149,7 +199,7 @@ const RoomAdmin = () => {
         </div>
         <div class="container">
           {camasAislados.map((_, index) => (
-            <Cama color="#e6e6e6" iconocama={iconocama} numCama={aisladoLetras[index]}></Cama>
+            <Cama color="#EE7171" iconocama={iconocama} numCama={aisladoLetras[index]}numCamaMenu={aisladoLetras[index]}></Cama>
           ))}
           <div class="card addCama">
             <button id="addCamaButton"><IoAddCircleOutline /></button>

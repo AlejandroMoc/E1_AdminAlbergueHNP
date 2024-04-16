@@ -43,13 +43,13 @@ const UserNewAdmin = () => {
           <div class="input-group mb-3 checkerito">
             <div class="divRadio">
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="sexo" id="flexRadioDefaultSexo"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">Hombre</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="sexo" id="flexRadioDefaultSexo"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                   <span class="textoHM">Mujer</span>
                 </label>
@@ -64,31 +64,31 @@ const UserNewAdmin = () => {
           <div class="input-group mb-3 checkerito">
             <div class="divRadio">
               <div class="form-check">
-                <input class="form-check-input checkboxHM"  type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM"  type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">1</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                   <span class="textoHM">2</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">3</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                   <span class="textoHM">4</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">5</span>
                 </label>
@@ -119,13 +119,13 @@ const UserNewAdmin = () => {
           <div class="input-group mb-3 checkerito">
             <div class="divRadio">
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" value="op1" name="huesEU" id="flexRadioDefaultHuesEU"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                 <span class="textoHM">Huésped</span>
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input checkboxHM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                <input class="form-check-input checkboxHM" type="radio" value="op2" name="huesEU" id="flexRadioDefaultHuesEU"></input>
                 <label class="form-check-label labelRadio" for="flexRadioDefault1">
                   <span class="textoHM">Entrada Única</span>
                 </label>
@@ -136,9 +136,11 @@ const UserNewAdmin = () => {
             <span>Número de Cama</span>
             <select class="form-select selecti sm" aria-label="Default select example">
               <option selected>X</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">6</option>
+              <option value="2">21</option>
+              <option value="3">37</option>
             </select>
           </div>
           <div class="servoSocs">
