@@ -153,7 +153,7 @@ const UserListAdmin = () => {
               />
             </div>
             <div className='guion-container'>
-              <h1> - </h1>
+              <p> - </p>
             </div>
             <div className='fecha-picker-container'>
               {/* Div para fecha 2 */}
@@ -184,7 +184,7 @@ const UserListAdmin = () => {
             </div>
             <div className='guion-container'>
               {isDebt && (
-                <h1> - </h1>
+                <p> - </p>
               )}
             </div>
             <div className='deuda-picker-container'>

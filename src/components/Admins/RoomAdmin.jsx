@@ -89,7 +89,7 @@ function Cama({color, iconocama, numCama, numCamaMenu}){
           <TuComponente texto="Desayuno"></TuComponente>
           <TuComponente texto="Comida"></TuComponente>
           <TuComponente texto="Cena"></TuComponente>
-          <button type="button" class="btn btn-light botonReg">Registrar</button>
+          <button type="button" class="btn btn-light Appglobal-buttonaccept">Registrar</button>
         </Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />

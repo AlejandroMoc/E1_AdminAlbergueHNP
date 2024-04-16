@@ -1,6 +1,8 @@
 import React from 'react';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/logos/logo_hnp.svg';
+import {Link} from "react-router-dom";
+
 
 const LoginAdmin = () => {
   return (
@@ -26,9 +28,8 @@ const LoginAdmin = () => {
             <tr> 
             <td><input type="password" id="contraseña" name="contraseña" placeholder="Contraseña"></input></td>
             </tr>
-            <tr> 
-            <button className='Appglobal-buttonaccept'>Iniciar Sesión</button>
-
+            <tr>
+            <Link to ="/"><button className='Appglobal-buttonaccept'>Iniciar sesión </button></Link>
             </tr>
           </tbody>
           </center>
