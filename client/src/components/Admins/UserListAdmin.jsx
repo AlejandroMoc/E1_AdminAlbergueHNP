@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'; 
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -7,10 +7,13 @@ import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepic
 import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//FALTA:
-  //GUARDAR EN DEUDA1 Y DEUDA2
-
 const UserListAdmin = () => {
+  //Estado para almacenar data
+  const [data, setData] = useState([{id_cliente: 0, id_usuario: 0, carnet: '', nombre_c: '', apellidos_c: '', lugar_o: '', notas_c: '', sexo: null, paciente: null, nivel_se: 0}])
+
+  //Estado para almacenar los filtros
+  const [select_Filters, set_Select_Filters] = useState([]); 
+
   //Estado para almacenar las fechas
   const [fecha1, setFecha1] = useState(null);
   const [fecha2, setFecha2] = useState(null);
@@ -19,26 +22,6 @@ const UserListAdmin = () => {
   const [isDebt, setIsDebt] = useState(false);
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
-
-  const handleInputChange = (e, setter) => {
-    const inputValue = e.target.value;
-    if (/^\d*$/.test(inputValue)) {
-      setter(parseInt(inputValue));
-    }
-    Console.log(deuda1);
-    Conssole.log(deuda2);
-  };
-
-  //Estado para los filtros TRAMPA
-  const [isHombre, setIsHombre] = useState(false);
-  const [isMujer, setIsMujer] = useState(false);
-  const [isHuesped, setIsHuesped] = useState(false);
-  const [isUnico, setIsUnico] = useState(false);
-  const [isVetado, setIsVetado] = useState(false);
-  const [isNoVetado, setIsNoVetado] = useState(false);
-
-  //Estado para almacenar los filtros
-  const [select_Filters, set_Select_Filters] = useState([]); 
 
   //Lista de filtros
   const filters = [
@@ -51,30 +34,12 @@ const UserListAdmin = () => {
     { id: 7, label: 'Deudores' }
   ]; 
 
-  //Función para mostrar resultados de filtro TRAMPA
-  const handleIsHombre = () => {
-    setIsHombre(!isHombre); 
-  }; 
-  const handleIsMujer = () => {
-    setIsMujer(!isMujer); 
-  }; 
-  const handleIsHuesped = () => {
-    setIsHuesped(!isHuesped); 
-  }; 
-  const handleIsUnico = () => {
-    setIsUnico(!isUnico); 
-  }; 
-  const handleIsVetado = () => {
-    setIsVetado(!isVetado); 
-  }; 
-  const handleIsNoVetado = () => {
-    setIsNoVetado(!isNoVetado); 
-  };
-
-  //Función para mostrar o no el rango de deudas
-  const handleIsDebt = () => {
-    setIsDebt(!isDebt); 
-  }; 
+  //Metodo Fetch
+  useEffect(() => {
+    fetch('http://localhost:8000/cliente')
+    .then((res) => res.json())
+    .then((clientes) => setData(clientes));
+  }, [])
   
   //Función para mostrar que filtros fueron seleccionados
   const filterChange = (event) => {
@@ -90,25 +55,18 @@ const UserListAdmin = () => {
     } else { 
       set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
     }
+  };
 
-    //TRAMPA
-    if (filterId == 1) {
-      handleIsHombre();
-    }
-    else if (filterId == 2) {
-      handleIsMujer();
-    }
-    else if (filterId == 3) {
-      handleIsHuesped();
-    }
-    else if (filterId == 4) {
-      handleIsUnico();
-    }
-    else if (filterId == 5) {
-      handleIsVetado();
-    }
-    else if (filterId == 6) {
-      handleIsNoVetado();
+  //Función para mostrar o no el rango de deudas
+  const handleIsDebt = () => {
+    setIsDebt(!isDebt); 
+  }; 
+
+  //Función para controlar entradas de input deuda
+  const handleInputChange = (e, setter) => {
+    const inputValue = e.target.value;
+    if (/^\d*$/.test(inputValue)) {
+      setter(parseInt(inputValue));
     }
   };
 
@@ -181,6 +139,7 @@ const UserListAdmin = () => {
                 </div>
               )}
             </div>
+            <p>{deuda1}</p>
             <div className='guion-container'>
               {isDebt && (
                 <p> - </p>
@@ -200,6 +159,7 @@ const UserListAdmin = () => {
               </div>
               )}
             </div>
+            <p>{deuda2}</p>
           </div>
         </div>
 
@@ -217,72 +177,18 @@ const UserListAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {/* TABLA TRAMPA */}
-              {(isHombre || select_Filters.length === 0) && (
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>01/04/2024</td>
-                  <td>Champoton</td>
-                  <td>Mark</td>
-                  <td>1234567890</td>
-                  <td>-5</td>
-                </tr>
-              )}
-              {(isMujer || select_Filters.length === 0) && (
-                <tr>
-                  <td>2</td>
-                  <td>Maria</td>
-                  <td>01/04/2022</td>
-                  <td>Lomas</td>
-                  <td>Mark</td>
-                  <td>1234567890</td>
-                  <td>2</td>
-                </tr>
-              )}
-              {(isHuesped || select_Filters.length === 0) && (
-                <tr>
-                  <td>3</td>
-                  <td>Marko</td>
-                  <td>05/07/2014</td>
-                  <td>Champoton</td>
-                  <td>Mark</td>
-                  <td>1234567890</td>
-                  <td>0</td>
-                </tr>
-              )}
-              {(isUnico || select_Filters.length === 0) && (
-                <tr>
-                  <td>4</td>
-                  <td>Marcelo</td>
-                  <td>01/04/2024</td>
-                  <td>Tabasco</td>
-                  <td>Mark</td>
-                  <td>1234567890</td>
-                  <td>-5</td>
-                </tr>
-              )}
-              {(isVetado || select_Filters.length === 0) && (
-                <tr>
-                  <td>5</td>
-                  <td>Marisol</td>
-                  <td>01/01/2024</td>
-                  <td>Chiapas</td>
-                  <td>Carla</td>
-                  <td>127890</td>
-                  <td>4</td>
-                </tr>
-              )}
-              {(isNoVetado || select_Filters.length === 0) && (
-                <tr>
-                  <td>6</td>
-                  <td>Cortisol</td>
-                  <td>01/04/2022</td>
-                  <td>Salina Cruz</td>
-                  <td>Javier</td>
-                  <td>12340</td>
-                  <td>2</td>
-                </tr>
+              {(select_Filters.length === 0) && (
+                data.map((item) => (
+                  <tr key={item.id_cliente}>
+                    <td>Todavía no</td>
+                    <td>{item.nombre_c} {item.apellidos_c}</td>
+                    <td>Todavía no</td>
+                    <td>{item.lugar_o}</td>
+                    <td>Todavía no</td>
+                    <td>{item.carnet}</td>
+                    <td>{item.nivel_se}</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </Table>

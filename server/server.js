@@ -18,8 +18,8 @@ const cn={
 } 
 
 const db = pgp(cn);
-app.get('/posts', (req, res) =>{
-    db.any('SELECT * FROM area')
+app.get('/cliente', (req, res) =>{
+    db.any('SELECT * FROM cliente')
     .then((data) => res.json(data))
     .catch((error) =>console.log('Error: ', error));
 } )
