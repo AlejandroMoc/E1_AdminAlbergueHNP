@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UserListAdmin = () => {
   //Estado para almacenar data
-  const [data, setData] = useState([{id_cliente: 0, id_usuario: 0, carnet: '', nombre_c: '', apellidos_c: '', lugar_o: '', notas_c: '', sexo: null, paciente: null, nivel_se: 0}])
+  const [data, setData] = useState([{id_cliente: 0, id_cama: 0, nombre_c: '', apellidos_c: '', fecha_i: '', lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', nivel_se: 0}])
 
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 
@@ -25,8 +25,8 @@ const UserListAdmin = () => {
 
   //Lista de filtros
   const filters = [
-    { id: 1, label: 'Hombres' }, 
-    { id: 2, label: 'Mujeres' }, 
+    { id: 1, label: 'Hombres'}, 
+    { id: 2, label: 'Mujeres'}, 
     { id: 3, label: 'Huéspedes' }, 
     { id: 4, label: 'Entradas Únicas' }, 
     { id: 5, label: 'Vetados' },
@@ -34,12 +34,25 @@ const UserListAdmin = () => {
     { id: 7, label: 'Deudores' }
   ]; 
 
-  //Metodo Fetch
   useEffect(() => {
-    fetch('http://localhost:8000/cliente')
-    .then((res) => res.json())
-    .then((clientes) => setData(clientes));
-  }, [])
+    if (select_Filters.length !== 0) {
+      fetch('http://localhost:8000/someclients', {
+        method: 'POST',
+        body: JSON.stringify({filters: select_Filters}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res) => res.json())
+      .then((clientes) => setData(clientes))
+      .catch((error) => console.error('Error fetching data:', error));
+    }
+    else {
+      fetch('http://localhost:8000/allclients')
+      .then((res) => res.json())
+      .then((clientes) => setData(clientes));
+    }
+  }, [select_Filters])
   
   //Función para mostrar que filtros fueron seleccionados
   const filterChange = (event) => {
@@ -177,14 +190,14 @@ const UserListAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {(select_Filters.length === 0) && (
+              {(
                 data.map((item) => (
                   <tr key={item.id_cliente}>
-                    <td>Todavía no</td>
+                    <td>{item.id_cama}</td>
                     <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>Todavía no</td>
+                    <td>{item.fecha_i}</td>
                     <td>{item.lugar_o}</td>
-                    <td>Todavía no</td>
+                    <td>{item.nombre_p} {item.apellidos_p}</td>
                     <td>{item.carnet}</td>
                     <td>{item.nivel_se}</td>
                   </tr>
