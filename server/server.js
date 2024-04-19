@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { getAllClients, getClientsByFilter } = require('./UserListQueries.js');
+const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 
 app.get('/allclients', async (req, res) => {
     try {
