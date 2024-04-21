@@ -15,11 +15,11 @@ const UserListAdmin = () => {
   const [select_Filters, set_Select_Filters] = useState([]); 
 
   //Estado para almacenar las fechas
-  const [fecha1, setFecha1] = useState(null);
-  const [fecha2, setFecha2] = useState(null);
+  // const [fecha1, setFecha1] = useState(null);
+  // const [fecha2, setFecha2] = useState(null);
 
   //Estado para almacenar las deudas
-  const [isDebt, setIsDebt] = useState(false);
+  const [acceptDeuda, setAcceptDeuda] = useState(false);
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
 
@@ -34,6 +34,7 @@ const UserListAdmin = () => {
     { id: 7, label: 'Deudores' }
   ]; 
 
+  //Llamada a las funciones de filtrado
   useEffect(() => {
     if (select_Filters.length !== 0) {
       fetch('http://localhost:8000/someclients', {
@@ -56,31 +57,91 @@ const UserListAdmin = () => {
   
   //Función para mostrar que filtros fueron seleccionados
   const filterChange = (event) => {
-    const filterId = parseInt(event.target.value); 
-    const choosen = event.target.checked;
+    if (event) {
+      console.log('Hola')
+      const filterId = parseInt(event.target.value); 
+      const choosen = event.target.checked;
 
-    if (filterId == 7) {
-      handleIsDebt();
+      if (choosen) { 
+        set_Select_Filters([...select_Filters, filterId]); 
+      } else { 
+        set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
+      }
     }
 
-    if (choosen) { 
-      set_Select_Filters([...select_Filters, filterId]); 
-    } else { 
-      set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
+    // if (fecha1 || fecha2) {
+    //   console.log('Hola?')
+    //   if (handleDateRange()) {
+    //     console.log('FECHA ACEPTADA');
+    //     set_Select_Filters([...select_Filters, [8, fecha1, fecha2]])
+    //   }
+    // }
+    if (deuda1 || deuda2) {
+      if (handleDebtRange()) {
+        console.log('DEUDA ACEPTADA');
+        set_Select_Filters([...select_Filters, [9, deuda1, deuda2]])
+      }
     }
   };
 
-  //Función para mostrar o no el rango de deudas
-  const handleIsDebt = () => {
-    setIsDebt(!isDebt); 
-  }; 
+  //Función para aceptar las entradas de fecha
+  // const handleDateRange = () => {
+  //   const before = new Date('2020-01-01T00:00:00Z');
+  //   const today = new Date();
+
+  //   if (fecha1 && fecha2) {
+  //     if (fecha1 > fecha2) {
+  //       console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
+  //       return false;
+  //     } else if (fecha1 < before || fecha2 < before) {
+  //       console.log('ALERTA: Fecha anterior al año 2020')
+  //       return false;
+  //     } else if (fecha1 > today || fecha2 > today) {
+  //       console.log('ALERTA: Fecha posterior a la fecha actual')
+  //       return false;
+  //     }
+  //   } else {
+  //     console.log('ALERTA: Se necesitan 2 fechas')
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
+  //Función para aceptar las entradas de deuda
+  const handleDebtRange = () => {
+    if (deuda1 && deuda2) {
+      if (deuda1 > deuda2) {
+        console.log('ALERTA: Deuda mínima mayor a deuda máxima')
+        return false;
+      } else if (deuda1 < 0 || deuda2 < 0) {
+        console.log('ALERTA: Deuda menor a 0')
+        return false;
+      } else if (deuda1 > 10000 || deuda2 > 10000) {
+        console.log('ALERTA: Deuda mayor a $10,000')
+        return false;
+      }
+    } else {
+      console.log('ALERTA: Se necesitan 2 deudas')
+      return false;
+    }
+    return true;
+  }
+
+  //Función para controlar entradas de input fecha
+  // const handleDateChange = (e, setter) => {
+  //   setter(e);
+  //   console.log(fecha1)
+  //   console.log(fecha2)
+  //   filterChange();
+  // };
 
   //Función para controlar entradas de input deuda
-  const handleInputChange = (e, setter) => {
+  const handleDebtChange = (e, setter) => {
     const inputValue = e.target.value;
     if (/^\d*$/.test(inputValue)) {
       setter(parseInt(inputValue));
     }
+    filterChange();
   };
 
   return (
@@ -110,14 +171,12 @@ const UserListAdmin = () => {
             </Dropdown>
           </div>
 
-          <div className='fecha-input-container'>
-            {/* Div para fechas */}
+          {/* <div className='fecha-input-container'>
             <div className='fecha-picker-container'>
-              {/* Div para fecha 1 */}
               <DatePicker
                 className='fecha-input'
                 selected={fecha1}
-                onChange={date => setFecha1(date)}
+                onChange={(e) => handleDateChange(e, setFecha1)}
                 placeholderText='Fecha de Inicio'
                 dateFormat='dd/MM/yy'
               />
@@ -126,53 +185,47 @@ const UserListAdmin = () => {
               <p> - </p>
             </div>
             <div className='fecha-picker-container'>
-              {/* Div para fecha 2 */}
               <DatePicker
                 className='fecha-input'
                 selected={fecha2}
-                onChange={date => setFecha2(date)}
+                onChange={(e) => handleDateChange(e, setFecha2)}
                 placeholderText='Fecha de Fin'
                 dateFormat='dd/MM/yy'
               />
             </div>
-          </div>
+          </div> */}
 
           <div className='deuda-input-container'>
             <div className='deuda-picker-container'>
-              {/* Div para deudas */}
-              {isDebt && (
                 <div className='deuda-box-container'>
                   {/* Div para deuda 1 */}
                   <input
                     className='deuda-input'
                     type='number'
-                    onChange={(e) => handleInputChange(e, setDeuda1)}
+                    onChange={(e) => handleDebtChange(e, setDeuda1)}
                     placeholder='Deuda Mínima'
+                    min='0'
+                    max='10000'
                   />
                 </div>
-              )}
             </div>
-            <p>{deuda1}</p>
             <div className='guion-container'>
-              {isDebt && (
-                <p> - </p>
-              )}
+              <p> - </p>
             </div>
             <div className='deuda-picker-container'>
               {/* Div para deudas */}
-              {isDebt && (
                 <div className='deuda-box-container'>
                   {/* Div para deuda 2*/}
                   <input
                     className='deuda-input'
                     type='number'
-                    onChange={(e) => handleInputChange(e, setDeuda2)}
+                    onChange={(e) => handleDebtChange(e, setDeuda2)}
                     placeholder='Deuda Máxima'
+                    min='0'
+                    max='10000'
                   />
               </div>
-              )}
             </div>
-            <p>{deuda2}</p>
           </div>
         </div>
 
