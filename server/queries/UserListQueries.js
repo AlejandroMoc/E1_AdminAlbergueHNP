@@ -3,11 +3,13 @@ const db = require('../db_connection'); // Import the database connection
 // Function to get all clients
 const getAllClients = async () => {
     try {
-        const clients = await db.any(`SELECT DISTINCT cliente.id_cliente, id_cama, nombre_c, apellidos_c, fecha_i, lugar_o, nombre_p, apellidos_p, cliente.carnet, nivel_se
-                                        FROM cliente 
-                                        LEFT JOIN huesped ON cliente.id_cliente = huesped.id_cliente
-                                        LEFT JOIN paciente ON cliente.carnet = paciente.carnet
-                                        ORDER BY id_cama`)
+        const clients = await db.any(
+            `SELECT DISTINCT cliente.id_cliente, id_cama, nombre_c, apellidos_c, fecha_i, lugar_o, nombre_p, apellidos_p,
+            cliente.carnet, nivel_se
+            FROM cliente 
+            LEFT JOIN huesped ON cliente.id_cliente = huesped.id_cliente
+            LEFT JOIN paciente ON cliente.carnet = paciente.carnet
+            ORDER BY fecha_i DESC`)
         return clients
     } catch (error) {
         throw error

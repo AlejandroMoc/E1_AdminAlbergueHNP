@@ -19,7 +19,6 @@ const UserListAdmin = () => {
   // const [fecha2, setFecha2] = useState(null);
 
   //Estado para almacenar las deudas
-  const [acceptDeuda, setAcceptDeuda] = useState(false);
   const [deuda1, setDeuda1] = useState(null);
   const [deuda2, setDeuda2] = useState(null);
 
