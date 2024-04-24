@@ -70,5 +70,5 @@ app.post('/someclients', async (req, res) => {
 // })
 
 app.listen(8000, () =>{
-    console.log('Servidor corriendo en el puerto ')
+    console.log('Servidor corriendo en el puerto 8000')
 })

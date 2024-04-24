@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const LoginAdmin = () => {
   return (
-    <div className='App-minheight2'>
+    <div className='App_minheight_login'>
       <br />
       <br />
       <h1>Administrador del Albergue</h1>
@@ -17,9 +17,9 @@ const LoginAdmin = () => {
       
       <div>
         <center>
-        <table className='table1'>
+        <table className='login_table'>
           <center>
-          <thead><tr><img src={logohnp} class ="header-logo" alt="logo"/></tr></thead>
+          <thead><tr><img src={logohnp} class ="login_header_logo" alt="logo"/></tr></thead>
           <tbody >
             <tr><h3 className='titulo-bienvenido'>¡Te damos la bienvenida!</h3></tr>
             <tr> 
@@ -29,7 +29,7 @@ const LoginAdmin = () => {
             <td><input type="password" id="contraseña" name="contraseña" placeholder="Contraseña"></input></td>
             </tr>
             <tr>
-            <Link to ="/"><button className='Appglobal-buttonaccept'>Iniciar sesión </button></Link>
+            <Link to ="/"><button className='App_buttonaccept'>Iniciar sesión </button></Link>
             </tr>
           </tbody>
           </center>

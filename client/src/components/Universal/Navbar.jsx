@@ -12,15 +12,15 @@ const Navbar = () => {
   
   return ( 
     <nav class = "navbar">
-        <ul class = "navbar-left">
-          <div className="navbar-logo-div"><Link to="/"><img src={logohnp} className="navbar-logo-color" alt="logo"/></Link></div>
+        <ul class = "navbar_left">
+          <div className="navbar_divisor_logo"><Link to="/"><img src={logohnp} className="navbar_color_logo" alt="logo"/></Link></div>
         </ul>
-        <ul class ='navbar-right'>
-          <Link class = 'navbar-text' to ="/usernew"> Registro </Link>
-          <Link class = 'navbar-text' to ="/beds"> Camas </Link>
-          <Link class = 'navbar-text' to ="/userlist"> Usuarios </Link>
-          <Link class = 'navbar-text' to ="/reports"> Reporte </Link>
-          <Link class = 'navbar-text' to ="/profile"> <FaUser/> </Link>
+        <ul class ='navbar_right'>
+          <Link class = 'navbar_text' to ="/usernew"> Registro </Link>
+          <Link class = 'navbar_text' to ="/beds"> Camas </Link>
+          <Link class = 'navbar_text' to ="/userlist"> Usuarios </Link>
+          <Link class = 'navbar_text' to ="/reports"> Reporte </Link>
+          <Link class = 'navbar_text' to ="/profile"> <FaUser/> </Link>
         </ul>
     </nav>
   )

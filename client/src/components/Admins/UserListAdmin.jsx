@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'; 
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DatePicker from 'react-datepicker'; // Importar react-datepicker
+//import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
 import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -144,16 +144,16 @@ const UserListAdmin = () => {
   };
 
   return (
-    <div className='App-minheight'>
-      <div className='flex-contenedor'>
-        <div className='upper-contenedor'>  
-          <div className='dropdown-container'>
+    <div className='App_minheight'>
+      <div className='userlist_container_flex'>
+        <div className='userlist_container_upper'>  
+          <div className='universal_container_dropdown'>
             {/* Div para dropdown */}
-            <Dropdown className='dropdown-container-dropdown'>
-              <Dropdown.Toggle  className='dropdown-toggle-custom' variant='success' id='dropdown-basic'>
+            <Dropdown className='universal_container_dropdown2'>
+              <Dropdown.Toggle  className='userlist_toggle_dropdown universal_toggle_dropdown' variant='success' id='dropdown-basic'>
                 Filtros
               </Dropdown.Toggle>
-              <Dropdown.Menu className='dropdown-menu-custom'>
+              <Dropdown.Menu className='userlist_dropdown_custommenu'>
                 {/* Checkbox de Filtros*/}
                 {filters.map((option) => (
                   <Form.Check
@@ -170,22 +170,22 @@ const UserListAdmin = () => {
             </Dropdown>
           </div>
 
-          {/* <div className='fecha-input-container'>
-            <div className='fecha-picker-container'>
+          {/* <div className='userlist_container_inputdate'>
+            <div className='universal_container_pickerdate'>
               <DatePicker
-                className='fecha-input'
+                className='universal_input_date'
                 selected={fecha1}
                 onChange={(e) => handleDateChange(e, setFecha1)}
                 placeholderText='Fecha de Inicio'
                 dateFormat='dd/MM/yy'
               />
             </div>
-            <div className='guion-container'>
+            <div className='container_dash'>
               <p> - </p>
             </div>
-            <div className='fecha-picker-container'>
+            <div className='universal_container_pickerdate'>
               <DatePicker
-                className='fecha-input'
+                className='universal_input_date'
                 selected={fecha2}
                 onChange={(e) => handleDateChange(e, setFecha2)}
                 placeholderText='Fecha de Fin'
@@ -194,12 +194,12 @@ const UserListAdmin = () => {
             </div>
           </div> */}
 
-          <div className='deuda-input-container'>
+          <div className='userlist_container_inputdebt'>
             <div className='deuda-picker-container'>
                 <div className='deuda-box-container'>
                   {/* Div para deuda 1 */}
                   <input
-                    className='deuda-input'
+                    className='userlist_inputdebt'
                     type='number'
                     onChange={(e) => handleDebtChange(e, setDeuda1)}
                     placeholder='Deuda Mínima'
@@ -208,7 +208,7 @@ const UserListAdmin = () => {
                   />
                 </div>
             </div>
-            <div className='guion-container'>
+            <div className='container_dash'>
               <p> - </p>
             </div>
             <div className='deuda-picker-container'>
@@ -216,7 +216,7 @@ const UserListAdmin = () => {
                 <div className='deuda-box-container'>
                   {/* Div para deuda 2*/}
                   <input
-                    className='deuda-input'
+                    className='userlist_inputdebt'
                     type='number'
                     onChange={(e) => handleDebtChange(e, setDeuda2)}
                     placeholder='Deuda Máxima'
@@ -228,7 +228,7 @@ const UserListAdmin = () => {
           </div>
         </div>
 
-        <div className='lower-contenedor'>
+        <div className='userlist_container_lower'>
           <Table>
             <thead>
               <tr>

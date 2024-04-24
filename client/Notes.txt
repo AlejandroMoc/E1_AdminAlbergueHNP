@@ -1,3 +1,45 @@
+## Catalogo de colores
+colors-old{
+    //Catalogo de colores
+    color-old: #090909;
+    color-old: #d9d9d8;
+    color-old: #a5cffd;
+    color-old: #4383c7;
+    color-old: #376faa;
+    color-old: #ee7171;
+    color-old: #d84949;
+    color-old: #7c2e2e;
+    color-old: #ffffff;
+    color-old: #f2f2f2;
+    color-old: #c2c2c2;
+    color-old: #e6e6e6;
+    color-old: #f5f5f5;
+    color-old: #ee7171;
+    color-old: #cc6161;
+    color-old: #8cbcfc;
+    color-old: #7aa5de;
+    color-old: #008000;
+    color-old: #ff0000;
+    color-old: transparent;
+    color-old: #ee7171;
+    color-old: #c2c2c2;
+    color-old: #8cbcfc;
+    color-old: #c2c2c2;
+    color-old: #00ffff;
+    color-old: #008000;
+    color-old: #090909;
+    color-old: #f0f0f0;
+    color-old: #090909;
+    color-old: #dedede;
+    color-old: #058844;
+}
+
+
+##
+Juntado archivo de clase .scss para Creación e Información de Nuevo Usuario. Renombrados archivos .scss para seguir el formato correspondiente. Renombrados colores para seguir una paleta más corta.
+
+
+##
 Unificado CSS de botones dentro de página de camas y de información de administradora.
 
 

@@ -1,12 +1,11 @@
-.flex-contenedor {
-  // background-color: red;
+.userlist_container_flex {
+  // background-color: #d84949;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.upper-contenedor {
-  // background-color: aqua;
+.userlist_container_upper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -15,49 +14,49 @@
   width: 100%;
 }
 
-.lower-contenedor {
-  // background-color: green;
+.userlist_container_lower {
+  //background-color: #058844;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
 
-.dropdown-toggle-custom {
+.userlist_toggle_dropdown {
   background-color: #f2f2f2;
   height: 37px;
   border-width: 0px;
 }
 
-.dropdown-menu-custom {
+.userlist_dropdown_custommenu {
   width: 100%;
 }
 
-.fecha-input-container {
+.userlist_container_inputdate {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
 }
 
-.fecha-input-container .guion-container {
-  color: black;
+.userlist_container_inputdate .container_dash {
+  color: #090909;
   margin-right: 20px;
 }
 
-.deuda-input-container {
+.userlist_container_inputdebt {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
 }
 
-.deuda-input {
+.userlist_inputdebt {
   background-color: #f2f2f2;
   height: 37px;
   width: 200px;
 }
 
-.deuda-input-container .guion-container {
-  color: black;
+.userlist_container_inputdebt .container_dash {
+  color: #090909;
   margin-left: 20px;
   margin-right: 20px;
 }

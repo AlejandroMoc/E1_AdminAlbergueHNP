@@ -8,7 +8,7 @@ import ProfilePasswordAdmin from "../Admins/ProfilePasswordAdmin";
 
 const ProfilePassword = () => {
 	return (
-		<div className="App-global App-bluebackground">
+		<div className="App_global App_background_blue">
 			<Navbar/>
 			<ProfilePasswordAdmin/>
 			<Footer/>

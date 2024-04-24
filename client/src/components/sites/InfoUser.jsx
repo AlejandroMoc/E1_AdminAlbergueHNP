@@ -7,7 +7,7 @@ import Navbar from '../Universal/Navbar';
 
 const InfoUser = () => {
 	return (
-		<div class="App-global">
+		<div class="App_global">
 			<Navbar/>
 			<InfoUserAdmin/>
 			<Footer/>

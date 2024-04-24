@@ -8,10 +8,8 @@ import { IoAddCircleOutline  } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlineFastfood } from "react-icons/md";
-import { LuUserMinus } from "react-icons/lu";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { FaRegAddressCard } from "react-icons/fa";
-import { LuUser } from "react-icons/lu";
+import { LuUser, LuUserMinus, LuUserPlus } from "react-icons/lu";
+import { FaRegTrashAlt, FaRegAddressCard  } from "react-icons/fa";
 
 import { useState } from 'react';
 
@@ -89,7 +87,7 @@ function Cama({color, iconocama, numCama, numCamaMenu}){
           <TuComponente texto="Desayuno"></TuComponente>
           <TuComponente texto="Comida"></TuComponente>
           <TuComponente texto="Cena"></TuComponente>
-          <button type="button" class="btn btn-light Appglobal-buttonaccept">Registrar</button>
+          <button type="button" class="btn btn-light App_buttonaccept">Registrar</button>
         </Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />
@@ -109,7 +107,7 @@ function Cama({color, iconocama, numCama, numCamaMenu}){
         <span class="numCamaText">Cama {numCamaMenu}</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" class="iconStyle"/>}>
+      <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" class="iconStyle"/>}>
         <span class="letraMenu">Añadir Huésped</span>
       </Menu.Item>
       <Menu.Divider />
@@ -119,7 +117,7 @@ function Cama({color, iconocama, numCama, numCamaMenu}){
     </Menu>
   )
 
-  if(color == '#e6e6e6'){ menu = menuDisponibles;}
+  if(color == '#dedede'){ menu = menuDisponibles;}
   else if(color == '#8cbcfc' || color == '#EE7171'){ menu = menuOcupadas;}
 
   return(
@@ -149,7 +147,7 @@ const RoomAdmin = () => {
   
   
   return (
-    <div className='App-minheight'>
+    <div className='App_minheight'>
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE MUJERES</span>
           <div class="indicadoresDiv">
@@ -161,7 +159,7 @@ const RoomAdmin = () => {
         
         <div class="container">
           {camasHombres.map((_, index) => (
-            <Cama color="#e6e6e6" iconocama={iconocama} numCama={index+1} numCamaMenu={index+1}></Cama>
+            <Cama color="#dedede" iconocama={iconocama} numCama={index+1} numCamaMenu={index+1}></Cama>
           ))}
           <div class="card addCama">
             <button id="addCamaButton"><IoAddCircleOutline /></button>

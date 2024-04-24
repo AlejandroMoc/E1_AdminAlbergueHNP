@@ -77,32 +77,32 @@ const ReportsAdmin = () => {
   };
 
   return (
-    <div className='App-minheight App-minpadding'>
+    <div className='App_minheight App-minpadding'>
       {/* Div para agrupar los campos de entrada */}
-      <div className="fecha-input-container">
+      <div className="universal_container_inputdate">
         {/* Campo de entrada para la fecha 1 */}
-        <div className="fecha-picker-container">
+        <div className="universal_container_pickerdate">
           <DatePicker
             selected={fecha1}
             onChange={date => setFecha1(date)}
             placeholderText="DD/MM/YY"
-            className="fecha-input"
+            className="universal_input_date"
             dateFormat="dd/MM/yy" // Cambia el formato de la fecha
           />
         </div>
 
         {/* Campo de entrada para la fecha 2 */}
-        <div className="fecha-picker-container">
+        <div className="universal_container_pickerdate">
           <DatePicker
             selected={fecha2}
             onChange={date => setFecha2(date)}
             placeholderText="DD/MM/YY"
-            className="fecha-input"
+            className="universal_input_date"
             dateFormat="dd/MM/yy" // Cambia el formato de la fecha
           />
         </div>
 
-        <div className="checkbox-container">
+        <div className="universal_container_checkbox">
         {/* Checkbox para marcar si es General */}
         <div className="form-check">
           <input
@@ -112,49 +112,49 @@ const ReportsAdmin = () => {
             checked={esGeneral}
             onChange={handleEsGeneralChange}
           />
-          <label className="form-check-label labelRadio" htmlFor="esGeneral">
-          <span class="textoHM">General</span>
+          <label className="form-check-label universal_label_radio" htmlFor="esGeneral">
+          <span class="universal_text_HM">General</span>
           </label>
         </div>
 
         {/* Checkbox para marcar si es huésped */}
         <div className="form-check">
           <input
-            className="form-check-input checkboxHM"
+            className="form-check-input universal_checkbox_HM"
             type="radio"
             id="esHuesped"
             checked={esHuesped}
             onChange={handleEsHuespedChange}
           />
-          <label className="form-check-label labelRadio" htmlFor="esHuesped">
-            <span class="textoHM">Huésped</span>
+          <label className="form-check-label universal_label_radio" htmlFor="esHuesped">
+            <span class="universal_text_HM">Huésped</span>
           </label>
         </div>
 
         <div className="form-check">
           <input
-            className="form-check-input checkboxHM"
+            className="form-check-input universal_checkbox_HM"
             type="checkbox"
             id="esServicio"
             checked={esServicio}
             onChange={handleEsServicioChange}
           />
-          <label className="form-check-label labelRadio" htmlFor="esServicio">
-            <span class="textoHM">Servicios</span>
+          <label className="form-check-label universal_label_radio" htmlFor="esServicio">
+            <span class="universal_text_HM">Servicios</span>
           </label>
           </div>
         </div>
       </div>
 
       {/* Div para el dropdown de huésped */}
-      <div className="dropdown-container">
+      <div className="universal_container_dropdown">
         {/* Dropdown que se muestra si es huésped */}
         {esHuesped && (
           <Dropdown onSelect={(eventKey) => handleHuéspedSelect(eventKey)}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="universal_toggle_dropdown">
               {huéspedSeleccionado}
             </Dropdown.Toggle>
-            <Dropdown.Menu  className="dropdown-menu-custom">
+            <Dropdown.Menu  className="universal_dropdown_custommenu">
               <Dropdown.Item eventKey="34 - Gianpiero Chiellini">34 - Gianpiero Chiellini</Dropdown.Item>
               <Dropdown.Item eventKey="25 - Juan Rosas">25 - Juan Rosas</Dropdown.Item>
               <Dropdown.Item eventKey="53 - Rodri Mere">59 - Rodri Mere</Dropdown.Item>
@@ -173,93 +173,93 @@ const ReportsAdmin = () => {
       </div>
 
       {/* Div para los checkboxes de servicios */}
-      <div className="servicios-container">
+      <div className="universal_container_services">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="checkbox-container2">
+          <div className="universal_container2_checkbox">
             {/* Checkbox para cada servicio */}
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="desayuno"
                 checked={serviciosSeleccionados.desayuno}
                 onChange={() => handleServicioChange('desayuno')}
               />
-              <label className="form-check-label labelRadio" htmlFor="desayuno">
-                <span class="textoHM">Desayuno</span>
+              <label className="form-check-label universal_label_radio" htmlFor="desayuno">
+                <span class="universal_text_HM">Desayuno</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="comida"
                 checked={serviciosSeleccionados.comida}
                 onChange={() => handleServicioChange('comida')}
               />
-              <label className="form-check-label labelRadio" htmlFor="comida">
-                <span class="textoHM">Comida</span>
+              <label className="form-check-label universal_label_radio" htmlFor="comida">
+                <span class="universal_text_HM">Comida</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="cena"
                 checked={serviciosSeleccionados.cena}
                 onChange={() => handleServicioChange('cena')}
               />
-              <label className="form-check-label labelRadio" htmlFor="cena">
-                <span class="textoHM">Cena</span>
+              <label className="form-check-label universal_label_radio" htmlFor="cena">
+                <span class="universal_text_HM">Cena</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="baño"
                 checked={serviciosSeleccionados.baño}
                 onChange={() => handleServicioChange('baño')}
               />
-              <label className="form-check-label labelRadio" htmlFor="baño">
-                <span class="textoHM">Baño</span>
+              <label className="form-check-label universal_label_radio" htmlFor="baño">
+                <span class="universal_text_HM">Baño</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="hospedaje"
                 checked={serviciosSeleccionados.hospedaje}
                 onChange={() => handleServicioChange('hospedaje')}
               />
-              <label className="form-check-label labelRadio" htmlFor="hospedaje">
-                <span class="textoHM">Hospedaje</span>
+              <label className="form-check-label universal_label_radio" htmlFor="hospedaje">
+                <span class="universal_text_HM">Hospedaje</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="deuda"
                 checked={serviciosSeleccionados.deuda}
                 onChange={() => handleServicioChange('deuda')}
               />
-              <label className="form-check-label labelRadio" htmlFor="deuda">
-                <span class="textoHM">Deuda</span>
+              <label className="form-check-label universal_label_radio" htmlFor="deuda">
+                <span class="universal_text_HM">Deuda</span>
               </label>
             </div>
             <div className="form-check">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="vetados"
                 checked={serviciosSeleccionados.vetados}
                 onChange={() => handleServicioChange('vetados')}
               />
-              <label className="form-check-label labelRadio" htmlFor="vetados">
-                <span class="textoHM">Vetados</span>
+              <label className="form-check-label universal_label_radio" htmlFor="vetados">
+                <span class="universal_text_HM">Vetados</span>
               </label>
             </div>
           </div>
@@ -271,12 +271,12 @@ const ReportsAdmin = () => {
         {/* Input rectángulo gris */}
         <input
           type="text"
-          className="gray-rectangle-input"
+          className="universal_rectangle_gray"
         />
       </div>
-      <div className="export-button">
+      <div className="universal_button_export">
         {/* Botón de exportar reporte a PDF */}
-        <button type="button" className="Appglobal-buttonaccept">
+        <button type="button" className="App_buttonaccept">
           Exportar
         </button>
       </div>
