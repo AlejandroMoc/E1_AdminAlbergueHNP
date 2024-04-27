@@ -7,15 +7,18 @@
 
 Desarrollada aplicación del 19 de febrero al _ de _ de 2024.
 
-Entrega prevista para el _ de _ de 2024.
+Entrega prevista para el 25 de mayo de 2024.
 
 ## Ejecución
 
-Para ejecutar el proyecto es necesario ejecutar los siguientes comandos:
+Para ejecutar el proyecto es necesario importar la base de datos del folder "dump" en una base de datos de PGAdmin4 y PostgreSQL.
 
-npm install
 
-npm start
+Una vez hecho esto, abrir la carpeta "server" y la carpeta "client" y ejecutar los siguientes comandos en cada una:
+
+    npm install
+
+    npm start
 
 ### Desarrolladores
  A01736149 - Hugo Muñoz Rodríguez

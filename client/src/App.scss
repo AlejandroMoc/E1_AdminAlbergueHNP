@@ -13,6 +13,39 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+///Clases globales de los botones
+.App_global button {
+  width: 14em;
+  height: 2.6em;
+  border-radius: 1vh;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+///Clases globales de inputs
+input{
+  width: 14em;
+  margin: 5px ;
+  padding: 10px;
+  border: 1px solid #dedede;
+  border: none;
+  border-radius: 1vh;
+  background-color: #dedede;
+  font-style: italic;
+}
+
+
+/* input[type="text"] {
+  font-style: italic;
+}
+
+input[type="password"] {
+  font-style: italic;
+} */
+
 //Clases globales de fondos
 .App_minheight {
   min-height: 85vh;
@@ -31,39 +64,6 @@
   background-size: cover;
   background-position: center;
 }
-
-///Clases globales de inputs
-input{
-  width: 14em;
-  margin: 5px ;
-  padding: 10px;
-  border: 1px solid #dedede;
-  border: none;
-  border-radius: 1vh;
-  background-color: #dedede;
-  font-style: italic;
-}
-
-input[type="text"] {
-  font-style: italic;
-}
-
-input[type="password"] {
-  font-style: italic;
-}
-
-///Clases globales de los botones
-.App_global button {
-  width: 14em;
-  height: 2.6em;
-  border-radius: 1vh;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-}
-
 //Clases globales para botones
 .App_buttonaccept {
   background-color: #8cbcfc;
@@ -86,6 +86,6 @@ input[type="password"] {
 }
 
 //TODO convertir a elemento individual para pag de Reportes
-.App-minpadding {
+.App_minpadding {
   padding: 5vh;
 }

@@ -77,7 +77,7 @@ const ReportsAdmin = () => {
   };
 
   return (
-    <div className='App_minheight App-minpadding'>
+    <div className='App_minheight App_minpadding'>
       {/* Div para agrupar los campos de entrada */}
       <div className="universal_container_inputdate">
         {/* Campo de entrada para la fecha 1 */}
@@ -104,7 +104,7 @@ const ReportsAdmin = () => {
 
         <div className="universal_container_checkbox">
         {/* Checkbox para marcar si es General */}
-        <div className="form-check">
+        <div className="universal_margin_formcheck">
           <input
             className="form-check-input"
             type="radio"
@@ -112,13 +112,13 @@ const ReportsAdmin = () => {
             checked={esGeneral}
             onChange={handleEsGeneralChange}
           />
-          <label className="form-check-label universal_label_radio" htmlFor="esGeneral">
+          <label className="universal_label_radio" htmlFor="esGeneral">
           <span class="universal_text_HM">General</span>
           </label>
         </div>
 
         {/* Checkbox para marcar si es huésped */}
-        <div className="form-check">
+        <div className="universal_margin_formcheck">
           <input
             className="form-check-input universal_checkbox_HM"
             type="radio"
@@ -126,12 +126,12 @@ const ReportsAdmin = () => {
             checked={esHuesped}
             onChange={handleEsHuespedChange}
           />
-          <label className="form-check-label universal_label_radio" htmlFor="esHuesped">
+          <label className="universal_label_radio" htmlFor="esHuesped">
             <span class="universal_text_HM">Huésped</span>
           </label>
         </div>
 
-        <div className="form-check">
+        <div className="universal_margin_formcheck">
           <input
             className="form-check-input universal_checkbox_HM"
             type="checkbox"
@@ -139,7 +139,7 @@ const ReportsAdmin = () => {
             checked={esServicio}
             onChange={handleEsServicioChange}
           />
-          <label className="form-check-label universal_label_radio" htmlFor="esServicio">
+          <label className="universal_label_radio" htmlFor="esServicio">
             <span class="universal_text_HM">Servicios</span>
           </label>
           </div>
@@ -178,7 +178,7 @@ const ReportsAdmin = () => {
         {esServicio && (
           <div className="universal_container2_checkbox">
             {/* Checkbox para cada servicio */}
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -186,11 +186,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.desayuno}
                 onChange={() => handleServicioChange('desayuno')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="desayuno">
+              <label className="universal_label_radio" htmlFor="desayuno">
                 <span class="universal_text_HM">Desayuno</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -198,11 +198,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.comida}
                 onChange={() => handleServicioChange('comida')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="comida">
+              <label className="universal_label_radio" htmlFor="comida">
                 <span class="universal_text_HM">Comida</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -210,11 +210,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.cena}
                 onChange={() => handleServicioChange('cena')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="cena">
+              <label className="universal_label_radio" htmlFor="cena">
                 <span class="universal_text_HM">Cena</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -222,11 +222,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.baño}
                 onChange={() => handleServicioChange('baño')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="baño">
+              <label className="universal_label_radio" htmlFor="baño">
                 <span class="universal_text_HM">Baño</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -234,11 +234,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.hospedaje}
                 onChange={() => handleServicioChange('hospedaje')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="hospedaje">
+              <label className="universal_label_radio" htmlFor="hospedaje">
                 <span class="universal_text_HM">Hospedaje</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -246,11 +246,11 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.deuda}
                 onChange={() => handleServicioChange('deuda')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="deuda">
+              <label className="universal_label_radio" htmlFor="deuda">
                 <span class="universal_text_HM">Deuda</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
                 type="checkbox"
@@ -258,7 +258,7 @@ const ReportsAdmin = () => {
                 checked={serviciosSeleccionados.vetados}
                 onChange={() => handleServicioChange('vetados')}
               />
-              <label className="form-check-label universal_label_radio" htmlFor="vetados">
+              <label className="universal_label_radio" htmlFor="vetados">
                 <span class="universal_text_HM">Vetados</span>
               </label>
             </div>
@@ -269,7 +269,7 @@ const ReportsAdmin = () => {
 
       <div className="report-container">
         {/* Input rectángulo gris */}
-        <input
+        <div
           type="text"
           className="universal_rectangle_gray"
         />

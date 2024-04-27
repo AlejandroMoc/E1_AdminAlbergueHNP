@@ -21,11 +21,11 @@ const UserNewAdmin = () => {
           <div class="input-group mb-3 user_checkerito">
             <div class="form-check form-switch">
               <input class="form-check-input universal_checkbox_HM" type="checkbox" role="switch" id="flexSwitchCheckDefault"></input>
-              <label class="form-check-label universal_label_radio" for="flexSwitchCheckDefault">Visitante Previo</label>
+              <label class="universal_label_radio" for="flexSwitchCheckDefault">Visitante Previo</label>
             </div>
             <div class="form-check form-switch">
               <input class="form-check-input universal_checkbox_HM" type="checkbox" role="switch" id="flexSwitchCheckDefault"></input>
-              <label class="form-check-label universal_label_radio" for="flexSwitchCheckDefault">Paciente</label>
+              <label class="universal_label_radio" for="flexSwitchCheckDefault">Paciente</label>
             </div>
           </div>     
           <div class="input-group mb-3 ">
@@ -34,15 +34,15 @@ const UserNewAdmin = () => {
           </div>
           <div class="input-group mb-3 user_checkerito">
             <div class="user_div_radio">
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexCheckChecked" checked></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                 <span class="universal_text_HM">Hombre</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                   <span class="universal_text_HM">Mujer</span>
                 </label>
               </div>
@@ -55,33 +55,33 @@ const UserNewAdmin = () => {
           <span class="input-group-text user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
           <div class="input-group mb-3 user_checkerito">
             <div class="user_div_radio">
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM"  type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                 <span class="universal_text_HM">1</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                   <span class="universal_text_HM">2</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                 <span class="universal_text_HM">3</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                   <span class="universal_text_HM">4</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                 <span class="universal_text_HM">5</span>
                 </label>
               </div>
@@ -110,15 +110,15 @@ const UserNewAdmin = () => {
           </div>
           <div class="input-group mb-3 user_checkerito">
             <div class="user_div_radio">
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                 <span class="universal_text_HM">Huésped</span>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="universal_margin_formcheck">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <label class="universal_label_radio" for="flexRadioDefault1">
                   <span class="universal_text_HM">Entrada Única</span>
                 </label>
               </div>

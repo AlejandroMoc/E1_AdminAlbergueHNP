@@ -74,9 +74,9 @@ function Cama({color, iconocama, numCama, numCamaMenu}){
             <span class="input-group-text" id="basic-addon1">Pagar</span>
             <input type="text" class="form-control" placeholder="$20.00" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
-          <div class="form-check">
+          <div class="universal_margin_formcheck">
             <input class="form-check-input checkCondo" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label checkCondoTxt" for="flexCheckDefault">
+            <label class="checkCondoTxt" for="flexCheckDefault">
               Condonar Pago
             </label>
           </div>
