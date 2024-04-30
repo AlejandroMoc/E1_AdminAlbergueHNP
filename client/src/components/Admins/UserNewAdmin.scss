@@ -19,6 +19,7 @@
 .user_span_space_icon{
     background-color: #fafafa;
     font-size: xx-large;
+    min-width: 60px;
 }
 
 .user_span_sociolevel{
@@ -76,13 +77,12 @@
     border-color: #c2c2c2;
 }
 
-
 .user_container_general{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 50px 150px;
+    gap: 40px 150px;
 }
 
 .user_span_notesicon{

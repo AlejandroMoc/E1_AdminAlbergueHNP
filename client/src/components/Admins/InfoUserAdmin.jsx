@@ -1,16 +1,16 @@
 import React, { useEffect,useState } from 'react';
-import './InfoUserAdmin.scss';
+import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { LuUser } from "react-icons/lu";
 import { LuCalendarDays } from "react-icons/lu";
-import { MdOutlineAttachMoney } from "react-icons/md";
+// import { MdOutlineAttachMoney } from "react-icons/md";
 import { FiHome } from "react-icons/fi";
 import { TbMoodKid } from "react-icons/tb";
 import { FaRegAddressCard } from "react-icons/fa";
 import { RiHospitalLine } from "react-icons/ri";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { IoMdRemoveCircleOutline } from "react-icons/io";
+// import { IoMdAddCircleOutline } from "react-icons/io";
+// import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { LiaCoinsSolid } from "react-icons/lia";
 import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
 import { LuBedDouble } from "react-icons/lu"; //Cama
@@ -63,82 +63,90 @@ console.log("SErvicio: "+servicioCliente.servicio1)
 //EMPIEZA DESARROLLO DEL HTML
   return (
     <div class='App-minheight'>
-      <div class="contenedorGral">
-        <div class="container contenedorEspaciosReg">
+      <div class="user_container_general">
+        <div class="container user_container_reg">
         {/* {!showNumbersSelect && (
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanInfo" id="basic-addon1">Es Paciente</span>
+            <span class="input-group-text user_span_info" id="basic-addon1">Es Paciente</span>
           </div>)} */}
 
+          <h4>Información de usuario</h4>
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><LuUser /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
           </div>
           {showNumbersSelect && (
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><LuCalendarDays /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">Fecha Ingreso: {huespedCliente.fecha_i}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuCalendarDays /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{huespedCliente.fecha_i}</span>
           </div>)}
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><PiGenderIntersexLight /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">Sexo: {infoCliente.sexo ? "Hombre" : "Mujer"}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1">{infoCliente.nivel_se}</span>
-            <span class="input-group-text spanInfo" id="basic-addon1">Nivel Socioeconomico</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
+            <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico {infoCliente.nivel_se}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><FiHome /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">{infoCliente.lugar_o}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
+          </div>
+
+          <div class="input-group mb-3 "></div>
+          <div class="input-group mb-3 "></div>
+
+          <h4>Información del paciente</h4>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><TbMoodKid /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.carnet}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><FaRegAddressCard /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">{infoCliente.carnet}</span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><RiHospitalLine /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><RiHospitalLine /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">{infoCliente.nombre_a}</span>
-          </div>
+          <div class="input-group mb-3 "></div>
         </div>
-        <div class="espNot">
+        <div class="user_space_not">
+          <div class="input-group mb-3 "></div>
           <div class="mb-3">
-            <span class="form-control  inputNotas" id="exampleFormControlTextarea1" rows="3"> Nota:  {infoCliente.notas_c}</span>
+            <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
           </div>
           {showNumbersSelect && (
             <div>
-          <div class="form-check">
-                <label class="form-check-label labelRadio" for="flexRadioDefault1">
-                <span class="textoHM">Huésped</span>
+              <div>
+                <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
+                <span>Huésped</span>
                 </label>
               </div>
-              </div>
+            </div>
             )}
               {!showNumbersSelect && (
-              <div class="form-check">
-                <label class="form-check-label labelRadio" for="flexRadioDefault1">
-                  <span class="textoHM">Entrada Única</span>
+              <div>
+                <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
+                  <span>Entrada Única</span>
                 </label>
               </div>)}
               {showNumbersSelect && ( 
           <div class="input-group mb-3 ">
-          <span class="input-group-text spanEspIcon" id="basic-addon1"><LuBedDouble /></span>
-          <span class="input-group-text spanInfo" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
+          <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuBedDouble /></span>
+          <span class="input-group-text user_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
           {!showNumbersSelect && (
-          <div class="servoSocs">
+          <div class="user_services_register">
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotText" id="basic-addon1">Regadera</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">{servicioCliente.servicio1}</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
             </div>
             <div class="input-group mb-3">
               
-              <span class="input-group-text spanNotText" id="basic-addon1">Baño</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">{servicioCliente.servicio2}</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio2}</span>
             </div>
           </div>
           )}
@@ -146,22 +154,22 @@ console.log("SErvicio: "+servicioCliente.servicio1)
           <div>
             <div class="input-group mb-3">
               
-              <span class="input-group-text spanNotText" id="basic-addon1">Desayuno</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">{servicioCliente.servicio3}</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio3}</span>
             </div>
             <div class="input-group mb-3">
               
-              <span class="input-group-text spanNotText" id="basic-addon1">Comida</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">{servicioCliente.servicio4}</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio4}</span>
             </div>
             <div class="input-group mb-3">
-              <span class="input-group-text spanNotText" id="basic-addon1">Cena</span>
-              <span class="input-group-text spanNotText" id="basic-addon1">{servicioCliente.servicio5}</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
           </div>)}
           <div class="input-group mb-3 ">
-            <span class="input-group-text spanEspIcon" id="basic-addon1"><LiaCoinsSolid /></span>
-            <span class="input-group-text spanInfo" id="basic-addon1">A pagar:  ${deudaCliente.deudacliente} </span>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">A pagar:  ${deudaCliente.deudacliente} </span>
           </div>
         </div>
       </div>

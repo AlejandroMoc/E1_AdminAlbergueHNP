@@ -9,6 +9,7 @@ const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/User
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
 
+
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
     try {
@@ -57,8 +58,14 @@ app.get('/allclients', async (req, res) => {
 app.post('/someclients', async (req, res) => {
     try {
         const select_Filters = req.body.filters;
+        const select_View = req.body.views
+        const debtRange = req.body.debts
+        const dateRange = req.body.dates
         console.log('select_Filters:', select_Filters);
-        const clients = await getClientsByFilter(select_Filters);
+        console.log('view: ', select_View)
+        console.log('debt: ', debtRange)
+        console.log('date: ', dateRange)
+        const clients = await getClientsByFilter(select_Filters, select_View, debtRange, dateRange);
         console.log('clientes:', clients)
         res.json(clients);
     } catch (error) {
@@ -104,11 +111,10 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
     }
 })
 
-
 // app.get('/hello', (req, res) => {
 //     res.json({message:"Hola"});
 // })
 
 app.listen(8000, () =>{
-    console.log('Servidor corriendo en el puerto ')
+    console.log('Servidor corriendo en el puerto 8000')
 })
