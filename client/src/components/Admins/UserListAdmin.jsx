@@ -8,7 +8,7 @@ import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //PRESELECT RADIO GENERAL
-//CAMBIA TABLA SERVICIOS
+//HACER QUE FECHA FINAL SEA A LAS 23:59
 
 const UserListAdmin = () => {
   //Estado para almacenar data
@@ -87,6 +87,13 @@ const UserListAdmin = () => {
     console.log(select_View)
   }
 
+  const handleDateFormat = (date) => {
+    const dbDate = new Date(date)
+    const localDate = dbDate.toLocaleString()
+    // console.log(localDate)
+    return(localDate)
+  }
+
   //Función para aceptar las entradas de fecha
   const handleDate1Change = (event) => {
     // if (event.length === 0) {
@@ -94,6 +101,7 @@ const UserListAdmin = () => {
     //   setDateRange([])
     // }
     // else {
+
       setFecha1(event);
       if (event && fecha2) {
         if (event > fecha2) {
@@ -347,7 +355,7 @@ const UserListAdmin = () => {
                   <tr key={item.id_cliente + ' ' + item.nombre_c}>
                     <td>{item.id_cama}</td>
                     <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>{item.fecha_i}</td>
+                    <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                     <td>{item.lugar_o}</td>
                     <td>{item.carnet}</td>
                     <td>{item.nivel_se}</td>
@@ -360,8 +368,8 @@ const UserListAdmin = () => {
                   <tr key={item.id_cliente + ' ' + item.fecha_i + ' ' + item.fecha_s}>
                     <td>{item.id_cama}</td>
                     <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>{item.fecha_i}</td>
-                    <td>{item.fecha_s}</td>
+                    <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
+                    <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                     <td>{item.lugar_o}</td>
                     <td>{item.carnet}</td>
                     <td>{item.nivel_se}</td>
@@ -375,7 +383,7 @@ const UserListAdmin = () => {
                     <td>{item.nombre_c} {item.apellidos_c}</td>
                     <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
                     <td>{item.carnet}</td>
-                    <td>{item.l_fecha_u}</td>
+                    <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
                     <td>{item.desayuno}</td>
                     <td>{item.comida}</td>
                     <td>{item.cena}</td>
