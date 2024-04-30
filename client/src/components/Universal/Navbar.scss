@@ -1,0 +1,35 @@
+.navbar {
+    background: linear-gradient(to right, #1d4e63, #3a76c7);
+    display: flex;
+    font-size: calc(5px + 2vmin);
+}
+
+.navbar-right{
+    margin-left: auto; 
+    margin-right: 20px;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Botton left right top */
+.navbar-text{
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 20px 20px 10px;
+    color: rgb(255, 255, 255);
+}
+
+.navbar-left{
+    margin: 0;
+    padding: 0 0 0 10px;
+}
+
+.navbar-logo-div{
+    width: calc(5px + 8vmin);
+    padding: 0;
+}
+
+.navbar-logo-color{
+    filter: invert(100%) sepia(0%) saturate(0) hue-rotate(68deg) brightness(100) contrast(101%);
+}

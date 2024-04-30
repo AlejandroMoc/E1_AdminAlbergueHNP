@@ -1,0 +1,21 @@
+Unificado CSS de botones dentro de página de camas y de información de administradora.
+
+
+##
+Este es un documento de apoyo en caso de que requieras hacer alguna anotación para copiarla más adelante. No tiene influencia alguna en el proyecto y será borrada en el commit final.
+
+##
+Modificados colores de barra de título.
+
+##
+Hecho merge con la rama de camas y de christianflores ().
+
+##
+Añadido bootstrap. Hecho merge con la branch de cama.
+
+##
+Creado front-end de página de cambio de contraseña para sistema de administradores.
+
+
+##
+Rehecha barra de título en base a nuevos mockups. Creados sitios necesarios para barra de tareas en el router. Creados banners para componentes de sitios. Añadido espacio correspondiente a banners. Rehecha página de menú principal con CSS y enlaces funcionales. Creada interfaz primeriza de la página de administradores.
