@@ -62,7 +62,7 @@ console.log("SErvicio: "+servicioCliente.servicio1)
 
 //EMPIEZA DESARROLLO DEL HTML
   return (
-    <div class='App-minheight'>
+    <div class='App_minheight'>
       <div class="user_container_general">
         <div class="container user_container_reg">
         {/* {!showNumbersSelect && (

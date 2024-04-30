@@ -8,7 +8,7 @@ app.use(express.json());
 const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
-
+const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -19,7 +19,7 @@ app.get('/alldispbeds', async(req, res) => {
         console.error('Error fetching clients:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
 
 app.get('/allareas', async(req, res) => {
     try {
@@ -29,7 +29,82 @@ app.get('/allareas', async(req, res) => {
         console.error('Error fetching clients:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
+
+
+app.get('/allusers', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allusers = await getAllUsers(startDate, endDate); // Llamar a getAllUsers con las fechas
+        res.json(allusers);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Nueva función para obtener todos los huéspedes
+app.get('/allhuespedes', async (req, res) => {
+    try {
+        const allHuespedes = await getAllHuespedes();
+        res.json(allHuespedes);
+    } catch (error) {
+        console.error('Error fetching huespedes:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Nueva función para obtener todos los huéspedes
+app.get('/allvisitantes', async (req, res) => {
+    try {
+        const allVisitantes = await getAllVisitantes();
+        res.json(allVisitantes);
+    } catch (error) {
+        console.error('Error fetching visitantes:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/userinfo/:userID', async (req, res) => {
+    try {
+        const userID = req.params.userID; // Obtiene el userID de los parámetros de la URL
+        const clientInfo = await getUserInfo(userID); // Llama a la función que obtiene la información del cliente según el ID
+        res.json(clientInfo); // Devuelve la información del cliente como respuesta
+    } catch (error) {
+        console.error('Error fetching client info:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Funciones para ReportQueries
+app.get('/allgeneralhuespedes', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allgeneralhuespedes = await getAllGeneralHuespedes(startDate,endDate);
+        res.json(allgeneralhuespedes);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Funciones para ReportQueries
+app.get('/allgeneralvisitantes', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allgeneralvisitantes = await getAllGeneralVisitantes(startDate,endDate);
+        res.json(allgeneralvisitantes);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
 
 app.post('/allclientinfo', async(req, res) => {
     try {
@@ -42,7 +117,7 @@ app.post('/allclientinfo', async(req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
 
 //Funciones para UserListAdmin
 app.get('/allclients', async (req, res) => {
@@ -53,7 +128,7 @@ app.get('/allclients', async (req, res) => {
         console.error('Error fetching clients:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
 
 app.post('/someclients', async (req, res) => {
     try {
@@ -91,7 +166,8 @@ app.get('/huespedInfo/:id_cliente', async(req, res) => {
         console.error('Error fetching cliente INFORMACIÓN:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
+
 app.get('/deudaCliente/:id_cliente', async(req, res) => {
     try {
         const areas = await getDeudaCliente(req.params.id_cliente);
@@ -100,7 +176,8 @@ app.get('/deudaCliente/:id_cliente', async(req, res) => {
         console.error('Error fetching cliente DEUDA:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
+
 app.get('/servicioEU/:id_cliente', async(req, res) => {
     try {
         const areas = await getServicioEU(req.params.id_cliente);
@@ -109,7 +186,7 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
         console.error('Error fetching SERVICIO CLIENTE:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
 
 // app.get('/hello', (req, res) => {
 //     res.json({message:"Hola"});
@@ -117,4 +194,4 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
 
 app.listen(8000, () =>{
     console.log('Servidor corriendo en el puerto 8000')
-})
+});

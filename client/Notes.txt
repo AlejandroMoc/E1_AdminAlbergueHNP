@@ -1,3 +1,5 @@
+TODO falta unificar class y className. Solo puede existir una (me parece que era class).
+
 ##
 Corregidas clases obsoletas de CSS. Modificado README.md para incluir instrucciones e información actualizada.
 

@@ -208,7 +208,7 @@ const UserListAdmin = () => {
   }
 
   return (
-    <div className='App-minheight'>
+    <div className='App_minheight'>
       <div className='userlist_container_flex'>
         <div className='userlist_container_upper'>  
           <div className='universal_container_dropdown'>
