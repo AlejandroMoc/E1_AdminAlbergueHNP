@@ -37,8 +37,8 @@ function App() {
 						element={<UserNew />}
 					/>
 					<Route
-						path="/infouser"
-						element={<InfoUser />}
+						path="/infouser/:id_cliente"
+						element={<InfoUser/>}
 					/>
 					<Route
 						path="/infouser"

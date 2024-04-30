@@ -7,6 +7,7 @@ app.use(express.json());
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
+const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -56,14 +57,8 @@ app.get('/allclients', async (req, res) => {
 app.post('/someclients', async (req, res) => {
     try {
         const select_Filters = req.body.filters;
-        const select_View = req.body.views
-        const debtRange = req.body.debts
-        const dateRange = req.body.dates
         console.log('select_Filters:', select_Filters);
-        console.log('view: ', select_View)
-        console.log('debt: ', debtRange)
-        console.log('date: ', dateRange)
-        const clients = await getClientsByFilter(select_Filters, select_View, debtRange, dateRange);
+        const clients = await getClientsByFilter(select_Filters);
         console.log('clientes:', clients)
         res.json(clients);
     } catch (error) {
@@ -71,10 +66,49 @@ app.post('/someclients', async (req, res) => {
     }
 });
 
+//USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
+app.get('/clienteInfo/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getclienteInfoD(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching cliente INFORMACIÓN:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+app.get('/huespedInfo/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getHuespedInfo(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching cliente INFORMACIÓN:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+app.get('/deudaCliente/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getDeudaCliente(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching cliente DEUDA:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+app.get('/servicioEU/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getServicioEU(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching SERVICIO CLIENTE:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
 // app.get('/hello', (req, res) => {
 //     res.json({message:"Hola"});
 // })
 
 app.listen(8000, () =>{
-    console.log('Servidor corriendo en el puerto 8000')
+    console.log('Servidor corriendo en el puerto ')
 })
