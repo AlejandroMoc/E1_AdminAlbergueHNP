@@ -6,7 +6,7 @@ const cn={
     port: '5432',
     database: 'Dump_2.1',  //Nombre de la base de DATOS
     user:'postgres',
-    password:'danielA19', //Contraseña de PGAdmin
+    password:'***', //Contraseña de PGAdmin
     allowExitOnIdle:true
 } 
 
