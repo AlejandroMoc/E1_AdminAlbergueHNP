@@ -67,8 +67,8 @@ function App() {
 					<Route
 						path="/login"
 						element={<Login />}
-						path="/login"
-						element={<Login />}
+						// path="/login"
+						// element={<Login />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}

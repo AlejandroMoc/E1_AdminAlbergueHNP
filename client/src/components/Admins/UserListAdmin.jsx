@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'; 
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
@@ -101,16 +102,18 @@ const UserListAdmin = () => {
     //   setDateRange([])
     // }
     // else {
+      const adjustedDate1 = new Date(event)
+      adjustedDate1.setHours(0, 0, 1)
 
-      setFecha1(event);
-      if (event && fecha2) {
-        if (event > fecha2) {
+      setFecha1(adjustedDate1);
+      if (adjustedDate1 && fecha2) {
+        if (adjustedDate1 > fecha2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
           return false;
-        } else if (event < before || fecha2 < before) {
+        } else if (adjustedDate1 < before || fecha2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
           return false;
-        } else if (event > today || fecha2 > today) {
+        } else if (adjustedDate1 > today || fecha2 > today) {
           console.log('ALERTA: Fecha posterior a la fecha actual')
           return false;
         }
@@ -118,7 +121,7 @@ const UserListAdmin = () => {
         console.log('ALERTA: Se necesitan 2 fechas')
         return false;
       }
-      setDateRange([event, fecha2]);
+      setDateRange([adjustedDate1, fecha2]);
     // }
   }
 
@@ -128,15 +131,18 @@ const UserListAdmin = () => {
     //   setDateRange([])
     // }
     // else {
-      setFecha2(event)
-      if (fecha1 && event) {
-        if (fecha1 > event) {
+      const adjustedDate2 = new Date(event)
+      adjustedDate2.setHours(23, 59, 59)
+
+      setFecha2(adjustedDate2)
+      if (fecha1 && adjustedDate2) {
+        if (fecha1 > adjustedDate2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
           return false;
-        } else if (fecha1 < before || event < before) {
+        } else if (fecha1 < before || adjustedDate2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
           return false;
-        } else if (fecha1 > today || event > today) {
+        } else if (fecha1 > today || adjustedDate2 > today) {
           console.log('ALERTA: Fecha posterior a la fecha actual')
           return false;
         }
@@ -144,7 +150,7 @@ const UserListAdmin = () => {
         console.log('ALERTA: Se necesitan 2 fechas')
         return false;
       }
-      setDateRange([fecha1, event]);
+      setDateRange([fecha1, adjustedDate2]);
     // }
   }
 
@@ -310,90 +316,96 @@ const UserListAdmin = () => {
               ))}
           </div>
 
-          <Table>
-            <thead>
-              {(select_View == 6 || select_View == 7) && (
-                <tr>
-                  <th>No. Cama</th>
-                  <th>Nombre</th>
-                  <th>Fecha de Ingreso</th>
-                  <th>Lugar de Origen</th>
-                  <th>No. Carnet</th>
-                  <th>N. Socio-económico</th>
-                  <th>Deuda</th>
-                </tr>
-              )}
-              {select_View == 8 && (
-                <tr>
-                  <th>No. Cama</th>
-                  <th>Nombre</th>
-                  <th>Fecha de Ingreso</th>
-                  <th>Fecha de Salida</th>
-                  <th>Lugar de Origen</th>
-                  <th>No. Carnet</th>
-                  <th>N. Socio-económico</th>
-                  <th>Deuda</th>
-                </tr>
-              )}
-              {select_View == 9 && (
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tipo Cliente</th>
-                  <th>No. Carnet</th>
-                  <th>Ultima Fecha de Uso</th>
-                  <th>Desayuno</th>
-                  <th>Comida</th>
-                  <th>Cena</th>
-                  <th>N. Socio-económico</th>
-                  <th>Deuda</th>
-                </tr>
-              )}
-            </thead>
-            <tbody>
-              {(select_View == 6 || select_View == 7) && (
-                data.map((item) => (
-                  <tr key={item.id_cliente + ' ' + item.nombre_c}>
-                    <td>{item.id_cama}</td>
-                    <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
-                    <td>{item.lugar_o}</td>
-                    <td>{item.carnet}</td>
-                    <td>{item.nivel_se}</td>
-                    <td>{item.total}</td>
+          {data.length !== 0 ? (
+            <Table striped bordered hover>
+              <thead>
+                {(select_View == 6 || select_View == 7) && (
+                  <tr>
+                    <th>No. Cama</th>
+                    <th>Nombre</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Lugar de Origen</th>
+                    <th>No. Carnet</th>
+                    <th>N. Socio-económico</th>
+                    <th>Deuda</th>
                   </tr>
-                ))
-              )}
-              {select_View == 8 && (
-                data.map((item) => (
-                  <tr key={item.id_cliente + ' ' + item.fecha_i + ' ' + item.fecha_s}>
-                    <td>{item.id_cama}</td>
-                    <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
-                    <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
-                    <td>{item.lugar_o}</td>
-                    <td>{item.carnet}</td>
-                    <td>{item.nivel_se}</td>
-                    <td>{item.total}</td>
+                )}
+                {select_View == 8 && (
+                  <tr>
+                    <th>No. Cama</th>
+                    <th>Nombre</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Fecha de Salida</th>
+                    <th>Lugar de Origen</th>
+                    <th>No. Carnet</th>
+                    <th>N. Socio-económico</th>
+                    <th>Deuda</th>
                   </tr>
-                ))
-              )}
-              {select_View == 9 && (
-                data.map((item) => (
-                  <tr key={item.id_cliente + ' ' + item.l_fecha_u}>
-                    <td>{item.nombre_c} {item.apellidos_c}</td>
-                    <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
-                    <td>{item.carnet}</td>
-                    <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
-                    <td>{item.desayuno}</td>
-                    <td>{item.comida}</td>
-                    <td>{item.cena}</td>
-                    <td>{item.nivel_se}</td>
-                    <td>{item.total}</td>
+                )}
+                {select_View == 9 && (
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo Cliente</th>
+                    <th>No. Carnet</th>
+                    <th>Ultima Fecha de Uso</th>
+                    <th>Desayuno</th>
+                    <th>Comida</th>
+                    <th>Cena</th>
+                    <th>N. Socio-económico</th>
+                    <th>Deuda</th>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </Table>
+                )}
+              </thead>
+              <tbody>
+                {(select_View == 6 || select_View == 7) && (
+                  data.map((item) => (
+                    <tr key={item.id_cliente + ' ' + item.nombre_c}>
+                      <td>{item.id_cama}</td>
+                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
+                      <td>{item.lugar_o}</td>
+                      <td>{item.carnet}</td>
+                      <td>{item.nivel_se}</td>
+                      <td>{item.total}</td>
+                    </tr>
+                  ))
+                )}
+                {select_View == 8 && (
+                  data.map((item) => (
+                    <tr key={item.id_cliente + ' ' + item.fecha_i + ' ' + item.fecha_s}>
+                      <td>{item.id_cama}</td>
+                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
+                      <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
+                      <td>{item.lugar_o}</td>
+                      <td>{item.carnet}</td>
+                      <td>{item.nivel_se}</td>
+                      <td>{item.total}</td>
+                    </tr>
+                  ))
+                )}
+                {select_View == 9 && (
+                  data.map((item) => (
+                    <tr key={item.id_cliente + ' ' + item.l_fecha_u}>
+                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
+                      <td>{item.carnet}</td>
+                      <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
+                      <td>{item.desayuno}</td>
+                      <td>{item.comida}</td>
+                      <td>{item.cena}</td>
+                      <td>{item.nivel_se}</td>
+                      <td>{item.total}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </Table>
+          ) : (
+            <div className='no_results_text'>
+              <h1>NO HAY RESULTADOS</h1>
+            </div>
+          )}
         </div>
 
       </div>
