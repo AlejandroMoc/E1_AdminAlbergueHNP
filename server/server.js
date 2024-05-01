@@ -21,6 +21,29 @@ app.get('/alldispbeds', async(req, res) => {
     }
 });
 
+app.post('/registerNewPatient', async(req, res) => {
+    try {
+        const carnet = req.body.carnet;
+        const id_area = req.body.id_area;
+        const nombre_p=req.body.nombre_p;
+        const apellidos_p=req.body.apellidos_p;
+        const nombre_c = req.body.nombre_c;
+        const apellidos_c = req.body.apellidos_c;
+        const lugar_o=req.body.lugar_o;
+        const notas_c=req.body.notas_c;
+        const sexo = req.body.sexo;
+        const nivel_se=req.body.nivel_se;
+        const id_cama=req.body.id_cama;
+        // console.log(apellidos_c)
+        const pacienteR = await registerNewPatient(carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama);
+        res.json(pacienteR);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})  
+
+
+
 app.get('/allareas', async(req, res) => {
     try {
         const areas = await getAllAreas();
