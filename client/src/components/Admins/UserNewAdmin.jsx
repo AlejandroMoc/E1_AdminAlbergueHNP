@@ -98,7 +98,22 @@ console.log("id_cama")
 const [btRegistro, setBtRegistro] = useState(false);
 const handleBtRegistroClick = async () => {
   if (validateFields()) {
-    if (showBedNumber) {
+    if (showServices) {
+      try {
+        await fetch('http://localhost:8000/registerEntradaUnica', {
+          method: 'POST',
+          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower:shower, bathroom:bathroom, breakfast:breakfast, meal:meal, dinner:dinner}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        });
+        alert('Registro exitoso');
+       } catch (error) {
+        console.error('Error al registrar entrada unica:', error);
+        alert('Error al registrar el paciente');
+      }
+    }
+    else if(showBedNumber){
       try {
         await fetch('http://localhost:8000/registerNewPatient', {
           method: 'POST',
@@ -108,7 +123,7 @@ const handleBtRegistroClick = async () => {
           }
         });
         alert('Registro exitoso');
-      } catch (error) {
+       } catch (error) {
         console.error('Error al registrar el paciente:', error);
         alert('Error al registrar el paciente');
       }
