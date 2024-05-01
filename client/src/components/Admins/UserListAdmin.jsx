@@ -12,6 +12,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //HACER QUE FECHA FINAL SEA A LAS 23:59
 
 const UserListAdmin = () => {
+  //Para mensajes de error
+  const [dateErrorMessage, setDateErrorMessage] = useState('')
+  const [debtErrorMessage, setDebtErrorMessage] = useState('')
+
   //Estado para almacenar data
   const [data, setData] = useState([])
 
@@ -97,11 +101,13 @@ const UserListAdmin = () => {
 
   //Función para aceptar las entradas de fecha
   const handleDate1Change = (event) => {
-    // if (event.length === 0) {
-    //   setFecha1(null)
-    //   setDateRange([])
-    // }
-    // else {
+    if (event === null) {
+      setFecha1(null)
+      setDateRange([])
+      setDateErrorMessage('')
+      return false
+    }
+    else {
       const adjustedDate1 = new Date(event)
       adjustedDate1.setHours(0, 0, 1)
 
@@ -109,28 +115,35 @@ const UserListAdmin = () => {
       if (adjustedDate1 && fecha2) {
         if (adjustedDate1 > fecha2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
+          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
           return false;
         } else if (adjustedDate1 < before || fecha2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
+          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
           return false;
         } else if (adjustedDate1 > today || fecha2 > today) {
           console.log('ALERTA: Fecha posterior a la fecha actual')
+          setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual')
           return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 fechas')
+        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
         return false;
       }
       setDateRange([adjustedDate1, fecha2]);
-    // }
+      setDateErrorMessage('')
+    }
   }
 
   const handleDate2Change = (event) => {
-    // if (event.length === 0) {
-    //   setFecha2(null)
-    //   setDateRange([])
-    // }
-    // else {
+    if (event === null) {
+      setFecha2(null)
+      setDateRange([])
+      setDateErrorMessage('')
+      return false
+    }
+    else {
       const adjustedDate2 = new Date(event)
       adjustedDate2.setHours(23, 59, 59)
 
@@ -138,20 +151,25 @@ const UserListAdmin = () => {
       if (fecha1 && adjustedDate2) {
         if (fecha1 > adjustedDate2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
+          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
           return false;
         } else if (fecha1 < before || adjustedDate2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
+          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
           return false;
         } else if (fecha1 > today || adjustedDate2 > today) {
           console.log('ALERTA: Fecha posterior a la fecha actual')
+          setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual')
           return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 fechas')
+        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
         return false;
       }
       setDateRange([fecha1, adjustedDate2]);
-    // }
+      setDateErrorMessage('')
+    }
   }
 
   //Función para controlar entradas de input deuda
@@ -160,6 +178,8 @@ const UserListAdmin = () => {
     if (tmpDebt1.length === 0) {
       setDeuda1(null)
       setDebtRange([])
+      setDebtErrorMessage('')
+      return false
     }
     else {
       if (/^\d*$/.test(tmpDebt1)) {
@@ -168,19 +188,28 @@ const UserListAdmin = () => {
       if (tmpDebt1 && deuda2) {
         if (tmpDebt1 > deuda2) {
           console.log('ALERTA: Deuda mínima mayor a deuda máxima')
+          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
           setDebtRange([0, 10000])
+          return false;
         } else if (tmpDebt1 < 0 || deuda2 < 0) {
           console.log('ALERTA: Deuda menor a 0')
+          setDebtErrorMessage('ALERTA: Deuda menor a 0')
           setDebtRange([0, 10000])
+          return false;
         } else if (tmpDebt1 > 10000 || deuda2 > 10000) {
           console.log('ALERTA: Deuda mayor a $10,000')
+          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
           setDebtRange([0, 10000])
+          return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 deudas')
+        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
         setDebtRange([0, 10000])
+        return false;
       }
       setDebtRange([parseInt(tmpDebt1), deuda2]);
+      setDebtErrorMessage('')
     }
   }
 
@@ -189,6 +218,8 @@ const UserListAdmin = () => {
     if (tmpDebt2.length === 0) {
       setDeuda2(null)
       setDebtRange([])
+      setDebtErrorMessage('')
+      return false
     }
     else {
       if (/^\d*$/.test(tmpDebt2)) {
@@ -197,19 +228,28 @@ const UserListAdmin = () => {
       if (deuda1 && tmpDebt2) {
         if (deuda1 > tmpDebt2) {
           console.log('ALERTA: Deuda mínima mayor a deuda máxima')
+          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
           setDebtRange([0, 10000])
+          return false;
         } else if (deuda1 < 0 || tmpDebt2 < 0) {
           console.log('ALERTA: Deuda menor a 0')
+          setDebtErrorMessage('ALERTA: Deuda menor a 0')
           setDebtRange([0, 10000])
+          return false;
         } else if (deuda1 > 10000 || tmpDebt2 > 10000) {
           console.log('ALERTA: Deuda mayor a $10,000')
+          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
           setDebtRange([0, 10000])
+          return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 deudas')
+        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
         setDebtRange([0, 10000])
+        return false;
       }
       setDebtRange([deuda1, parseInt(tmpDebt2)]);
+      setDebtErrorMessage('')
     }
   }
 
@@ -240,63 +280,73 @@ const UserListAdmin = () => {
             </Dropdown>
           </div>
 
-          <div className='userlist_container_inputdate'>
-            <div className='universal_container_pickerdate'>
-              <DatePicker
-                className='universal_input_date'
-                selected={fecha1}
-                onChange={handleDate1Change}
-                placeholderText='Fecha de Inicio'
-                dateFormat='dd/MM/yy'
-              />
+          <div>
+            <div className='userlist_container_inputdate'>
+              <div className='universal_container_pickerdate'>
+                <DatePicker
+                  className='universal_input_date'
+                  selected={fecha1}
+                  onChange={handleDate1Change}
+                  placeholderText='Fecha de Inicio'
+                  dateFormat='dd/MM/yy'
+                />
+              </div>
+              <div className='container_dash'>
+                <p> - </p>
+              </div>
+              <div className='universal_container_pickerdate'>
+                <DatePicker
+                  className='universal_input_date'
+                  selected={fecha2}
+                  onChange={handleDate2Change}
+                  placeholderText='Fecha de Fin'
+                  dateFormat='dd/MM/yy'
+                />
+              </div>
             </div>
-            <div className='container_dash'>
-              <p> - </p>
-            </div>
-            <div className='universal_container_pickerdate'>
-              <DatePicker
-                className='universal_input_date'
-                selected={fecha2}
-                onChange={handleDate2Change}
-                placeholderText='Fecha de Fin'
-                dateFormat='dd/MM/yy'
-              />
+            <div className='error'>
+              <p>{dateErrorMessage}</p>
             </div>
           </div>
 
-          <div className='userlist_container_inputdebt'>
-            <div className='deuda-picker-container'>
-                <div className='deuda-box-container'>
-                  {/* Div para deuda 1 */}
-                  <input
-                    className='userlist_inputdebt'
-                    type='number'
-                    onChange={handleDebt1Change}
-                    placeholder='Deuda Mínima'
-                    min='0'
-                    max='10000'
-                  />
-                  {/* Deuda 1: {deuda1} */}
-                </div>
-            </div>
-            <div className='container_dash'>
-              <p> - </p>
-            </div>
-            <div className='deuda-picker-container'>
-              {/* Div para deudas */}
-                <div className='deuda-box-container'>
-                  {/* Div para deuda 2*/}
-                  <input
-                    className='userlist_inputdebt'
-                    type='number'
-                    onChange={handleDebt2Change}
-                    placeholder='Deuda Máxima'
-                    min='0'
-                    max='10000'
-                  />
-                  {/* Deuda 2: {deuda2}
-                  Rango: {debtRange} */}
+          <div>
+            <div className='userlist_container_inputdebt'>
+              <div className='deuda-picker-container'>
+                  <div className='deuda-box-container'>
+                    {/* Div para deuda 1 */}
+                    <input
+                      className='userlist_inputdebt'
+                      type='number'
+                      onChange={handleDebt1Change}
+                      placeholder='Deuda Mínima'
+                      min='0'
+                      max='10000'
+                    />
+                    {/* Deuda 1: {deuda1} */}
+                  </div>
               </div>
+              <div className='container_dash'>
+                <p> - </p>
+              </div>
+              <div className='deuda-picker-container'>
+                {/* Div para deudas */}
+                  <div className='deuda-box-container'>
+                    {/* Div para deuda 2*/}
+                    <input
+                      className='userlist_inputdebt'
+                      type='number'
+                      onChange={handleDebt2Change}
+                      placeholder='Deuda Máxima'
+                      min='0'
+                      max='10000'
+                    />
+                    {/* Deuda 2: {deuda2}
+                    Rango: {debtRange} */}
+                </div>
+              </div>
+            </div>
+            <div className='error'>
+              <p>{debtErrorMessage}</p>
             </div>
           </div>
         </div>
