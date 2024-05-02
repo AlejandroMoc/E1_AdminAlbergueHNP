@@ -7,7 +7,7 @@ app.use(express.json());
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
-const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
+const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister}= require('./queries/InfoUserQueries.js')
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -103,6 +103,17 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+app.post('/registrarPago', async(req, res) => {
+    try {
+        const pago = req.body.pago;
+        const id_cliente = req.body.id_cliente;
+        const registerNewPago = await getNewRegister(id_cliente, pago);
+        res.json(registerNewPago);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})  
 
 
 // app.get('/hello', (req, res) => {
