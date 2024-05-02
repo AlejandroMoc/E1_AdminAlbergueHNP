@@ -63,6 +63,16 @@
   margin-right: 20px;
 }
 
+.radio_container {
+  // background-color: aquamarine;
+  margin-bottom: 15px;
+}
+
+.radio_input input[type='radio'] {
+  background-color: aquamarine;
+  margin-right: -25%; /* Adjust this value as needed */
+}
+
 .no_results_text {
   // background-color: aqua;
   margin-top: 10%;

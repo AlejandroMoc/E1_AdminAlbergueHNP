@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'; 
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import MyPagination from '../Universal/MyPagination';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
@@ -18,6 +19,10 @@ const UserListAdmin = () => {
 
   //Estado para almacenar data
   const [data, setData] = useState([])
+
+  //Para paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 3;
 
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 
@@ -73,6 +78,12 @@ const UserListAdmin = () => {
       .then((clientes) => setData(clientes));
     }
   }, [select_Filters, select_View, debtRange, dateRange])
+
+  //Función para paginación
+  const paginatedData = data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
   
   //Función para mostrar que filtros fueron seleccionados
   const filterChange = (event) => {
@@ -352,9 +363,9 @@ const UserListAdmin = () => {
         </div>
 
         <div className='userlist_container_lower'>
-          <div className='radio-container'>
+          <div className='radio_container'>
               {views.map((option) => (
-                <label key={option.id}>
+                <label className='radio_input' key={option.id}>
                   <input 
                     type='radio' 
                     name='view' 
@@ -408,8 +419,8 @@ const UserListAdmin = () => {
               </thead>
               <tbody>
                 {(select_View == 6 || select_View == 7) && (
-                  data.map((item) => (
-                    <tr key={item.id_cliente + ' ' + item.nombre_c}>
+                  paginatedData.map((item, i) => (
+                    <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
                       <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
@@ -421,8 +432,8 @@ const UserListAdmin = () => {
                   ))
                 )}
                 {select_View == 8 && (
-                  data.map((item) => (
-                    <tr key={item.id_cliente + ' ' + item.fecha_i + ' ' + item.fecha_s}>
+                  paginatedData.map((item, i) => (
+                    <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
                       <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
@@ -435,8 +446,8 @@ const UserListAdmin = () => {
                   ))
                 )}
                 {select_View == 9 && (
-                  data.map((item) => (
-                    <tr key={item.id_cliente + ' ' + item.l_fecha_u}>
+                  paginatedData.map((item, i) => (
+                    <tr key={i} style={{ background: '#fff' }}>
                       <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
                       <td>{item.carnet}</td>
@@ -456,6 +467,17 @@ const UserListAdmin = () => {
               <h1>NO HAY RESULTADOS</h1>
             </div>
           )}
+          {data.length > 0 &&
+              <>
+                <MyPagination
+                  itemsCount={data.length}
+                  itemsPerPage={pageSize}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  alwaysShown={true}
+                />
+              </>
+            }
         </div>
 
       </div>
