@@ -16,17 +16,14 @@ import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO
 import { LuBedDouble } from "react-icons/lu"; //Cama
 
 const infoUserAdmin = (props) => {
-  const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, tipo_cliente:"", sexo:""})
+  const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
 
   useEffect(() =>{
     fetch('http://localhost:8000/clienteInfo/'+props.id_cliente)
     .then((res) => res.json())
     .then((data) => {setinfoCliente(data); console.log(data)});
 }, [props.id_cliente])
-console.log("TIPO CLIENTE: "+infoCliente.tipo_cliente)
 console.log("FECHA Inicio: "+infoCliente.fecha_i)
-//FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
-  const showNumbersSelect = infoCliente.tipo_cliente;
 //FETCH PARA TIPO DE USUARIO "HUESPED"-----------------------------------------
     console.log("VERDADERO HUESPED");
     const [huespedCliente, setHuespedCliente] = useState({id_cama:0, fecha_i:0})
@@ -62,6 +59,22 @@ console.log("SErvicio: "+servicioCliente.servicio1)
 const placeholderText = deudaCliente.deudacliente < 0
 ? `${Math.abs(deudaCliente.deudacliente)}`
 : `${Math.abs(deudaCliente.deudacliente)}`;
+
+
+
+//FETCH PARA TIPO CLIENTE:
+const [tipoCliente, settipoCliente] = useState({tipo_cliente:0})
+//FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
+
+useEffect(() =>{
+  fetch('http://localhost:8000/tipoCliente/'+props.id_cliente)
+  .then((res) => res.json())
+  .then((data) => {settipoCliente(data); console.log(data)});
+}, [props.id_cliente])
+console.log("TipoCLIENTE"+tipoCliente.tipo_cliente)
+
+const showNumbersSelect = tipoCliente.tipo_cliente;
+
 // AGREGAR PAGO O DEUDA CUANDO SE MODIFICA EL HANDLE
 
 const [pago, setPago] = useState('');
@@ -91,6 +104,12 @@ const handleBtRegistroClick = async () => {
       }
 
 };
+//fecha
+const fechaNueva = () => {
+  const fecha = new Date(huespedCliente.fecha_i);
+  return fecha.toLocaleString(); 
+};
+
 
 
 //EMPIEZA DESARROLLO DEL HTML
@@ -108,10 +127,10 @@ const handleBtRegistroClick = async () => {
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
           </div>
-          {showNumbersSelect && (
+          {showNumbersSelect === true && (
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuCalendarDays /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{huespedCliente.fecha_i}</span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{fechaNueva()}</span>
           </div>)}
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
@@ -149,7 +168,7 @@ const handleBtRegistroClick = async () => {
           <div class="mb-3">
             <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
           </div>
-          {showNumbersSelect && (
+          {showNumbersSelect === true && (
             <div>
               <div>
                 <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
@@ -158,19 +177,19 @@ const handleBtRegistroClick = async () => {
               </div>
             </div>
             )}
-              {!showNumbersSelect && (
+              {showNumbersSelect === false&& (
               <div>
                 <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
                   <span>Entrada Única</span>
                 </label>
               </div>)}
-              {showNumbersSelect && ( 
+              {showNumbersSelect === true && ( 
           <div class="input-group mb-3 ">
           <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuBedDouble /></span>
           <span class="input-group-text user_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
-          {!showNumbersSelect && (
+          {showNumbersSelect === false && (
           <div class="user_services_register">
             <div class="input-group mb-3">
               <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
@@ -183,7 +202,7 @@ const handleBtRegistroClick = async () => {
             </div>
           </div>
           )}
-          {!showNumbersSelect && (
+          {showNumbersSelect === false && (
           <div>
             <div class="input-group mb-3">
               
@@ -200,17 +219,16 @@ const handleBtRegistroClick = async () => {
               <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
           </div>)}
-          <div class="input-group mb-3 " onChange={handlepagoChange}>
+          <div class="input-group mb-3 lmao" onChange={handlepagoChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">
-              {deudaCliente.deudacliente < 0 ? "A pagar: $" : "A favor: $"}
+            <span class="input-group-text user_span_info ajusteDeuda" id="basic-addon1">
+              {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>
-            <input type="text" className="form-control user_space_reg" aria-label="Username" aria-describedby="basic-addon1" placeholder={placeholderText} value={pago}/>
+            <input type="text" className="ajusteDeudainput" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón
               <button className="btn btn-primary" onClick={handleBtRegistroClick}>Abonar</button>
             )}
           </div>
-
         </div>
       </div>
     </div>

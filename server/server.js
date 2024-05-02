@@ -8,7 +8,7 @@ app.use(express.json());
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 // const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
-const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister}= require('./queries/InfoUserQueries.js')
+const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js')
 // const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
 const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 
@@ -254,8 +254,7 @@ app.get('/huespedInfo/:id_cliente', async(req, res) => {
         console.error('Error fetching cliente INFORMACIÓN:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
-
+})
 app.get('/deudaCliente/:id_cliente', async(req, res) => {
     try {
         const areas = await getDeudaCliente(req.params.id_cliente);
@@ -264,8 +263,7 @@ app.get('/deudaCliente/:id_cliente', async(req, res) => {
         console.error('Error fetching cliente DEUDA:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
-
+})
 app.get('/servicioEU/:id_cliente', async(req, res) => {
     try {
         const areas = await getServicioEU(req.params.id_cliente);
@@ -274,7 +272,29 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
         console.error('Error fetching SERVICIO CLIENTE:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
+})
+
+app.post('/registrarPago', async(req, res) => {
+    try {
+        const pago = req.body.pago;
+        const id_cliente = req.body.id_cliente;
+        const registerNewPago = await getNewRegister(id_cliente, pago);
+        res.json(registerNewPago);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})  
+
+app.get('/tipoCliente/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getTipoCliente(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching TIPO CLIENTE:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
 //USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
 
 
