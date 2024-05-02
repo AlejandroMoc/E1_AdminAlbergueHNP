@@ -108,6 +108,7 @@ const handleBtRegistroClick = async () => {
           }
         });
         alert('Registro exitoso');
+        window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
         alert('Error al registrar el paciente');
@@ -123,6 +124,7 @@ const handleBtRegistroClick = async () => {
           }
         });
         alert('Registro exitoso');
+        window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
         alert('Error al registrar el paciente');
@@ -300,17 +302,7 @@ const handleBtRegistroClick = async () => {
   return (
     <div class='App-minheight'>
       <div class="contenedorGral">
-        <div class="container contenedorEspaciosReg">   
-          <div class="input-group mb-3 checkerito">
-            <div class="form-check form-switch" onChange={handleIsVisitantePrevioChange}>
-              <input class="form-check-input checkboxHM" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked={isVisitantePrevio}></input>
-              <label class="form-check-label labelRadio" for="flexSwitchCheckDefault">Visitante Previo</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input checkboxHM" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={handlePacienteChange} ></input>
-              <label class="form-check-label labelRadio" for="flexSwitchCheckDefault">Paciente</label>
-            </div>
-          </div>     
+        <div class="container contenedorEspaciosReg">     
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
               <span class="input-group-text spanEspIcon" id="basic-addon1"><LuUser /></span>
               <input type="text" class="form-control espReg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
