@@ -9,6 +9,7 @@ const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/User
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
 const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
+const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -187,10 +188,59 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+//USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
 
-// app.get('/hello', (req, res) => {
-//     res.json({message:"Hola"});
-// })
+
+//BEDS ----------- PAGINA CAMAS-----------------
+app.get('/beds', async (req, res) => {
+    try {
+        const info = await getInfo();
+        res.json(info);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/pagar', (req, res) => {
+    const id_cliente = req.body.id_cliente;
+    const notas_P = req.body.notas_p;
+    const monto_T = req.body.monto_t;
+    regPago(id_cliente, notas_P, monto_T)
+        .then((data) => res.json(data))
+        .catch((error) => console.log('ERROR: ', error));
+})
+
+app.post('/addCama', (req, res) => {
+    const id = req.body.id_zona;
+    anadCama(id)
+        .then((data) => res.json(data))
+        .catch((error) => console.log('ERROR: ', error));
+})
+
+app.post('/regSalida', (req, res) => {
+    const id = req.body.id_cliente;
+    regSalida(id)
+        .then((data) => res.json(data))
+        .catch((error) => console.log('ERROR: ', error));
+})
+
+app.post('/eliminarCama', (req, res) => {
+    const id = req.body.id_cama;
+    eliminarCama(id)
+        .then((data) => res.json(data))
+        .catch((error) => console.log('ERROR: ', error));
+})
+
+app.post('/regServacio', (req, res) => {
+    const id = req.body.id_cliente;
+    const id_s = req.body.id_servicio;
+    const can = req.body.cant;
+    regServacio(id, id_s, can)
+        .then((data) => res.json(data))
+        .catch((error) => console.log('ERROR: ', error));
+})
+//BEDS ----------- PAGINA CAMAS-----------------
 
 app.listen(8000, () =>{
     console.log('Servidor corriendo en el puerto 8000')
