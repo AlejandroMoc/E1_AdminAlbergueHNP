@@ -6,6 +6,7 @@
 }
 
 .userlist_container_upper {
+  // background-color: #058844;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -33,6 +34,7 @@
 }
 
 .userlist_container_inputdate {
+  // background-color: #058844;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -66,4 +68,12 @@
   margin-top: 10%;
   font-weight: bold;
   font-size: larger;
+}
+
+.error {
+  // background-color: aquamarine;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
 }
