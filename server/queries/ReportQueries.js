@@ -440,8 +440,6 @@ const getAllGeneralHuespedes = async (startDate, endDate) => {
     }
 }
 
-
-
 const getAllGeneralVetados = async (startDate, endDate) => {
     try {
         let query = `
@@ -461,7 +459,7 @@ const getAllGeneralVetados = async (startDate, endDate) => {
                     ELSE
                         COALESCE(h.fecha_i, l.fecha_i)
                 END AS fecha_i,
-                l.fecha_s,
+                COALESCE(v.fecha_v, l.fecha_s) AS fecha_s, -- Cambio aquí para utilizar fecha_v cuando esté vetado
                 COALESCE(sc_regadera.cantidad, 0) AS cantidad_regadera,
                 COALESCE(sc_bano.cantidad, 0) AS cantidad_bano,
                 COALESCE(sc_desayuno.cantidad, 0) AS cantidad_desayuno,
@@ -533,6 +531,8 @@ const getAllGeneralVetados = async (startDate, endDate) => {
         throw error;
     }
 }
+
+
 
 
 module.exports = { getAllUsers,getAllHuespedes,getUserInfo, getAllVisitantes, getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados}

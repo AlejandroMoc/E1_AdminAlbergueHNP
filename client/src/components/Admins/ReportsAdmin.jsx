@@ -613,7 +613,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
@@ -664,7 +664,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
@@ -716,7 +716,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
@@ -765,8 +765,8 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Salida</th>
+                <th>Fecha de Ingreso</th>
+                <th>Fecha de Vetado</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
                 {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
@@ -813,7 +813,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
@@ -866,7 +866,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
@@ -917,7 +917,7 @@ const ReportsAdmin = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
-                <th>Fecha de Inicio</th>
+                <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
