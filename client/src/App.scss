@@ -5,54 +5,16 @@
 //CLASES GLOBALES
 
 ///Clases globales generales
-.App-global {
+//TODO renombrar a App (sin el global pero me da miedo que se rompa)
+.App_global {
   text-align: center;
   margin: 0;
-  color: #232629;
+  color: #090909;
   font-family: 'Open Sans', sans-serif;
 }
 
-//Clases globales de fondos
-.App-minheight {
-  min-height: 85vh;
-}
-
-.App-minheight2 {
-  height: 95vh;
-}
-
-.App-bluebackground {
-  background: linear-gradient(to right, #EAFEFF, #9EC3F6);
-}
-
-.App-picturebackground {
-  background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
-  background-size: cover;
-  background-position: center;
-}
-
-///Clases globales de inputs
-input{
-  width: 14em;
-  margin: 5px ;
-  padding: 10px;
-  border: 1px solid #D9D9D8;
-  border: none;
-  border-radius: 1vh;
-  background-color: #D9D9D8;
-  font-style: italic;
-}
-
-input[type="text"] {
-  font-style: italic;
-}
-
-input[type="password"] {
-  font-style: italic;
-}
-
 ///Clases globales de los botones
-.App-global button {
+.App_global button {
   width: 14em;
   height: 2.6em;
   border-radius: 1vh;
@@ -63,26 +25,67 @@ input[type="password"] {
   text-decoration: none;
 }
 
-.Appglobal-buttonaccept {
-  background-color: #a5cffd;
+///Clases globales de inputs
+input{
+  width: 14em;
+  margin: 5px ;
+  padding: 10px;
+  border: 1px solid #dedede;
+  border: none;
+  border-radius: 1vh;
+  background-color: #dedede;
+  font-style: italic;
 }
-.Appglobal-buttonaccept:hover {
+
+
+/* input[type="text"] {
+  font-style: italic;
+}
+
+input[type="password"] {
+  font-style: italic;
+} */
+
+//Clases globales de fondos
+.App_minheight {
+  min-height: 85vh;
+}
+
+.App_minheight_login {
+  height: 95vh;
+}
+
+.App_background_blue {
+  background: linear-gradient(to right, #EAFEFF, #9EC3F6);
+}
+
+.App_background_picture {
+  background: linear-gradient(to right, rgba(234, 254, 255, 0.30), rgba(158, 195, 246, 0.30)),url('/src/assets/inicioSesion/bInicioSesion.png');
+  background-size: cover;
+  background-position: center;
+}
+//Clases globales para botones
+.App_buttonaccept {
+  background-color: #8cbcfc;
+}
+.App_buttonaccept:hover {
   background-color: #4383c7;
 }
-.Appglobal-buttonaccept:active {
+.App_buttonaccept:active {
   background-color: #376faa;
 }
-.Appglobal-buttoncancel {
+
+.App_buttoncancel {
   background-color: #ee7171;
 }
-.Appglobal-buttoncancel:hover {
+.App_buttoncancel:hover {
   background-color: #d84949;
 }
-.Appglobal-buttoncancel:active {
+.App_buttoncancel:active {
   background-color: #7c2e2e;
 }
 
 //TODO convertir a elemento individual para pag de Reportes
-.App-minpadding {
+.App_minpadding {
   padding: 5vh;
 }

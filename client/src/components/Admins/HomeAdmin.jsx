@@ -10,24 +10,24 @@ import {Link} from "react-router-dom";
 
 const HomeAdmin = () => {
   return (
-    <div className='App-minheight'>
+    <div className='App_minheight'>
 
-      <table className='header-table'>
+      <table className='universal_header_table'>
         <tbody>
           <tr>
             {/* Boton 1 */}
-            <td className='header-linksquare'>
-              <Link className= 'header-textlink' to="/usernew">
-                <table className='header-table2'>
+            <td className='universal_header_linksquare'>
+              <Link className= 'universal_header_textlink' to="/usernew">
+                <table className='universal_header_table2'>
                     <tr><RiUserAddFill size={80}/></tr>
                     <tr>Nuevo Usuario</tr>
                 </table>
               </Link>
             </td>
             {/* Boton 2 */}
-            <td className='header-linksquare'>
-              <Link className= 'header-textlink' to="/reports">
-                <table className='header-table2'>
+            <td className='universal_header_linksquare'>
+              <Link className= 'universal_header_textlink' to="/reports">
+                <table className='universal_header_table2'>
                     <tr><IoDocumentAttach size={80}/></tr>
                     <tr>Nuevo Reporte</tr>
                 </table>
@@ -37,18 +37,18 @@ const HomeAdmin = () => {
 
           <tr>
             {/* Boton 3*/}
-            <td className='header-linksquare'>
-              <Link className= 'header-textlink' to="/beds">
-                <table className='header-table2'>
+            <td className='universal_header_linksquare'>
+              <Link className= 'universal_header_textlink' to="/beds">
+                <table className='universal_header_table2'>
                     <tr><IoIosBed size={80}/></tr>
                     <tr>Administración<br/>de Camas</tr>
                 </table>
               </Link>
             </td>
             {/* Boton 4 */}
-            <td className='header-linksquare'>
-              <Link className= 'header-textlink' to="/userlist">
-                <table className='header-table2'>
+            <td className='universal_header_linksquare'>
+              <Link className= 'universal_header_textlink' to="/userlist">
+                <table className='universal_header_table2'>
                     <tr><IoIosListBox size={80}/></tr>
                     <tr>Administración<br/>de Usuarios</tr>
                 </table>

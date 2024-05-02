@@ -47,7 +47,7 @@ const ReportsAdmin = () => {
     return(localDate)
   }
 
-  
+
   const handleKeyDown = (e) => {
     // Verificar si la tecla presionada es una letra
     if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
@@ -55,7 +55,7 @@ const ReportsAdmin = () => {
       e.preventDefault();
     }
   };
-  
+
 
   useEffect(() => {
     if (startDate === null  || endDate === null) {
@@ -63,29 +63,29 @@ const ReportsAdmin = () => {
       fetch('http://localhost:8000/allusers')
         .then((res) => res.json())
         .then((allusers) => setData(allusers));
-  
+
       fetch('http://localhost:8000/allgeneralhuespedes')
         .then((res) => res.json())
         .then((allgeneralhuespedes) => setDataHuesped(allgeneralhuespedes));
-  
+
       fetch('http://localhost:8000/allgeneralvisitantes')
         .then((res) => res.json())
         .then((allgeneralvisitantes) => setDataVisitante(allgeneralvisitantes));
-      
+
       fetch('http://localhost:8000/allgeneralvetados')
         .then((res) => res.json())
         .then((allgeneralvetados) => setDataVetado(allgeneralvetados));
-  
+
       // Fetch para obtener todos los huéspedes
       fetch('http://localhost:8000/allhuespedes')
         .then((res) => res.json())
         .then((huespedesData) => setHuespedes(huespedesData));
-  
+
       // Fetch para obtener todos los huéspedes
       fetch('http://localhost:8000/allvisitantes')
         .then((res) => res.json())
         .then((visitantesData) => setVisitantes(visitantesData));
-      
+
       // Fetch para obtener todos los vetados
       fetch('http://localhost:8000/allvetados')
         .then((res) => res.json())
@@ -95,33 +95,33 @@ const ReportsAdmin = () => {
       // Ajustar la fecha de endDate a las 23:59:59
       const adjustedEndDate = new Date(endDate);
       adjustedEndDate.setHours(23, 59, 59);
-  
+
       // Convertir las fechas a formato ISO para enviarlas al servidor
       const formattedStartDate = startDate.toISOString();
       const formattedEndDate = adjustedEndDate.toISOString();
-  
+
       fetch(`http://localhost:8000/allusers?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allusers) => setData(allusers))
         .catch((error) => console.error('Error fetching user data:', error));
-  
+
       fetch(`http://localhost:8000/allgeneralhuespedes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralhuespedes) => setDataHuesped(allgeneralhuespedes))
         .catch((error) => console.error('Error fetching user data:', error));
-  
+
       fetch(`http://localhost:8000/allgeneralvisitantes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralvisitantes) => setDataVisitante(allgeneralvisitantes))
         .catch((error) => console.error('Error fetching user data:', error));
-      
+
       fetch(`http://localhost:8000/allgeneralvetados?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralvetados) => setDataVetado(allgeneralvetados))
         .catch((error) => console.error('Error fetching user data:', error));
     }
   }, [startDate, endDate]);
-  
+
 
   useEffect(() => {
     if (!mostrarHuespedes) {
@@ -288,7 +288,7 @@ const ReportsAdmin = () => {
       }
     };
 
-    
+
     // Función para manejar la selección de un Vetado en el dropdown de Vetado
     const handleVetadoSelect = (vetado) => {
       if (!mostrarVetados) {
@@ -309,16 +309,16 @@ const ReportsAdmin = () => {
     };
 
     return (
-      <div className='App-minheight App-minpadding'>
+      <div className='App_minheight App_minpadding'>
         {/* Div para agrupar los campos de entrada */}
-        <div className="fecha-input-container">
+        <div className="universal_container_inputdate">
           {/* Campo de entrada para la fecha 1 */}
-          <div className="fecha-picker-container">
+          <div className="universal_container_pickerdate">
           <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
               placeholderText="DD/MM/YY"
-              className="fecha-input"
+              className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
 
@@ -326,21 +326,21 @@ const ReportsAdmin = () => {
           </div>
 
           {/* Campo de entrada para la fecha 2 */}
-          <div className="fecha-picker-container">
+          <div className="universal_container_pickerdate">
             <DatePicker
               selected={endDate}
               onChange={date => setEndDate(date)}
               placeholderText="DD/MM/YY"
-              className="fecha-input"
+              className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
 
             />
           </div>
 
-          <div className="checkbox-container">
+          <div className="universal_container_checkbox">
             {/* Checkbox para marcar si es General */}
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
                 className="form-check-input"
                 type="radio"
@@ -348,35 +348,35 @@ const ReportsAdmin = () => {
                 checked={esGeneral}
                 onChange={handleEsGeneralChange}
               />
-              <label className="form-check-label labelRadio" htmlFor="esGeneral">
-                <span className="textoHM">General</span>
+              <label className="form-check-label universal_label_radio" htmlFor="esGeneral">
+                <span className="universal_text_HM">General</span>
               </label>
             </div>
 
             {/* Checkbox para marcar si es Usuario */}
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="radio"
                 id="esUsuario"
                 checked={esUsuario}
                 onChange={handleEsUsuarioChange}
               />
-              <label className="form-check-label labelRadio" htmlFor="esUsuario">
-                <span className="textoHM">Usuario</span>
+              <label className="form-check-label universal_label_radio" htmlFor="esUsuario">
+                <span className="universal_text_HM">Usuario</span>
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="esServicio"
                 checked={esServicio}
                 onChange={handleEsServicioChange}
               />
-              <label className="form-check-label labelRadio" htmlFor="esServicio">
-                <span className="textoHM">Servicios</span>
+              <label className="form-check-label universal_label_radio" htmlFor="esServicio">
+                <span className="universal_text_HM">Servicios</span>
               </label>
             </div>
           </div>
@@ -385,9 +385,9 @@ const ReportsAdmin = () => {
 
         {esUsuario && (
           <div className="circle-checkboxes-container">
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="radio"
                 name="tipoUsuario"
                 id="huespedes"
@@ -398,13 +398,13 @@ const ReportsAdmin = () => {
                   setMostrarVetados(false);
                 }}
               />
-              <label className="form-check-label labelRadio" htmlFor="huespedes">
-                <span className="textoHM">Huespedes</span>
+              <label className="form-check-label universal_label_radio" htmlFor="huespedes">
+                <span className="universal_text_HM">Huespedes</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="radio"
                 name="tipoUsuario"
                 id="visitantes"
@@ -415,13 +415,13 @@ const ReportsAdmin = () => {
                   setMostrarVetados(false);
                 }}
               />
-              <label className="form-check-label labelRadio" htmlFor="visitantes">
-                <span className="textoHM">Visitantes</span>
+              <label className="form-check-label universal_label_radio" htmlFor="visitantes">
+                <span className="universal_text_HM">Visitantes</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="radio"
                 name="tipoUsuario"
                 id="vetados"
@@ -432,8 +432,8 @@ const ReportsAdmin = () => {
                   setMostrarVetados(true);
                 }}
               />
-              <label className="form-check-label labelRadio" htmlFor="vetados">
-                <span className="textoHM">Vetados</span>
+              <label className="form-check-label universal_label_radio" htmlFor="vetados">
+                <span className="universal_text_HM">Vetados</span>
               </label>
             </div>
           </div>
@@ -441,12 +441,12 @@ const ReportsAdmin = () => {
 
       {/* Dropdown para Huespedes */}
       {mostrarHuespedes && (
-        <div className="dropdown-container">
+        <div className="universal_container_dropdown">
           <Dropdown onSelect={(eventKey) => handleHuespedSelect(eventKey)}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="universal_toggle_dropdown">
               {huespedSeleccionado}
             </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-custom">
+            <Dropdown.Menu className="universal_dropdown_custommenu">
               {huespedes.map((huesped) => (
                 <Dropdown.Item key={huesped.id_huesped} eventKey={`${huesped.id_huesped} - ${huesped.nombre}  ${huesped.apellidos}`}>
                   {`${huesped.id_huesped} - ${huesped.nombre} ${huesped.apellidos}`}
@@ -459,12 +459,12 @@ const ReportsAdmin = () => {
 
       {/* Dropdown para Visitantes */}
       {mostrarVisitantes && (
-        <div className="dropdown-container">
+        <div className="universal_container_dropdown">
           <Dropdown onSelect={(eventKey) => handleVisitanteSelect(eventKey)}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="universal_toggle_dropdown">
               {visitanteSeleccionado}
             </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-custom">
+            <Dropdown.Menu className="universal_dropdown_custommenu">
               {visitantes.map((visitante) => (
                 <Dropdown.Item key={visitante.id_visitante} eventKey={`${visitante.id_visitante} - ${visitante.nombre}  ${visitante.apellidos}`}>
                   {`${visitante.id_visitante} - ${visitante.nombre} ${visitante.apellidos}`}
@@ -477,12 +477,12 @@ const ReportsAdmin = () => {
 
       {/* Dropdown para Visitantes */}
       {mostrarVetados && (
-        <div className="dropdown-container">
+        <div className="universal_container_dropdown">
           <Dropdown onSelect={(eventKey) => handleVetadoSelect(eventKey)}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown-toggle-custom">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" className="universal_toggle_dropdown">
               {vetadoSeleccionado}
             </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-custom">
+            <Dropdown.Menu className="universal_dropdown_custommenu">
               {vetados.map((vetado) => (
                 <Dropdown.Item key={vetado.id_vetado} eventKey={`${vetado.id_vetado} - ${vetado.nombre}  ${vetado.apellidos}`}>
                   {`${vetado.id_vetado} - ${vetado.nombre} ${vetado.apellidos}`}
@@ -494,105 +494,105 @@ const ReportsAdmin = () => {
       )}
 
       {/* Div para los checkboxes de servicios */}
-      <div className="servicios-container">
+      <div className="universal_container_services">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="checkbox-container2">
+          <div className="universal_container2_checkbox">
             {/* Checkbox para cada servicio */}
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="desayuno"
                 checked={serviciosSeleccionados.desayuno}
                 onChange={() => handleServicioChange('desayuno')}
               />
-              <label className="form-check-label labelRadio" htmlFor="desayuno">
-                <span class="textoHM">Desayuno</span>
+              <label className="form-check-label universal_label_radio" htmlFor="desayuno">
+                <span class="universal_text_HM">Desayuno</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="comida"
                 checked={serviciosSeleccionados.comida}
                 onChange={() => handleServicioChange('comida')}
               />
-              <label className="form-check-label labelRadio" htmlFor="comida">
-                <span class="textoHM">Comida</span>
+              <label className="form-check-label universal_label_radio" htmlFor="comida">
+                <span class="universal_text_HM">Comida</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="cena"
                 checked={serviciosSeleccionados.cena}
                 onChange={() => handleServicioChange('cena')}
               />
-              <label className="form-check-label labelRadio" htmlFor="cena">
-                <span class="textoHM">Cena</span>
+              <label className="form-check-label universal_label_radio" htmlFor="cena">
+                <span class="universal_text_HM">Cena</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="baño"
                 checked={serviciosSeleccionados.baño}
                 onChange={() => handleServicioChange('baño')}
               />
-              <label className="form-check-label labelRadio" htmlFor="baño">
-                <span class="textoHM">Baño</span>
+              <label className="form-check-label universal_label_radio" htmlFor="baño">
+                <span class="universal_text_HM">Baño</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="hospedaje"
                 checked={serviciosSeleccionados.regadera}
                 onChange={() => handleServicioChange('regadera')}
               />
-              <label className="form-check-label labelRadio" htmlFor="regadera">
-                <span class="textoHM">Regadera</span>
+              <label className="form-check-label universal_label_radio" htmlFor="regadera">
+                <span class="universal_text_HM">Regadera</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="deuda"
                 checked={serviciosSeleccionados.deuda}
                 onChange={() => handleServicioChange('deuda')}
               />
-              <label className="form-check-label labelRadio" htmlFor="deuda">
-                <span class="textoHM">Deuda</span>
+              <label className="form-check-label universal_label_radio" htmlFor="deuda">
+                <span class="universal_text_HM">Deuda</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="vetados"
                 checked={serviciosSeleccionados.vetados}
                 onChange={() => handleServicioChange('vetados')}
               />
-              <label className="form-check-label labelRadio" htmlFor="vetados">
-                <span class="textoHM">Vetados</span>
+              <label className="form-check-label universal_label_radio" htmlFor="vetados">
+                <span class="universal_text_HM">Vetados</span>
               </label>
             </div>
-            <div className="form-check">
+            <div className="universal_margin_formcheck">
               <input
-                className="form-check-input checkboxHM"
+                className="form-check-input universal_checkbox_HM"
                 type="checkbox"
                 id="notas_vetado"
                 checked={serviciosSeleccionados.notas_vetado}
                 onChange={() => handleServicioChange('notas_vetado')}
               />
-              <label className="form-check-label labelRadio" htmlFor="notas_vetado">
-                <span class="textoHM">Motivo Vetado</span>
+              <label className="form-check-label universal_label_radio" htmlFor="notas_vetado">
+                <span class="universal_text_HM">Motivo Vetado</span>
               </label>
             </div>
           </div>
@@ -960,9 +960,9 @@ const ReportsAdmin = () => {
 
       </div>
       </div>
-      <div className="export-button">
+      <div className="universal_button_export">
         {/* Botón de exportar reporte a PDF */}
-        <button type="button" className="Appglobal-buttonaccept" onClick={ generatePDF}>
+        <button type="button" className="App_buttonaccept" onClick={ generatePDF}>
           Exportar a PDF
         </button>
       </div>

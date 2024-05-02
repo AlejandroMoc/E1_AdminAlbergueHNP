@@ -8,7 +8,7 @@ import LoginAdmin from "../Admins/LoginAdmin";
 
 const Login = () => {
 	return (
-		<div className="App-global App-picturebackground">
+		<div className="App_global App_background_picture">
 			<LoginAdmin/>
 			<Footer/>
 		</div>

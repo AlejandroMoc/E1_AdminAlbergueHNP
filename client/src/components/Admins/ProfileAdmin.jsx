@@ -8,15 +8,13 @@ import {Link} from "react-router-dom";
 
 const ProfileAdmin = () => {
   return (
-    <div className='App-minheight'>
+    <div className='App_minheight'>
       
-      <table className= 'header-table3'>
+      <table className= 'universal_header_table3'>
         <FaUserCircle size={160}/>
-        <h1 className="header-textitle">Administradora</h1>
-        {/* TODO URGENTE cambiar elementos a botones */}
-
-        <Link to="/changepassword"><p><button className="Appglobal-buttonaccept"><IoKey/>Cambiar contraseña</button></p></Link>
-        <Link to="/login"><p><button className="Appglobal-buttoncancel">Cerrar sesión</button></p></Link>
+        <h1 className="universal_header_texttitle">Administradora</h1>
+        <Link to="/changepassword"><p><button className="App_buttonaccept"><IoKey/>Cambiar contraseña</button></p></Link>
+        <Link to="/login"><p><button className="App_buttoncancel">Cerrar sesión</button></p></Link>
       </table>
     </div>
   )

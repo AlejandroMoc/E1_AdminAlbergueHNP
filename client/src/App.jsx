@@ -37,8 +37,8 @@ function App() {
 						element={<UserNew />}
 					/>
 					<Route
-						path="/infouser"
-						element={<InfoUser />}
+						path="/infouser/:id_cliente"
+						element={<InfoUser/>}
 					/>
 					<Route
 						path="/infouser"
@@ -67,6 +67,8 @@ function App() {
 					<Route
 						path="/login"
 						element={<Login />}
+						// path="/login"
+						// element={<Login />}
 					/>
 					{/*Si la ruta falla, redirigir a / (Home)*/}
 					{/*TODO ver si meterle un 404*/}

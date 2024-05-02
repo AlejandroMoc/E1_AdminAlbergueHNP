@@ -1,4 +1,4 @@
-.header-table {
+.universal_header_table {
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -6,52 +6,51 @@
   border-spacing: 15px 15px;
 }
 
-.header-linksquare {
-  background-color: rgb(255, 255, 255);
+.universal_header_linksquare {
+  background-color: #fafafa;
   border-radius: 1vh;
   height: 40vh;
   width: 40vh;
 }
 
-.header-table2 {
+.universal_header_table2 {
   margin-left: auto;
   margin-right: auto;
 }
 
-.header-table3 {
+.universal_header_table3 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 105px;
   padding: 20px;
   border-collapse: separate;
   border-spacing: 15px 15px;
-  background-color: rgb(255, 255, 255);
+  background-color: #fafafa;
   border-radius: 1vh;
   height: 50vh;
   width: 50vh;
 }
 
-.header-textitle {
+.universal_header_texttitle {
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-.header-text {
-  color: #232629;
+.universal_header_text {
+  color: #090909;
   font-size: calc(8px + 2vmin);
 }
 
-.header-textlink {
+.universal_header_textlink {
   // TODO unificar color negro del sitio
-  color: #232629;
+  color: #090909;
   font-size: calc(10px + 2vmin);
   text-decoration: none;
   font-style: italic;
   font-weight: 500;
 }
 
-//TODO renombrar clases con nomenclatura adecuada
-.fecha-input{
+.universal_input_date{
   border: 0px solid #ccc;
   border-radius: 8px;
   padding: 8px;
@@ -61,81 +60,103 @@
   text-align: center;
 }
 
-.fecha-input:last-child {
+.universal_input_date:last-child {
   margin-right: 0;
 }
 
-.fecha-input:focus {
+.universal_input_date:focus {
   outline: none;
 }
 
-.fecha-input-container {
+.universal_container_inputdate {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap; /* Añadir esta línea */
+  flex-wrap: wrap;
 }
 
-.fecha-picker-container {
+.universal_container_pickerdate {
   margin-right: 20px;
 }
 
-.checkbox-container {
+.universal_container_checkbox {
   display: flex;
   align-items: center;
 }
 
-.checkbox-container2 {
+.universal_container2_checkbox {
   display: flex;
   align-items: center;
   margin-top: 25px;
 }
 
-.gray-rectangle-input {
+//TODO mover a reports
+.universal_rectangle_gray {
   width: 100%;
   height: 300px;
-  background-color: #d9d9d8;
+  background-color: #dedede;
   border: none;
 }
 
-.export-button {
+.universal_button_export {
   margin-top: 30px;
   text-align: right;
 }
 
-.dropdown-container {
+.universal_container_dropdown {
   text-align: left;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.dropdown-container-dropdown {
+.universal_container_dropdown2 {
   margin-right: 30px;
 }
 
-.servicios-container {
+.universal_container_services {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.dropdown-toggle-custom {
+.universal_toggle_dropdown {
   background-color: #f2f2f2 !important;
   color: black !important;
-  border-color: #d9d9d8 !important;
+  border-color: #dedede !important;
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.dropdown-menu-custom {
+.universal_dropdown_custommenu {
   max-height: 200px;
   max-width: 200px;
   overflow-y: auto;
 }
 
-.form-check{
+.universal_margin_formcheck{
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+
+.universal_label_radio {
+  margin-right: 20px;
+  font-size: larger;
+}
+
+.universal_checkbox_HM {
+  border-color: #c2c2c2;
+}
+
+.universal_text_HM {
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .universal_container2_checkbox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Estilo específico para los checkboxes dentro de ReportsAdmin */
@@ -146,31 +167,4 @@
   border: none;
   border-radius: 0;
   background-color: transparent;
-}
-
-.labelRadio {
-  margin-right: 20px;
-  font-size: larger;
-}
-
-.checkboxHM {
-  border-color: #aaaaaa;
-}
-
-.textoHM {
-  margin-left: 5px;
-  margin-right: 20px;
-}
-
-@media only screen and (max-width: 1000px) {
-  .checkbox-container2 {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-.dropdown-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap; /* Añadir esta línea */
 }
