@@ -7,12 +7,15 @@ app.use(express.json());
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
-const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
+// const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
+const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister}= require('./queries/InfoUserQueries.js')
 // const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
 const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 
 // Importa las funciones necesarias de ReportQueries.js
 const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados} = require('./queries/ReportQueries.js');
+
+
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -325,6 +328,24 @@ app.post('/regServacio', (req, res) => {
         .catch((error) => console.log('ERROR: ', error));
 })
 //BEDS ----------- PAGINA CAMAS-----------------
+
+
+app.post('/registrarPago', async(req, res) => {
+    try {
+        const pago = req.body.pago;
+        const id_cliente = req.body.id_cliente;
+        const registerNewPago = await getNewRegister(id_cliente, pago);
+        res.json(registerNewPago);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})  
+
+
+// app.get('/hello', (req, res) => {
+//     res.json({message:"Hola"});
+// })
+
 
 app.listen(8000, () =>{
     console.log('Servidor corriendo en el puerto 8000')

@@ -59,6 +59,39 @@ useEffect(() =>{
 console.log("DEUDA DEL CLIENTE"+deudaCliente.deudacliente)
 console.log("SErvicio: "+servicioCliente.servicio1)
 
+const placeholderText = deudaCliente.deudacliente < 0
+? `${Math.abs(deudaCliente.deudacliente)}`
+: `${Math.abs(deudaCliente.deudacliente)}`;
+// AGREGAR PAGO O DEUDA CUANDO SE MODIFICA EL HANDLE
+
+const [pago, setPago] = useState('');
+const [inputModified, setInputModified] = useState(false);
+
+const handlepagoChange = (event) => {
+  const inputValue = event.target.value;
+  const pagoArray = inputValue.split(' ');
+  const pagoString = pagoArray.join(' ');
+  setPago(pagoString);
+  setInputModified(true); // Actualiza el estado cuando se modifica el input
+}
+const handleBtRegistroClick = async () => {
+      try {
+        await fetch('http://localhost:8000/registrarPago', {
+          method: 'POST',
+          body: JSON.stringify({id_cliente:props.id_cliente, pago:pago}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        });
+        window.location.href = '/infouser/'+props.id_cliente;
+        //alert('Registro exitoso');
+       } catch (error) {
+        console.error('Error al registrar entrada unica:', error);
+        alert('Error al registrar el paciente');
+      }
+
+};
+
 
 //EMPIEZA DESARROLLO DEL HTML
   return (
@@ -86,7 +119,7 @@ console.log("SErvicio: "+servicioCliente.servicio1)
           </div>
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
-            <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico {infoCliente.nivel_se}</span>
+            <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
@@ -167,10 +200,17 @@ console.log("SErvicio: "+servicioCliente.servicio1)
               <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
           </div>)}
-          <div class="input-group mb-3 ">
+          <div class="input-group mb-3 " onChange={handlepagoChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">A pagar:  ${deudaCliente.deudacliente} </span>
+            <span class="input-group-text user_span_info" id="basic-addon1">
+              {deudaCliente.deudacliente < 0 ? "A pagar: $" : "A favor: $"}
+            </span>
+            <input type="text" className="form-control user_space_reg" aria-label="Username" aria-describedby="basic-addon1" placeholder={placeholderText} value={pago}/>
+            {inputModified && pago !== '' && ( // Condición para mostrar el botón
+              <button className="btn btn-primary" onClick={handleBtRegistroClick}>Abonar</button>
+            )}
           </div>
+
         </div>
       </div>
     </div>

@@ -145,7 +145,6 @@ const handleBtRegistroClick = async () => {
     setNombre_C(nombrecString);
   }
 
-
   const [apellidos_c, setApellidos_C] = useState([]);
   const handleApellidos_CChange = (event) => {
     const inputValue = event.target.value;
@@ -155,7 +154,6 @@ const handleBtRegistroClick = async () => {
     console.log(apellidoscString);
     setApellidos_C(apellidoscString);
   }
-
 
   const [apellidos_p, setApellidos_P] = useState([]);
   const handleApellidos_PChange = (event) => {
@@ -302,7 +300,9 @@ const handleBtRegistroClick = async () => {
   return (
     <div class='App-minheight'>
       <div class="user_container_general">
-        <div class="container user_container_reg">     
+        <div class="container user_container_reg">
+
+          <h4>Información de usuario</h4>
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
               <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
@@ -362,6 +362,12 @@ const handleBtRegistroClick = async () => {
               </div>
             </div>
           </div>
+
+          <div class="input-group mb-3 "></div>
+          <div class="input-group mb-3 "></div>
+
+          <h4>Información del paciente</h4>
+
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
             <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
@@ -389,8 +395,13 @@ const handleBtRegistroClick = async () => {
               )}
             </select>
           </div>
+          
         </div>
+
+
+
         <div class="user_space_not">
+
           <div class="mb-3" onChange={handleNotas_CChange}>
             <textarea class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
           </div>

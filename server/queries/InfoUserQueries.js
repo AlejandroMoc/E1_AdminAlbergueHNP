@@ -45,5 +45,22 @@ const getServicioEU = async(id_cliente) => {
         throw error
     }
 }
+//Función para agregar un nuevo pago
 
-module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}
+//Función para obtener ids de cama libres
+
+const getNewRegister = async(id_cliente, pago) => {
+    try {
+        console.log("Registrando nuevo pago:",id_cliente, pago);
+        await db.none(
+            `INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p) 
+            VALUES ($1, 'Agregado desde InfoUser2', $2, CURRENT_TIMESTAMP);
+            `,
+            [id_cliente, pago],
+            console.log("LISTO 2 :)")
+        );
+    } catch (error) {
+        throw error;
+    }
+}
+module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister}
