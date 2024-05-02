@@ -8,7 +8,7 @@ app.use(express.json());
 const { getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/UsernewQueries.js');
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 // Importa las funciones necesarias de ReportQueries.js
-const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
+const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados} = require('./queries/ReportQueries.js');
 
 // Funciones para UserNewAdmin
 app.get('/alldispbeds', async (req, res) => {
@@ -46,7 +46,7 @@ app.get('/allusers', async (req, res) => {
     try {
         const startDate = req.query.startDate; // Obtener fecha de inicio del query string
         const endDate = req.query.endDate; // Obtener fecha de fin del query string
-        const allusers = await getAllUsers(startDate, endDate); // Llamar a getAllUsers con las fechas
+        const allusers = await getAllUsers(startDate,endDate);
         res.json(allusers);
     } catch (error) {
         console.error('Error fetching clients:', error);
@@ -76,6 +76,16 @@ app.get('/allvisitantes', async (req, res) => {
     }
 });
 
+// Nueva función para obtener todos los huéspedes
+app.get('/allvetados', async (req, res) => {
+    try {
+        const allVetados = await getAllVetados();
+        res.json(allVetados);
+    } catch (error) {
+        console.error('Error fetching vetados:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 app.get('/userinfo/:userID', async (req, res) => {
     try {
         const userID = req.params.userID; // Obtiene el userID de los parámetros de la URL
@@ -113,6 +123,18 @@ app.get('/allgeneralvisitantes', async (req, res) => {
     }
 });
 
+// Funciones para ReportQueries
+app.get('/allgeneralvetados', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allgeneralvetados = await getAllGeneralVetados(startDate,endDate);
+        res.json(allgeneralvetados);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 // Funciones para UserListAdmin
