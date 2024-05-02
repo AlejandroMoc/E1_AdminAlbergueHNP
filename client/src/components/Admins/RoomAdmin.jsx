@@ -233,7 +233,7 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
           <span className="input-group-text" onClick={restarservo3}>-</span>
           <input type="text" className="form-control" value={clicked3 ? servoCount3 : ''} onChange={handleChange} placeholder={clicked3 ? '' : 'Cena: 0'} aria-label="Amount (to the nearest dollar)" id='cen'/>
         </div>
-          <button type="button" class="btn btn-light Appglobal-buttonaccept" onClick={() => {setKli3(klii); if(document.getElementById('des').value != ""){setCan1(document.getElementById('des').value)}; if(document.getElementById('com').value != ""){setCan2(document.getElementById('com').value)}; if(document.getElementById('cen').value != ""){setCan3(document.getElementById('cen').value)}; setClicked(false); setClicked2(false); setClicked3(false); setservoCount(0); setservoCount2(0); setservoCount3(0);}}>Registrar</button>
+          <button type="button" class="btn btn-light App_buttonaccept" onClick={() => {setKli3(klii); if(document.getElementById('des').value != ""){setCan1(document.getElementById('des').value)}; if(document.getElementById('com').value != ""){setCan2(document.getElementById('com').value)}; if(document.getElementById('cen').value != ""){setCan3(document.getElementById('cen').value)}; setClicked(false); setClicked2(false); setClicked3(false); setservoCount(0); setservoCount2(0); setservoCount3(0);}}>Registrar</button>
         </Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />
