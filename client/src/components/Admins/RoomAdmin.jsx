@@ -8,7 +8,7 @@ import { IoAddCircleOutline  } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlineFastfood } from "react-icons/md";
-import { LuUserMinus } from "react-icons/lu";
+import { LuUserMinus, LuUserPlus} from "react-icons/lu";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa";
 import { LuUser } from "react-icons/lu";
@@ -253,7 +253,7 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         <span class="numCamaText">Cama {numCama}</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" class="iconStyle"/>}>
+      <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" class="iconStyle"/>}>
         <span class="letraMenu">Añadir Huésped</span>
       </Menu.Item>
       <Menu.Divider />
@@ -358,7 +358,7 @@ const RoomAdmin = () => {
                         'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
                         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   return (
-    <div className='App-minheight'>
+    <div className='App_minheight'>
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE MUJERES</span>
           <div class="indicadoresDiv">

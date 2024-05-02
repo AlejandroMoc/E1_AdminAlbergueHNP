@@ -8,8 +8,11 @@ app.use(express.json());
 const {getAllDispBeds, getAllAreas, getAllClientInfo } = require('./queries/UsernewQueries.js')
 const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
-const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
+// const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
 const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
+
+// Importa las funciones necesarias de ReportQueries.js
+const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados} = require('./queries/ReportQueries.js');
 
 //Funciones para UserNewAdmin
 app.get('/alldispbeds', async(req, res) => {
@@ -32,6 +35,16 @@ app.get('/allareas', async(req, res) => {
     }
 });
 
+app.post('/allclientinfo', async (req, res) => {
+    try {
+        const nombre_c = req.body.nombre;
+        const apellidos_c = req.body.apellidos;
+        const client = await getAllClientInfo(nombre_c, apellidos_c);
+        res.json(client);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 app.get('/allusers', async (req, res) => {
     try {
@@ -63,6 +76,17 @@ app.get('/allvisitantes', async (req, res) => {
         res.json(allVisitantes);
     } catch (error) {
         console.error('Error fetching visitantes:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Nueva función para obtener todos los huéspedes
+app.get('/allvetados', async (req, res) => {
+    try {
+        const allVetados = await getAllVetados();
+        res.json(allVetados);
+    } catch (error) {
+        console.error('Error fetching vetados:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
@@ -116,6 +140,19 @@ app.post('/allclientinfo', async(req, res) => {
         const client = await getAllClientInfo(nombre_c, apellidos_c);
         res.json(client);
     } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Funciones para ReportQueries
+app.get('/allgeneralvetados', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allgeneralvetados = await getAllGeneralVetados(startDate,endDate);
+        res.json(allgeneralvetados);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
