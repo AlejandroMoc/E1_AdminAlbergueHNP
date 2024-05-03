@@ -122,7 +122,7 @@ const fechaNueva = () => {
             <span class="input-group-text user_span_info" id="basic-addon1">Es Paciente</span>
           </div>)} */}
 
-          <h4>Información de usuario</h4>
+          <h4>Información de Familiar</h4>
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
@@ -148,7 +148,7 @@ const fechaNueva = () => {
           <div class="input-group mb-3 "></div>
           <div class="input-group mb-3 "></div>
 
-          <h4>Información del paciente</h4>
+          <h4>Información de Paciente</h4>
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
@@ -221,10 +221,10 @@ const fechaNueva = () => {
           </div>)}
           <div class="input-group mb-3 lmao" onChange={handlepagoChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
-            <span class="input-group-text user_span_info ajusteDeuda" id="basic-addon1">
+            <span class="input-group-text user_span_info user_adjust_debt" id="basic-addon1">
               {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>
-            <input type="number" className="ajusteDeudainput" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
+            <input type="number" className="user_adjust_debt_input" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón
               <button className="btn btn-primary" onClick={handleBtRegistroClick}>Abonar</button>
             )}

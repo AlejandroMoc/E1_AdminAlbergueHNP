@@ -15,27 +15,17 @@ const HomeAdmin = () => {
       <table className='universal_header_table'>
         <tbody>
           <tr>
+
             {/* Boton 1 */}
             <td className='universal_header_linksquare'>
               <Link className= 'universal_header_textlink' to="/usernew">
                 <table className='universal_header_table2'>
                     <tr><RiUserAddFill size={80}/></tr>
-                    <tr>Nuevo Usuario</tr>
+                    <tr>Registro de<br/>Nuevo Cliente</tr>
                 </table>
               </Link>
             </td>
-            {/* Boton 2 */}
-            <td className='universal_header_linksquare'>
-              <Link className= 'universal_header_textlink' to="/reports">
-                <table className='universal_header_table2'>
-                    <tr><IoDocumentAttach size={80}/></tr>
-                    <tr>Nuevo Reporte</tr>
-                </table>
-              </Link>
-            </td>
-          </tr>
 
-          <tr>
             {/* Boton 3*/}
             <td className='universal_header_linksquare'>
               <Link className= 'universal_header_textlink' to="/beds">
@@ -45,15 +35,32 @@ const HomeAdmin = () => {
                 </table>
               </Link>
             </td>
+
+          </tr>
+
+          <tr>
+
+
             {/* Boton 4 */}
             <td className='universal_header_linksquare'>
               <Link className= 'universal_header_textlink' to="/userlist">
                 <table className='universal_header_table2'>
                     <tr><IoIosListBox size={80}/></tr>
-                    <tr>Administración<br/>de Usuarios</tr>
+                    <tr>Administración<br/>de Clientes</tr>
                 </table>
               </Link>
             </td>
+
+            {/* Boton 2 */}
+            <td className='universal_header_linksquare'>
+              <Link className= 'universal_header_textlink' to="/reports">
+                <table className='universal_header_table2'>
+                    <tr><IoDocumentAttach size={80}/></tr>
+                    <tr>Generación de<br/>Nuevo Reporte</tr>
+                </table>
+              </Link>
+            </td>
+
           </tr>
         </tbody>
       </table>

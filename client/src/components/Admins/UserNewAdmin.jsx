@@ -111,7 +111,7 @@ const handleBtRegistroClick = async () => {
         window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
-        alert('Error al registrar el paciente');
+        alert('Error al registrar el paciente.');
       }
     }
     else if(showBedNumber){
@@ -127,11 +127,11 @@ const handleBtRegistroClick = async () => {
         window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
-        alert('Error al registrar el paciente');
+        alert('Error al registrar el paciente.');
       }
     }
   } else {
-    alert('Por favor llene todos los campos obligatorios');
+    alert('Por favor llene todos los campos obligatorios.');
   }
 };
 
@@ -302,7 +302,7 @@ const handleBtRegistroClick = async () => {
       <div class="user_container_general">
         <div class="container user_container_reg">
 
-          <h4>Información de usuario</h4>
+          <h4>Información de Familiar</h4>
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
               <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
@@ -366,7 +366,7 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
           <div class="input-group mb-3 "></div>
 
-          <h4>Información del paciente</h4>
+          <h4>Información de Paciente</h4>
 
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
@@ -395,6 +395,7 @@ const handleBtRegistroClick = async () => {
               )}
             </select>
           </div>
+
           
         </div>
 

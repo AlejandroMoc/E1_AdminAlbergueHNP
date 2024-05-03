@@ -22,7 +22,7 @@ const UserListAdmin = () => {
 
   //Para paginación
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 3;
+  const pageSize = 8;
 
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 
@@ -363,7 +363,7 @@ const UserListAdmin = () => {
         </div>
 
         <div className='userlist_container_lower'>
-          <div className='radio_container'>
+          <div className='userlist_container_radio'>
               {views.map((option) => (
                 <label className='radio_input' key={option.id}>
                   <input 
@@ -427,7 +427,7 @@ const UserListAdmin = () => {
                       <td>{item.lugar_o}</td>
                       <td>{item.carnet}</td>
                       <td>{item.nivel_se}</td>
-                      <td>{item.total}</td>
+                      <td>$ {item.total}</td>
                     </tr>
                   ))
                 )}
@@ -441,7 +441,7 @@ const UserListAdmin = () => {
                       <td>{item.lugar_o}</td>
                       <td>{item.carnet}</td>
                       <td>{item.nivel_se}</td>
-                      <td>{item.total}</td>
+                      <td>$ {item.total}</td>
                     </tr>
                   ))
                 )}
@@ -456,7 +456,7 @@ const UserListAdmin = () => {
                       <td>{item.comida}</td>
                       <td>{item.cena}</td>
                       <td>{item.nivel_se}</td>
-                      <td>{item.total}</td>
+                      <td>$ {item.total}</td>
                     </tr>
                   ))
                 )}

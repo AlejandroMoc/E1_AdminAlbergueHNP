@@ -42,7 +42,6 @@
 }
 
 .universal_header_textlink {
-  // TODO unificar color negro del sitio
   color: #090909;
   font-size: calc(10px + 2vmin);
   text-decoration: none;
@@ -119,7 +118,7 @@
 
 .universal_toggle_dropdown {
   background-color: #f2f2f2 !important;
-  color: black !important;
+  color: #090909 !important;
   border-color: #dedede !important;
   max-width: 200px;
   overflow: hidden;
@@ -159,12 +158,21 @@
   }
 }
 
+//MOVER Y RENOMBRAR clases a archivo de reportes
+
 /* Estilo específico para los checkboxes dentro de ReportsAdmin */
-.ReportsAdmin-checkbox input[type="checkbox"] {
-  width: 15px;
-  margin: 0 5px 0 20px;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background-color: transparent;
+// .ReportsAdmin-checkbox input[type="checkbox"] {
+//   width: 15px;
+//   margin: 0 5px 0 20px;
+//   padding: 0;
+//   border: none;
+//   border-radius: 0;
+//   background-color: transparent;
+// }
+
+
+.report_flex_checkboxes{
+  display: flex;
+  //Bottom left right top
+  margin: 20px 0px 0px 0px;
 }

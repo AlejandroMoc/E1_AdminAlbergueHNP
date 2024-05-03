@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 //Importar funcion y css
-//TODO cambiar
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* TODO verificar si mandar a llamar App o qué sitio por default */}
+    {/* Se manda a llamar a usuario por default */}
     <App />
   </React.StrictMode>
 );

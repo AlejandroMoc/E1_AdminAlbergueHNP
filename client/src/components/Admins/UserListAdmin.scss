@@ -21,6 +21,8 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  // Top right bottom left
+  padding: 0px 50px 0px 50px;
 }
 
 .userlist_toggle_dropdown {
@@ -63,7 +65,7 @@
   margin-right: 20px;
 }
 
-.radio_container {
+.userlist_container_radio {
   // background-color: #8cbcfc;
   margin-bottom: 15px;
 }
@@ -74,7 +76,7 @@
 }
 
 .no_results_text {
-  // background-color: aqua;
+  // background-color: #4383c7;
   margin-top: 10%;
   font-weight: bold;
   font-size: larger;

@@ -6,14 +6,23 @@ const Footer = () => {
     <div className='footer'>
       <div>
         <p className='footer-text'>
-            Con tecnología de{' '}
+            {/* {' '}Con cariño para el{' '} */}
+            {' '}Para el{' '}
+            <a className='footer-link'
+              href="https://voluntariadohnp.org/apoyos/albergue"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              Albergue del Hospital del Niño Poblano.
+            </a>
+            {/* {' '}Con tecnología de{' '}
             <a className='footer-link'
               href="https://reactjs.org"
               target="_blank"
               rel="noopener noreferrer"
               >
               ReactJS
-            </a>
+            </a> */}
             .
         </p>
       </div>

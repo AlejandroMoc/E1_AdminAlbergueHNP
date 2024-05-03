@@ -384,7 +384,7 @@ const ReportsAdmin = () => {
 
 
         {esUsuario && (
-          <div className="circle-checkboxes-container">
+          <div className="report_flex_checkboxes">
             <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
@@ -644,7 +644,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
@@ -694,7 +694,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
                 </tr>
@@ -746,7 +746,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
                 </tr>
@@ -795,7 +795,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
                 </tr>
@@ -844,7 +844,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
@@ -897,7 +897,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
@@ -948,7 +948,7 @@ const ReportsAdmin = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>$ {item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 

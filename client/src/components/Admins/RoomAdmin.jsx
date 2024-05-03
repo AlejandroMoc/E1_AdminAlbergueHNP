@@ -221,18 +221,18 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
       <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" class="iconStyle"/>} title={<span class="letraMenu">Servicios</span>}>
         <Menu.Item key="subItemReg" onClick={(event) => event.stopPropagation()}>
         <div className="input-group mb-3 regServo">
-          <span className="input-group-text" onClick={sumarservo}>+</span>
           <span className="input-group-text" onClick={restarservo}>-</span>
+          <span className="input-group-text" onClick={sumarservo}>+</span>
           <input type="text" className="form-control" value={clicked ? servoCount : ''} onChange={handleChange} placeholder={clicked ? '' : 'Desayuno: 0'} aria-label="Amount (to the nearest dollar)" id='des'/>
         </div>
         <div className="input-group mb-3 regServo">
-          <span className="input-group-text" onClick={sumarservo2}>+</span>
           <span className="input-group-text" onClick={restarservo2}>-</span>
+          <span className="input-group-text" onClick={sumarservo2}>+</span>
           <input type="text" className="form-control" value={clicked2 ? servoCount2 : ''} onChange={handleChange} placeholder={clicked2 ? '' : 'Comida: 0'} aria-label="Amount (to the nearest dollar)" id='com'/>
         </div>
         <div className="input-group mb-3 regServo">
-          <span className="input-group-text" onClick={sumarservo3}>+</span>
           <span className="input-group-text" onClick={restarservo3}>-</span>
+          <span className="input-group-text" onClick={sumarservo3}>+</span>
           <input type="text" className="form-control" value={clicked3 ? servoCount3 : ''} onChange={handleChange} placeholder={clicked3 ? '' : 'Cena: 0'} aria-label="Amount (to the nearest dollar)" id='cen'/>
         </div>
           <button type="button" class="btn btn-light App_buttonaccept" onClick={() => {setKli3(klii); if(document.getElementById('des').value != ""){setCan1(document.getElementById('des').value)}; if(document.getElementById('com').value != ""){setCan2(document.getElementById('com').value)}; if(document.getElementById('cen').value != ""){setCan3(document.getElementById('cen').value)}; setClicked(false); setClicked2(false); setClicked3(false); setservoCount(0); setservoCount2(0); setservoCount3(0);}}>Registrar</button>
@@ -440,7 +440,7 @@ const RoomAdmin = () => {
           </div>
         </div>
 
-        <hr></hr>
+        <hr/>
 
         <div class="titulosZonas container">
           <span class="tituloZona">ZONA DE AISLADOS</span>
@@ -479,7 +479,7 @@ const RoomAdmin = () => {
             <button id="addCamaButton" onClick={() => { setZona(3)}}><IoAddCircleOutline /></button>
           </div>
         </div>
-      
+        <br/>
     </div>
   )
 }

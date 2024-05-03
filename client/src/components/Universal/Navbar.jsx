@@ -18,7 +18,7 @@ const Navbar = () => {
         <ul class ='navbar_right'>
           <Link class = 'navbar_text' to ="/usernew"> Registro </Link>
           <Link class = 'navbar_text' to ="/beds"> Camas </Link>
-          <Link class = 'navbar_text' to ="/userlist"> Usuarios </Link>
+          <Link class = 'navbar_text' to ="/userlist"> Clientes </Link>
           <Link class = 'navbar_text' to ="/reports"> Reporte </Link>
           <Link class = 'navbar_text' to ="/profile"> <FaUser/> </Link>
         </ul>
