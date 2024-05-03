@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './RoomAdmin.scss';
 import { Dropdown, Menu } from 'antd';
 
+import { Link } from "react-router-dom";
+
 import iconocama from '../../assets/logos/iconocama.svg';
 import { IoAddCircleOutline  } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa6";
@@ -268,10 +270,12 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
 
   return (
     <Dropdown overlay={menu} trigger={['contextMenu']}>
-      <div className="card cama" style={{ backgroundColor: color }}>
-        <img src={iconocama} className="card-img-top" alt="..." />
-        <p className="numerazo">{numCama}</p>
-      </div>
+      <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+klii} className="lmao">
+        <div className="card cama" style={{ backgroundColor: color }} onClick={() => {console.log("AA , "+klii)}}>
+          <img src={iconocama} className="card-img-top" alt="..." />
+          <p className="numerazo">{numCama}</p>
+        </div>
+      </Link>
     </Dropdown>
   );
 

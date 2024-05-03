@@ -224,7 +224,7 @@ const fechaNueva = () => {
             <span class="input-group-text user_span_info ajusteDeuda" id="basic-addon1">
               {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>
-            <input type="text" className="ajusteDeudainput" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
+            <input type="number" className="ajusteDeudainput" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón
               <button className="btn btn-primary" onClick={handleBtRegistroClick}>Abonar</button>
             )}
