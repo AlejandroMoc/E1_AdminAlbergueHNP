@@ -67,25 +67,37 @@
 
 .userlist_container_radio {
   // background-color: #8cbcfc;
-  margin-bottom: 15px;
+  margin: 15px;
 }
 
-.radio_input input[type='radio'] {
-  background-color: #8cbcfc;
-  margin-right: -25%; /* Adjust this value as needed */
+.userlist_personlink{
+  color:#376faa;;
+  text-align: left;
+  // text-decoration: none;
 }
 
-.no_results_text {
+.userlist_text_noresults {
   // background-color: #4383c7;
   margin-top: 10%;
   font-weight: bold;
-  font-size: larger;
+  font-size: medium;
 }
 
-.error {
+.userlist_error {
   // background-color: #8cbcfc;
   color: #d84949;
   font-size: 12px;
   font-weight: bold;
   text-align: left;
 }
+
+// TODO renombrar estas clases
+
+//TODO usar el radio input de las demas paginas
+.radio_input input[type='radio'] {
+  background-color: #8cbcfc;
+  margin-right: -25%; /* Adjust this value as needed */
+}
+
+
+

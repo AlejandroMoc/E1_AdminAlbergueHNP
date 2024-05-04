@@ -2,18 +2,13 @@
 import React from "react";
 
 //Importar componentes
-import Navbar from '../Universal/Navbar';
-import Footer from '../Universal/Footer';
-import UserNewAdmin from "../Admins/UserNewAdmin";
+import Footer from '../universal/Footer';
+import UserNewAdmin from "../admins/UserNewAdmin";
 
 const UserNew = () => {
 	return (
 		<div className="App_global">
-			<Navbar/>
 			<UserNewAdmin/>
-
-
-
 			<Footer/>
 		</div>
 	);

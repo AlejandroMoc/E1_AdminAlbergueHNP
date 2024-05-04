@@ -1,6 +1,12 @@
 TODO falta unificar class y className. Solo puede existir una (me parece que era class).
 
 ##
+Realizados cambios en la estructura de redireccionamiento del Router. Renombrados archivos, carpetas y clases para seguir un estándar y poderse utilizar para el inicio de sesión. Creado hook para inicio de sesión. Actualizados archivos .gitignore. 
+
+##
+Borrada carpeta de node_modules.
+
+##
 Corregidas clases obsoletas de CSS. Modificado README.md para incluir instrucciones e información actualizada.
 
 ##

@@ -3,14 +3,12 @@
 import React from "react";
 
 //Importar componentes
-import Navbar from '../Universal/Navbar';
-import Footer from '../Universal/Footer';
-import RoomAdmin from "../Admins/RoomAdmin";
+import Footer from '../universal/Footer';
+import RoomAdmin from "../admins/RoomAdmin";
 
 const Rooms = () => {
 	return (
 		<div className="App_global">
-			<Navbar/>
 			<RoomAdmin/>
 			<Footer/>
 		</div>

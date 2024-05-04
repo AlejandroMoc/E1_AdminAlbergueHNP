@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'; 
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-import MyPagination from '../Universal/MyPagination';
+import MyPagination from '../universal/MyPagination';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker'; // Importar react-datepicker
 import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
@@ -315,7 +315,7 @@ const UserListAdmin = () => {
                 />
               </div>
             </div>
-            <div className='error'>
+            <div className='userlist_error'>
               <p>{dateErrorMessage}</p>
             </div>
           </div>
@@ -356,17 +356,18 @@ const UserListAdmin = () => {
                 </div>
               </div>
             </div>
-            <div className='error'>
+            <div className='userlist_error'>
               <p>{debtErrorMessage}</p>
             </div>
           </div>
         </div>
 
         <div className='userlist_container_lower'>
-          <div className='userlist_container_radio'>
+          <div>
               {views.map((option) => (
-                <label className='radio_input' key={option.id}>
+                <label className='userlist_container_radio' key={option.id}>
                   <input 
+                    className="form-check-input"
                     type='radio' 
                     name='view' 
                     value={option.id}
@@ -422,7 +423,7 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
-                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                       <td>{item.lugar_o}</td>
                       <td>{item.carnet}</td>
@@ -435,7 +436,7 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
-                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                       <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                       <td>{item.lugar_o}</td>
@@ -448,7 +449,7 @@ const UserListAdmin = () => {
                 {select_View == 9 && (
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
-                      <td><Link to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
                       <td>{item.carnet}</td>
                       <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
@@ -463,8 +464,8 @@ const UserListAdmin = () => {
               </tbody>
             </Table>
           ) : (
-            <div className='no_results_text'>
-              <h1>NO HAY RESULTADOS</h1>
+            <div className='userlist_text_noresults'>
+              <h1>No existen resultados que coincidan.</h1>
             </div>
           )}
           {data.length > 0 &&

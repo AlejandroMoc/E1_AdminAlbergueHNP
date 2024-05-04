@@ -6,7 +6,6 @@ const Footer = () => {
     <div className='footer'>
       <div>
         <p className='footer-text'>
-            {/* {' '}Con cariño para el{' '} */}
             {' '}Para el{' '}
             <a className='footer-link'
               href="https://voluntariadohnp.org/apoyos/albergue"

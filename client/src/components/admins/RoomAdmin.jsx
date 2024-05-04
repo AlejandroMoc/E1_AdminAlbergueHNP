@@ -5,7 +5,7 @@ import { Dropdown, Menu } from 'antd';
 
 import { Link } from "react-router-dom";
 
-import iconocama from '../../assets/logos/iconocama.svg';
+import iconocama from '../../assets/vectors/icon_bed.svg';
 import { IoAddCircleOutline  } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
@@ -18,7 +18,7 @@ import { LuUser } from "react-icons/lu";
 import { useState } from 'react';
 
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, deber, textoD, refreshBedsData}){
 
