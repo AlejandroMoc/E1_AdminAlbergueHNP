@@ -881,7 +881,7 @@ const getCurrentDateTime = () => {
           </Table>
         )}
 
-{esUsuario && mostrarVetados && vetadoSeleccionado=='Vetado' && (
+       {esUsuario && mostrarVetados && vetadoSeleccionado=='Vetado' && (
           <Table striped bordered hover>
           <thead>
             <tr>
@@ -932,7 +932,7 @@ const getCurrentDateTime = () => {
         </Table>
         )}
 
-      {esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped' &&(
+        {esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped' &&(
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -973,8 +973,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
-                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
                 </tr>
               )))}
@@ -1025,8 +1024,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
-                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
                 </tr>
               )))}
@@ -1035,7 +1033,7 @@ const getCurrentDateTime = () => {
         )}
 
       
-{esUsuario && mostrarVetados && vetadoSeleccionado !== 'Vetado' &&(
+      {esUsuario && mostrarVetados && vetadoSeleccionado !== 'Vetado' &&(
           <Table striped bordered hover>
             <thead>
               <tr>
