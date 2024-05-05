@@ -496,7 +496,7 @@ const getCurrentDateTime = () => {
 
 
         {esUsuario && (
-          <div className="circle-checkboxes-container">
+          <div className="report_flex_checkboxes">
             <div className="universal_margin_formcheck">
               <input
                 className="form-check-input universal_checkbox_HM"
@@ -772,7 +772,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
                 </tr>
               )))}
@@ -821,7 +822,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
                 </tr>
               )))}
             </tbody>
@@ -871,7 +873,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
                 </tr>
               )))}
             </tbody>
@@ -880,53 +883,51 @@ const getCurrentDateTime = () => {
 
       {esUsuario && mostrarVetados && vetadoSeleccionado=='Vetado' && (
           <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID Cliente</th>
-              <th>Tipo Usuario</th>
-              <th>Nombre</th>
-              <th>Apellidos</th>
-              <th>Sexo</th>
-              <th>Lugar de Origen</th>
-              <th>Fecha de Ingreso</th>
-              <th>Fecha de Vetado</th>
-              <th>Motivo Vetado</th>
-              {/* Agregar las columnas adicionales según el servicio seleccionado */}
-              {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-              {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-              {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-              {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-              {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-              {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-              {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
-
-            </tr>
-          </thead>
-          <tbody>
-            {(datavetado.map((item) => (
-              <tr key={item.id_cliente}>
-                <td>{item.id_cliente}</td>
-                <td>{item.tipo_usuario}</td>
-                <td>{item.nombre_c}</td>
-                <td>{item.apellidos_c}</td>
-                <td>{item.sexo}</td>
-                <td>{item.lugar_o}</td>
-                <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
-                <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
-                <td>{item.notas_v}</td>
-                {/* Agregar las celdas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
-                {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
-                {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
-                {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
-                {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
-
+            <thead>
+              <tr>
+                <th>ID Cliente</th>
+                <th>Tipo Usuario</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Sexo</th>
+                <th>Lugar de Origen</th>
+                <th>Fecha de Ingreso</th>
+                <th>Fecha de Vetado</th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
+                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
+                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
+                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
+                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
+                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
+                {esServicio && serviciosSeleccionados.vetados && <th>Vetado</th>}
+                {esServicio && serviciosSeleccionados.notas_vetado && <th>Motivo Vetado</th>}
               </tr>
-            )))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {(datavetado.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td>{item.id_cliente}</td>
+                  <td>{item.tipo_usuario}</td>
+                  <td>{item.nombre_c}</td>
+                  <td>{item.apellidos_c}</td>
+                  <td>{item.sexo}</td>
+                  <td>{item.lugar_o}</td>
+                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
+                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
+                </tr>
+              )))}
+            </tbody>
+          </Table>
         )}
       {esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped' &&(
           <Table striped bordered hover>
@@ -969,7 +970,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
                 </tr>
               )))}
@@ -1020,7 +1022,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
                 </tr>
               )))}
@@ -1071,7 +1074,8 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
                   {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
-                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_vetado && <td>{item.notas_v}</td>}
 
                 </tr>
               )))}

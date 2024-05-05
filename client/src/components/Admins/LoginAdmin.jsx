@@ -10,14 +10,10 @@ const LoginAdmin = () => {
       <br />
       <br />
       <h1>Administrador del Albergue</h1>
-      <h2>Hospital del Niño Poblano</h2> 
+      <h2>Hospital del Niño Poblano</h2>
       
-      <br></br>
-      <br></br>
-      
-      
-      <br></br>
-      <br></br>
+      <br/>
+      <br/>
       
       <div>
         <center>
@@ -25,7 +21,6 @@ const LoginAdmin = () => {
           <center>
           <thead><tr><img src={logohnp} class ="login_header_logo" alt="logo"/></tr></thead>
           <tbody >
-            <tr><h3 className='titulo-bienvenido'>¡Te damos la bienvenida!</h3></tr>
             <tr><h3 className='titulo-bienvenido'>¡Te damos la bienvenida!</h3></tr>
             <tr> 
             <td><input type="text" id="usuario" name="usuario" placeholder="Usuario"></input></td>
