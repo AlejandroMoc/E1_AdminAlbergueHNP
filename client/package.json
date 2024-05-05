@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.16.1",
     "bootstrap": "^5.3.3",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "multiselect-react-dropdown": "^2.0.25",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",

@@ -13,7 +13,7 @@ const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewR
 const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 
 // Importa las funciones necesarias de ReportQueries.js
-const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados} = require('./queries/ReportQueries.js');
+const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
 
 
 
@@ -206,6 +206,21 @@ app.get('/allgeneralvetados', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+// Funciones para ReportQueries
+app.get('/allingresos', async (req, res) => {
+    try {
+        const startDate = req.query.startDate; // Obtener fecha de inicio del query string
+        const endDate = req.query.endDate; // Obtener fecha de fin del query string
+        const allingresos = await getAllIngresos(startDate,endDate);
+        res.json(allingresos);
+    } catch (error) {
+        console.error('Error fetching clients:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 
 //Funciones para UserListAdmin
 app.get('/allclients', async (req, res) => {

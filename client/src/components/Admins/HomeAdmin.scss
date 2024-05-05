@@ -168,3 +168,27 @@
   border-radius: 0;
   background-color: transparent;
 }
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.title-element {
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  margin-left: 10px;
+}
+
+.image-element {
+  width: 50px; /* Ancho de la imagen */
+  height: auto; /* Permitir que la altura se ajuste automáticamente */
+  margin-left: auto; /* Alinear la imagen al extremo derecho */
+  margin-right: 20px; /* Margen derecho para separar la imagen del borde de la página */
+
+}
+
+.generated-element {
+  margin-top: 5px; /* Ajusta el margen superior según sea necesario */
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  margin-left: 5px;
+}
