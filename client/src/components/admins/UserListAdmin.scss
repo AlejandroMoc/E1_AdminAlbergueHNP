@@ -35,69 +35,55 @@
   width: 100%;
 }
 
-.userlist_container_inputdate {
-  // background-color: #058844;
+.userlist_padding_formcheck{
+  padding-left:2em;
+  padding-right:2em;
+}
+
+.userlist_container_inputs {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
 }
 
-.userlist_container_inputdate .container_dash {
+.userlist_container_inputs .container_dash {
   color: #090909;
-  margin-right: 20px;
-}
-
-.userlist_container_inputdebt {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
 }
 
 .userlist_inputdebt {
   background-color: #f2f2f2;
+  text-align:center;
   height: 37px;
   width: 200px;
 }
 
-.userlist_container_inputdebt .container_dash {
+.userlist_container_inputs .container_dash {
   color: #090909;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .userlist_container_radio {
-  // background-color: #8cbcfc;
-  margin: 15px;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }
 
-.userlist_personlink{
+.userlist_color_personlink{
   color:#376faa;;
-  text-align: left;
-  // text-decoration: none;
 }
 
 .userlist_text_noresults {
-  // background-color: #4383c7;
-  margin-top: 10%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-weight: bold;
   font-size: medium;
 }
 
-.userlist_error {
-  // background-color: #8cbcfc;
+.userlist_text_error {
   color: #d84949;
   font-size: 12px;
   font-weight: bold;
   text-align: left;
 }
-
-// TODO renombrar estas clases
-
-//TODO usar el radio input de las demas paginas
-.radio_input input[type='radio'] {
-  background-color: #8cbcfc;
-  margin-right: -25%; /* Adjust this value as needed */
-}
-
-
-

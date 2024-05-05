@@ -270,7 +270,7 @@ const UserListAdmin = () => {
         <div className='userlist_container_upper'>  
           <div className='universal_container_dropdown'>
             {/* Div para dropdown */}
-            <Dropdown className='universal_container_dropdown2'>
+            <Dropdown className='universal_container_dropdown'>
               <Dropdown.Toggle  className='userlist_toggle_dropdown universal_toggle_dropdown' variant='success' id='dropdown-basic'>
                 Filtros
               </Dropdown.Toggle>
@@ -278,6 +278,7 @@ const UserListAdmin = () => {
                 {/* Checkbox de Filtros*/}
                 {filters.map((option) => (
                   <Form.Check
+                    className='userlist_padding_formcheck'
                     key={option.id}
                     type='checkbox'
                     id='option_${option.id}'
@@ -292,8 +293,8 @@ const UserListAdmin = () => {
           </div>
 
           <div>
-            <div className='userlist_container_inputdate'>
-              <div className='universal_container_pickerdate'>
+            <div className='userlist_container_inputs'>
+              <div>
                 <DatePicker
                   className='universal_input_date'
                   selected={fecha1}
@@ -305,7 +306,7 @@ const UserListAdmin = () => {
               <div className='container_dash'>
                 <p> - </p>
               </div>
-              <div className='universal_container_pickerdate'>
+              <div>
                 <DatePicker
                   className='universal_input_date'
                   selected={fecha2}
@@ -315,13 +316,13 @@ const UserListAdmin = () => {
                 />
               </div>
             </div>
-            <div className='userlist_error'>
+            <div className='userlist_text_error'>
               <p>{dateErrorMessage}</p>
             </div>
           </div>
 
           <div>
-            <div className='userlist_container_inputdebt'>
+            <div className='userlist_container_inputs'>
               <div className='deuda-picker-container'>
                   <div className='deuda-box-container'>
                     {/* Div para deuda 1 */}
@@ -356,7 +357,7 @@ const UserListAdmin = () => {
                 </div>
               </div>
             </div>
-            <div className='userlist_error'>
+            <div className='userlist_text_error'>
               <p>{debtErrorMessage}</p>
             </div>
           </div>
@@ -365,11 +366,11 @@ const UserListAdmin = () => {
         <div className='userlist_container_lower'>
           <div>
               {views.map((option) => (
-                <label className='userlist_container_radio' key={option.id}>
+                <label className='userlist_container_radio universal_label_radio' key={option.id}>
                   <input 
-                    className="form-check-input"
-                    type='radio' 
-                    name='view' 
+                    className="form-check-input universal_text_HM"
+                    type='radio'
+                    name='view'
                     value={option.id}
                     onChange={viewChange}
                     />
@@ -423,7 +424,7 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
-                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                       <td>{item.lugar_o}</td>
                       <td>{item.carnet}</td>
@@ -436,7 +437,7 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
-                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                       <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                       <td>{item.lugar_o}</td>
@@ -449,7 +450,7 @@ const UserListAdmin = () => {
                 {select_View == 9 && (
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
-                      <td><Link className='userlist_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                      <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
                       <td>{item.carnet}</td>
                       <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>

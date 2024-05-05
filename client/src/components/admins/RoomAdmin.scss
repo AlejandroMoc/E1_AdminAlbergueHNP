@@ -1,37 +1,18 @@
-.cama{
+// TODO renombrar estas clases sin que se rompa ;_;
+
+.rooms_spacing_beds{
   width: 80px;
   margin: 10px;
   //background-color: #dedede;
   align-self: flex-end;
 }
-.cama:hover{
+
+.rooms_spacing_beds:hover{
   transform: scale(1.1);
   filter: brightness(95%);
 }
 
-.camaGris{
-  background-color: #fafafa;
-}
-
-.camaRoja{
-  background-color: #ee7171;
-}
-.camaRoja:hover{
-  transform: scale(1.1);
-  background-color: #ee7171;
-}
-
-.camaAzul{
-  background-color: #8cbcfc;
-}
-.camaAzul{
-  background-color: #8cbcfc;
-}
-.camaAzul:hover{
-  transform: scale(1.1);
-  background-color: #8cbcfc;
-}
-
+//TODO renombrar
 .container{
   display: flex;
   flex-direction: row;
@@ -40,20 +21,19 @@
   justify-content: left
 }
 
-.numerazo{
+.rooms_text_beds{
   margin-top: -67%;
   font-weight: bold;
   font-size: x-large;
-  text-decoration: none !important;
   color: #090909;
+  text-decoration: none
 }
 
-.lmao{
+.rooms_text_bedsnot{
   text-decoration: none !important;
 }
 
-.addCama{
-  //background-color: #d84949;
+.rooms_spacing_addbed{
   width: 80px;
   margin: 10px;
   justify-content: center;
@@ -61,84 +41,67 @@
   border-width: 1px;
 }
 
-#addCamaButton{
+#rooms_logo_addbed{
   font-size: 200%;
   color: #090909;
   border-width: 0px;
-  // background-color: transparent;
   width: 100%;
   height: 100%;
 }
 
-.titulosZonas{
+.rooms_text_titles{
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.rooms_text_subtitles{
   //background-color: #d84949;
-  margin-top: 30px;
+  margin-top: 1em;
   display: flex;
   //flex-direction: column;
   align-items: center;
   gap:0px 100px;
 }
 
-.tituloZona{
-  margin-left: 10px;
-  font-weight: bold;
-  font-size: larger;
-}
-
-.indicadorText{
+.rooms_text_disponibility{
   font-size: large;
   font-style: italic;
 }
 
-#circuloRojo{
+.rooms_circle_red{
   color: #ee7171;
   font-size: small;
 }
 
-#circuloGris{
+.rooms_circle_gray{
   color: #c2c2c2;
   font-size: small;
 }
 
-#circuloAzul{
+.rooms_circle_blue{
   color: #8cbcfc;
   font-size: small;
 }
 
-.indicadoresDiv{
+.rooms_spacing_disponibility{
   display: flex;
   gap: 20px;
 }
 
-.numCamaText{
+.rooms_text_infotitle{
   font-weight: bold;
   font-size: x-large;
 }
 
-.letraMenu{
+.rooms_text_infosubtitles{
   font-size: large;
 }
 
-.iconStyle{
-  margin-right: 10px;
-}
-
-.regServo{
+.rooms_width_infoinputs{
   width: 200px;
 }
 
-.addLessServ{
-    text-decoration: none;
-}
-
-.divPago{
-    width: 175px;
-}
-
-.checkCondoTxt{
+.rooms_text_condpay{
     margin-left: 10px;
-}
-
-.checkCondo{
-    border-color: #c2c2c2;
 }

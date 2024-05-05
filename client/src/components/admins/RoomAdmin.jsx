@@ -193,44 +193,44 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
   const menuOcupadas = (
     <Menu>
       <Menu.Item key="numeroCama">
-        <span class="numCamaText">Cama {numCama}</span>
+        <span class="rooms_text_infotitle">Cama {numCama}</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="nombreCompleto" icon={<LuUser size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">{nombre + " " + apellidos}</span>
+      <Menu.Item key="nombreCompleto" icon={<LuUser size="20px" />}>
+        <span class="rooms_text_infosubtitles">{nombre + " " + apellidos}</span>
       </Menu.Item>
       
-      <Menu.Item key="carnet" icon={<FaRegAddressCard size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">{carnet}</span>
+      <Menu.Item key="carnet" icon={<FaRegAddressCard size="20px" />}>
+        <span class="rooms_text_infosubtitles">{carnet}</span>
       </Menu.Item>
       
-      <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" class="iconStyle"/>} title={<span class="letraMenu">{textoD+"$"+deber}</span>}>
+      <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span class="rooms_text_infosubtitles">{textoD+"$"+deber}</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3 divPago">
+          <div class="input-group mb-3 rooms_width_infoinputs">
             <span class="input-group-text" id="basic-addon1" onClick={() => { setKli(klii); if(document.getElementById("inputPagar").value==''){setMontazo(textoD == "A favor: " ? 0 : deber);} else{setMontazo(parseInt(document.getElementById("inputPagar").value))}; if(notas == ""){setNotas("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
             <input type="number" class="form-control" placeholder={textoD == "A favor: " ? "$0.00" : "$"+deber} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
           </div>
           <div class="form-check">
-            <input class="form-check-input checkCondo" type="checkbox" value="" id="flexCheckDefault" onClick={() => {setNotas("Pago (Condonado)")}}/>
-            <label class="form-check-label checkCondoTxt" for="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={() => {setNotas("Pago (Condonado)")}}/>
+            <label class="form-check-label rooms_text_condpay" for="flexCheckDefault">
               Condonar Pago
             </label>
           </div>
         </Menu.Item>
       </Menu.SubMenu>
-      <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" class="iconStyle"/>} title={<span class="letraMenu">Servicios</span>}>
+      <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" />} title={<span class="rooms_text_infosubtitles">Servicios</span>}>
         <Menu.Item key="subItemReg" onClick={(event) => event.stopPropagation()}>
-        <div className="input-group mb-3 regServo">
+        <div className="input-group mb-3 rooms_width_infoinputs">
           <span className="input-group-text" onClick={restarservo}>-</span>
           <span className="input-group-text" onClick={sumarservo}>+</span>
           <input type="text" className="form-control" value={clicked ? servoCount : ''} onChange={handleChange} placeholder={clicked ? '' : 'Desayuno: 0'} aria-label="Amount (to the nearest dollar)" id='des'/>
         </div>
-        <div className="input-group mb-3 regServo">
+        <div className="input-group mb-3 rooms_width_infoinputs">
           <span className="input-group-text" onClick={restarservo2}>-</span>
           <span className="input-group-text" onClick={sumarservo2}>+</span>
           <input type="text" className="form-control" value={clicked2 ? servoCount2 : ''} onChange={handleChange} placeholder={clicked2 ? '' : 'Comida: 0'} aria-label="Amount (to the nearest dollar)" id='com'/>
         </div>
-        <div className="input-group mb-3 regServo">
+        <div className="input-group mb-3 rooms_width_infoinputs">
           <span className="input-group-text" onClick={restarservo3}>-</span>
           <span className="input-group-text" onClick={sumarservo3}>+</span>
           <input type="text" className="form-control" value={clicked3 ? servoCount3 : ''} onChange={handleChange} placeholder={clicked3 ? '' : 'Cena: 0'} aria-label="Amount (to the nearest dollar)" id='cen'/>
@@ -239,12 +239,12 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         </Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />
-      <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" class="iconStyle"/>} danger="true">
-        <span class="letraMenu" onClick={() => { setKli2(klii);}}>Registrar Salida</span>
+      <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" />} danger="true">
+        <span class="rooms_text_infosubtitles" onClick={() => { setKli2(klii);}}>Registrar Salida</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" class="iconStyle"/>} danger="true" disabled="true">
-        <span class="letraMenu">Eliminar Cama</span>
+      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true" disabled="true">
+        <span class="rooms_text_infosubtitles">Eliminar Cama</span>
       </Menu.Item>
     </Menu>
   )
@@ -252,15 +252,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
   const menuDisponibles = (
     <Menu>
       <Menu.Item key="numeroCama">
-        <span class="numCamaText">Cama {numCama}</span>
+        <span class="rooms_text_infotitle">Cama {numCama}</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" class="iconStyle"/>}>
-        <span class="letraMenu">Añadir Huésped</span>
+      <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
+        <span class="rooms_text_infosubtitles">Añadir Huésped</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" class="iconStyle"/>} danger="true">
-        <span class="letraMenu" onClick={() => { setKa(kaa);}}>Eliminar Cama</span>
+      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
+        <span class="rooms_text_infosubtitles" onClick={() => { setKa(kaa);}}>Eliminar Cama</span>
       </Menu.Item>
     </Menu>
   )
@@ -270,10 +270,10 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
 
   return (
     <Dropdown overlay={menu} trigger={['contextMenu']}>
-      <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+klii} className="lmao">
-        <div className="card cama" style={{ backgroundColor: color }} onClick={() => {console.log("AA , "+klii)}}>
+      <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+klii} className="rooms_text_bedsnot">
+        <div className="card rooms_spacing_beds" style={{ backgroundColor: color }} onClick={() => {console.log("AA , "+klii)}}>
           <img src={iconocama} className="card-img-top" alt="..." />
-          <p className="numerazo">{numCama}</p>
+          <p className="rooms_text_beds">{numCama}</p>
         </div>
       </Link>
     </Dropdown>
@@ -339,11 +339,10 @@ const RoomAdmin = () => {
   const refreshBedsData = (x) => {
     setZ(x)
   };
-
   
   useEffect(() => {
     if(zona != 0){
-    fetch('http://localhost:8000/addCama' , {
+    fetch('http://localhost:8000/rooms_spacing_addbed' , {
       method: 'POST',
       body: JSON.stringify({id_zona: zona}),
       headers: {
@@ -358,17 +357,26 @@ const RoomAdmin = () => {
 
   let contador = -1;
 
-  const aisladoLetras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I',
-                        'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
-                        'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  const aisladoLetras = [];
+
+  for (let i = 1; i <= 26; i++) {
+    for (let j = 1; j <= 2; j++) {
+      const letra = String.fromCharCode(64 + i);
+      const combinacion = letra + j;
+      aisladoLetras.push(combinacion);
+    }
+  }
+  
+  console.log(aisladoLetras);
+
   return (
     <div className='App_minheight'>
-        <div class="titulosZonas container">
-          <span class="tituloZona">ZONA DE MUJERES</span>
-          <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
-            <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
-            <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
+        <div class="rooms_text_subtitles container">
+          <span class="rooms_text_titles">ZONA DE MUJERES</span>
+          <div class="rooms_spacing_disponibility">
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_blue"/> Ocupado</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_red"/> Deudor</span>
           </div>
         </div>
         
@@ -397,19 +405,19 @@ const RoomAdmin = () => {
               })
             )}
 
-          <div class="card addCama">
-            <button id="addCamaButton" onClick={() => { setZona(1); }}><IoAddCircleOutline /></button>
+          <div class="card rooms_spacing_addbed">
+            <button id="rooms_logo_addbed" onClick={() => { setZona(1); }}><IoAddCircleOutline /></button>
           </div>
         </div>
 
         <hr></hr>
         
-        <div class="titulosZonas container">
-          <span class="tituloZona">ZONA DE HOMBRES</span>
-          <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
-            <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
-            <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
+        <div class="rooms_text_subtitles container">
+          <span class="rooms_text_titles">ZONA DE HOMBRES</span>
+          <div class="rooms_spacing_disponibility">
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_blue"/> Ocupado</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_red"/> Deudor</span>
           </div>
         </div>
         <div class="container">
@@ -435,19 +443,19 @@ const RoomAdmin = () => {
                 }
               })
             )}
-          <div class="card addCama">
-            <button id="addCamaButton" onClick={() => {setZona(2)}}><IoAddCircleOutline /></button>
+          <div class="card rooms_spacing_addbed">
+            <button id="rooms_logo_addbed" onClick={() => {setZona(2)}}><IoAddCircleOutline /></button>
           </div>
         </div>
 
         <hr/>
 
-        <div class="titulosZonas container">
-          <span class="tituloZona">ZONA DE AISLADOS</span>
-          <div class="indicadoresDiv">
-            <span class="indicadorText"><FaCircle id="circuloGris"/> Disponible</span>
-            <span class="indicadorText"><FaCircle id="circuloAzul"/> Ocupado</span>
-            <span class="indicadorText"><FaCircle id="circuloRojo"/> Deudor</span>
+        <div class="rooms_text_subtitles container">
+          <span class="rooms_text_titles">ZONA DE AISLADOS</span>
+          <div class="rooms_spacing_disponibility">
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_blue"/> Ocupado</span>
+            <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_red"/> Deudor</span>
           </div>
         </div>
         <div class="container">
@@ -475,8 +483,8 @@ const RoomAdmin = () => {
                 }
               })
             )}
-          <div class="card addCama">
-            <button id="addCamaButton" onClick={() => { setZona(3)}}><IoAddCircleOutline /></button>
+          <div class="card rooms_spacing_addbed">
+            <button id="rooms_logo_addbed" onClick={() => { setZona(3)}}><IoAddCircleOutline /></button>
           </div>
         </div>
         <br/>

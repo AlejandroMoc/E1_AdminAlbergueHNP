@@ -124,24 +124,24 @@ const fechaNueva = () => {
 
           <h4>Información de Familiar</h4>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
           </div>
           {showNumbersSelect === true && (
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuCalendarDays /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuCalendarDays /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{fechaNueva()}</span>
           </div>)}
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
             <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
           </div>
 
@@ -150,20 +150,20 @@ const fechaNueva = () => {
 
           <h4>Información de Paciente</h4>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.carnet}</span>
           </div>
           <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><RiHospitalLine /></span>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
           </div>
           <div class="input-group mb-3 "></div>
         </div>
-        <div class="user_space_not">
+        <div class="user_spacing_not">
           <div class="input-group mb-3 "></div>
           <div class="mb-3">
             <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
@@ -185,7 +185,7 @@ const fechaNueva = () => {
               </div>)}
               {showNumbersSelect === true && ( 
           <div class="input-group mb-3 ">
-          <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuBedDouble /></span>
+          <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuBedDouble /></span>
           <span class="input-group-text user_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
@@ -219,8 +219,8 @@ const fechaNueva = () => {
               <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
           </div>)}
-          <div class="input-group mb-3 lmao" onChange={handlepagoChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
+          <div class="input-group mb-3" onChange={handlepagoChange}>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LiaCoinsSolid /></span>
             <span class="input-group-text user_span_info user_adjust_debt" id="basic-addon1">
               {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>

@@ -304,12 +304,12 @@ const handleBtRegistroClick = async () => {
 
           <h4>Información de Familiar</h4>
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
+              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" class="form-control user_spacing_reg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
             </div>
             <div class="input-group mb-3 "onChange={handleApellidos_CChange} >
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_space_reg" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_c}></input>
+              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" class="form-control user_spacing_reg" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_c}></input>
             </div>
            <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
               <div class="user_div_radio">
@@ -369,20 +369,20 @@ const handleBtRegistroClick = async () => {
           <h4>Información de Paciente</h4>
 
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
+            <input type="text" class="form-control user_spacing_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
           </div>
           <div class="input-group mb-3 " onChange={handleNombre_PChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" value={nombre_p}></input>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class="form-control user_spacing_reg" placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" value={nombre_p}></input>
           </div>
           <div class="input-group mb-3 " onChange={handleApellidos_PChange} >
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_p}></input>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class="form-control user_spacing_reg" placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_p}></input>
           </div>
           <div class="input-group mb-3 " onChange={handleCarnetChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <input type="text" class="form-control user_spacing_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
           </div>
           <div class="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
@@ -401,7 +401,7 @@ const handleBtRegistroClick = async () => {
 
 
 
-        <div class="user_space_not">
+        <div class="user_spacing_not">
 
           <div class="mb-3" onChange={handleNotas_CChange}>
             <textarea class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>

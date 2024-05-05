@@ -55,13 +55,9 @@
   padding: 8px;
   background-color: #f2f2f2;
   width: 200px;
-  margin-right: 20px;
   text-align: center;
 }
 
-.universal_input_date:last-child {
-  margin-right: 0;
-}
 
 .universal_input_date:focus {
   outline: none;
@@ -82,38 +78,9 @@
   align-items: center;
 }
 
-.universal_container2_checkbox {
-  display: flex;
-  align-items: center;
-  margin-top: 25px;
-}
-
-//TODO mover a reports
-.universal_rectangle_gray {
-  width: 100%;
-  height: 300px;
-  background-color: #dedede;
-  border: none;
-}
-
-.universal_button_export {
-  margin-top: 30px;
-  text-align: right;
-}
-
 .universal_container_dropdown {
   text-align: left;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.universal_container_dropdown2 {
-  margin-right: 30px;
-}
-
-.universal_container_services {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 1em;
 }
 
 .universal_toggle_dropdown {
@@ -126,20 +93,9 @@
   white-space: nowrap;
 }
 
-.universal_dropdown_custommenu {
-  max-height: 200px;
-  max-width: 200px;
-  overflow-y: auto;
-}
-
-.universal_margin_formcheck{
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-}
-
 .universal_label_radio {
   margin-right: 20px;
-  font-size: larger;
+  font-size: large;
 }
 
 .universal_checkbox_HM {
@@ -151,28 +107,53 @@
   margin-right: 20px;
 }
 
-@media only screen and (max-width: 1000px) {
-  .universal_container2_checkbox {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+// TODO Mover a reportes
+.reports_button_export {
+  text-align: right;
 }
 
-//MOVER Y RENOMBRAR clases a archivo de reportes
+.reports_container_services {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
 
-/* Estilo específico para los checkboxes dentro de ReportsAdmin */
-// .ReportsAdmin-checkbox input[type="checkbox"] {
-//   width: 15px;
-//   margin: 0 5px 0 20px;
-//   padding: 0;
-//   border: none;
-//   border-radius: 0;
-//   background-color: transparent;
-// }
+.reports_dropdown_custommenu {
+  max-height: 200px;
+  max-width: 200px;
+  overflow-y: auto;
+}
 
+.reports_margin_formcheck{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
 
-.report_flex_checkboxes{
+.reports_flex_checkboxes{
   display: flex;
   //Bottom left right top
   margin: 20px 0px 0px 0px;
+}
+
+.reports_title_container {
+  display: flex;
+  align-items: center;
+}
+
+.reports_title_element {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.reports_image_element {
+  width: 50px;
+  height: auto;
+  margin-left: auto;
+  margin-right: 20px;
+
+}
+
+.reports_generated_element {
+  margin-top: 5px;
+  font-size: 14px;
+  margin-left: 5px;
 }
