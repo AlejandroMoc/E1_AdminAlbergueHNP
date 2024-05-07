@@ -10,6 +10,7 @@ const {getAllClients, getClientsByFilter } = require('./queries/UserListQueries.
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
+const {getNewAdmin} = require('./queries/LoginQueries.js');
 
 //Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {
@@ -351,39 +352,48 @@ app.post('/regServacio', (req, res) => {
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/registrarPago', async(req, res) => {
-    try {
-        const pago = req.body.pago;
-        const id_cliente = req.body.id_cliente;
-        const registerNewPago = await getNewRegister(id_cliente, pago);
-        res.json(registerNewPago);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})
+// app.post('/registrarPago', async(req, res) => {
+//     try {
+//         const pago = req.body.pago;
+//         const id_cliente = req.body.id_cliente;
+//         const registerNewPago = await getNewRegister(id_cliente, pago);
+//         res.json(registerNewPago);
+//     } catch (error) {
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// })
 
-//Para SignUp
 app.post('/signup', async(req, res) => {
     const {username, password} = req.body;
-    if (!!!username || !!!password){
-        return res.status(400).send("Fields are required");
+    if (!username || !password){
+        return res.status(400).send("Fields are required1");
     }
 
-    //Crear usuario
-    res.status(200).json("User created succesfully");
+    //Crear usuario TODO AQUI
+    try{
+        const nombre_u=req.body.username;
+        const contrasena=req.body.password;
+        await getNewAdmin(nombre_u, contrasena);
+        res.status(200).json("User created successfully");
+        // const registerNewAdmin = await getNewAdmin(nombre_u, contrasena);
+        // res.json(registerNewAdmin);
 
-    // res.send("signout")
+    } catch(error){
+        console.error("Error creating user:", error);
+        res.status(500).json({ error: 'Internal server error aaa' });
+    }
 });
-
 
 //Para LogIn
 app.post('/login', async(req, res) => {
     const {username, password} = req.body;
     if (!!!username || !!!password){
-        return res.status(400).send("Fields are required");
+        return res.status(400).send("Fields are required2");
     }
 
-    //autenticar usuario
+    //autenticar usuario TODO AQUI
+
+
     const accessToken = "accessToken";
     const refreshToken = "refreshToken";
     const user = {
@@ -394,9 +404,19 @@ app.post('/login', async(req, res) => {
     res.status(200).json({user, accessToken, refreshToken});
 });
 
-app.get('/hello', (req, res) => {
-    res.json({message:"Hola"});
-});
+// app.get('/tipoCliente/:id_cliente', async(req, res) => {
+//     try {
+//         const areas = await getTipoCliente(req.params.id_cliente);
+//         res.json(areas);
+//     } catch (error) {
+//         console.error('Error fetching TIPO CLIENTE:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// })
+
+// app.get('/hello', (req, res) => {
+//     res.json({message:"Hola"});
+// });
 
 const port = process.env.PORT || 8000;
 
