@@ -1,4 +1,4 @@
-const db = require('../db_connection'); // Import the database connection
+const db = require('../db_connection');
 
 const getInfo = async() => {
     try {

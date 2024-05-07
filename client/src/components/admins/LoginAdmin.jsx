@@ -1,18 +1,21 @@
 import React from 'react';
-import "./LoginAdmin.scss";
+import {useState } from 'react';
+import {Navigate} from "react-router-dom";
+import {useAuth } from '../../auth/AuthProvider';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
-// import {Link} from "react-router-dom";
-import { useForm } from '../../hook/UseForm';
 
 const LoginAdmin = () => {
 
-  //Diccionario de datos de login
-  const {username, password, onInputChange, onResetForm} = 
-  useForm({
-    username: '',
-    password: '',
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  //Redirigir a dashboard si ya se está autenticado
+  const auth = useAuth();
+
+  if (auth.isAuthenticated) {
+    return <Navigate to="/dashboard"/>
+  }
 
   return (
     <div className='App_minheight_login'>
@@ -23,29 +26,14 @@ const LoginAdmin = () => {
       
       <br/>
       
-      <div>
-        <center>
-        <table className='login_table'>
-          <center>
-            <thead><tr><img src={logohnp} class ="login_header_logo" alt="logo"/></tr></thead>
-            <tbody >
-              <tr>
-                <h3 className='titulo-bienvenido'>¡Te damos la bienvenida!</h3></tr>
-              <tr>
-              <td>
-                <input type="text" id="usuario" name="usuario" placeholder="Usuario"></input></td>
-              </tr>
-              <tr> 
-              <td>
-                <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña"></input></td>
-              </tr>
-              <tr>
-                <button type="submit" className='App_buttonaccept'>Iniciar sesión </button>
-              </tr>
-            </tbody>
-          </center>
-        </table>
-        </center>
+      <div className='login_table'>
+          <div><img src={logohnp} class ="login_header_logo" alt="logo"/></div>
+
+          <h3>¡Te damos la bienvenida!</h3>
+
+          <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
+          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
+          <button className="login_inputs App_buttonaccept">Iniciar sesión </button>
       </div>
 
     </div>

@@ -15,7 +15,7 @@ const Navbar = () => {
     <>
         <nav class = "navbar">
         <ul class = "navbar_left">
-          <div className="navbar_divisor_logo"><Link to="/"><img src={logohnp} className="navbar_color_logo" alt="logo"/></Link></div>
+          <div className="navbar_divisor_logo"><Link to="/dashboard"><img src={logohnp} className="navbar_color_logo" alt="logo"/></Link></div>
         </ul>
         <ul class ='navbar_right'>
           <Link class = 'navbar_text' to ="/usernew"> Registro </Link>

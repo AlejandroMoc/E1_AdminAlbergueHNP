@@ -1,12 +1,17 @@
 .login_table{
-  padding: 10px;
+  padding: 2vh;
   border-collapse: separate;
-  border-spacing: 15px 15px;
   background-color: #fafafa;
   border-radius: 1vh;
   width: 30%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login_header_logo {
   height: 15vmin;
+}
+
+.login_inputs{
+  margin: 1vh;
 }

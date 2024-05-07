@@ -1,4 +1,4 @@
-const db = require('../db_connection'); // Import the database connection
+const db = require('../db_connection');
 
 // Function to get all clients
 const getAllClients = async () => {

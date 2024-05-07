@@ -5,19 +5,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js')
-const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
-// const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
-const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js')
-// const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
-const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
+const {getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
+const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
+const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
+const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
 
-// Importa las funciones necesarias de ReportQueries.js
-const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
-
-
-
-//Funciones para UserNewAdmin
+//Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {
     try {
         const beds = await getAllDispBeds();
@@ -73,7 +67,6 @@ app.post('/registerEntradaUnica', async(req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })  
-
 
 app.get('/allareas', async(req, res) => {
     try {
@@ -178,9 +171,6 @@ app.get('/allgeneralvisitantes', async (req, res) => {
     }
 });
 
-
-
-
 app.post('/allclientinfo', async(req, res) => {
     try {
         const nombre_c = req.body.nombre;
@@ -220,8 +210,6 @@ app.get('/allingresos', async (req, res) => {
     }
 });
 
-
-
 //Funciones para UserListAdmin
 app.get('/allclients', async (req, res) => {
     try {
@@ -251,7 +239,7 @@ app.post('/someclients', async (req, res) => {
     }
 });
 
-//USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
+//Funciones para UserInfo
 app.get('/clienteInfo/:id_cliente', async(req, res) => {
     try {
         const areas = await getclienteInfoD(req.params.id_cliente);
@@ -362,8 +350,6 @@ app.post('/regServacio', (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => console.log('ERROR: ', error));
 })
-//BEDS ----------- PAGINA CAMAS-----------------
-
 
 app.post('/registrarPago', async(req, res) => {
     try {
@@ -376,11 +362,9 @@ app.post('/registrarPago', async(req, res) => {
     }
 })  
 
-
 // app.get('/hello', (req, res) => {
 //     res.json({message:"Hola"});
 // })
-
 
 app.listen(8000, () =>{
     console.log('Servidor corriendo en el puerto 8000')

@@ -12,7 +12,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               >
-              Albergue del Hospital del Niño Poblano.
+              Albergue del Hospital del Niño Poblano
             </a>
             {/* {' '}Con tecnología de{' '}
             <a className='footer-link'
