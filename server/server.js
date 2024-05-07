@@ -360,12 +360,46 @@ app.post('/registrarPago', async(req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
-})  
+})
 
-// app.get('/hello', (req, res) => {
-//     res.json({message:"Hola"});
-// })
+//Para SignUp
+app.post('/signup', async(req, res) => {
+    const {username, password} = req.body;
+    if (!!!username || !!!password){
+        return res.status(400).send("Fields are required");
+    }
 
-app.listen(8000, () =>{
+    //Crear usuario
+    res.status(200).json("User created succesfully");
+
+    // res.send("signout")
+});
+
+
+//Para LogIn
+app.post('/login', async(req, res) => {
+    const {username, password} = req.body;
+    if (!!!username || !!!password){
+        return res.status(400).send("Fields are required");
+    }
+
+    //autenticar usuario
+    const accessToken = "accessToken";
+    const refreshToken = "refreshToken";
+    const user = {
+        id: '1',
+        username: 'Admin1',
+    }
+
+    res.status(200).json({user, accessToken, refreshToken});
+});
+
+app.get('/hello', (req, res) => {
+    res.json({message:"Hola"});
+});
+
+const port = process.env.PORT || 8000;
+
+app.listen(port, () =>{
     console.log('Servidor corriendo en el puerto 8000')
 });

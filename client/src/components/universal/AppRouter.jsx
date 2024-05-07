@@ -10,6 +10,7 @@ import Profile from "../sites/Profile";
 import ProfilePassword from "../sites/ProfilePassword";
 import Reports from "../sites/Reports";
 import Login from "../sites/Login";
+import SignUp from "../sites/SignUp";
 import InfoUser from "../sites/InfoUser";
 import Navbar from "./Navbar";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -19,14 +20,10 @@ export const AppRouter = () => {
         <>
             <Routes>
 
-                <Route
-                    path="/login"
-                    element={<Login />}
-                />
-                <Route
-                    path="*"
-                    element={<Navigate to="/login" />}
-                />
+                <Route path="/login" element={<Login />}/>
+                {/* TODO borrar antes de versión final */}
+                <Route path="/signup" element={<SignUp />}/>
+                <Route path="*" element={<Navigate to="/login" />}/>
 
                 <Route path="/" element = {<ProtectedRoute/>}>
                     <Route element = {<Navbar/>}>

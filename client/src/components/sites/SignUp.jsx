@@ -3,15 +3,15 @@ import React from "react";
 
 //Importar componentes
 import Footer from '../universal/Footer';
-import LoginAdmin from "../admins/LoginAdmin";
+import SignUpAdmin from "../admins/SignUpAdmin";
 
-const Login = () => {
+const SignUp = () => {
 	return (
 		<div className="App_global App_background_picture">
-			<LoginAdmin/>
+			<SignUpAdmin/>
 			<Footer/>
 		</div>
 	);
 };
 
-export default Login;
+export default SignUp;

@@ -4,8 +4,9 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
+import { AuthResponseError } from '../../types/types';
 
-const LoginAdmin = () => {
+const SignUpAdmin = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +19,7 @@ const LoginAdmin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch("http://localhost:8000/signup", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
@@ -30,7 +31,7 @@ const LoginAdmin = () => {
       });
   
       if (response.ok) {
-        console.log("Login successful");
+        console.log("User created successfully");
         // setErrorResponse("");
 
         goTo("/");
@@ -60,15 +61,15 @@ const LoginAdmin = () => {
       <form className='login_table' onSubmit={handleSubmit}>
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
 
-          <h3>¡Te damos la bienvenida!</h3>
+          <h3>Crear un usuario</h3>
 
           <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
-          <button className="login_inputs App_buttonaccept">Iniciar sesión </button>
+          <button className="login_inputs App_buttonaccept">Registrarse</button>
       </form>
 
     </div>
   )
 }
 
-export default LoginAdmin
+export default SignUpAdmin

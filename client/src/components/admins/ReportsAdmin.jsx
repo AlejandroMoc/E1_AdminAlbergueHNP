@@ -240,7 +240,7 @@ const generatePDF = useReactToPrint({
   },
   documentTitle: "UserReport",
   pageStyle: '@page { size: auto; margin: 0mm; } @media print { body { -webkit-print-color-adjust: exact; } }',
-  // onAfterPrint: () => alert("Reporte guardado en PDF.")
+  onAfterPrint: () => alert("Reporte guardado en PDF.")
 });
 
 // Función para obtener la fecha y hora actual en el formato deseado
