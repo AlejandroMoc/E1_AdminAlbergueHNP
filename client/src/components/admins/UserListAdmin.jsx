@@ -384,6 +384,7 @@ const UserListAdmin = () => {
               <thead>
                 {(select_View == 6 || select_View == 7) && (
                   <tr>
+                    {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
                     <th>No. Cama</th>
                     <th>Nombre</th>
                     <th>Fecha de Ingreso</th>
@@ -424,6 +425,7 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <tr key={i} style={{ background: '#fff' }}>
                       <td>{item.id_cama}</td>
+                      {/*TODO ver si conviene dividir en nombre y apellidos*/}
                       <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
                       <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                       <td>{item.lugar_o}</td>

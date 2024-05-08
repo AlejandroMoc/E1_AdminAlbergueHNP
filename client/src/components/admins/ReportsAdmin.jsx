@@ -205,15 +205,15 @@ const generatePDF = useReactToPrint({
     const titleElement = document.createElement('h1'); // Creamos un elemento h1 para el título
     titleElement.classList.add('reports_title_element'); // Agregamos la clase al título
 
-    let reportType = "Reporte General Albergue HNP";
+    let reportType = "Reporte General del Albergue HNP";
     if (esUsuario && mostrarHuespedes) {
-      reportType = "Reporte de Huéspedes  Albergue HNP";
+      reportType = "Reporte de Huéspedes del Albergue HNP";
     } else if (esUsuario && mostrarVisitantes) {
-      reportType = "Reporte de Visitantes  Albergue HNP";
+      reportType = "Reporte de Visitantes del Albergue HNP";
     } else if (esUsuario && mostrarVetados) {
-      reportType = "Reporte de Vetados  Albergue HNP";
+      reportType = "Reporte de Vetados del Albergue HNP";
     } else if (esIngreso) {
-      reportType = "Reporte de Ingresos  Albergue HNP";
+      reportType = "Reporte de Ingresos del Albergue HNP";
     }
 
     titleElement.innerText = reportType; // Establecemos el texto del título
@@ -414,7 +414,7 @@ const getCurrentDateTime = () => {
     };
 
     return (
-      <div className='App_minheight App_minpadding'>
+      <div className='App_minheight App_minpadding reports_container_services'>
         {/* Div para agrupar los campos de entrada */}
         <div className="universal_container_inputdate">
           {/* Campo de entrada para la fecha 1 */}
@@ -709,7 +709,7 @@ const getCurrentDateTime = () => {
       </div>
 
       <div ref={componentPDF} style={{width:'100%' , position: 'horizontal'}}>
-      <div className="report-container">
+      <div>
       <h1>{getTitle()}</h1>
          {/* Mostrar los datos en una tabla si esIngreso está marcado */}
          {esIngreso && (

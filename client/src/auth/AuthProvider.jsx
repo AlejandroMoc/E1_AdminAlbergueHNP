@@ -15,7 +15,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [refreshToken, setRefreshToken] = useState("");
 
-  useEffect(()=>{},[]);
+  useEffect(()=>{
+    checkAuth();
+  },[]);
 
   async function requestNewAccessToken(refreshToken){
     try {
@@ -23,7 +25,7 @@ const AuthProvider = ({ children }) => {
         method: "POST",
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
-          Authorization: 'Bearer ${refreshToken}',
+          Authorization: `Bearer ${refreshToken}`,
         },
       });
 
@@ -43,7 +45,6 @@ const AuthProvider = ({ children }) => {
       return null;
     }
   }
-
 
   async function getUserInfo(accessToken){
     try {
@@ -97,16 +98,15 @@ const AuthProvider = ({ children }) => {
     setUser(userInfo);
   }
 
-
   function getAccessToken() {
     return accessToken;
   }
 
   function getRefreshToken() {
-    const token = localStorage.getItem("token");
-    if (token){
-      const {refreshToken} = JSON.parse(token);
-      return refreshToken;
+    const tokenData = localStorage.getItem("token");
+    if (tokenData){
+      const token = JSON.parse(tokenData);
+      return token;
     }
     return null;
   }

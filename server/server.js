@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const authenticate = require("../client/src/auth/authenticate");
 require('dotenv').config();
 
 const port = process.env.PORT || 8000;
@@ -8,13 +9,23 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
+//Importar las rutas (para no tener todo dentro del server.js)
+//TODO modificar estas para que empiecen por /api/ o algo asi
+app.use("/signup", require("./routes/signup"));
+app.use("/login", require("./routes/login"));
+app.use("/user", authenticate, require("./routes/login"));
+app.use("/todos", authenticate, require("./routes/todos"));
+app.use("/refresh-token", require("./routes/refreshToken"));
+app.use("/signout", require("./routes/signout"));
+
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
-const {getNewAdmin, getNewLogin, getTokenFromHeader, verifyRefreshToken, generateAccessToken} = require('./queries/LoginQueries.js');
 const { verify } = require('jsonwebtoken');
+
+//TODO urgente reubicar rutas en archivos separados en vez de tener todo aqui
 
 //Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {
@@ -356,92 +367,7 @@ app.post('/regServacio', (req, res) => {
         .catch((error) => console.log('ERROR: ', error));
 })
 
-//Para SignUp
-app.post('/signup', async(req, res) => {
-    const {username, password} = req.body;
-    if (!username || !password){
-        return res.status(400).send("Fields are required");
-    }
-    try{
-        const nombre_u=req.body.username;
-        const contrasena=req.body.password;
-        await getNewAdmin(nombre_u, contrasena);
-        res.status(200).json("User created successfully");
-    } catch(error){
-        console.error("Error creating user:", error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-//Para LogIn
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
-      return res.status(400).send("Fields are required");
-    }
-    try {
-      const nombre_u = req.body.username;
-      const contrasena = req.body.password;
-  
-      // TODO: Perform the login process and retrieve the necessary data
-      const loginResult = await getNewLogin(nombre_u, contrasena);
-      const { existingUser, accessToken, refreshToken } = loginResult;
-  
-      res.status(200).json({
-        body: {
-          user: existingUser,
-          accessToken: accessToken,
-          refreshToken: refreshToken
-        }
-      });
-    } catch (error) {
-      console.error("Error logging in:", error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.post('/refresh-token', async (req, res) => {
-    const refreshToken = getTokenFromHeader(req.headers);
-
-    if (refreshToken){
-
-        // try {
-        //     const found = await Token.findOne({token: refreshToken});
-        //     if (!found ){
-        //         return res.status(401).send({error:"Unauthorized"});
-        //     }
-        try {
-            const query = 'SELECT * FROM tokens WHERE token = $1';
-            const values = [refreshToken];
-            
-            const { rows } = await pool.query(query, values);
-            const found = rows[0];
-            
-            if (!found) {
-              return res.status(401).send({ error: 'Unauthorized' });
-            }
-            const payload = verifyRefreshToken(found.token);
-            if (payload){
-                const accessToken=generateAccessToken(payload.user);
-                return res.status(200).json({accessToken});
-            } else{
-                return res.status(401).send({error:"Unauthorized"});
-            }
-
-        } catch (error) {
-            return res.status(401).send({error:"Unauthorized"});
-        }
-
-    }else {
-        res.status(401).send({error: "Unauthorized"});
-    }
-
-    res.send("refresh-token");
-});
-
-// app.get('/hello', (req, res) => {
-//     res.json({message:"Hola"});
-// });
+//Para LogIn y Signup se han importado las rutas arriba
 
 app.listen(port, () =>{
     console.log('Servidor corriendo en el puerto 8000')

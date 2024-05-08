@@ -59,7 +59,6 @@
   height: 40px;
 }
 
-
 .universal_input_date:focus {
   outline: none;
 }
@@ -114,6 +113,11 @@
 }
 
 .reports_container_services {
+  text-align: left;
+  align-content: left;
+}
+
+.reports_container_services {
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
@@ -131,8 +135,8 @@
 
 .reports_flex_checkboxes{
   display: flex;
-  //Bottom left right top
-  margin: 20px 0px 0px 0px;
+  //Bottom left top right
+  margin: 20px 0px 20px 0px;
 }
 
 .reports_title_container {
@@ -150,7 +154,6 @@
   height: auto;
   margin-left: auto;
   margin-right: 20px;
-
 }
 
 .reports_generated_element {
