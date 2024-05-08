@@ -17,9 +17,9 @@ const AuthProvider = ({ children }) => {
   }
 
   function saveUser(userData) {
-    setAccessToken(userData.body.accessToken);
-    setRefreshToken(userData.body.refreshToken);
-    localStorage.setItem("token", JSON.stringify(userData.body.refreshToken));
+    setAccessToken(userData.accessToken);
+    setRefreshToken(userData.refreshToken);
+    localStorage.setItem("token", JSON.stringify(userData.refreshToken));
     setIsAuthenticated(true);
   }
 
