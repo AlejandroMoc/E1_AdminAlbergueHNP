@@ -1,4 +1,4 @@
-const getTokenFromHeader = require("../../../server/queries/LoginQueries.js");
+const { getTokenFromHeader, verifyRefreshToken, generateAccessToken } = require("../../../server/queries/LoginQueries.js");
 
 function authenticate(req, res, next){
     const token = getTokenFromHeader(req.headers);

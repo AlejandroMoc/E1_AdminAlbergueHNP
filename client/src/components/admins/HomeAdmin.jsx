@@ -7,10 +7,17 @@ import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
 import {Link} from "react-router-dom";
+import { useAuth } from '../../auth/AuthProvider';
 
 const HomeAdmin = () => {
+
+  const auth=useAuth();
+
   return (
     <div className='App_minheight'>
+      <br/>
+      {/*TODO meterle aleatorización de unos 10 mensajes cada vez*/}
+      <h2>¡Te damos la bienvenida, {auth.getUser()?.username || ""}!</h2>
       <table className='universal_header_table'>
         <tbody>
           <tr>

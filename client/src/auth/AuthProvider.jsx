@@ -1,11 +1,13 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
+// import { r } from "tar";
 // import type {AuthResponse, AccessTokenResponse, User} from "../types/types"
 
 const AuthContext = createContext({
   isAuthenticated: false,
-  getAccessToken:()=>{},
+  getAccessToken: () => {},
   saveUser: (userData) => {},
-  getRefreshToken:()=>{},
+  getRefreshToken: () => {},
+  getUser: () => ({}),
 });
 
 const AuthProvider = ({ children }) => {
@@ -52,7 +54,7 @@ const AuthProvider = ({ children }) => {
         method: "GET",
         headers: {
           'Content-type': "application/json; charset=UTF-8",
-          Authorization: 'Bearer ${accessToken}',
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -62,7 +64,7 @@ const AuthProvider = ({ children }) => {
         if (json.error){
           throw new Error(json.error);
         }
-        return json;
+        return json.body;
       }else{
         throw new Error(response.statusText);
       }
@@ -115,10 +117,9 @@ const AuthProvider = ({ children }) => {
     saveSessionInfo(userData.user, userData.accessToken,userData.refreshToken);
   }
 
-  // function saveUser(userData) {
-  //   const { user, accessToken, refreshToken } = userData.body;
-  //   saveSessionInfo(user, accessToken, refreshToken);
-  // }
+  function getUser(userData) {
+    return user;
+  }
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -128,7 +129,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken }}>
+    <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser}}>
       {children}
     </AuthContext.Provider>
   );
