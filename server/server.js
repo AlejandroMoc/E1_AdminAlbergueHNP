@@ -13,7 +13,8 @@ const {getAllClients, getClientsByFilter } = require('./queries/UserListQueries.
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
-const {getNewAdmin, getNewLogin} = require('./queries/LoginQueries.js');
+const {getNewAdmin, getNewLogin, getTokenFromHeader, verifyRefreshToken, generateAccessToken} = require('./queries/LoginQueries.js');
+const { verify } = require('jsonwebtoken');
 
 //Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {
@@ -397,6 +398,45 @@ app.post('/login', async (req, res) => {
       console.error("Error logging in:", error);
       res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+app.post('/refresh-token', async (req, res) => {
+    const refreshToken = getTokenFromHeader(req.headers);
+
+    if (refreshToken){
+
+        // try {
+        //     const found = await Token.findOne({token: refreshToken});
+        //     if (!found ){
+        //         return res.status(401).send({error:"Unauthorized"});
+        //     }
+        try {
+            const query = 'SELECT * FROM tokens WHERE token = $1';
+            const values = [refreshToken];
+            
+            const { rows } = await pool.query(query, values);
+            const found = rows[0];
+            
+            if (!found) {
+              return res.status(401).send({ error: 'Unauthorized' });
+            }
+            const payload = verifyRefreshToken(found.token);
+            if (payload){
+                const accessToken=generateAccessToken(payload.user);
+                return res.status(200).json({accessToken});
+            } else{
+                return res.status(401).send({error:"Unauthorized"});
+            }
+
+        } catch (error) {
+            return res.status(401).send({error:"Unauthorized"});
+        }
+
+    }else {
+        res.status(401).send({error: "Unauthorized"});
+    }
+
+    res.send("refresh-token");
 });
 
 // app.get('/hello', (req, res) => {

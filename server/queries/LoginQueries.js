@@ -104,4 +104,25 @@ const getNewLogin = async (nombre_u, contrasena) => {
   }
 };
 
-module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken};
+function getTokenFromHeader(headers){
+  if (headers && headers.authorization){
+    const parted = headers.authorization.split("");
+    if (parted.length ==2){
+      return parted[1];
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
+
+//Funciones para validar tokens
+
+function verifyAccessToken(token){
+  return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+}
+function verifyRefreshToken(token){
+  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+}
+module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken};

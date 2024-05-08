@@ -238,8 +238,9 @@ const generatePDF = useReactToPrint({
 
     return pdfContent; // Devolvemos el contenido modificado
   },
-  documentTitle: "UserReport",
-  pageStyle: '@page { size: auto; margin: 0mm; } @media print { body { -webkit-print-color-adjust: exact; } }',
+  documentTitle: "",
+  //Top Right Bottom Left
+  pageStyle: '@page { size: auto; margin: 0mm 5mm 0mm 5mm; } @media print { body { -webkit-print-color-adjust: exact; } }',
   onAfterPrint: () => alert("Reporte guardado en PDF.")
 });
 
@@ -247,8 +248,14 @@ const generatePDF = useReactToPrint({
 const getCurrentDateTime = () => {
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`; // Formato: DD/MM/YYYY
-  const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`; // Formato: HH:MM:SS
-  return `${formattedDate} ${formattedTime}`;
+  //Convertir segundos a dos digitos si se necesita:
+  if (currentDate.getSeconds < 10){
+    const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:0${currentDate.getSeconds()}`;
+    return `${formattedDate} a la hora ${formattedTime}`;
+  }else{
+    const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`; // Formato: HH:MM:SS
+    return `${formattedDate} a la hora ${formattedTime}`;
+  }
 };
 
   // Estado para los servicios individuales
@@ -415,7 +422,7 @@ const getCurrentDateTime = () => {
           <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
-              placeholderText="DD/MM/YY"
+              placeholderText='Inicio (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
@@ -428,7 +435,7 @@ const getCurrentDateTime = () => {
             <DatePicker
               selected={endDate}
               onChange={date => setEndDate(date)}
-              placeholderText="DD/MM/YY"
+              placeholderText='Fin (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada

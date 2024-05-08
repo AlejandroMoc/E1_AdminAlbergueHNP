@@ -11,11 +11,8 @@ import {Link} from "react-router-dom";
 const HomeAdmin = () => {
   return (
     <div className='App_minheight'>
-
       <table className='universal_header_table'>
-        <tbody>
           <tr>
-
             {/* Boton 1 */}
             <td className='universal_header_linksquare'>
               <Link className= 'universal_header_textlink' to="/usernew">
@@ -39,8 +36,6 @@ const HomeAdmin = () => {
           </tr>
 
           <tr>
-
-
             {/* Boton 4 */}
             <td className='universal_header_linksquare'>
               <Link className= 'universal_header_textlink' to="/userlist">
@@ -60,9 +55,8 @@ const HomeAdmin = () => {
                 </table>
               </Link>
             </td>
-
           </tr>
-        </tbody>
+
       </table>
 
     </div>

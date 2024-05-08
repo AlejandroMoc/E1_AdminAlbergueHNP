@@ -265,10 +265,10 @@ const UserListAdmin = () => {
   }
 
   return (
-    <div className='App_minheight'>
+    <div className='App_minheight App_minpadding'>
       <div className='userlist_container_flex'>
         <div className='userlist_container_upper'>  
-          <div className='universal_container_dropdown'>
+          <div className='universal_container_dropdown universal_container_pickerdate'>
             {/* Div para dropdown */}
             <Dropdown className='universal_container_dropdown'>
               <Dropdown.Toggle  className='userlist_toggle_dropdown universal_toggle_dropdown' variant='success' id='dropdown-basic'>
@@ -299,7 +299,7 @@ const UserListAdmin = () => {
                   className='universal_input_date'
                   selected={fecha1}
                   onChange={handleDate1Change}
-                  placeholderText='Fecha de Inicio'
+                  placeholderText='Inicio (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
                 />
               </div>
@@ -307,11 +307,11 @@ const UserListAdmin = () => {
                 <p> - </p>
               </div>
               <div>
-                <DatePicker
-                  className='universal_input_date'
+                <DatePicker 
+                  className='universal_input_date universal_container_pickerdate'
                   selected={fecha2}
                   onChange={handleDate2Change}
-                  placeholderText='Fecha de Fin'
+                  placeholderText='Fin (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
                 />
               </div>
@@ -469,7 +469,8 @@ const UserListAdmin = () => {
               <h1>No existen resultados que coincidan.</h1>
             </div>
           )}
-          {data.length > 0 &&
+          <div className="userlist_pagination">
+            {data.length > 0 &&
               <>
                 <MyPagination
                   itemsCount={data.length}
@@ -480,6 +481,7 @@ const UserListAdmin = () => {
                 />
               </>
             }
+          </div>
         </div>
 
       </div>

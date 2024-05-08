@@ -19,3 +19,11 @@ export const User = {
   _id: "",
   username: ""
 };
+
+export const AccessTokenResponse = {
+  statusCode: 0,
+  body: {
+    accessToken: ""
+  },
+  error: ""
+};

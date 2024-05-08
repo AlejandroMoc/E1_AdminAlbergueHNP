@@ -2,7 +2,7 @@ import React from 'react';
 import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
-import { AuthResponse,AuthResponseError } from '../../types/types';
+import { AuthResponse,AuthResponseError, AccessTokenResponse} from '../../types/types';
 
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';

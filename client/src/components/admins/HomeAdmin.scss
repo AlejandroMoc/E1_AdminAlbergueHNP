@@ -51,11 +51,12 @@
 
 .universal_input_date{
   border: 0px solid #ccc;
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 1vh;
+  padding: 1vh;
   background-color: #f2f2f2;
   width: 200px;
   text-align: center;
+  height: 40px;
 }
 
 
@@ -80,7 +81,7 @@
 
 .universal_container_dropdown {
   text-align: left;
-  margin-top: 2vh;
+  // margin-top: 2vh;
 }
 
 .universal_toggle_dropdown {
