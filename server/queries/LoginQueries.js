@@ -18,8 +18,8 @@ function sign(payload, isAccessToken){
 
 function getUserInfo(user){
   return{
-    username: user.username,
-    id: user.id,
+    username: user.nombre_u,
+    id: user.id_usuario,
   };
 }
 
@@ -33,18 +33,19 @@ function generateRefreshToken(user){
 
 //Para crear un token y asignarlo
 const createRefreshToken = async (existingUser) => {
-  const generateToken = generateAccessToken(existingUser);
-  return generateToken;
+  return generateRefreshToken(existingUser);
 };
 
 const createAccessToken = async (existingUser) => {
-  const refreshToken = generateAccessToken(existingUser);
   try {
+    const accessToken = await generateAccessToken(existingUser);
+
     await db.none(
-      `INSERT INTO tokens (id_token, token) VALUES (DEFAULT,$1)`,
-      [refreshToken]
+      `INSERT INTO tokens (id_token, token) VALUES (DEFAULT, $1)`,
+      [accessToken]
     );
-    return refreshToken;
+
+    return accessToken;
   } catch (error) {
     throw error;
   }
@@ -87,10 +88,15 @@ const getNewLogin = async (nombre_u, contrasena) => {
       throw new Error('Las credenciales son incorrectas.');
     }
     console.log("Inicio de sesión exitoso");
-    console.log(existingUser)
+    console.log(existingUser);
+    
+    const accessToken = await createAccessToken(existingUser);
+    const refreshToken = await createRefreshToken(existingUser);
 
-    const accessToken = createAccessToken(existingUser);
-    const refreshToken = createRefreshToken(existingUser);
+    console.log("accessToken");
+    console.log(accessToken);
+    console.log("refreshToken");
+    console.log(refreshToken);
     return { existingUser: getUserInfo(existingUser), accessToken, refreshToken };
 
   } catch (error) {

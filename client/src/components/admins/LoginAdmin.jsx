@@ -2,6 +2,8 @@ import React from 'react';
 import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
+import { AuthResponse,AuthResponseError } from '../../types/types';
+
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
 
@@ -32,8 +34,16 @@ const LoginAdmin = () => {
       if (response.ok) {
         console.log("Login successful");
         // setErrorResponse("");
+        // const json = (await response.json()) as AuthResponse;
+        const json = await response.json();
+        console.log("Response JSON:", json);
+        
+        if (json.body.accessToken && json.body.refreshToken) {
+          auth.saveUser(json.body);
+          goTo("/dashboard");
+        }
 
-        goTo("/");
+        // goTo("/");
       } else {
         console.log("Something went wrong");
         // const json = await response.json() as AuthResponseError;
