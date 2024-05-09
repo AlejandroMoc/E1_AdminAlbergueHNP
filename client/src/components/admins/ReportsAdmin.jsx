@@ -200,23 +200,44 @@ const generatePDF = useReactToPrint({
   content: () => {
     const pdfContent = componentPDF.current.cloneNode(true); // Clonamos el contenido para evitar cambios en la página
     const titleContainer = document.createElement('div'); // Creamos un contenedor para el título y la imagen
+    const subtitleContainer = document.createElement('div'); // Creamos un contenedor para el título y la imagen
+
     titleContainer.classList.add('reports_title_container'); // Agregamos la clase al contenedor
+    subtitleContainer.classList.add('reports_title_container');
 
     const titleElement = document.createElement('h1'); // Creamos un elemento h1 para el título
     titleElement.classList.add('reports_title_element'); // Agregamos la clase al título
 
-    let reportType = "Reporte General del Albergue HNP";
-    if (esUsuario && mostrarHuespedes) {
+    let reportType = "Reporte General Albergue HNP";
+    if (esUsuario && mostrarHuespedes && huespedSeleccionado == 'Huesped') {
       reportType = "Reporte de Huéspedes del Albergue HNP";
-    } else if (esUsuario && mostrarVisitantes) {
+    } else if (esUsuario && mostrarVisitantes && visitanteSeleccionado == 'Visitante') {
       reportType = "Reporte de Visitantes del Albergue HNP";
-    } else if (esUsuario && mostrarVetados) {
+    } else if (esUsuario && mostrarVetados && vetadoSeleccionado == 'Vetado') {
       reportType = "Reporte de Vetados del Albergue HNP";
+    }  else if (esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped') {
+      reportType = "Reporte de Huésped del Albergue HNP";
+    }  else if (esUsuario && mostrarVisitantes && visitanteSeleccionado !== 'Visitante') {
+      reportType = "Reporte de Visitante del Albergue HNP";
+    }  else if (esUsuario && mostrarVetados && vetadoSeleccionado !== 'Vetado') {
+      reportType = "Reporte de Vetado del Albergue HNP";
     } else if (esIngreso) {
       reportType = "Reporte de Ingresos del Albergue HNP";
     }
 
     titleElement.innerText = reportType; // Establecemos el texto del título
+
+        // Agregar el texto de rango de fechas si se cumplen las condiciones
+      if ((esGeneral || (esUsuario && mostrarHuespedes && huespedSeleccionado === 'Huesped') || 
+      (esUsuario && mostrarVisitantes && visitanteSeleccionado === 'Visitante') || 
+      (esUsuario && mostrarVetados && vetadoSeleccionado === 'Vetado') || esIngreso) && startDate && endDate) {
+        const dateRangeElement = document.createElement('p');
+        dateRangeElement.classList.add('title-element2')
+        const formattedDateRange = `Rango de fechas del reporte: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+        dateRangeElement.innerText = formattedDateRange;
+        subtitleContainer.appendChild(dateRangeElement);
+      }
+
 
     // Crear la imagen
     const imageElement = document.createElement('img');
@@ -233,6 +254,7 @@ const generatePDF = useReactToPrint({
     titleContainer.appendChild(titleElement);
     titleContainer.appendChild(imageElement);
 
+    pdfContent.insertBefore(subtitleContainer, pdfContent.firstChild); // Insertamos el texto adicional antes del contenedor
     pdfContent.insertBefore(titleContainer, pdfContent.firstChild); // Insertamos el contenedor al principio del contenido
     pdfContent.insertBefore(generatedElement, pdfContent.firstChild); // Insertamos el texto adicional antes del contenedor
 
