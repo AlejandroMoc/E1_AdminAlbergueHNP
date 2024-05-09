@@ -104,10 +104,10 @@ const getNewLogin = async (nombre_u, contrasena) => {
   }
 };
 
-function getTokenFromHeader(headers){
-  if (headers && headers.authorization){
-    const parted = headers.authorization.split("");
-    if (parted.length ==2){
+function getTokenFromHeader(headers) {
+  if (headers && headers.authorization) {
+    const parted = headers.authorization.split(" ");
+    if (parted.length === 2) {
       return parted[1];
     } else {
       return null;

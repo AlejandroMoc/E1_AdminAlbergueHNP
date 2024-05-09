@@ -5,18 +5,16 @@ const { getTokenFromHeader, verifyRefreshToken, generateAccessToken } = require(
 router.post('/', async (req, res) => {
   const refreshToken = getTokenFromHeader(req.headers);
 
+  //SOLUCIONAR AQUIII
+  // console.log(refreshToken);
+  // console.log(req.headers);
   if (refreshToken) {
-    // try {
-    //     const found = await Token.findOne({token: refreshToken});
-    //     if (!found ){
-    //         return res.status(401).send({error:"Unauthorized"});
-    //     }
 
     try {
       const query = 'SELECT * FROM tokens WHERE token = $1';
       const values = [refreshToken];
 
-      const { rows } = await pool.query(query, values);
+      const rows = await db.query(query, values);
       const found = rows[0];
 
       if (!found) {
@@ -25,12 +23,13 @@ router.post('/', async (req, res) => {
         const payload = verifyRefreshToken(found.token);
         if (payload) {
           const accessToken = generateAccessToken(payload.user);
-          res.status(200).json({ accessToken });
+          res.status(200).json({ body: { accessToken } });
         } else {
           res.status(401).send({ error: 'Unauthorized2' });
         }
       }
     } catch (error) {
+      console.log(error);
       res.status(401).send({ error: 'Unauthorized3' });
     }
   } else {

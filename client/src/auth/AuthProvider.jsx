@@ -8,6 +8,7 @@ const AuthContext = createContext({
   saveUser: (userData) => {},
   getRefreshToken: () => {},
   getUser: () => ({}),
+  signOut: () => {},
 });
 
 const AuthProvider = ({ children }) => {
@@ -21,27 +22,26 @@ const AuthProvider = ({ children }) => {
     checkAuth();
   },[]);
 
-  async function requestNewAccessToken(refreshToken){
+  async function requestNewAccessToken(refreshToken) {
     try {
-      const response = await fetch ("http://localhost:8000/refresh-token",{
+      const response = await fetch("http://localhost:8000/refresh-token", {
         method: "POST",
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           Authorization: `Bearer ${refreshToken}`,
         },
       });
-
-      if (response.ok){
-        // const json = await response.json() as AccessTokenResponse;
+  
+      if (response.ok) {
         const json = await response.json();
-        if (json.error){
+        if (json.error) {
           throw new Error(json.error);
         }
         return json.body.accessToken;
-      }else{
-        throw new Error(response.statusText);
+      } else {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error || response.statusText);
       }
-
     } catch (error) {
       console.log(error);
       return null;
@@ -93,6 +93,13 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  function signOut(){
+    setIsAuthenticated(false);
+    setAccessToken("");
+    setUser(undefined);
+    localStorage.removeItem("token");
+  }
+  
   function saveSessionInfo(userInfo, accessToken,refreshToken){
     setAccessToken(accessToken);
     localStorage.setItem("token", JSON.stringify(refreshToken));
@@ -129,7 +136,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser}}>
+    <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, signOut}}>
       {children}
     </AuthContext.Provider>
   );
