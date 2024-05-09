@@ -18,7 +18,7 @@ app.use("/user", authenticate, require("./routes/login"));
 app.use("/refresh-token", require("./routes/refreshToken"));
 app.use("/signout", require("./routes/signout"));
 
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, banClient, unbanClient, deleteClient } = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
@@ -254,6 +254,74 @@ app.post('/someclients', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+app.post('/banclient', async (req, res) => {
+    try {
+        const id_usuario = req.body.id_u
+        const id_cliente = req.body.id_c
+        const notas_v = req.body.n_v
+        console.log(id_usuario)
+        console.log(id_cliente)
+        console.log(notas_v)
+        await banClient(id_usuario, id_cliente, notas_v)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/unbanclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await unbanClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/deleteclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await deleteClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/banclient', async (req, res) => {
+    try {
+        const id_usuario = req.body.id_u
+        const id_cliente = req.body.id_c
+        const notas_v = req.body.n_v
+        console.log(id_usuario)
+        console.log(id_cliente)
+        console.log(notas_v)
+        await banClient(id_usuario, id_cliente, notas_v)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/unbanclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await unbanClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/deleteclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await deleteClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
 
 //Funciones para UserInfo
 app.get('/clienteInfo/:id_cliente', async(req, res) => {

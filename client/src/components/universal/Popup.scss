@@ -1,0 +1,42 @@
+.popup_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_inner {
+    // background-color: aquamarine;
+    border-radius: 20px;
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    height: 40%;
+    max-width: 640px;
+    background-color: white;
+}
+
+.popup_inner .notas_container {
+    // background-color: aquamarine;
+    position: absolute;
+    bottom: 70px;
+    left: 85px;
+}
+
+.popup_inner .cancel-btn {
+    // background-color: red;
+    position: absolute;
+    bottom: 16px;
+    left: 25px;
+}
+
+.popup_inner .accept-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 25px;
+}
