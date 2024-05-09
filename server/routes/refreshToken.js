@@ -5,21 +5,28 @@ const { getTokenFromHeader, verifyRefreshToken, generateAccessToken } = require(
 router.post('/', async (req, res) => {
   const refreshToken = getTokenFromHeader(req.headers);
 
-  //SOLUCIONAR AQUIII
-  // console.log(refreshToken);
-  // console.log(req.headers);
   if (refreshToken) {
 
+    console.log("AQUI INICIA");
+    console.log(refreshToken);
+    console.log("AQUI TERMINA")
+
     try {
-      const query = 'SELECT * FROM tokens WHERE token = $1';
-      const values = [refreshToken];
+      // const values = [refreshToken];
+      const {rows} = await db.any(`SELECT * FROM tokens WHERE token = $1;`,refreshToken);
 
-      const rows = await db.query(query, values);
-      const found = rows[0];
+      //Cambiame esto
+      // const query = `SELECT * FROM tokens WHERE token = $1;`;
+      // const values = [refreshToken];
+      // const { rows } = await db.query(query, values);
 
-      if (!found) {
-        res.status(401).send({ error: 'Unauthorized1' });
-      } else {
+      console.log("AQUIII");
+      console.log(rows);
+      
+      if (rows && rows.length > 0) {
+
+        const found = rows[0];
+
         const payload = verifyRefreshToken(found.token);
         if (payload) {
           const accessToken = generateAccessToken(payload.user);
@@ -27,6 +34,8 @@ router.post('/', async (req, res) => {
         } else {
           res.status(401).send({ error: 'Unauthorized2' });
         }
+      } else {
+        res.status(401).send({ error: 'Unauthorized1' });
       }
     } catch (error) {
       console.log(error);

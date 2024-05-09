@@ -106,7 +106,7 @@ const getNewLogin = async (nombre_u, contrasena) => {
 
 function getTokenFromHeader(headers) {
   if (headers && headers.authorization) {
-    const parted = headers.authorization.split(" ");
+    const parted = headers.authorization.split(' ');
     if (parted.length === 2) {
       return parted[1];
     } else {
@@ -125,4 +125,5 @@ function verifyAccessToken(token){
 function verifyRefreshToken(token){
   return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 }
+
 module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken};
