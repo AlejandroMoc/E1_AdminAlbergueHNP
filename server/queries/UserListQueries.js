@@ -1,14 +1,51 @@
 const db = require('../db_connection'); // Import the database connection
 
+//Función para vetar
+const banClient = async(id_usuario, id_cliente, notas_v) => {
+    try {
+        await db.none(
+            `INSERT INTO vetado(id_usuario, id_cliente, notas_v, fecha_v)
+            VALUES($1, $2, $3, CURRENT_TIMESTAMP)`, [id_usuario, id_cliente, notas_v]
+        )
+    } catch (error) {
+        throw error
+    }
+}
+
+const unbanClient = async(id_cliente) => {
+    try {
+        await db.none(
+            `DELETE FROM vetado
+            WHERE id_cliente = $1`, [id_cliente]
+        )
+    } catch (error) {
+        throw error
+    }
+}
+
+const deleteClient = async(id_cliente) => {
+    try {
+        console.log('DELETE ', id_cliente)
+        await db.none(
+            `DELETE FROM cliente
+            WHERE id_cliente = $1`, [id_cliente]
+        )
+    } catch (error) {
+        throw error
+    }
+}
+
 // Function to get all clients
 const getAllClients = async () => {
     try {
         const clients = await db.any(
             `SELECT DISTINCT cliente.id_cliente, id_cama, nombre_c, apellidos_c, fecha_i, lugar_o,
-            cliente.carnet, nivel_se, total
+            cliente.carnet, nivel_se, total,
+            CASE WHEN vetado.id_cliente IS NOT NULL THEN TRUE ELSE FALSE END AS Vetado
             FROM cliente 
             LEFT JOIN huesped ON cliente.id_cliente = huesped.id_cliente
-            LEFT JOIN deudaclientes ON cliente.id_cliente = deudaclientes.id_cliente
+            LEFT JOIN vetado ON cliente.id_cliente = vetado.id_cliente
+            LEFT JOIN absoluteDeudas ON cliente.id_cliente = absoluteDeudas.id_cliente
             ORDER BY total DESC`)
         return clients
     } catch (error) {
@@ -22,7 +59,7 @@ const filterColumnDB = [
     {id: 2, column: 'cliente.sexo', valdb: false},
     {id: 3, column: 'cliente.id_cliente', valdb: 'vetado.id_cliente'},
     {id: 4, column: 'vetado.id_cliente'},
-    {id: 5, column: 'deudaClientes.total'}
+    {id: 5, column: 'absoluteDeudas.total'}
 ]
 
 // CHECAR REGLAS DE FILTRO
@@ -109,4 +146,4 @@ const getClientsByFilter = async (select_Filters, select_View, debtRange, dateRa
     }
 }
 
-module.exports = { getAllClients, getClientsByFilter}
+module.exports = { getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient}

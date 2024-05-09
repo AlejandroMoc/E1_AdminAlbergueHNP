@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js')
-const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
+const { getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 // const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
 const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js')
 // const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
@@ -235,6 +235,40 @@ app.post('/someclients', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+app.post('/banclient', async (req, res) => {
+    try {
+        const id_usuario = req.body.id_u
+        const id_cliente = req.body.id_c
+        const notas_v = req.body.n_v
+        console.log(id_usuario)
+        console.log(id_cliente)
+        console.log(notas_v)
+        await banClient(id_usuario, id_cliente, notas_v)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/unbanclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await unbanClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/deleteclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await deleteClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
 
 //USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
 app.get('/clienteInfo/:id_cliente', async(req, res) => {
