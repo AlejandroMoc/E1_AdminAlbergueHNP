@@ -22,12 +22,15 @@ const AuthProvider = ({ children }) => {
     checkAuth();
   },[]);
 
+  //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
+    console.log("444444");
     try {
+      
       const response = await fetch("http://localhost:8000/refresh-token", {
         method: "POST",
         headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+          'Content-type': 'application/json',
           Authorization: `Bearer ${refreshToken}`,
         },
       });
@@ -40,9 +43,13 @@ const AuthProvider = ({ children }) => {
         return json.body.accessToken;
       } else {
         const errorResponse = await response.json();
+        // CHECAR AQUI
+        console.log("33333333333");
         throw new Error(errorResponse.error || response.statusText);
       }
     } catch (error) {
+      // CHECAR AQUI
+      console.log("11111111");
       console.log(error);
       return null;
     }
@@ -75,10 +82,15 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  //Esta funcion manda a llamar requestNewAccessToken
   async function checkAuth(){
+    //Parece que no se usa en el error pero no estoy seguro
+
     if(accessToken){
       //el usuario esta autenticado
+
     }else{
+
       //el usuario no esta autenticado
       const token = getRefreshToken();
       if (token){
@@ -115,13 +127,20 @@ const AuthProvider = ({ children }) => {
     const tokenData = localStorage.getItem("token");
     if (tokenData){
       const token = JSON.parse(tokenData);
+      //setRefreshToken(refreshToken);
       return token;
     }
     return null;
   }
 
   function saveUser(userData) {
-    saveSessionInfo(userData.user, userData.accessToken,userData.refreshToken);
+    saveSessionInfo(
+      userData.user, 
+      userData.accessToken,
+      userData.refreshToken
+    );
+    setUser(userData.body.user);
+    setIsAuthenticated(true);
   }
 
   function getUser(userData) {

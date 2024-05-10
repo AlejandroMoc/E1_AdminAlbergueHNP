@@ -2,6 +2,7 @@ const db = require('../db_connection');
 const { getTokenFromHeader } = require("../queries/LoginQueries");
 const router = require("express").Router();
 
+//esto equivale a localhost:8000/delete
 router.delete("/", async (req, res) => {
   try {
     const refreshToken = getTokenFromHeader(req.headers);

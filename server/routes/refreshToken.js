@@ -2,6 +2,8 @@ const db = require('../db_connection');
 const router = require("express").Router();
 const { getTokenFromHeader, verifyRefreshToken, generateAccessToken } = require('../queries/LoginQueries.js');
 
+//Este archivo es requivalente a localhost:8000/refresh-token
+//el refreshtoken se manda a llamar en el AuthProvider
 router.post('/', async (req, res) => {
   const refreshToken = getTokenFromHeader(req.headers);
 
@@ -13,14 +15,10 @@ router.post('/', async (req, res) => {
 
     try {
       // const values = [refreshToken];
-      const {rows} = await db.any(`SELECT * FROM tokens WHERE token = $1;`,refreshToken);
+      // const {rows} = await db.any(`SELECT * FROM tokens WHERE token = $1;`,refreshToken);
+      const { rows } = await db.any(`SELECT * FROM tokens WHERE token = $1;`, [refreshToken]);
 
-      //Cambiame esto
-      // const query = `SELECT * FROM tokens WHERE token = $1;`;
-      // const values = [refreshToken];
-      // const { rows } = await db.query(query, values);
-
-      console.log("AQUIII");
+      console.log("ESTE ES TOKENNS");
       console.log(rows);
       
       if (rows && rows.length > 0) {

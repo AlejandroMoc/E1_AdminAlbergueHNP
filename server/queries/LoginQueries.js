@@ -62,10 +62,7 @@ const getNewAdmin = async (nombre_u, contrasena) => {
     if (existingUser) {
       throw new Error('El nombre de usuario ya está en uso.');
     }
-    await db.none(
-      `INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,
-      [nombre_u, hashedPassword]
-    );
+    await db.none(`INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,[nombre_u, hashedPassword]);
     console.log("Se insertó nuevo admin");
   } catch (error) {
     throw error;
@@ -105,6 +102,10 @@ const getNewLogin = async (nombre_u, contrasena) => {
 };
 
 function getTokenFromHeader(headers) {
+  // console.log("JAJAJAJ");
+  // console.log(headers);
+  //ESTO SI LO ESTÁ HACIENDO BIEEEN QUE ES ENTONCES AAA
+
   if (headers && headers.authorization) {
     const parted = headers.authorization.split(' ');
     if (parted.length === 2) {
