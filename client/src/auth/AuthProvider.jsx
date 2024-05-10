@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
     console.log("444444");
     try {
       
-      const response = await fetch("http://localhost:8000/refresh-token", {
+      const response = await fetch("http://localhost:8000/refreshtoken", {
         method: "POST",
         headers: {
           'Content-type': 'application/json',
@@ -35,17 +35,24 @@ const AuthProvider = ({ children }) => {
         },
       });
   
+      console.log("MIRAMEAAAA");
+      console.log(response)
+
       if (response.ok) {
         const json = await response.json();
         if (json.error) {
           throw new Error(json.error);
         }
+        //TODO checar si es .body o sin el .body
         return json.body.accessToken;
       } else {
         const errorResponse = await response.json();
-        // CHECAR AQUI
+        // CHECAR QUE SE VA DIRECTO A AQUI Y NO SE POR QUE
         console.log("33333333333");
+        console.log("Error Response:", errorResponse);
+        console.log("Response Status Text:", response.statusText);
         throw new Error(errorResponse.error || response.statusText);
+
       }
     } catch (error) {
       // CHECAR AQUI
@@ -83,27 +90,25 @@ const AuthProvider = ({ children }) => {
   }
 
   //Esta funcion manda a llamar requestNewAccessToken
-  async function checkAuth(){
-    //Parece que no se usa en el error pero no estoy seguro
-
-    if(accessToken){
-      //el usuario esta autenticado
-
-    }else{
-
-      //el usuario no esta autenticado
+  async function checkAuth() {
+    if (accessToken) {
+      // The user is already authenticated.
+    } else {
+      // The user is not authenticated.
       const token = getRefreshToken();
-      if (token){
+      if (token) {
         const newAccessToken = await requestNewAccessToken(token);
-        if (newAccessToken){
+        if (newAccessToken) {
           const userInfo = await getUserInfo(newAccessToken);
-          if (userInfo){
-            saveSessionInfo(userInfo,newAccessToken,token);
+          if (userInfo) {
+            saveSessionInfo(userInfo, newAccessToken, token);
           }
         }
       }
     }
   }
+
+  
 
   function signOut(){
     setIsAuthenticated(false);
