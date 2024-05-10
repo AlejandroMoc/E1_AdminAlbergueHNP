@@ -28,7 +28,8 @@ const AuthProvider = ({ children }) => {
   }
 
   function saveUser(userData) {
-    saveSessionInfo(
+    setAccessTokenAndRefreshToken(
+    // saveSessionInfo(
       // userData.user, 
       userData.accessToken,
       userData.refreshToken
@@ -82,12 +83,62 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   }
 
-
-
+  async function checkAuth() {
+    try {
+      if (!!accessToken) {
+        //existe access token
+        const userInfo = await retrieveUserInfo(accessToken);
+        setUser(userInfo);
+        setAccessToken(accessToken);
+        setIsAuthenticated(true);
+        setIsLoading(false);
+      } else {
+        //no existe access token
+        const token = localStorage.getItem("token");
+        if (token) {
+          console.log("useEffect: token", token);
+          const refreshToken = JSON.parse(token).refreshToken;
+          //pedir nuevo access token
+          getNewAccessToken(refreshToken)
+            .then(async (newToken) => {
+              const userInfo = await retrieveUserInfo(newToken);
+              setUser(userInfo);
+              setAccessToken(newToken);
+              setIsAuthenticated(true);
+              setIsLoading(false);
+            })
+            .catch((error) => {
+              console.log(error);
+              setIsLoading(false);
+            });
+        } else {
+          setIsLoading(false);
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(()=>{
     checkAuth();
   },[]);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        getAccessToken,
+        setAccessTokenAndRefreshToken,
+        getRefreshToken,
+        saveUser,
+        getUser,
+        signOut,
+      }}
+    >
+      {isloading ? <div>Loading...</div> : children}
+    </AuthContext.Provider>
+  );
 
   //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
@@ -161,52 +212,13 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-
-  async function checkAuth() {
-    try {
-      if (!!accessToken) {
-        //existe access token
-        const userInfo = await retrieveUserInfo(accessToken);
-        setUser(userInfo);
-        setAccessToken(accessToken);
-        setIsAuthenticated(true);
-        setIsLoading(false);
-      } else {
-        //no existe access token
-        const token = localStorage.getItem("token");
-        if (token) {
-          console.log("useEffect: token", token);
-          const refreshToken = JSON.parse(token).refreshToken;
-          //pedir nuevo access token
-          getNewAccessToken(refreshToken)
-            .then(async (newToken) => {
-              const userInfo = await retrieveUserInfo(newToken);
-              setUser(userInfo);
-              setAccessToken(newToken);
-              setIsAuthenticated(true);
-              setIsLoading(false);
-            })
-            .catch((error) => {
-              console.log(error);
-              setIsLoading(false);
-            });
-        } else {
-          setIsLoading(false);
-        }
-      }
-    } catch (error) {
-      setIsLoading(false);
-    }
-  }
-
-
-  
-  function saveSessionInfo(userInfo, accessToken,refreshToken){
-    setAccessToken(accessToken);
-    localStorage.setItem("token", JSON.stringify(refreshToken));
-    setIsAuthenticated(true);
-    setUser(userInfo);
-  }
+  //PARECE QUE  SI puedo borrar esto
+  // function saveSessionInfo(userInfo, accessToken,refreshToken){
+  //   setAccessToken(accessToken);
+  //   localStorage.setItem("token", JSON.stringify(refreshToken));
+  //   setIsAuthenticated(true);
+  //   setUser(userInfo);
+  // }
 
 
 
@@ -230,6 +242,24 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+async function retrieveUserInfo(accessToken) {
+  try {
+    const response = await fetch(`${API_URL}/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+      return json.body;
+    }
+  } catch (error) {}
+}
 
 export const useAuth = () => useContext(AuthContext);
 
