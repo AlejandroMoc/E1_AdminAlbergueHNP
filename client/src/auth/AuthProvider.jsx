@@ -5,6 +5,10 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 const AuthContext = createContext({
   isAuthenticated: false,
   getAccessToken: () => {},
+  setAccessTokenAndRefreshToken: (
+    _accessToken,
+    _refreshToken,
+  ) => {},
   saveUser: (userData) => {},
   getRefreshToken: () => {},
   getUser: () => ({}),
@@ -22,6 +26,64 @@ const AuthProvider = ({ children }) => {
   function getAccessToken() {
     return accessToken;
   }
+
+  function saveUser(userData) {
+    saveSessionInfo(
+      // userData.user, 
+      userData.accessToken,
+      userData.refreshToken
+    );
+    setUser(userData.user);
+    setIsAuthenticated(true);
+  }
+
+  function setAccessTokenAndRefreshToken(
+    accessToken,
+    refreshToken,
+  ) {
+    console.log("setAccessTokenAndRefreshToken", accessToken, refreshToken);
+    setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+
+    localStorage.setItem("token", JSON.stringify({ refreshToken }));
+  }
+
+  function getRefreshToken() {
+    if (!!refreshToken) {
+      return refreshToken;
+    }
+    const token = localStorage.getItem("token");
+    if (token){
+      const {refreshToken} = JSON.parse(token);
+      console.log("WIIIIII");
+      console.log({refreshToken});
+      setRefreshToken(refreshToken);
+      return refreshToken;
+    }
+    return null;
+  }
+
+  async function getNewAccessToken(refreshToken) {
+    const token = await requestNewAccessToken(refreshToken);
+    if (token) {
+      return token;
+    }
+  }
+
+  function getUser(userData) {
+    return user;
+  }
+
+  function signOut(){
+    localStorage.removeItem("token");
+    setAccessToken("");
+    setRefreshToken("");
+    setUser(undefined);
+    setIsAuthenticated(false);
+  }
+
+
+
 
   useEffect(()=>{
     checkAuth();
@@ -137,12 +199,7 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  function signOut(){
-    setIsAuthenticated(false);
-    setAccessToken("");
-    setUser(undefined);
-    localStorage.removeItem("token");
-  }
+
   
   function saveSessionInfo(userInfo, accessToken,refreshToken){
     setAccessToken(accessToken);
@@ -152,35 +209,11 @@ const AuthProvider = ({ children }) => {
   }
 
 
-  function getRefreshToken() {
-    // if (!!refreshToken) {
-    //   return refreshToken;
-    // }
-    const token = localStorage.getItem("token");
-    if (token){
-      // const {refreshToken} = JSON.parse(token);
-      const {refreshToken} = JSON.parse(token);
-      console.log("WIIIIII");
-      console.log({refreshToken});
-      setRefreshToken(refreshToken);
-      return refreshToken;
-    }
-    return null;
-  }
 
-  function saveUser(userData) {
-    saveSessionInfo(
-      // userData.user, 
-      userData.accessToken,
-      userData.refreshToken
-    );
-    setUser(userData.user);
-    setIsAuthenticated(true);
-  }
 
-  function getUser(userData) {
-    return user;
-  }
+
+
+
 
   // useEffect(() => {
   //   const storedToken = localStorage.getItem("token");
