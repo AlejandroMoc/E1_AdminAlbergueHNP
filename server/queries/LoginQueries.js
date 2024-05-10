@@ -127,4 +127,22 @@ function verifyRefreshToken(token){
   return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 }
 
-module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken};
+//Funcion para refreshToken
+const functionRefreshToken = async (refreshToken) => {
+  try {
+    const resultito = await db.oneOrNone('SELECT * FROM tokens WHERE token = $1',[refreshToken]);
+
+    //NO SE OBTIENE UN RESULTITO
+    if (!resultito){
+      throw new Error('No hay resultito.');
+    }
+    console.log("Estesmiresult");
+    console.log(resultito);
+    return {resultito};
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken, functionRefreshToken};

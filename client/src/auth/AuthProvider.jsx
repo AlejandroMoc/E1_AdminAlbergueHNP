@@ -24,15 +24,19 @@ const AuthProvider = ({ children }) => {
 
   //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
-    console.log("444444");
+    console.log("Sí está sacando aqui un refreshToken");
+    console.log("Hasta aquí está bien");
+    console.log(refreshToken);
     try {
       
+      //CESAR, no se si es aqui donde no lo agarra bien
       const response = await fetch("http://localhost:8000/refreshtoken", {
         method: "POST",
         headers: {
           'Content-type': 'application/json',
           Authorization: `Bearer ${refreshToken}`,
         },
+        body: JSON.stringify({ refreshToken }),
       });
   
       console.log("MIRAMEAAAA");
@@ -48,6 +52,7 @@ const AuthProvider = ({ children }) => {
       } else {
         const errorResponse = await response.json();
         // CHECAR QUE SE VA DIRECTO A AQUI Y NO SE POR QUE
+        console.log("Luego se va aqui, lo que quiere decir que no está regresando una respuesta ok");
         console.log("33333333333");
         console.log("Error Response:", errorResponse);
         console.log("Response Status Text:", response.statusText);
