@@ -71,7 +71,9 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  function getUser(userData) {
+  function getUser() {
+    console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
+    console.log(user);
     return user;
   }
 
@@ -124,21 +126,7 @@ const AuthProvider = ({ children }) => {
     checkAuth();
   },[]);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        getAccessToken,
-        setAccessTokenAndRefreshToken,
-        getRefreshToken,
-        saveUser,
-        getUser,
-        signOut,
-      }}
-    >
-      {isloading ? <div>Loading...</div> : children}
-    </AuthContext.Provider>
-  );
+
 
   //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
@@ -236,11 +224,38 @@ const AuthProvider = ({ children }) => {
   //   }
   // }, []);
 
+  //NEW RETURN
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, signOut}}>
-      {children}
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        getAccessToken,
+        setAccessTokenAndRefreshToken,
+        getRefreshToken,
+        saveUser,
+        getUser,
+        signOut,
+      }}
+    >
+      {isloading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
+
+
+  //OLD RETURN
+  // return (
+  //   <AuthContext.Provider 
+  //     value={{ 
+  //       isAuthenticated, 
+  //       getAccessToken, 
+  //       saveUser, 
+  //       getRefreshToken, 
+  //       getUser, 
+  //       signOut
+  //     }}>
+  //     {children}
+  //   </AuthContext.Provider>
+  // );
 };
 
 async function retrieveUserInfo(accessToken) {
