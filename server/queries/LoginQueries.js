@@ -130,7 +130,7 @@ function verifyRefreshToken(token){
 //Funcion para refreshToken
 const functionRefreshToken = async (refreshToken) => {
   try {
-    const resultito = await db.oneOrNone('SELECT * FROM tokens WHERE token = $1',[refreshToken]);
+    const resultito = await db.any('SELECT * FROM tokens WHERE token = $1',[refreshToken]);
 
     //NO SE OBTIENE UN RESULTITO
     if (!resultito){

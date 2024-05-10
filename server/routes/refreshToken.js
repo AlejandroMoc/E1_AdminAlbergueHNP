@@ -1,4 +1,4 @@
-// const db = require('../db_connection');
+const db = require('../db_connection');
 const router = require("express").Router();
 const { getTokenFromHeader, verifyRefreshToken, generateAccessToken, functionRefreshToken } = require('../queries/LoginQueries.js');
 
