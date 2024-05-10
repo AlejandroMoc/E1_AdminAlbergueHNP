@@ -12,11 +12,16 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
   // const [user, setUser] = useState<User>();
   const [user, setUser] = useState();
+  const [accessToken, setAccessToken] = useState("");
   const [refreshToken, setRefreshToken] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isloading, setIsLoading] = useState(true);
+
+  function getAccessToken() {
+    return accessToken;
+  }
 
   useEffect(()=>{
     checkAuth();
@@ -48,7 +53,7 @@ const AuthProvider = ({ children }) => {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
-        return json.body.accessToken;
+        return json.accessToken;
       } else {
         const errorResponse = await response.json();
         // CHECAR QUE SE VA DIRECTO A AQUI Y NO SE POR QUE
@@ -94,26 +99,43 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  //Esta funcion manda a llamar requestNewAccessToken
+
   async function checkAuth() {
-    if (accessToken) {
-      // The user is already authenticated.
-    } else {
-      // The user is not authenticated.
-      const token = getRefreshToken();
-      if (token) {
-        const newAccessToken = await requestNewAccessToken(token);
-        if (newAccessToken) {
-          const userInfo = await getUserInfo(newAccessToken);
-          if (userInfo) {
-            saveSessionInfo(userInfo, newAccessToken, token);
-          }
+    try {
+      if (!!accessToken) {
+        //existe access token
+        const userInfo = await retrieveUserInfo(accessToken);
+        setUser(userInfo);
+        setAccessToken(accessToken);
+        setIsAuthenticated(true);
+        setIsLoading(false);
+      } else {
+        //no existe access token
+        const token = localStorage.getItem("token");
+        if (token) {
+          console.log("useEffect: token", token);
+          const refreshToken = JSON.parse(token).refreshToken;
+          //pedir nuevo access token
+          getNewAccessToken(refreshToken)
+            .then(async (newToken) => {
+              const userInfo = await retrieveUserInfo(newToken);
+              setUser(userInfo);
+              setAccessToken(newToken);
+              setIsAuthenticated(true);
+              setIsLoading(false);
+            })
+            .catch((error) => {
+              console.log(error);
+              setIsLoading(false);
+            });
+        } else {
+          setIsLoading(false);
         }
       }
+    } catch (error) {
+      setIsLoading(false);
     }
   }
-
-  
 
   function signOut(){
     setIsAuthenticated(false);
@@ -129,27 +151,30 @@ const AuthProvider = ({ children }) => {
     setUser(userInfo);
   }
 
-  function getAccessToken() {
-    return accessToken;
-  }
 
   function getRefreshToken() {
-    const tokenData = localStorage.getItem("token");
-    if (tokenData){
-      const token = JSON.parse(tokenData);
-      //setRefreshToken(refreshToken);
-      return token;
+    // if (!!refreshToken) {
+    //   return refreshToken;
+    // }
+    const token = localStorage.getItem("token");
+    if (token){
+      // const {refreshToken} = JSON.parse(token);
+      const {refreshToken} = JSON.parse(token);
+      console.log("WIIIIII");
+      console.log({refreshToken});
+      setRefreshToken(refreshToken);
+      return refreshToken;
     }
     return null;
   }
 
   function saveUser(userData) {
     saveSessionInfo(
-      userData.user, 
+      // userData.user, 
       userData.accessToken,
       userData.refreshToken
     );
-    setUser(userData.body.user);
+    setUser(userData.user);
     setIsAuthenticated(true);
   }
 
@@ -157,12 +182,14 @@ const AuthProvider = ({ children }) => {
     return user;
   }
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setRefreshToken(JSON.parse(storedToken));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedToken = localStorage.getItem("token");
+  //   if (storedToken) {
+  //     console.log("digame");
+  //     console.log(storedToken);
+  //     setRefreshToken(JSON.parse(storedToken));
+  //   }
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, signOut}}>

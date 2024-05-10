@@ -8,7 +8,7 @@ router.delete("/", async (req, res) => {
     const refreshToken = getTokenFromHeader(req.headers);
 
     if (refreshToken) {
-      await pool.query("DELETE FROM tokens WHERE token = $1", [refreshToken]);
+      await db.query("DELETE FROM tokens WHERE token = $1", [refreshToken]);
       res.status(200).json({ message: "Token deleted" });
     }
   } catch (error) {

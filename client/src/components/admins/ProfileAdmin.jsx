@@ -36,15 +36,20 @@ const ProfileAdmin = () => {
 
   return (
     <div className='App_minheight'>
-      
       <table className= 'universal_header_table3'>
-        <FaUserCircle size={160}/>
-        <h1 className="universal_header_texttitle">Administradora</h1>
-        <Link to="/changepassword"><p><button className="App_buttonaccept"><IoKey/>Cambiar contraseña</button></p></Link>
-        <p><button className="App_buttoncancel" onClick={handleSignOut}>Cerrar sesión</button></p>
+        <tbody>
+          <tr>
+            <td>
+                <FaUserCircle size={160}/>
+                <h1 className="universal_header_texttitle">{auth.getUser()?.username || ""}</h1>
+                <Link to="/changepassword"><p><button className="App_buttonaccept"><IoKey/>Cambiar contraseña</button></p></Link>
+                <p><button className="App_buttoncancel" onClick={handleSignOut}>Cerrar sesión</button></p>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 export default ProfileAdmin
