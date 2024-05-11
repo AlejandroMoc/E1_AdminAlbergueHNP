@@ -17,7 +17,7 @@ const HomeAdmin = () => {
     <div className='App_minheight'>
       <br/>
       {/*TODO meterle aleatorización de unos 10 mensajes cada vez*/}
-      <h2>¡Te damos la bienvenida, {auth.getUser()?.username || ""}!</h2>
+      <h2>¡Te damos la bienvenida, {auth.getUser()?.nombre_u || ""}!</h2>
       <table className='universal_header_table'>
         <tbody>
           <tr>

@@ -18,7 +18,7 @@ function sign(payload, isAccessToken){
 
 function getUserInfo(user){
   return{
-    username: user.nombre_u,
+    nombre_u: user.nombre_u,
     id: user.id_usuario,
   };
 }
@@ -32,20 +32,20 @@ function generateRefreshToken(user){
 }
 
 //Para crear un token y asignarlo
-const createRefreshToken = async (existingUser) => {
-  return generateRefreshToken(existingUser);
+const createAccessToken = async (existingUser) => {
+  return generateAccessToken(existingUser);
 };
 
-const createAccessToken = async (existingUser) => {
+const createRefreshToken = async (existingUser) => {
   try {
-    const accessToken = await generateAccessToken(existingUser);
+    const refreshToken = await generateRefreshToken(existingUser);
 
     await db.none(
       `INSERT INTO tokens (id_token, token) VALUES (DEFAULT, $1)`,
-      [accessToken]
+      [refreshToken]
     );
 
-    return accessToken;
+    return refreshToken;
   } catch (error) {
     throw error;
   }
@@ -138,7 +138,7 @@ const functionRefreshToken = async (refreshToken) => {
     }
     console.log("Estesmiresult");
     console.log(resultito);
-    return {resultito};
+    return resultito;
 
   } catch (error) {
     throw error;

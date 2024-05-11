@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
       //AQUI pasar a sus propias queries en vez de mandar a llamarla desde aqui
 
       // const { rows } = await db.any(`SELECT * FROM tokens WHERE token = $1;`, [refreshToken]);
-      const { rows } = await functionRefreshToken(refreshToken);
+      const  rows  = await functionRefreshToken(refreshToken);
 
       console.log("ESTE ES TOKENNS");
       console.log(rows);

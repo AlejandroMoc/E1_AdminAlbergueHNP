@@ -2,16 +2,20 @@ const router = require("express").Router();
 const {getNewLogin} = require('../queries/LoginQueries.js');
 
 router.post('/', async (req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { nombre_u, password } = req.body;
+    console.log(nombre_u)
+    console.log('Hloa')
+    if (!nombre_u || !password) {
       return res.status(400).send("Fields are required");
     }
     try {
-      const nombre_u = req.body.username;
+      const nombre_u = req.body.nombre_u;
       const contrasena = req.body.password;
+      console.log(nombre_u)
   
       // TODO: Perform the login process and retrieve the necessary data
       const loginResult = await getNewLogin(nombre_u, contrasena);
+      console.log(loginResult)
       const { existingUser, accessToken, refreshToken } = loginResult;
   
       res.status(200).json({

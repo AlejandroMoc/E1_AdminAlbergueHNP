@@ -9,7 +9,7 @@ import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const LoginAdmin = () => {
 
-  const [username, setUsername] = useState("");
+  const [nombre_u, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   //Redirigir a dashboard si ya se está autenticado
@@ -20,13 +20,14 @@ const LoginAdmin = () => {
     e.preventDefault();
 
     try {
+      console.log(e)
       const response = await fetch("http://localhost:8000/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify({
-          username,
+          nombre_u,
           password
         })
       });
@@ -72,7 +73,7 @@ const LoginAdmin = () => {
 
           <h3>¡Te damos la bienvenida!</h3>
 
-          <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
+          <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
           <button className="login_inputs App_buttonaccept">Iniciar sesión </button>
       </form>

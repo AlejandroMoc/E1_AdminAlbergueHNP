@@ -90,7 +90,10 @@ const AuthProvider = ({ children }) => {
       if (!!accessToken) {
         //existe access token
         const userInfo = await retrieveUserInfo(accessToken);
+        console.log('CHECA')
+        console.log(user)
         setUser(userInfo);
+        console.log(user)
         setAccessToken(accessToken);
         setIsAuthenticated(true);
         setIsLoading(false);
@@ -103,7 +106,10 @@ const AuthProvider = ({ children }) => {
           //pedir nuevo access token
           getNewAccessToken(refreshToken)
             .then(async (newToken) => {
+              console.log(newToken)
               const userInfo = await retrieveUserInfo(newToken);
+              console.log('CHECA')
+              console.log(userInfo)
               setUser(userInfo);
               setAccessToken(newToken);
               setIsAuthenticated(true);
@@ -124,6 +130,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(()=>{
     checkAuth();
+    console.log('SE LLAMO checkAUTH')
   },[]);
 
 
@@ -149,12 +156,16 @@ const AuthProvider = ({ children }) => {
       console.log(response)
 
       if (response.ok) {
+        console.log('OK?')
         const json = await response.json();
+        console.log(json)
         if (json.error) {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
-        return json.accessToken;
+        const accessToken = json.body.accessToken
+        console.log(accessToken)
+        return accessToken;
       } else {
         const errorResponse = await response.json();
         // CHECAR QUE SE VA DIRECTO A AQUI Y NO SE POR QUE
@@ -260,7 +271,8 @@ const AuthProvider = ({ children }) => {
 
 async function retrieveUserInfo(accessToken) {
   try {
-    const response = await fetch(`${API_URL}/user`, {
+    console.log('Entra')
+    const response = await fetch(`http://localhost:8000/user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -270,8 +282,9 @@ async function retrieveUserInfo(accessToken) {
 
     if (response.ok) {
       const json = await response.json();
+      console.log('Retrieve Info json: ')
       console.log(json);
-      return json.body;
+      return json;
     }
   } catch (error) {}
 }
