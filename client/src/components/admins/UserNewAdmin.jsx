@@ -23,6 +23,11 @@ console.log("id_cama")
     fetch('http://localhost:8000/alldispbeds')
     .then((res) => res.json())
     .then((beds) => setBed(beds));
+    if (sexo === true) {
+      setIdZona(id_zona_hombres);
+    } else {
+      setIdZona(id_zona_mujeres);
+    }
   }, [])
   
 
@@ -34,7 +39,7 @@ console.log("id_cama")
   }, [])
 
   
-  const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '',id_cliente:0}])
+  const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '',id_cliente:0, paciente:null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
       fetch('http://localhost:8000/allclientinfo', {
@@ -102,7 +107,7 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerEntradaUnica', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower:shower, bathroom:bathroom, breakfast:breakfast, meal:meal, dinner:dinner}),
+          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -111,14 +116,14 @@ const handleBtRegistroClick = async () => {
         window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
-        alert('Error al registrar el paciente.');
+        alert('Error al registrar el paciente');
       }
     }
     else if(showBedNumber){
       try {
         await fetch('http://localhost:8000/registerNewPatient', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama }),
+          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -127,11 +132,11 @@ const handleBtRegistroClick = async () => {
         window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
-        alert('Error al registrar el paciente.');
+        alert('Error al registrar el paciente');
       }
     }
   } else {
-    alert('Por favor llene todos los campos obligatorios.');
+    alert('Por favor llene todos los campos obligatorios');
   }
 };
 
@@ -169,7 +174,6 @@ const handleBtRegistroClick = async () => {
   const handleNombre_PChange = (event) => {
     const inputValue = event.target.value;
     const nombrepArray = inputValue.split(' ');
-    console.log(nombrepArray);
     const nombrepString = nombrepArray.join(' ');
     console.log(nombrepString);
     setNombre_P(nombrepString);
@@ -177,11 +181,13 @@ const handleBtRegistroClick = async () => {
 
   console.log(client)
 
-  const [isPaciente, setIsPaciente] = useState(false)
-  
+
+  const [sexoUsuario, setSexoUsuario] = useState(null); // Inicializamos el sexo del usuario como null
+
   const [sexo, setSexo] = useState(null)
   const handleSexoChange = (event) => {
-    console.log(event.target.value)
+    const sexoSeleccionado = event.target.value === 'true'; // Convertimos el valor del radio button a un booleano
+    setSexoUsuario(sexoSeleccionado); // Actualizamos el estado con el sexo seleccionado
     setSexo(event.target.value)
   }
 
@@ -190,12 +196,23 @@ const handleBtRegistroClick = async () => {
     // console.log(event.target.value)
     setNivel_SE(event.target.value)
   }
+  const [isPaciente, setIsPaciente] = useState(false);
 
-  const [paciente, setPaciente] = useState(0)
-  const handlePacienteChange = (event) => {
-    // console.log(event.target.value)
+  const [paciente, setPaciente] = useState(0); 
+  const handlePaciente_Change = (event) => {
+    setIsPaciente(event.target.value === 'true'); 
+    
     setPaciente(event.target.value)
   }
+  useEffect(() => {
+    if (isPaciente) {
+      setNombre_C(nombre_p);
+      setApellidos_C(apellidos_p);
+    } else {
+      setNombre_C('');
+      setApellidos_C('');
+    }
+  }, [isPaciente]);
 
   const [id_cliente, setId_cliente] = useState(0)
   const handleId_clienteChange = (event) => {
@@ -232,12 +249,15 @@ const handleBtRegistroClick = async () => {
     setShowBedNumber(isGuest); 
     setTipoCliente(event.target.value);
   };
+
+
   
   const [id_cama, setId_CamaC] = useState('')
   const handleId_CamaCChange = (event) => {
     // console.log(event.target.value)
     setId_CamaC(event.target.value)
   }
+
 
   const [id_area, setId_areaC] = useState('')
   const handleId_areaCChange = (event) => {
@@ -296,20 +316,70 @@ const handleBtRegistroClick = async () => {
     }
   }
   
+  const [id_zona_hombres, setIdZonaHombres] = useState(2); 
+  const [id_zona_mujeres, setIdZonaMujeres] = useState(1); 
+  const [id_zona, setIdZona] = useState(null);
 
   return (
     <div class='App-minheight'>
       <div class="user_container_general">
         <div class="container user_container_reg">
 
-          <h4>Información de Familiar</h4>
+          <h4>Información del Paciente</h4>
+          <span class="input-group-text user_span_sociolevel" id="basic-addon1">Es un paciente?</span>
+          <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
+              <div class="form-check">
+                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
+                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span class="universal_text_HM">Si</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
+                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span class="universal_text_HM">No</span>
+                </label>
+              </div>
+          </div>    
+          <div class="input-group mb-3 " onChange={handleLugar_OChange}>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+          </div>
+          <div class="input-group mb-3 " onChange={handleNombre_PChange}>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" value={nombre_p}></input>
+          </div>
+          <div class="input-group mb-3 " onChange={handleApellidos_PChange} >
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_p}></input>
+          </div>
+          <div class="input-group mb-3 " onChange={handleCarnetChange}>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+          </div>
+          <div class="user_label_x" onChange={handleId_areaCChange}>
+            <span>Área de Paciente: </span>
+            <select class="form-select user_select_beds sm" aria-label="Default select example">
+              <option selected>X</option> 
+              {(
+                area.map((item) => (
+                  <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
+                ))
+              )}
+            </select>
+          </div>
+          
+          <div class="input-group mb-3 "></div>
+          <div class="input-group mb-3 "></div>
+
+          <h4>Información de Cliente</h4>
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
-              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_spacing_reg" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" value={nombre_c}></input>
+              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" disabled={isPaciente} aria-describedby="basic-addon1" value={nombre_c}></input>
             </div>
             <div class="input-group mb-3 "onChange={handleApellidos_CChange} >
-              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_spacing_reg" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_c}></input>
+              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" class="form-control user_space_reg" placeholder="Apellidos" aria-label="Username" disabled={isPaciente} aria-describedby="basic-addon1" value={apellidos_c}></input>
             </div>
            <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
               <div class="user_div_radio">
@@ -361,48 +431,9 @@ const handleBtRegistroClick = async () => {
                 </label>
               </div>
             </div>
-          </div>
-
-          <div class="input-group mb-3 "></div>
-          <div class="input-group mb-3 "></div>
-
-          <h4>Información de Paciente</h4>
-
-          <div class="input-group mb-3 " onChange={handleLugar_OChange}>
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" class="form-control user_spacing_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
-          </div>
-          <div class="input-group mb-3 " onChange={handleNombre_PChange}>
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_spacing_reg" placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" value={nombre_p}></input>
-          </div>
-          <div class="input-group mb-3 " onChange={handleApellidos_PChange} >
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_spacing_reg" placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_p}></input>
-          </div>
-          <div class="input-group mb-3 " onChange={handleCarnetChange}>
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="text" class="form-control user_spacing_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
-          </div>
-          <div class="user_label_x" onChange={handleId_areaCChange}>
-            <span>Área de Paciente: </span>
-            <select class="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected>X</option> 
-              {(
-                area.map((item) => (
-                  <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
-                ))
-              )}
-            </select>
-          </div>
-
-          
+          </div>          
         </div>
-
-
-
-        <div class="user_spacing_not">
-
+        <div class="user_space_not">
           <div class="mb-3" onChange={handleNotas_CChange}>
             <textarea class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
           </div>
@@ -423,16 +454,18 @@ const handleBtRegistroClick = async () => {
             </div>
           </div>
           {showBedNumber && (
-          <div class="user_label_x" onChange={handleId_CamaCChange}>
+          <div class="user_label_x2" onChange={handleId_CamaCChange}>
             <span>Número de Cama: </span>
             <select class="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
-              {(
-                bed.map((item) => (
-                  <option value={item.id_cama}>{item.id_cama}</option>
-                ))
-              )}
+              {bed.map((item) => {
+                if (id_zona !== null && ((sexoUsuario === true && item.id_zona === id_zona_hombres) || (sexoUsuario === false && item.id_zona === id_zona_mujeres))) {
+                  return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
+                }
+                return null; 
+              })}
             </select>
+
           </div>
           )}
           {showServices && (
