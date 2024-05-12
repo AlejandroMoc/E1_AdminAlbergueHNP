@@ -72,8 +72,8 @@ const AuthProvider = ({ children }) => {
   }
 
   function getUser() {
-    console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
-    console.log(user);
+    // console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
+    // console.log(user);
     return user;
   }
 

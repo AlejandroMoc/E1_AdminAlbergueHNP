@@ -19,7 +19,7 @@ app.use("/user", authenticate, require("./routes/user"));
 // app.use("/todos", authenticate, require("./routes/todos"));
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
-const {getAllClients, getClientsByFilter, isHuesped, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
+const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
@@ -255,18 +255,6 @@ app.post('/someclients', async (req, res) => {
     }
 });
 
-app.post('/ishuesped', async(req, res) => {
-    try {
-        const id_cliente = req.body.id_c
-        console.log(id_cliente)
-        const huesped = await isHuesped(id_cliente)
-        console.log(huesped)
-        res.json(huesped)
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})
-
 app.post('/banclient', async (req, res) => {
     try {
         const id_usuario = req.body.id_u
@@ -275,7 +263,9 @@ app.post('/banclient', async (req, res) => {
         console.log(id_usuario)
         console.log(id_cliente)
         console.log(notas_v)
-        await banClient(id_usuario, id_cliente, notas_v)
+        const ban = await banClient(id_usuario, id_cliente, notas_v)
+        // console.log(ban)
+        res.json(ban)
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
@@ -285,7 +275,8 @@ app.post('/unbanclient', async (req, res) => {
     try {
         const id_cliente = req.body.id_c
         console.log(id_cliente)
-        await unbanClient(id_cliente)
+        const unban = await unbanClient(id_cliente)
+        res.json(unban)
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
@@ -295,7 +286,8 @@ app.post('/deleteclient', async (req, res) => {
     try {
         const id_cliente = req.body.id_c
         console.log(id_cliente)
-        await deleteClient(id_cliente)
+        const delet = await deleteClient(id_cliente)
+        res.json(delet)
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }

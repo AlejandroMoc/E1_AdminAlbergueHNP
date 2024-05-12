@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Popup from '../universal/Popup';
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 import { Form } from 'react-bootstrap'; 
 import { Link } from "react-router-dom";
 import { Menu, Dropdown as DP} from 'antd';
@@ -96,7 +97,15 @@ const UserListAdmin = () => {
           'Content-type': 'application/json; charset=UTF-8'
         }
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
   }
 
   //Llamada a la función de desvetar
@@ -108,7 +117,15 @@ const UserListAdmin = () => {
           'Content-type': 'application/json; charset=UTF-8'
         }
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
   }
 
   //Llamada a la función de eliminar
@@ -120,7 +137,15 @@ const UserListAdmin = () => {
           'Content-type': 'application/json; charset=UTF-8'
         }
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
   }
 
   //Función para paginación
@@ -584,6 +609,7 @@ const UserListAdmin = () => {
           <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
             ¿Estas Seguro?
           </Popup>
+          <MyToastContainer />
           </div>
         </div>
       </div>
