@@ -1,11 +1,23 @@
 const db = require('../db_connection');
 
 //Función para vetar
+const isHuesped = async(id_cliente) => {
+    try {
+        const huesped = await db.oneOrNone(
+            `SELECT id_cliente
+            FROM huesped
+            WHERE id_cliente = $1`, [id_cliente]
+        )
+        return huesped
+    } catch (error) {
+        throw error
+    }
+}
+
 const banClient = async(id_usuario, id_cliente, notas_v) => {
     try {
         await db.none(
-            `INSERT INTO vetado(id_usuario, id_cliente, notas_v, fecha_v)
-            VALUES($1, $2, $3, CURRENT_TIMESTAMP)`, [id_usuario, id_cliente, notas_v]
+            `CALL veto_proc($1, $2, $3)`, [id_usuario, id_cliente, notas_v]
         )
     } catch (error) {
         throw error
@@ -146,4 +158,4 @@ const getClientsByFilter = async (select_Filters, select_View, debtRange, dateRa
     }
 }
 
-module.exports = { getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient}
+module.exports = { getAllClients, getClientsByFilter, isHuesped, banClient, unbanClient, deleteClient}

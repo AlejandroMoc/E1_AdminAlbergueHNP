@@ -19,7 +19,7 @@ app.use("/user", authenticate, require("./routes/user"));
 // app.use("/todos", authenticate, require("./routes/todos"));
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
-const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
+const {getAllClients, getClientsByFilter, isHuesped, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
@@ -254,6 +254,18 @@ app.post('/someclients', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+app.post('/ishuesped', async(req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        const huesped = await isHuesped(id_cliente)
+        console.log(huesped)
+        res.json(huesped)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
 
 app.post('/banclient', async (req, res) => {
     try {
