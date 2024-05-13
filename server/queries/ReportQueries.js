@@ -1,10 +1,12 @@
 const db = require('../db_connection'); // Import the database connection
+
 const getAllUsers = async (startDate, endDate) => {
     try {
         let query = `
             SELECT
             cliente.id_cliente,
             CASE
+                WHEN v.id_cliente IS NOT NULL THEN 'Vetado'
                 WHEN h.id_cliente IS NOT NULL OR l.id_cliente IS NOT NULL THEN 'Huesped'
                 ELSE 'Visitante'
             END AS tipo_usuario,
@@ -90,6 +92,7 @@ const getAllUsers = async (startDate, endDate) => {
         throw error;
     }
 }
+
 
 
 
