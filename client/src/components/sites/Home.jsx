@@ -1,14 +1,12 @@
 import React from "react";
 
 //Importar componentes
-import HomeAdmin from '../Admins/HomeAdmin';
-import Footer from '../Universal/Footer';
-import Navbar from '../Universal/Navbar';
+import HomeAdmin from '../admins/HomeAdmin';
+import Footer from '../universal/Footer';
 
 const Home = () => {
 	return (
 		<div className="App_global App_background_blue">
-			<Navbar/>
 			<HomeAdmin/>
 			<Footer/>
 		</div>

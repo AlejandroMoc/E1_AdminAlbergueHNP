@@ -1,4 +1,4 @@
-const db = require('../db_connection'); // Import the database connection
+const db = require('../db_connection');
 
 //Función para obtener ids de cama libres
 const getAllDispBeds = async() => {
@@ -52,7 +52,6 @@ const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre
     }
 }
 
-
 const registerEntradaUnica = async (carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner) => {
     try {
         console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se);
@@ -87,8 +86,6 @@ const registerEntradaUnica = async (carnet, id_area, nombre_p, apellidos_p, nomb
         throw error;
     }
 }
-
-
 
 
 //Función para obtener todas las areas del HNP

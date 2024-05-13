@@ -2,9 +2,8 @@
 import React from "react";
 
 //Importar componentes
-//import Navbar from '../Universal/Navbar';
-import Footer from '../Universal/Footer';
-import LoginAdmin from "../Admins/LoginAdmin";
+import Footer from '../universal/Footer';
+import LoginAdmin from "../admins/LoginAdmin";
 
 const Login = () => {
 	return (

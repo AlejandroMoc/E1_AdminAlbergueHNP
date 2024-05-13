@@ -1,23 +1,33 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const authenticate = require("../client/src/auth/authenticate");
+require('dotenv').config();
+
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
 
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js')
-const { getAllClients, getClientsByFilter } = require('./queries/UserListQueries.js');
-// const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU}= require('./queries/InfoUserQueries.js')
-const { getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js')
-// const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes, getAllGeneralHuespedes, getAllGeneralVisitantes} = require('./queries/ReportQueries.js');
-const { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
+//Importar las rutas (para no tener todo dentro del server.js)
+//TODO modificar estas para que empiecen por /api/ o algo asi
+app.use("/signup", require("./routes/signup"));
+app.use("/login", require("./routes/login"));
+app.use("/refreshtoken", require("./routes/refreshToken"));
+app.use("/signout", require("./routes/signout"));
+app.use("/user", authenticate, require("./routes/user"));
+// app.use("/todos", authenticate, require("./routes/todos"));
 
-// Importa las funciones necesarias de ReportQueries.js
-const { getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
+const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
+const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}= require('./queries/InfoUserQueries.js');
+const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
+const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
+const { verify } = require('jsonwebtoken');
 
+//TODO urgente reubicar rutas en archivos separados en vez de tener todo aqui
 
-
-//Funciones para UserNewAdmin
+//Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {
     try {
         const beds = await getAllDispBeds();
@@ -73,7 +83,6 @@ app.post('/registerEntradaUnica', async(req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })  
-
 
 app.get('/allareas', async(req, res) => {
     try {
@@ -178,9 +187,6 @@ app.get('/allgeneralvisitantes', async (req, res) => {
     }
 });
 
-
-
-
 app.post('/allclientinfo', async(req, res) => {
     try {
         const nombre_c = req.body.nombre;
@@ -220,8 +226,6 @@ app.get('/allingresos', async (req, res) => {
     }
 });
 
-
-
 //Funciones para UserListAdmin
 app.get('/allclients', async (req, res) => {
     try {
@@ -251,7 +255,41 @@ app.post('/someclients', async (req, res) => {
     }
 });
 
-//USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE-----------------
+app.post('/banclient', async (req, res) => {
+    try {
+        const id_usuario = req.body.id_u
+        const id_cliente = req.body.id_c
+        const notas_v = req.body.n_v
+        console.log(id_usuario)
+        console.log(id_cliente)
+        console.log(notas_v)
+        await banClient(id_usuario, id_cliente, notas_v)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/unbanclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await unbanClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/deleteclient', async (req, res) => {
+    try {
+        const id_cliente = req.body.id_c
+        console.log(id_cliente)
+        await deleteClient(id_cliente)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+//Funciones para UserInfo
 app.get('/clienteInfo/:id_cliente', async(req, res) => {
     try {
         const areas = await getclienteInfoD(req.params.id_cliente);
@@ -333,7 +371,7 @@ app.post('/pagar', (req, res) => {
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/addCama', (req, res) => {
+app.post('/rooms_spacing_addbed', (req, res) => {
     const id = req.body.id_zona;
     anadCama(id)
         .then((data) => res.json(data))
@@ -362,26 +400,9 @@ app.post('/regServacio', (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => console.log('ERROR: ', error));
 })
-//BEDS ----------- PAGINA CAMAS-----------------
 
+//Para LogIn y Signup se han importado las rutas arriba
 
-app.post('/registrarPago', async(req, res) => {
-    try {
-        const pago = req.body.pago;
-        const id_cliente = req.body.id_cliente;
-        const registerNewPago = await getNewRegister(id_cliente, pago);
-        res.json(registerNewPago);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})  
-
-
-// app.get('/hello', (req, res) => {
-//     res.json({message:"Hola"});
-// })
-
-
-app.listen(8000, () =>{
+app.listen(port, () =>{
     console.log('Servidor corriendo en el puerto 8000')
 });

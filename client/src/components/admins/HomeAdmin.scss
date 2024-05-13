@@ -1,0 +1,163 @@
+.universal_header_table {
+  margin-left: auto;
+  margin-right: auto;
+  // padding: 20px
+  border-collapse: separate;
+  border-spacing: 15px 15px;
+}
+
+.universal_header_linksquare {
+  background-color: #fafafa;
+  border-radius: 1vh;
+  height: 40vh;
+  width: 40vh;
+}
+
+.universal_header_table2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.universal_header_table3 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 105px;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 15px 15px;
+  background-color: #fafafa;
+  border-radius: 1vh;
+  height: 50vh;
+  width: 50vh;
+}
+
+.universal_header_texttitle {
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+}
+
+.universal_header_text {
+  color: #090909;
+  font-size: calc(8px + 2vmin);
+}
+
+.universal_header_textlink {
+  color: #090909;
+  font-size: calc(10px + 2vmin);
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.universal_input_date{
+  border: 0px solid #ccc;
+  border-radius: 1vh;
+  padding: 1vh;
+  background-color: #f2f2f2;
+  width: 200px;
+  text-align: center;
+  height: 40px;
+}
+
+.universal_input_date:focus {
+  outline: none;
+}
+
+.universal_container_inputdate {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.universal_container_pickerdate {
+  margin-right: 20px;
+}
+
+.universal_container_checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.universal_container_dropdown {
+  text-align: left;
+  // margin-top: 2vh;
+}
+
+.universal_toggle_dropdown {
+  background-color: #f2f2f2 !important;
+  color: #090909 !important;
+  border-color: #dedede !important;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.universal_label_radio {
+  margin-right: 20px;
+  font-size: large;
+}
+
+.universal_checkbox_HM {
+  border-color: #c2c2c2;
+}
+
+.universal_text_HM {
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+// TODO Mover a reportes
+.reports_button_export {
+  text-align: right;
+}
+
+.reports_container_services {
+  text-align: left;
+  align-content: left;
+}
+
+.reports_container_services {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.reports_dropdown_custommenu {
+  max-height: 200px;
+  max-width: 200px;
+  overflow-y: auto;
+}
+
+.reports_margin_formcheck{
+  margin-left: 1vh;
+  margin-right: 1vh;
+}
+
+.reports_flex_checkboxes{
+  display: flex;
+  //Bottom left top right
+  margin: 20px 0px 20px 0px;
+}
+
+.reports_title_container {
+  display: flex;
+  align-items: center;
+}
+
+.reports_title_element {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.reports_image_element {
+  width: 50px;
+  height: auto;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.reports_generated_element {
+  margin-top: 5px;
+  font-size: 14px;
+  margin-left: 5px;
+}
