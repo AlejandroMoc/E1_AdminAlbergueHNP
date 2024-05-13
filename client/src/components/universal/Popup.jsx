@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './Popup.scss'
+import { useAuth } from '../../auth/AuthProvider';
 
 const Popup = (props) => {
+    const id_u = useAuth().getUser().id_usuario
+    // console.log(id_u)
+
     const [notas_v, setNotas_V] = useState('')
     const handleNotas_VChange = (event) => {
         // console.log(event.target.value)
@@ -12,7 +16,7 @@ const Popup = (props) => {
         if (props.type == 0) {
             props.fun(props.id)
         } else if (props.type == 1) {
-            props.fun(1, props.id, notas_v)
+            props.fun(id_u, props.id, notas_v)
         }
         props.setTrigger({trigger:false, type: -1})
     }
@@ -28,7 +32,7 @@ const Popup = (props) => {
             </div>
         ) : ""
     } else if (props.type == 1) {
-        console.log(props.id)
+        // console.log(props.id)
         return (props.trigger) ? (
             <div className='popup_container'>
                 <div className='popup_inner'>

@@ -1,4 +1,4 @@
-const db = require('../db_connection');
+const db = require('../db_connection'); // Import the database connection
 
 //Función para obtener ids de cama libres
 const getAllDispBeds = async() => {
@@ -15,9 +15,9 @@ const getAllDispBeds = async() => {
     }
 }
 
-const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama) => {
+const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente) => {
     try {
-        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama);
+        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
         await db.none(
             `
             BEGIN TRANSACTION;
@@ -26,8 +26,8 @@ const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre
                 VALUES ($1, $2, $3, $4);
                     
 
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se)
-                VALUES ( 1, $1, $5, $6, $7, $8, $9, $10);
+                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente)
+                VALUES ( 1, $1, $5, $6, $7, $8, $9, $10, $12);
 
                 DO $$
                 DECLARE
@@ -44,7 +44,7 @@ const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre
                 END $$;
                 COMMIT;
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama],
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente],
             console.log("LISTO 1 :)")
         );
     } catch (error) {
@@ -52,19 +52,18 @@ const registerNewPatient = async (carnet, id_area, nombre_p, apellidos_p, nombre
     }
 }
 
-const registerEntradaUnica = async (carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner) => {
+
+const registerEntradaUnica = async (carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente) => {
     try {
-        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se);
+        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente);
         await db.none(
             `
             BEGIN TRANSACTION;
                 INSERT INTO paciente (carnet, id_area, nombre_p, apellidos_p)
                 VALUES ($1, $2, $3, $4);
                     
-
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se)
-                VALUES ( 1, $1, $5, $6, $7, $8, $9, $10);
-
+                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente)
+                VALUES (1, $1, $5, $6, $7, $8, $9, $10, $16);
 
                 DO $$
                 DECLARE
@@ -75,17 +74,19 @@ const registerEntradaUnica = async (carnet, id_area, nombre_p, apellidos_p, nomb
                     -- Llamar al procedimiento almacenado CrearServiciosCliente
                     CALL genServCliente_proc(CAST (ultimo_cliente AS INTEGER), ARRAY[[1, $11], [2, $12], [3, $13],[4, $14], [5, $15]]);
                     
-                    
                 END $$;
                 COMMIT;
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner],
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente],
             console.log("LISTO 2 :)")
         );
     } catch (error) {
         throw error;
     }
 }
+
+
+
 
 
 //Función para obtener todas las areas del HNP

@@ -11,12 +11,12 @@
     margin-top: 50px;
 }
 
-.user_spacing_reg{
+.user_space_reg{
     background-color: #f2f2f2;
     height: 62px;
 }
 
-.user_span_spacing_icon{
+.user_span_space_icon{
     background-color: #fafafa;
     font-size: xx-large;
     min-width: 60px;
@@ -51,7 +51,7 @@
     padding-top: 10px;
 }
 
-.user_spacing_not{
+.user_space_not{
     margin-top: 50px;
     //background-color: #d84949;
     height: 100%;
@@ -71,6 +71,16 @@
     gap: 10px;
 }
 
+.user_label_x2{
+    text-align: left;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 40%;
+}
+
 .user_select_beds{
     width: 60%;
     font-size: 16px;
@@ -78,6 +88,7 @@
     border-radius: 10px; /* Bordes redondos */
     background-color: #f2f2f2; /* Fondo gris */
     cursor: pointer;
+
 }
 
 .user_container_general{
@@ -91,6 +102,7 @@
 .user_span_notesicon{
     font-size: larger;
 }
+
 
 .user_span_notestext{
     background-color: #fafafa;
@@ -113,10 +125,6 @@
     width: 85%;
 }
 
-.user_adjust_debt{
-    width: 30%;
-}
-.user_adjust_debt_input{
-    width: 20%;
-    background-color: #dedede;
+.user_span_textsize{
+    min-width: 150px;
 }

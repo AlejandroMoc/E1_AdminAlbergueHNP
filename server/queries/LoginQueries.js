@@ -19,7 +19,7 @@ function sign(payload, isAccessToken){
 function getUserInfo(user){
   return{
     nombre_u: user.nombre_u,
-    id: user.id_usuario,
+    id_usuario: user.id_usuario,
   };
 }
 

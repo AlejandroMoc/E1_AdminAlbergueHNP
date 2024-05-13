@@ -72,8 +72,8 @@ const AuthProvider = ({ children }) => {
   }
 
   function getUser() {
-    console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
-    console.log(user);
+    // console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
+    // console.log(user);
     return user;
   }
 
@@ -163,7 +163,9 @@ const AuthProvider = ({ children }) => {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
+        console.log("LOREM IPSUM A")
         const accessToken = json.body.accessToken
+        console.log("DIMEEEEEEE ACCESS TOKEN")
         console.log(accessToken)
         return accessToken;
       } else {
@@ -184,6 +186,7 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  //Parece que esta función ni se usa
   async function getUserInfo(accessToken){
     try {
       const response = await fetch ("http://localhost:8000/user",{
@@ -198,8 +201,12 @@ const AuthProvider = ({ children }) => {
         // const json = await response.json() as AccessTokenResponse;
         const json = await response.json();
         if (json.error){
+          console.log("LOREM IPSUM B")
           throw new Error(json.error);
         }
+        console.log("LOREM IPSUM 2");
+        const dime =json.body;
+        console.log(dime);
         return json.body;
       }else{
         throw new Error(response.statusText);
@@ -210,30 +217,6 @@ const AuthProvider = ({ children }) => {
       return null;
     }
   }
-
-  //PARECE QUE  SI puedo borrar esto
-  // function saveSessionInfo(userInfo, accessToken,refreshToken){
-  //   setAccessToken(accessToken);
-  //   localStorage.setItem("token", JSON.stringify(refreshToken));
-  //   setIsAuthenticated(true);
-  //   setUser(userInfo);
-  // }
-
-
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const storedToken = localStorage.getItem("token");
-  //   if (storedToken) {
-  //     console.log("digame");
-  //     console.log(storedToken);
-  //     setRefreshToken(JSON.parse(storedToken));
-  //   }
-  // }, []);
 
   //NEW RETURN
   return (
@@ -251,22 +234,6 @@ const AuthProvider = ({ children }) => {
       {isloading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
-
-
-  //OLD RETURN
-  // return (
-  //   <AuthContext.Provider 
-  //     value={{ 
-  //       isAuthenticated, 
-  //       getAccessToken, 
-  //       saveUser, 
-  //       getRefreshToken, 
-  //       getUser, 
-  //       signOut
-  //     }}>
-  //     {children}
-  //   </AuthContext.Provider>
-  // );
 };
 
 async function retrieveUserInfo(accessToken) {

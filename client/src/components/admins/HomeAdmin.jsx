@@ -44,7 +44,6 @@ const HomeAdmin = () => {
                 </table>
               </Link>
             </td>
-
           </tr>
 
           <tr>
@@ -74,7 +73,7 @@ const HomeAdmin = () => {
           </tr>
         </tbody>
       </table>
-
+      <br/>
     </div>
   )
 }

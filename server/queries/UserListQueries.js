@@ -3,10 +3,10 @@ const db = require('../db_connection');
 //Función para vetar
 const banClient = async(id_usuario, id_cliente, notas_v) => {
     try {
-        await db.none(
-            `INSERT INTO vetado(id_usuario, id_cliente, notas_v, fecha_v)
-            VALUES($1, $2, $3, CURRENT_TIMESTAMP)`, [id_usuario, id_cliente, notas_v]
+        const ban = await db.none(
+            `CALL veto_proc($1, $2, $3)`, [id_usuario, id_cliente, notas_v]
         )
+        return ban
     } catch (error) {
         throw error
     }
@@ -14,10 +14,11 @@ const banClient = async(id_usuario, id_cliente, notas_v) => {
 
 const unbanClient = async(id_cliente) => {
     try {
-        await db.none(
+        const unban = await db.none(
             `DELETE FROM vetado
             WHERE id_cliente = $1`, [id_cliente]
         )
+        return unban
     } catch (error) {
         throw error
     }
@@ -25,11 +26,12 @@ const unbanClient = async(id_cliente) => {
 
 const deleteClient = async(id_cliente) => {
     try {
-        console.log('DELETE ', id_cliente)
-        await db.none(
+        // console.log('DELETE ', id_cliente)
+        const delet = await db.none(
             `DELETE FROM cliente
             WHERE id_cliente = $1`, [id_cliente]
         )
+        return delet
     } catch (error) {
         throw error
     }
