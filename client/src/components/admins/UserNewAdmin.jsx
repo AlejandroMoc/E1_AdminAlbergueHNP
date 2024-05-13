@@ -10,6 +10,7 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { RiHospitalLine } from "react-icons/ri";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 //import { registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
 
@@ -112,13 +113,13 @@ const handleBtRegistroClick = async () => {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
-        alert('Registro exitoso');
+        successToast()
         window.location.href = '/dashboard';
         // const goTo = useNavigate();
         // goTo("/dashboard");
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
-        alert('Error al registrar el paciente');
+        errorToast()
       }
     }
     else if(showBedNumber){
@@ -130,15 +131,15 @@ const handleBtRegistroClick = async () => {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
-        alert('Registro exitoso');
+        successToast()
         window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
-        alert('Error al registrar el paciente');
+        errorToast()
       }
     }
   } else {
-    alert('Por favor llene todos los campos obligatorios');
+   errorToast()
   }
 };
 
@@ -328,21 +329,6 @@ const handleBtRegistroClick = async () => {
         <div class="container user_container_reg">
 
           <h4>Información del Paciente</h4>
-          <span class="input-group-text user_span_sociolevel" id="basic-addon1">Es un paciente?</span>
-          <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">Si</span>
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">No</span>
-                </label>
-              </div>
-          </div>    
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
             <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
@@ -375,6 +361,21 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
 
           <h4>Información de Cliente</h4>
+          <span class="input-group-text user_span_sociolevel" id="basic-addon1">El cliente es un paciente?</span>
+          <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
+              <div class="form-check">
+                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
+                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span class="universal_text_HM">Si</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
+                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span class="universal_text_HM">No</span>
+                </label>
+              </div>
+          </div>    
             <div class="input-group mb-3 " onChange={handleNombre_CChange}>
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
               <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" disabled={isPaciente} aria-describedby="basic-addon1" value={nombre_c}></input>
@@ -510,6 +511,7 @@ const handleBtRegistroClick = async () => {
 
         </div>
       </div>
+      <MyToastContainer/>
     </div>
   );
 }
