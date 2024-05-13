@@ -387,7 +387,7 @@ const handleBtRegistroClick = async () => {
           <div class="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
             <select class="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected>X</option> 
+              <option selected>-</option> 
               {(
                 area.map((item) => (
                   <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
@@ -395,14 +395,9 @@ const handleBtRegistroClick = async () => {
               )}
             </select>
           </div>
-
-          
         </div>
 
-
-
         <div class="user_spacing_not">
-
           <div class="mb-3" onChange={handleNotas_CChange}>
             <textarea class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
           </div>
@@ -422,52 +417,56 @@ const handleBtRegistroClick = async () => {
               </div>
             </div>
           </div>
-          {showBedNumber && (
-          <div class="user_label_x" onChange={handleId_CamaCChange}>
-            <span>Número de Cama: </span>
-            <select class="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
-              {(
-                bed.map((item) => (
-                  <option value={item.id_cama}>{item.id_cama}</option>
-                ))
-              )}
-            </select>
+          
+          <div class="user_label_x">
+          <span>Área de Paciente: </span>
           </div>
+
+          {showBedNumber && (
+            <div class="user_label_x" onChange={handleId_CamaCChange}>
+              <select class="form-select user_select_beds sm" aria-label="Default select example">
+                <option selected>-</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
+                {(
+                  bed.map((item) => (
+                    <option value={item.id_cama}>{item.id_cama}</option>
+                  ))
+                )}
+              </select>
+            </div>
           )}
           {showServices && (
-          <div class="user_services_register">
-            <div class="input-group mb-3">
-              <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
-              <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{shower}</span>
+            <div class="user_services_register">
+              <div class="input-group mb-3">
+                <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
+                <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">{shower}</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">{bathroom}</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">{breakfast}</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">{meal}</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
+                <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+                <span class="input-group-text user_span_notestext" id="basic-addon1">{dinner}</span>
+              </div>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{bathroom}</span>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{breakfast}</span>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{meal}</span>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{dinner}</span>
-            </div>
-          </div>
            )}
       <button type="button" className={`user_button_register App_buttonaccept ${btRegistro ? 'activo' : ''}`} onClick={handleBtRegistroClick}>
         {btRegistro ? 'Desactivar' : 'Registrar'}

@@ -1,24 +1,26 @@
-const { getTokenFromHeader, verifyRefreshToken, generateAccessToken, verifyAccessToken } = require("../../../server/queries/LoginQueries.js");
-
-function authenticate(req, res, next){
+const {
+    getTokenFromHeader,
+    verifyAccessToken,
+  } = require("../../../server/queries/LoginQueries.js");
+  
+  function authenticate(req, res, next) {
     const token = getTokenFromHeader(req.headers);
-
-    if (token){
+  
+    if (token) {
+      try {
         const decoded = verifyAccessToken(token);
-        if (decoded){
-            req.user = { ...decoded.user},
-            next();
-        }else{
-            res.status(401).json({
-                message: "No token provided",
-            });
-        }
-    }else{
+        req.user = { ...decoded.user };
+        next();
+      } catch (error) {
         res.status(401).json({
-            message: "No token provided",
+          message: "Invalid token",
         });
+      }
+    } else {
+      res.status(401).json({
+        message: "No token provided",
+      });
     }
-
-}
-
-module.exports = authenticate;
+  }
+  
+  module.exports = authenticate;

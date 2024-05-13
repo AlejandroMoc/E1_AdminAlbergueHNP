@@ -163,7 +163,8 @@ const AuthProvider = ({ children }) => {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
-        const accessToken = json.body.accessToken
+        const accessToken = json.accessToken
+        console.log("DIMEEEEEEE ACCESS TOKEN")
         console.log(accessToken)
         return accessToken;
       } else {
@@ -200,7 +201,7 @@ const AuthProvider = ({ children }) => {
         if (json.error){
           throw new Error(json.error);
         }
-        return json.body;
+        return json;
       }else{
         throw new Error(response.statusText);
       }
@@ -210,30 +211,6 @@ const AuthProvider = ({ children }) => {
       return null;
     }
   }
-
-  //PARECE QUE  SI puedo borrar esto
-  // function saveSessionInfo(userInfo, accessToken,refreshToken){
-  //   setAccessToken(accessToken);
-  //   localStorage.setItem("token", JSON.stringify(refreshToken));
-  //   setIsAuthenticated(true);
-  //   setUser(userInfo);
-  // }
-
-
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const storedToken = localStorage.getItem("token");
-  //   if (storedToken) {
-  //     console.log("digame");
-  //     console.log(storedToken);
-  //     setRefreshToken(JSON.parse(storedToken));
-  //   }
-  // }, []);
 
   //NEW RETURN
   return (
@@ -251,22 +228,6 @@ const AuthProvider = ({ children }) => {
       {isloading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
-
-
-  //OLD RETURN
-  // return (
-  //   <AuthContext.Provider 
-  //     value={{ 
-  //       isAuthenticated, 
-  //       getAccessToken, 
-  //       saveUser, 
-  //       getRefreshToken, 
-  //       getUser, 
-  //       signOut
-  //     }}>
-  //     {children}
-  //   </AuthContext.Provider>
-  // );
 };
 
 async function retrieveUserInfo(accessToken) {
