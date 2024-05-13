@@ -163,7 +163,8 @@ const AuthProvider = ({ children }) => {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
-        const accessToken = json.accessToken
+        console.log("LOREM IPSUM A")
+        const accessToken = json.body.accessToken
         console.log("DIMEEEEEEE ACCESS TOKEN")
         console.log(accessToken)
         return accessToken;
@@ -185,6 +186,7 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  //Parece que esta función ni se usa
   async function getUserInfo(accessToken){
     try {
       const response = await fetch ("http://localhost:8000/user",{
@@ -199,9 +201,13 @@ const AuthProvider = ({ children }) => {
         // const json = await response.json() as AccessTokenResponse;
         const json = await response.json();
         if (json.error){
+          console.log("LOREM IPSUM B")
           throw new Error(json.error);
         }
-        return json;
+        console.log("LOREM IPSUM 2");
+        const dime =json.body;
+        console.log(dime);
+        return json.body;
       }else{
         throw new Error(response.statusText);
       }
