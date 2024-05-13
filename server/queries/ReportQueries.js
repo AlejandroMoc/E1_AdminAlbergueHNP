@@ -29,7 +29,12 @@ const getAllUsers = async (startDate, endDate) => {
             COALESCE(sc_comida.cantidad, 0) AS cantidad_comida,
             COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
             cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
-            COALESCE(total_deuda.total, 0) AS total_deuda
+            COALESCE(total_deuda.total, 0) AS total_deuda,
+            -- Agrega la nueva columna "No.Carnet" basada en la condición dada
+            CASE
+                WHEN cliente.paciente = TRUE THEN paciente.carnet
+                ELSE cliente.carnet
+            END AS "carnet"
         FROM
             cliente
         LEFT JOIN
@@ -63,6 +68,8 @@ const getAllUsers = async (startDate, endDate) => {
             GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
         LEFT JOIN
             vetado v ON cliente.id_cliente = v.id_cliente
+        LEFT JOIN
+            paciente ON cliente.carnet = paciente.carnet
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago
@@ -168,6 +175,7 @@ const getUserInfo = async (userId) => {
             `SELECT
             cliente.id_cliente,
             CASE
+                WHEN v.id_cliente IS NOT NULL THEN 'Vetado'
                 WHEN h.id_cliente IS NOT NULL OR l.id_cliente IS NOT NULL THEN 'Huesped'
                 ELSE 'Visitante'
             END AS tipo_usuario,
@@ -195,7 +203,11 @@ const getUserInfo = async (userId) => {
             COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
             cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
             v.notas_v AS notas_v, -- Agregar notas_v de la tabla vetado
-            COALESCE(total_deuda.total, 0) AS total_deuda
+            COALESCE(total_deuda.total, 0) AS total_deuda,
+            CASE
+                WHEN cliente.paciente = TRUE THEN paciente.carnet
+                ELSE cliente.carnet
+            END AS "carnet"
         FROM
             cliente
         LEFT JOIN
@@ -229,6 +241,8 @@ const getUserInfo = async (userId) => {
              GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
         LEFT JOIN
             vetado v ON cliente.id_cliente = v.id_cliente
+        LEFT JOIN
+            paciente ON cliente.carnet = paciente.carnet
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
              FROM pago
@@ -271,7 +285,11 @@ const getAllGeneralVisitantes = async (startDate, endDate) => {
             COALESCE(sc_comida.cantidad, 0) AS cantidad_comida,
             COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
             cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
-            COALESCE(total_deuda.total, 0) AS total_deuda
+            COALESCE(total_deuda.total, 0) AS total_deuda,
+            CASE
+                WHEN cliente.paciente = TRUE THEN paciente.carnet
+                ELSE cliente.carnet
+            END AS "carnet"
         FROM
             cliente
         LEFT JOIN
@@ -305,6 +323,8 @@ const getAllGeneralVisitantes = async (startDate, endDate) => {
             GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
         LEFT JOIN
             vetado v ON cliente.id_cliente = v.id_cliente
+        LEFT JOIN
+            paciente ON cliente.carnet = paciente.carnet
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago
@@ -360,7 +380,11 @@ const getAllGeneralHuespedes = async (startDate, endDate) => {
             COALESCE(sc_comida.cantidad, 0) AS cantidad_comida,
             COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
             cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
-            COALESCE(total_deuda.total, 0) AS total_deuda
+            COALESCE(total_deuda.total, 0) AS total_deuda,
+            CASE
+                WHEN cliente.paciente = TRUE THEN paciente.carnet
+                ELSE cliente.carnet
+            END AS "carnet"
         FROM
             (
                 SELECT id_cliente, fecha_i
@@ -402,6 +426,8 @@ const getAllGeneralHuespedes = async (startDate, endDate) => {
             GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
         LEFT JOIN
             vetado v ON cliente.id_cliente = v.id_cliente
+        LEFT JOIN
+            paciente ON cliente.carnet = paciente.carnet
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago
@@ -459,7 +485,11 @@ const getAllGeneralVetados = async (startDate, endDate) => {
             COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
             notas_c AS notas_cliente, -- Agregar las notas de cliente
             notas_v,
-            COALESCE(total_deuda.total, 0) AS total_deuda
+            COALESCE(total_deuda.total, 0) AS total_deuda,
+            CASE
+                WHEN cliente.paciente = TRUE THEN paciente.carnet
+                ELSE cliente.carnet
+            END AS "carnet"
         FROM
             cliente
         LEFT JOIN
@@ -493,6 +523,8 @@ const getAllGeneralVetados = async (startDate, endDate) => {
             GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
         LEFT JOIN
             vetado v ON cliente.id_cliente = v.id_cliente
+        LEFT JOIN
+            paciente ON cliente.carnet = paciente.carnet
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago

@@ -17,11 +17,11 @@ const ReportsAdmin = () => {
   const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
   const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
   const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
-  const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
+  const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' , carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
   const [dataingreso, setDataIngreso] = useState({fecha_inicio: '', fecha_fin:'', total_pagado: '', total_condonado:'', ingresos_reales:''}); // Estado para almacenar los datos de la consulta
 
   // Estado para almacenar el nombre del Huesped seleccionado
@@ -271,7 +271,7 @@ const getCurrentDateTime = () => {
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`; // Formato: DD/MM/YYYY
   //Convertir segundos a dos digitos si se necesita:
-  if (currentDate.getSeconds < 10){
+  if (currentDate.getSeconds() < 10){
     const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:0${currentDate.getSeconds()}`;
     return `${formattedDate} a la hora ${formattedTime}`;
   }else{
@@ -770,6 +770,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -792,6 +793,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -821,6 +823,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -842,6 +845,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -872,6 +876,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -893,6 +898,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -920,6 +926,7 @@ const getCurrentDateTime = () => {
               <th>Apellidos</th>
               <th>Sexo</th>
               <th>Lugar de Origen</th>
+              <th>No.Carnet</th>
               <th>Fecha de Ingreso</th>
               <th>Fecha de Vetado</th>
               <th>Motivo Vetado</th>
@@ -943,6 +950,7 @@ const getCurrentDateTime = () => {
                 <td>{item.apellidos_c}</td>
                 <td>{item.sexo}</td>
                 <td>{item.lugar_o}</td>
+                <td>{item.carnet}</td>
                 <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                 <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                 <td>{item.notas_v}</td>
@@ -971,6 +979,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -993,6 +1002,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -1022,6 +1032,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -1044,6 +1055,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -1072,6 +1084,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Vetado</th>
                 <th>Motivo Vetado</th>
@@ -1095,6 +1108,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   <td>{item.notas_v}</td>
