@@ -1,11 +1,12 @@
 import React from 'react';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './MyToast.scss';
 
 export const successToast = () => {
     toast.success('Proceso Exitoso', {
-        position: "top-center",
-        autoClose: 3000,
+        position: "bottom-right",
+        autoClose: 1000000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -18,8 +19,8 @@ export const successToast = () => {
   
   export const errorToast = () => {
     toast.error('Proceso Fallido', {
-        position: "top-center",
-        autoClose: 3000,
+        position: "bottom-right",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -29,6 +30,7 @@ export const successToast = () => {
         transition: Bounce
         });
   };
+
   
   export default function MyToastContainer() {
     return <ToastContainer />;

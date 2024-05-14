@@ -1,9 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RoomAdmin.scss';
+import '../universal/MyToast.scss';
 import { Dropdown, Menu } from 'antd';
 
 import { Link } from "react-router-dom";
+
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
+import Popup from '../universal/Popup';
 
 import iconocama from '../../assets/vectors/icon_bed.svg';
 import { IoAddCircleOutline  } from "react-icons/io5";
@@ -32,6 +36,19 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
 
   const [ka, setKa] = useState(0);
 
+  const [text, SetText] = useState("");
+
+  const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
+
+  function kaliL(){
+    setKa(kaa);
+    console.log(ka)
+  }
+
+  function kaliL2(){
+    setKli2(klii);
+    console.log(kli2)
+  }
 
   const [kli3, setKli3] = useState(0);
   const [can1, setCan1] = useState(0);
@@ -47,7 +64,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         'Content-type': 'application/json; charset=UTF-8'
       }
       })
-      .catch((error) => console.error('Error UseEffect Pagar', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
       if(montazo != 0){setMontazo(0)}
       if(kli != 0){setKli(0)}
       if(notas != ""){setNotas("")}
@@ -67,7 +92,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         'Content-type': 'application/json; charset=UTF-8'
       }
       })
-      .catch((error) => console.error('Error UseEffect Registrar Salida', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
       if(kli2 != 0){setKli2(0)}
 
       refreshBedsData("salida")
@@ -83,12 +116,20 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         'Content-type': 'application/json; charset=UTF-8'
       }
       })
-      .catch((error) => console.error('Error UseEffect Eliminar Cama', error));
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
       if(ka != 0){setKa(0)}
 
       refreshBedsData("eliminarCama")
     }
-  },[ka])
+  },[ka, showPopUp])
 
   useEffect(() => { 
     if(kli3 != 0){
@@ -100,7 +141,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
           'Content-type': 'application/json; charset=UTF-8'
         }
         })
-        .catch((error) => console.error('Error UseEffect Registrar Servicio Desayuno', error));
+        .then((response) => {
+          if (response.ok) {
+            successToast()
+          }
+        })
+        .catch((error) => {
+          errorToast()
+          console.error('Error fetching data:', error)
+        })
         if(kli3 != 0){setKli3(0)}
         if(can1 != 0){setCan1(0)}
         
@@ -114,7 +163,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
           'Content-type': 'application/json; charset=UTF-8'
         }
         })
-        .catch((error) => console.error('Error UseEffect Registrar Servicio Comida', error));
+        .then((response) => {
+          if (response.ok) {
+            successToast()
+          }
+        })
+        .catch((error) => {
+          errorToast()
+          console.error('Error fetching data:', error)
+        })
         if(kli3 != 0){setKli3(0)}
         if(can2 != 0){setCan2(0)}
         
@@ -128,7 +185,15 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
           'Content-type': 'application/json; charset=UTF-8'
         }
         })
-        .catch((error) => console.error('Error UseEffect Registrar Servicio Cena', error));
+        .then((response) => {
+          if (response.ok) {
+            successToast()
+          }
+        })
+        .catch((error) => {
+          errorToast()
+          console.error('Error fetching data:', error)
+        })
         if(kli3 != 0){setKli3(0)}
         if(can3 != 0){setCan3(0)}
         
@@ -240,7 +305,7 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
       </Menu.SubMenu>
       <Menu.Divider />
       <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => { setKli2(klii);}}>Registrar Salida</span>
+        <span class="rooms_text_infosubtitles" onClick={() => { SetText("Registrar salida de "+nombre+" "+apellidos); setShowPopUp({trigger: true, type: 2, id: numCama, fun: kaliL2});}}>Registrar Salida</span>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true" disabled="true">
@@ -255,12 +320,14 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
         <span class="rooms_text_infotitle">Cama {numCama}</span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
-        <span class="rooms_text_infosubtitles">Añadir Huésped</span>
-      </Menu.Item>
+      <Link to="/usernew" className="rooms_text_bedsnot">
+        <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
+          <span class="rooms_text_infosubtitles">Añadir Huésped</span>
+        </Menu.Item>
+      </Link>
       <Menu.Divider />
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => { setKa(kaa);}}>Eliminar Cama</span>
+        <span class="rooms_text_infosubtitles" onClick={() => { SetText("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: kaliL}); }}>Eliminar Cama</span>
       </Menu.Item>
     </Menu>
   )
@@ -269,14 +336,19 @@ function Cama({kaa, klii, color, iconocama, numCama, nombre, carnet, apellidos, 
   else if(color == '#8cbcfc' || color == '#EE7171'){ menu = menuOcupadas;}
 
   return (
-    <Dropdown overlay={menu} trigger={['contextMenu']}>
-      <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+klii} className="rooms_text_bedsnot">
-        <div className="card rooms_spacing_beds" style={{ backgroundColor: color }} onClick={() => {console.log("AA , "+klii)}}>
-          <img src={iconocama} className="card-img-top" alt="..." />
-          <p className="rooms_text_beds">{numCama}</p>
-        </div>
-      </Link>
-    </Dropdown>
+    <>
+      <Dropdown overlay={menu} trigger={['contextMenu']}>
+        <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+klii} className="rooms_text_bedsnot">
+          <div className="card rooms_spacing_beds" style={{ backgroundColor: color }} onClick={() => {console.log("AA , "+klii)}}>
+            <img src={iconocama} className="card-img-top" alt="..." />
+            <p className="rooms_text_beds">{numCama}</p>
+          </div>
+        </Link>
+      </Dropdown>
+      <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
+        {text}
+      </Popup>
+    </>
   );
 
 }
@@ -349,7 +421,15 @@ const RoomAdmin = () => {
         'Content-type': 'application/json; charset=UTF-8'
       }
   })
-    .catch((error) => console.error('Error UseEffect Agregar Cama', error));
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
     
     if(zona != 0){setZona(0)}
     }
@@ -367,7 +447,7 @@ const RoomAdmin = () => {
     }
   }
   
-  console.log(aisladoLetras);
+  //console.log(aisladoLetras);
 
   return (
     <div className='App_minheight'>
@@ -410,7 +490,7 @@ const RoomAdmin = () => {
           </div>
         </div>
 
-        <hr></hr>
+        <hr />
         
         <div class="rooms_text_subtitles container">
           <span class="rooms_text_titles">ZONA DE HOMBRES</span>
@@ -448,7 +528,7 @@ const RoomAdmin = () => {
           </div>
         </div>
 
-        <hr/>
+        <hr />
 
         <div class="rooms_text_subtitles container">
           <span class="rooms_text_titles">ZONA DE AISLADOS</span>
@@ -488,6 +568,8 @@ const RoomAdmin = () => {
           </div>
         </div>
         <br/>
+        
+        <MyToastContainer />
     </div>
   )
 }

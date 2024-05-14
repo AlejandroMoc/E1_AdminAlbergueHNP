@@ -17,6 +17,8 @@ const Popup = (props) => {
             props.fun(props.id)
         } else if (props.type == 1) {
             props.fun(id_u, props.id, notas_v)
+        } else if (props.type == 2) {
+            props.fun(notas_v)
         }
         props.setTrigger({trigger:false, type: -1})
     }
@@ -25,9 +27,11 @@ const Popup = (props) => {
         return (props.trigger) ? (
             <div className='popup_container'>
                 <div className='popup_inner'>
-                    <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
-                    <button className='accept-btn' onClick={handleAccept}>Aceptar</button>
                     {props.children}
+                    <div class="Lmao">
+                        <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
+                        <button className='accept-btn' onClick={handleAccept}>Aceptar</button>
+                    </div>
                 </div>
             </div>
         ) : ""
@@ -36,12 +40,26 @@ const Popup = (props) => {
         return (props.trigger) ? (
             <div className='popup_container'>
                 <div className='popup_inner'>
+                    {props.children}
                     <div className="notas_container" onChange={handleNotas_VChange}>
                         <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Razón de Veto: " value={notas_v}></textarea>
                     </div>
-                    <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
-                    <button className='accept-btn' onClick={handleAccept}>Vetar</button>
+                    <div class="Lmao">
+                        <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
+                        <button className='accept-btn' onClick={handleAccept}>Vetar</button>
+                    </div>
+                </div>
+            </div>
+        ) : ""
+    } else if (props.type == 2) {
+        return (props.trigger) ? (
+            <div className='popup_container'>
+                <div className='popup_inner'>
                     {props.children}
+                    <div class="Lmao">
+                        <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
+                        <button className='accept-btn' onClick={handleAccept}>Aceptar</button>
+                    </div>
                 </div>
             </div>
         ) : ""
