@@ -205,8 +205,6 @@ const handleBtRegistroClick = async () => {
   const [nivel_se, setNivel_SE] = useState(0)
   const handleNivel_SEChange = (event) => {
     // console.log(event.target.value)
-    const isError = inputValue.trim() === '';
-    setNivel_SEError(isError);
     setNivel_SE(event.target.value)
   }
   const [isPaciente, setIsPaciente] = useState(false);
@@ -236,8 +234,6 @@ const handleBtRegistroClick = async () => {
   const [lugar_o, setLugar_O] = useState('')
   const handleLugar_OChange = (event) => {
     // console.log(event.target.value)
-    const isError = inputValue.trim() === '';
-    setLugar_OError(isError);
     setLugar_O(event.target.value)
   }
 
@@ -245,8 +241,6 @@ const handleBtRegistroClick = async () => {
   const [carnet, setCarnet] = useState('')
   const handleCarnetChange = (event) => {
     // console.log(event.target.value)
-    const isError = inputValue.trim() === '';
-    setCarnetError(isError);
     setCarnet(event.target.value)
   }
 
@@ -343,26 +337,24 @@ const handleBtRegistroClick = async () => {
         <div class="container user_container_reg">
 
           <h4>Información del Paciente</h4>
+          <div class="input-group mb-3 " onChange={handleLugar_OChange}>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+          </div>
           <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
-              {lugar_oError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
-            </div>
-            <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
-              {nombre_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
-            </div>
-            <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_PChange} value={apellidos_p}></input>
-              {apellidos_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
-            </div>
-            <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
-              {carnetError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
-            </div>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
+            {nombre_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+          </div>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" class={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
+            {apellidos_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+          </div>
+          <div class="input-group mb-3 " onChange={handleCarnetChange}>
+            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <input type="text" class="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+          </div>
           <div class="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
             <select class="form-select user_select_beds sm" aria-label="Default select example">
