@@ -101,7 +101,6 @@ const getAllUsers = async (startDate, endDate) => {
 
 
 
-
 const getAllHuespedes = async () => {
     try {
         const allHuespedes = await db.any(
@@ -116,13 +115,15 @@ const getAllHuespedes = async () => {
         LEFT JOIN
             logsalidas ls ON cliente.id_cliente = ls.id_cliente
         WHERE
-            h.id_cliente IS NOT NULL OR ls.id_cliente IS NOT NULL`,
+            (h.id_cliente IS NOT NULL OR ls.id_cliente IS NOT NULL)
+            AND cliente.id_cliente NOT IN (SELECT id_cliente FROM vetado)`,
         )
         return allHuespedes;
     } catch (error) {
         throw error;
     }
 }
+
 
 const getAllVisitantes = async () => {
     try {
@@ -432,6 +433,8 @@ const getAllGeneralHuespedes = async (startDate, endDate) => {
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago
             GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
+        WHERE
+            v.id_cliente IS NULL
         `;
 
         let params = [];

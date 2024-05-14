@@ -41,6 +41,35 @@ const ReportsAdmin = () => {
   const [mostrarVisitantes, setMostrarVisitantes] = useState(false); // Nuevo estado para mostrar el dropdown de Visitantes
   const [mostrarVetados, setMostrarVetados] = useState(false); // Nuevo estado para mostrar el dropdown de Visitantes
 
+  // Estado para almacenar el mensaje de error de fecha
+const [dateErrorMessage, setDateErrorMessage] = useState('');
+
+// Función para manejar el cambio de las fechas de inicio y fin
+const handleDateChange = (startDate, endDate) => {
+  setStartDate(startDate);
+  setEndDate(endDate);
+const before = new Date('2020-01-01T00:00:00Z');
+const today = new Date();
+
+  // Verificar si la fecha de inicio es posterior a la fecha de fin
+  if (startDate && endDate && startDate > endDate) {
+    // Establecer el mensaje de error
+    setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin');
+  } else if ((startDate && !endDate) || (!startDate && endDate)) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Se necesitan 2 fechas');
+  } else if (startDate && startDate < before ||endDate && endDate < before) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Fecha anterior al año 2020');
+  }  else if (startDate > today || endDate > today) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual');
+  } else {
+    // Limpiar el mensaje de error si las fechas son válidas
+    setDateErrorMessage('');
+  }
+};
+
 
   const handleDateFormat = (date) => {
     const dbDate = new Date(date)
@@ -59,8 +88,9 @@ const ReportsAdmin = () => {
   };
 
 
+
   useEffect(() => {
-    if (startDate === null  || endDate === null) {
+    if (startDate === null || endDate === null) {
       // Cuando startDate y endDate son null, realizar estas operaciones
       fetch('http://localhost:8000/allusers')
         .then((res) => res.json())
@@ -226,14 +256,20 @@ const generatePDF = useReactToPrint({
     }
 
     titleElement.innerText = reportType; // Establecemos el texto del título
+    const today = new Date(); // Agregar esta línea para obtener la fecha actual
+
 
         // Agregar el texto de rango de fechas si se cumplen las condiciones
       if ((esGeneral || (esUsuario && mostrarHuespedes && huespedSeleccionado === 'Huesped') || 
       (esUsuario && mostrarVisitantes && visitanteSeleccionado === 'Visitante') || 
       (esUsuario && mostrarVetados && vetadoSeleccionado === 'Vetado') || esIngreso) && startDate && endDate) {
         const dateRangeElement = document.createElement('p');
-        dateRangeElement.classList.add('title-element2')
-        const formattedDateRange = `Rango de fechas del reporte: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+        dateRangeElement.classList.add('title-element2');
+        let formattedEndDate = endDate;
+        if (endDate > today) {
+          formattedEndDate = today;
+        }
+        const formattedDateRange = `Rango de fechas del reporte: ${startDate.toLocaleDateString()} - ${formattedEndDate.toLocaleDateString()}`;
         dateRangeElement.innerText = formattedDateRange;
         subtitleContainer.appendChild(dateRangeElement);
       }
@@ -443,7 +479,8 @@ const getCurrentDateTime = () => {
           <div className="universal_container_pickerdate">
           <DatePicker
               selected={startDate}
-              onChange={date => setStartDate(date)}
+              onChange={(date) => handleDateChange(date, endDate)}
+
               placeholderText='Inicio (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
@@ -456,13 +493,17 @@ const getCurrentDateTime = () => {
           <div className="universal_container_pickerdate">
             <DatePicker
               selected={endDate}
-              onChange={date => setEndDate(date)}
+              onChange={(date) => handleDateChange(startDate, date)}
+
               placeholderText='Fin (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
 
             />
+            {dateErrorMessage && (
+                <p className="userlist_text_error">{dateErrorMessage}</p>
+              )}
           </div>
 
           <div className="universal_container_checkbox">
@@ -738,7 +779,6 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Rango de Fechas</th>
                 <th>Fecha Primer Pago</th>
                 <th>Fecha Último Pago</th>
                 <th>Total Pagado</th>
@@ -748,7 +788,6 @@ const getCurrentDateTime = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{startDate && endDate ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}` : '-'}</td>
                 <td>{dataingreso.fecha_inicio ? handleDateFormat(dataingreso.fecha_inicio) : ''}</td>
                 <td>{dataingreso.fecha_fin ? handleDateFormat(dataingreso.fecha_fin) : ''}</td>
                 <td>{dataingreso.total_pagado}</td>
