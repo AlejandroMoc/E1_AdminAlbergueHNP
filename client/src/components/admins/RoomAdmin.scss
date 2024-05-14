@@ -5,6 +5,7 @@
   margin: 10px;
   //background-color: #dedede;
   align-self: flex-end;
+  z-index: -1;
 }
 
 .rooms_spacing_beds:hover{
@@ -39,6 +40,7 @@
   justify-content: center;
   align-items: center;
   border-width: 1px;
+  z-index: 0;
 }
 
 #rooms_logo_addbed{
@@ -104,4 +106,8 @@
 
 .rooms_text_condpay{
     margin-left: 10px;
+}
+
+hr{
+  z-index: -1;
 }
