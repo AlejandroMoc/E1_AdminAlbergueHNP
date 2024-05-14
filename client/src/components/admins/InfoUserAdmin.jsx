@@ -13,6 +13,7 @@ import { RiHospitalLine } from "react-icons/ri";
 // import { IoMdAddCircleOutline } from "react-icons/io";
 // import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
+import { MdOutlineEdit } from "react-icons/md"; //Boton Editar
 import { LiaCoinsSolid } from "react-icons/lia";
 import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
 import { LuBedDouble } from "react-icons/lu"; //Cama
@@ -193,10 +194,13 @@ useEffect(() =>{
 }, [props.id_cliente])
 console.log("Notas del vetado"+vetadoNota.notas_v)
 
-
+///////////////////////////////////////////////////////////////////////////////
 //EMPIEZA DESARROLLO DEL HTML
   return (
     <div class='App_minheight'>
+      <div className='button-container'>
+        <button className='edit-button App_buttonaccept '><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
+      </div>
       <div class="user_container_general">
         <div class="container user_container_reg">
         {/* {!showNumbersSelect && (

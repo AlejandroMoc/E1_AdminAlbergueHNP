@@ -2,6 +2,7 @@
 import { Routes, Route, Navigate} from "react-router-dom";
 
 //Importar páginas
+import EditUser from "../sites/EditUser";
 import Home from "../sites/Home";
 import UserNew from "../sites/UserNew";
 import Rooms from "../sites/Rooms";
@@ -36,6 +37,7 @@ export const AppRouter = () => {
                         <Route path="profile" element={<Profile />}/>
                         <Route path="changepassword" element={<ProfilePassword />}/>
                         <Route path="reports" element={<Reports />}/>
+                        <Route path="edituser" element={<EditUser/>}/> 
                         {/* TODO crear 404? */}
                         {/* <Route path="*" element={<Navigate to="/login" />}/> */}
                     </Route>

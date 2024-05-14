@@ -150,3 +150,15 @@
     margin-left: 50%;
     background-color: rgb(186, 186, 186);
 }
+.button-container {
+    position: relative;
+  }
+  
+  .edit-button {
+    position: absolute;
+    color: #1d4e63;
+    top: 10px;  /* Ajusta según sea necesario */
+    left: 45px;  /* Ajusta según sea necesario */
+    /* Otros estilos para el botón */
+    width: 7% !important;
+  }
