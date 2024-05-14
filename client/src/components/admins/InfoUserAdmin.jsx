@@ -12,6 +12,7 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { RiHospitalLine } from "react-icons/ri";
 // import { IoMdAddCircleOutline } from "react-icons/io";
 // import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
 import { LiaCoinsSolid } from "react-icons/lia";
 import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
 import { LuBedDouble } from "react-icons/lu"; //Cama
@@ -111,8 +112,6 @@ const fechaNueva = () => {
   return fecha.toLocaleString(); 
 };
 
-
-
 //FETCH PARA SABER SI EL CLIENTE ESTA VETADO O NO:
 const [vetadoCliente, setvetadoCliente] = useState({vetadobool:0})
 //FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
@@ -182,6 +181,18 @@ console.log(showVetadoSelect)
    const handleDesVetar = async () =>{  
     setShowPopUp({trigger: true, type: 0, id: props.id_cliente, fun: desvetarCliente})
    }
+
+
+//FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
+const [vetadoNota, setvetadoNota] = useState({notas_v:""})
+
+useEffect(() =>{
+  fetch('http://localhost:8000/notasVeto/'+props.id_cliente)
+  .then((res) => res.json())
+  .then((data) => {setvetadoNota(data); console.log(data)});
+}, [props.id_cliente])
+console.log("Notas del vetado"+vetadoNota.notas_v)
+
 
 //EMPIEZA DESARROLLO DEL HTML
   return (
@@ -301,8 +312,17 @@ console.log(showVetadoSelect)
             )}
           </div>
           {showVetadoSelect  && (
+          <div>
+              <div class="input-group mb-3">
+              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
+            <span class="input-group-text user_span_infoVeto" id="basic-addon1">Usuario Vetado</span>
+            </div>
+            <div class="mb-3">
+            <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
+          </div>
           <div class="input-group mb-3 ">
             <button className="App_buttonaccept vetar" onClick={handleDesVetar}>Desvetar</button>
+          </div>
           </div>)}
           {!showVetadoSelect && (
           <div class="input-group mb-3 ">

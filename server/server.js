@@ -20,7 +20,7 @@ app.use("/user", authenticate, require("./routes/user"));
 
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
-const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado}= require('./queries/InfoUserQueries.js');
+const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
 const { verify } = require('jsonwebtoken');
@@ -360,6 +360,15 @@ app.get('/vetado/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching vetado CLIENTE:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+app.get('/notasVeto/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getNotaVeto(req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching Notas Veto:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 })

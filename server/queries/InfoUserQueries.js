@@ -85,8 +85,18 @@ const getVetado = async(id_cliente) => {
         throw error
     }
 }
+//Función para obtener La razon del veto
+const getNotaVeto = async(id_cliente) => {
+    try {
+        const vetadoInfo = await db.any(`SELECT notas_v
+        FROM vetado
+        WHERE id_cliente = $1;`, [id_cliente])
+        return vetadoInfo[0]
+    } catch (error) {
+        throw error
+    }
+}
 
 
 
-
-module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado}
+module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}
