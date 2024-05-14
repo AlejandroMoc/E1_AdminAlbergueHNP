@@ -438,7 +438,7 @@ const getCurrentDateTime = () => {
     return (
       <div className='App_minheight App_minpadding reports_container_services'>
         {/* Div para agrupar los campos de entrada */}
-        <div className="universal_container_inputdate">
+        <div className="reports_container_inputdate">
           {/* Campo de entrada para la fecha 1 */}
           <div className="universal_container_pickerdate">
           <DatePicker
@@ -465,7 +465,7 @@ const getCurrentDateTime = () => {
             />
           </div>
 
-          <div className="universal_container_checkbox">
+          <div className="reports_container_checkbox">
             {/* Checkbox para marcar si es General */}
             <div className="reports_margin_formcheck">
               <input
@@ -638,7 +638,7 @@ const getCurrentDateTime = () => {
       <div className="reports_container_services">
         {/* Mostrar los checkboxes de servicios si esServicio está marcado */}
         {esServicio && (
-          <div className="universal_container_checkbox">
+          <div className="reports_container_checkbox">
             {/* Checkbox para cada servicio */}
             <div className="reports_margin_formcheck">
               <input

@@ -361,7 +361,7 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
 
           <h4>Información de Cliente</h4>
-          <span class="input-group-text user_span_sociolevel" id="basic-addon1">El cliente es un paciente?</span>
+          <span class="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
           <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div class="form-check">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
@@ -400,7 +400,7 @@ const handleBtRegistroClick = async () => {
               </div>
             </div>
           </div>
-          <span class="input-group-text user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
+          <span class="user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
           <div class="input-group mb-3 user_checkerito" onChange={handleNivel_SEChange}>
             <div class="user_div_radio">
               <div class="form-check">
@@ -434,7 +434,7 @@ const handleBtRegistroClick = async () => {
                 </label>
               </div>
             </div>
-          </div>          
+          </div>
         </div>
         <div class="user_space_not">
           <div class="mb-3" onChange={handleNotas_CChange}>

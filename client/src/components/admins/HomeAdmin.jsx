@@ -13,18 +13,28 @@ const HomeAdmin = () => {
 
   const auth=useAuth();
 
+  const welcomeMessages = [
+    `¡Te damos la bienvenida, ${auth.getUser()?.nombre_u || ""}!`,
+    `Ten un buen día, ${auth.getUser()?.nombre_u || ""}.`,
+    `Esperamos que hoy sea un buen día, ${auth.getUser()?.nombre_u || ""}.`,
+    `Tu potencial es infinito, ${auth.getUser()?.nombre_u || ""}.`,
+  ];
+  
+  const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
+  const randomWelcomeMessage = welcomeMessages[randomIndex];
+
   return (
     <div className='App_minheight'>
       <br/>
-      {/*TODO meterle aleatorización de unos 10 mensajes cada vez*/}
-      <h2>¡Te damos la bienvenida, {auth.getUser()?.nombre_u || ""}!</h2>
+      <h2>{randomWelcomeMessage}</h2>
+      
       <table className='universal_header_table'>
         <tbody>
           <tr>
             {/* Boton 1 */}
-            <td className='universal_header_linksquare'>
-              <Link className= 'universal_header_textlink' to="/usernew">
-                <table className='universal_header_table2'>
+            <td className='home_squarebutton'>
+              <Link className= 'home_text_squarebutton' to="/usernew">
+                <table className='home_text_squarebutton2'>
                     <tbody>
                       <tr><td><RiUserAddFill size={80}/></td></tr>
                       <tr><td>Registro de<br/>Nuevo Cliente</td></tr>
@@ -34,9 +44,9 @@ const HomeAdmin = () => {
             </td>
 
             {/* Boton 3*/}
-            <td className='universal_header_linksquare'>
-              <Link className= 'universal_header_textlink' to="/beds">
-                <table className='universal_header_table2'>
+            <td className='home_squarebutton'>
+              <Link className= 'home_text_squarebutton' to="/beds">
+                <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoIosBed size={80}/></td></tr>
                     <tr><td>Administración<br/>de Camas</td></tr>
@@ -48,9 +58,9 @@ const HomeAdmin = () => {
 
           <tr>
             {/* Boton 4 */}
-            <td className='universal_header_linksquare'>
-              <Link className= 'universal_header_textlink' to="/userlist">
-                <table className='universal_header_table2'>
+            <td className='home_squarebutton'>
+              <Link className= 'home_text_squarebutton' to="/userlist">
+                <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoIosListBox size={80}/></td></tr>
                     <tr><td>Administración<br/>de Clientes</td></tr>
@@ -60,9 +70,9 @@ const HomeAdmin = () => {
             </td>
 
             {/* Boton 2 */}
-            <td className='universal_header_linksquare'>
-              <Link className= 'universal_header_textlink' to="/reports">
-                <table className='universal_header_table2'>
+            <td className='home_squarebutton'>
+              <Link className= 'home_text_squarebutton' to="/reports">
+                <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoDocumentAttach size={80}/></td></tr>
                     <tr><td>Generación de<br/>Nuevo Reporte</td></tr>

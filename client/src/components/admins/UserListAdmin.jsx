@@ -469,9 +469,9 @@ const UserListAdmin = () => {
 
         <div className='userlist_container_lower'>
           <div>
-              <label className='userlist_container_radio' key={6}>
+              <label className='userlist_container_radio universal_label_radio' key={6}>
                 <input 
-                  className="form-check-input"
+                  className="form-check-input universal_text_HM"
                   type='radio' 
                   name='view' 
                   value={6}

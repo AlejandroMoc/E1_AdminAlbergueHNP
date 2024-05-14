@@ -1,23 +1,11 @@
 .universal_header_table {
   margin-left: auto;
   margin-right: auto;
-  // padding: 20px
   border-collapse: separate;
   border-spacing: 15px 15px;
 }
 
-.universal_header_linksquare {
-  background-color: #fafafa;
-  border-radius: 1vh;
-  height: 40vh;
-  width: 40vh;
-}
-
-.universal_header_table2 {
-  margin-left: auto;
-  margin-right: auto;
-}
-
+//TODO renombrar a table2
 .universal_header_table3 {
   margin-left: auto;
   margin-right: auto;
@@ -41,14 +29,6 @@
   font-size: calc(8px + 2vmin);
 }
 
-.universal_header_textlink {
-  color: #090909;
-  font-size: calc(10px + 2vmin);
-  text-decoration: none;
-  font-style: italic;
-  font-weight: 500;
-}
-
 .universal_input_date{
   border: 0px solid #ccc;
   border-radius: 1vh;
@@ -63,24 +43,12 @@
   outline: none;
 }
 
-.universal_container_inputdate {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
 .universal_container_pickerdate {
   margin-right: 20px;
 }
 
-.universal_container_checkbox {
-  display: flex;
-  align-items: center;
-}
-
 .universal_container_dropdown {
   text-align: left;
-  // margin-top: 2vh;
 }
 
 .universal_toggle_dropdown {
@@ -113,12 +81,6 @@
 }
 
 .reports_container_services {
-  text-align: left;
-  align-content: left;
-}
-
-.reports_container_services {
-  margin-top: 2vh;
   margin-bottom: 2vh;
 }
 
@@ -160,4 +122,43 @@
   margin-top: 5px;
   font-size: 14px;
   margin-left: 5px;
+}
+
+.reports_container_checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.reports_container_inputdate {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+//TODO mover a archivo de home nuevo
+//y renombrar el homeadmin.scss antiguo a universal
+.home_text_squarebutton {
+  color: #090909;
+  font-size: calc(10px + 2vmin);
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.home_squarebutton {
+  background-color: #fafafa;
+  border-radius: 1vh;
+  height: 40vh;
+  width: 40vh;
+}
+
+.home_text_squarebutton2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home_squarebutton:hover {
+  transform: scale(1.05);
+  // filter: brightness(95%);
+  background-color: #f2f2f2;
 }

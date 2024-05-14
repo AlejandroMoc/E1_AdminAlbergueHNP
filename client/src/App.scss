@@ -25,6 +25,9 @@
   display: inline-block;
   text-decoration: none;
 }
+.App_global button:hover{
+  transform: scale(1.05);
+}
 
 ///Clases globales de inputs
 input{
@@ -60,7 +63,7 @@ input[type="password"] {
 }
 
 .App_background_picture {
-  background: #9ec3f64d url('/src/assets/pictures/picture_login.png');
+  background: #c2c2c2 url('/src/assets/pictures/picture_login.png');
   background-size: cover;
   background-position: center;
 }
