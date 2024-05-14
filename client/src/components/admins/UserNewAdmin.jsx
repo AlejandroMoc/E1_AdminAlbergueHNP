@@ -132,7 +132,7 @@ const handleBtRegistroClick = async () => {
           }
         });
         successToast()
-        window.location.href = '/';
+        //window.location.href = '/';
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
         errorToast()
@@ -149,6 +149,8 @@ const handleBtRegistroClick = async () => {
     const nombrecArray = inputValue.split(' ');
     console.log(nombrecArray);
     const nombrecString = nombrecArray.join(' ');
+    const isError = inputValue.trim() === '';
+    setNombre_CError(isError);
     console.log(nombrecString);
     setNombre_C(nombrecString);
   }
@@ -159,6 +161,8 @@ const handleBtRegistroClick = async () => {
     const apellidoscArray = inputValue.split(' ');
     console.log(apellidoscArray);
     const apellidoscString = apellidoscArray.join(' ');
+    const isError = inputValue.trim() === '';
+    setApellidos_CError(isError);
     console.log(apellidoscString);
     setApellidos_C(apellidoscString);
   }
@@ -169,6 +173,8 @@ const handleBtRegistroClick = async () => {
     const apellidosArray = inputValue.split(' ');
     console.log(apellidosArray);
     const apellidosString = apellidosArray.join(' ');
+    const isError = inputValue.trim() === '';
+    setApellidos_PError(isError);
     console.log(apellidosString);
     setApellidos_P(apellidosString);
   }
@@ -178,6 +184,8 @@ const handleBtRegistroClick = async () => {
     const inputValue = event.target.value;
     const nombrepArray = inputValue.split(' ');
     const nombrepString = nombrepArray.join(' ');
+    const isError = inputValue.trim() === '';
+    setNombre_PError(isError);
     console.log(nombrepString);
     setNombre_P(nombrepString);
   }
@@ -333,13 +341,15 @@ const handleBtRegistroClick = async () => {
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
             <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
           </div>
-          <div class="input-group mb-3 " onChange={handleNombre_PChange}>
+          <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" value={nombre_p}></input>
+            <input type="text" class={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
+            {nombre_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
-          <div class="input-group mb-3 " onChange={handleApellidos_PChange} >
+          <div class="input-group mb-3 ">
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" value={apellidos_p}></input>
+            <input type="text" class={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
+            {apellidos_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div class="input-group mb-3 " onChange={handleCarnetChange}>
             <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
@@ -376,13 +386,15 @@ const handleBtRegistroClick = async () => {
                 </label>
               </div>
           </div>    
-            <div class="input-group mb-3 " onChange={handleNombre_CChange}>
+            <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_space_reg" placeholder="Nombre Completo" aria-label="Username" disabled={isPaciente} aria-describedby="basic-addon1" value={nombre_c}></input>
+              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c}></input>
+              {nombre_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
-            <div class="input-group mb-3 "onChange={handleApellidos_CChange} >
+            <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class="form-control user_space_reg" placeholder="Apellidos" aria-label="Username" disabled={isPaciente} aria-describedby="basic-addon1" value={apellidos_c}></input>
+              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c}></input>
+              {apellidos_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
            <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
               <div class="user_div_radio">
