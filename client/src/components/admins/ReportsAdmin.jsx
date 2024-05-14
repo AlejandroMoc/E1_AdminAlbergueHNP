@@ -17,11 +17,11 @@ const ReportsAdmin = () => {
   const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
   const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
   const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
-  const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '' }]); // Estado para almacenar los datos de la consulta
-  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '' }]); // Estado para almacenar los datos de la consulta
+  const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' , carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
   const [dataingreso, setDataIngreso] = useState({fecha_inicio: '', fecha_fin:'', total_pagado: '', total_condonado:'', ingresos_reales:''}); // Estado para almacenar los datos de la consulta
 
   // Estado para almacenar el nombre del Huesped seleccionado
@@ -41,6 +41,35 @@ const ReportsAdmin = () => {
   const [mostrarVisitantes, setMostrarVisitantes] = useState(false); // Nuevo estado para mostrar el dropdown de Visitantes
   const [mostrarVetados, setMostrarVetados] = useState(false); // Nuevo estado para mostrar el dropdown de Visitantes
 
+  // Estado para almacenar el mensaje de error de fecha
+const [dateErrorMessage, setDateErrorMessage] = useState('');
+
+// Función para manejar el cambio de las fechas de inicio y fin
+const handleDateChange = (startDate, endDate) => {
+  setStartDate(startDate);
+  setEndDate(endDate);
+const before = new Date('2020-01-01T00:00:00Z');
+const today = new Date();
+
+  // Verificar si la fecha de inicio es posterior a la fecha de fin
+  if (startDate && endDate && startDate > endDate) {
+    // Establecer el mensaje de error
+    setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin');
+  } else if ((startDate && !endDate) || (!startDate && endDate)) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Se necesitan 2 fechas');
+  } else if (startDate && startDate < before ||endDate && endDate < before) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Fecha anterior al año 2020');
+  }  else if (startDate > today || endDate > today) {
+    // Verificar si solo se ha seleccionado una fecha
+    setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual');
+  } else {
+    // Limpiar el mensaje de error si las fechas son válidas
+    setDateErrorMessage('');
+  }
+};
+
 
   const handleDateFormat = (date) => {
     const dbDate = new Date(date)
@@ -59,8 +88,9 @@ const ReportsAdmin = () => {
   };
 
 
+
   useEffect(() => {
-    if (startDate === null  || endDate === null) {
+    if (startDate === null || endDate === null) {
       // Cuando startDate y endDate son null, realizar estas operaciones
       fetch('http://localhost:8000/allusers')
         .then((res) => res.json())
@@ -226,14 +256,20 @@ const generatePDF = useReactToPrint({
     }
 
     titleElement.innerText = reportType; // Establecemos el texto del título
+    const today = new Date(); // Agregar esta línea para obtener la fecha actual
+
 
         // Agregar el texto de rango de fechas si se cumplen las condiciones
       if ((esGeneral || (esUsuario && mostrarHuespedes && huespedSeleccionado === 'Huesped') || 
       (esUsuario && mostrarVisitantes && visitanteSeleccionado === 'Visitante') || 
       (esUsuario && mostrarVetados && vetadoSeleccionado === 'Vetado') || esIngreso) && startDate && endDate) {
         const dateRangeElement = document.createElement('p');
-        dateRangeElement.classList.add('title-element2')
-        const formattedDateRange = `Rango de fechas del reporte: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+        dateRangeElement.classList.add('title-element2');
+        let formattedEndDate = endDate;
+        if (endDate > today) {
+          formattedEndDate = today;
+        }
+        const formattedDateRange = `Rango de fechas del reporte: ${startDate.toLocaleDateString()} - ${formattedEndDate.toLocaleDateString()}`;
         dateRangeElement.innerText = formattedDateRange;
         subtitleContainer.appendChild(dateRangeElement);
       }
@@ -271,7 +307,7 @@ const getCurrentDateTime = () => {
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`; // Formato: DD/MM/YYYY
   //Convertir segundos a dos digitos si se necesita:
-  if (currentDate.getSeconds < 10){
+  if (currentDate.getSeconds() < 10){
     const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:0${currentDate.getSeconds()}`;
     return `${formattedDate} a la hora ${formattedTime}`;
   }else{
@@ -443,7 +479,8 @@ const getCurrentDateTime = () => {
           <div className="universal_container_pickerdate">
           <DatePicker
               selected={startDate}
-              onChange={date => setStartDate(date)}
+              onChange={(date) => handleDateChange(date, endDate)}
+
               placeholderText='Inicio (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
@@ -456,13 +493,17 @@ const getCurrentDateTime = () => {
           <div className="universal_container_pickerdate">
             <DatePicker
               selected={endDate}
-              onChange={date => setEndDate(date)}
+              onChange={(date) => handleDateChange(startDate, date)}
+
               placeholderText='Fin (DD/MM/YY)'
               className="universal_input_date"
               dateFormat="dd/MM/yy"
               onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
 
             />
+            {dateErrorMessage && (
+                <p className="userlist_text_error">{dateErrorMessage}</p>
+              )}
           </div>
 
           <div className="reports_container_checkbox">
@@ -738,7 +779,6 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Rango de Fechas</th>
                 <th>Fecha Primer Pago</th>
                 <th>Fecha Último Pago</th>
                 <th>Total Pagado</th>
@@ -748,7 +788,6 @@ const getCurrentDateTime = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{startDate && endDate ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}` : '-'}</td>
                 <td>{dataingreso.fecha_inicio ? handleDateFormat(dataingreso.fecha_inicio) : ''}</td>
                 <td>{dataingreso.fecha_fin ? handleDateFormat(dataingreso.fecha_fin) : ''}</td>
                 <td>{dataingreso.total_pagado}</td>
@@ -770,6 +809,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -792,6 +832,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -821,6 +862,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -842,6 +884,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -872,6 +915,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -893,6 +937,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -920,6 +965,7 @@ const getCurrentDateTime = () => {
               <th>Apellidos</th>
               <th>Sexo</th>
               <th>Lugar de Origen</th>
+              <th>No.Carnet</th>
               <th>Fecha de Ingreso</th>
               <th>Fecha de Vetado</th>
               <th>Motivo Vetado</th>
@@ -943,6 +989,7 @@ const getCurrentDateTime = () => {
                 <td>{item.apellidos_c}</td>
                 <td>{item.sexo}</td>
                 <td>{item.lugar_o}</td>
+                <td>{item.carnet}</td>
                 <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                 <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                 <td>{item.notas_v}</td>
@@ -971,6 +1018,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -993,6 +1041,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -1022,6 +1071,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Salida</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -1044,6 +1094,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -1072,6 +1123,7 @@ const getCurrentDateTime = () => {
                 <th>Apellidos</th>
                 <th>Sexo</th>
                 <th>Lugar de Origen</th>
+                <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
                 <th>Fecha de Vetado</th>
                 <th>Motivo Vetado</th>
@@ -1095,6 +1147,7 @@ const getCurrentDateTime = () => {
                   <td>{item.apellidos_c}</td>
                   <td>{item.sexo}</td>
                   <td>{item.lugar_o}</td>
+                  <td>{item.carnet}</td>
                   <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
                   <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
                   <td>{item.notas_v}</td>
