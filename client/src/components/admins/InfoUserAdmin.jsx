@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from 'react';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Popup from '../universal/Popup';
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 import { LuUser } from "react-icons/lu";
 import { LuCalendarDays } from "react-icons/lu";
 // import { MdOutlineAttachMoney } from "react-icons/md";
@@ -112,6 +113,76 @@ const fechaNueva = () => {
 
 
 
+//FETCH PARA SABER SI EL CLIENTE ESTA VETADO O NO:
+const [vetadoCliente, setvetadoCliente] = useState({vetadobool:0})
+//FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
+
+useEffect(() => {
+  fetch('http://localhost:8000/vetado/' + props.id_cliente)
+    .then((res) => res.json())
+    .then((data) => {
+      // Convertir el valor a minúsculas antes de almacenarlo en el estado
+      const vetadobool = data.vetadobool.toLowerCase() === 'true';
+      setvetadoCliente({ vetadobool: vetadobool });
+      console.log(data);
+    });
+}, [props.id_cliente]);
+console.log("VETADO "+vetadoCliente.vetadobool)
+const showVetadoSelect = vetadoCliente.vetadobool;
+console.log(showVetadoSelect)
+
+  //Llamada a la función de vetar
+  const vetarCliente = (id_u, id_c, n_v) => {
+    fetch('http://localhost:8000/banclient', {
+        method: 'POST',
+        body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
+      window.location.href = '/infouser/'+props.id_cliente;
+  }
+
+  //Llamada a la función de desvetar
+  const desvetarCliente = (id_c) => {
+    fetch('http://localhost:8000/unbanclient', {
+        method: 'POST',
+        body: JSON.stringify({id_c: id_c}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((response) => {
+        if (response.ok) {
+          successToast()
+        }
+      })
+      .catch((error) => {
+        errorToast()
+        console.error('Error fetching data:', error)
+      })
+      window.location.href = '/infouser/'+props.id_cliente;
+  }
+    //Para popup
+    const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null}) 
+
+   const handleVetar = async () =>{
+    setShowPopUp({trigger: true, type: 1, id: props.id_cliente, fun: vetarCliente})
+   }
+   const handleDesVetar = async () =>{  
+    setShowPopUp({trigger: true, type: 0, id: props.id_cliente, fun: desvetarCliente})
+   }
+
 //EMPIEZA DESARROLLO DEL HTML
   return (
     <div class='App_minheight'>
@@ -202,7 +273,7 @@ const fechaNueva = () => {
             </div>
           </div>
           )}
-          {showNumbersSelect === false && (
+        {showNumbersSelect === false && (
           <div>
             <div class="input-group mb-3">
               
@@ -218,7 +289,7 @@ const fechaNueva = () => {
               <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
               <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
-          </div>)}
+        </div>)}
           <div class="input-group mb-3" onChange={handlepagoChange}>
             <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LiaCoinsSolid /></span>
             <span class="input-group-text user_span_info user_adjust_debt" id="basic-addon1">
@@ -226,9 +297,21 @@ const fechaNueva = () => {
             </span>
             <input type="number" className="user_adjust_debt_input" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón
-              <button className="btn btn-primary" onClick={handleBtRegistroClick}>Abonar</button>
+              <button className="App_buttonaccept DANI" onClick={handleBtRegistroClick}>Abonar</button>
             )}
           </div>
+          {showVetadoSelect  && (
+          <div class="input-group mb-3 ">
+            <button className="App_buttonaccept vetar" onClick={handleDesVetar}>Desvetar</button>
+          </div>)}
+          {!showVetadoSelect && (
+          <div class="input-group mb-3 ">
+            <button className="App_buttonaccept vetar" onClick={handleVetar}>Vetar</button>
+          </div>)}
+          <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
+            ¿Estas Seguro?
+          </Popup>
+          <MyToastContainer />
         </div>
       </div>
     </div>
@@ -236,3 +319,5 @@ const fechaNueva = () => {
 }
 
 export default infoUserAdmin
+
+//login_inputs App_buttonaccept

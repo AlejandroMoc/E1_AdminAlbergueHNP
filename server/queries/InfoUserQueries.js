@@ -53,7 +53,7 @@ const getNewRegister = async(id_cliente, pago) => {
         console.log("Registrando nuevo pago:",id_cliente, pago);
         await db.none(
             `INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p) 
-            VALUES ($1, 'Agregado desde InfoUser2', $2, CURRENT_TIMESTAMP);
+            VALUES ($1, 'Agregado desde InfoUser', $2, CURRENT_TIMESTAMP);
             `,
             [id_cliente, pago],
             console.log("LISTO 2 :)")
@@ -74,5 +74,19 @@ const getTipoCliente = async(id_cliente) => {
         throw error
     }
 }
+//Función para obtener el tipo de cliente
+const getVetado = async(id_cliente) => {
+    try {
+        const clientVeto = await db.any(`SELECT CASE WHEN EXISTS (
+            SELECT 1 FROM vetado WHERE id_cliente = $1
+        ) THEN 'true' ELSE 'false' END AS vetadoBool;;`, [id_cliente])
+        return clientVeto[0]
+    } catch (error) {
+        throw error
+    }
+}
 
-module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente}
+
+
+
+module.exports={getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado}
