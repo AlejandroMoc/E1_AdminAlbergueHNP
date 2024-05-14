@@ -201,10 +201,6 @@ const UserListAdmin = () => {
           console.log('ALERTA: Fecha anterior al año 2020')
           setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
           return false;
-        } else if (adjustedDate1 > today || fecha2 > today) {
-          console.log('ALERTA: Fecha posterior a la fecha actual')
-          setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual')
-          return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 fechas')
@@ -236,10 +232,6 @@ const UserListAdmin = () => {
         } else if (fecha1 < before || adjustedDate2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
           setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
-          return false;
-        } else if (fecha1 > today || adjustedDate2 > today) {
-          console.log('ALERTA: Fecha posterior a la fecha actual')
-          setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual')
           return false;
         }
       } else {
@@ -343,7 +335,7 @@ const UserListAdmin = () => {
       <Menu onClick={(event) => handleMenuClick(event, id)}
         items={[
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
-          veto ? {key: 'noVetar', label: <span style={{ color: 'green' }}>Des-Vetar?</span>, icon: <span style={{ color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
+          veto ? {key: 'noVetar', label: <span style={{ color: 'green' }}>Desvetar</span>, icon: <span style={{ color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
           veto ? '' : {key: 'eliminar', label: 'Eliminar', icon: <FaTrashAlt />, danger: true},
         ]}>
       </Menu>
@@ -543,13 +535,15 @@ const UserListAdmin = () => {
                         <td>{item.id_cama ? item.id_cama : '-'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
-                          <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
+                          {item.nombre_c ?
+                            <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
+                            : '-'}
                         </td>
                         <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : '-'}</td>
-                        <td>{item.lugar_o}</td>
-                        <td>{item.carnet}</td>
-                        <td>{item.nivel_se}</td>
-                        <td>${item.total}</td>
+                        <td>{item.lugar_o ? item.lugar_o : '-'}</td>
+                        <td>{item.carnet ? item.carnet : '-'}</td>
+                        <td>{item.nivel_se ? item.nivel_se : '-'}</td>
+                        <td>${item.total ? item.total : '-'}</td>
                       </tr>
                     </DP>
                   ))
@@ -559,13 +553,17 @@ const UserListAdmin = () => {
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{ background: '#fff' }}>
                         <td>{item.id_cama}</td>
-                        <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                        <td>
+                          {item.nombre_c ?
+                            <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
+                            : '-'}
+                        </td>
                         <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
                         <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
-                        <td>{item.lugar_o}</td>
-                        <td>{item.carnet}</td>
-                        <td>{item.nivel_se}</td>
-                        <td>${item.total}</td>
+                        <td>{item.lugar_o ? item.lugar_o : '-'}</td>
+                        <td>{item.carnet ? item.carnet : '-'}</td>
+                        <td>{item.nivel_se ? item.nivel_se : '-'}</td>
+                        <td>${item.total ? item.total : '-'}</td>
                       </tr>
                     </DP>
                   ))
@@ -574,15 +572,19 @@ const UserListAdmin = () => {
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{ background: '#fff' }}>
-                        <td><Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link></td>
+                        <td>
+                          {item.nombre_c ?
+                            <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
+                            : '-'}
+                        </td>
                         <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
-                        <td>{item.carnet}</td>
+                        <td>{item.carnet ? item.carnet : '-'}</td>
                         <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
-                        <td>{item.desayuno}</td>
-                        <td>{item.comida}</td>
-                        <td>{item.cena}</td>
-                        <td>{item.nivel_se}</td>
-                        <td>${item.total}</td>
+                        <td>{item.desayuno ? item.desayuno : '-'}</td>
+                        <td>{item.comida ? item.comida : '-'}</td>
+                        <td>{item.cena ? item.cena : '-'}</td>
+                        <td>{item.nivel_se ? item.nivel_se : '-'}</td>
+                        <td>${item.total ? item.total : '-'}</td>
                       </tr>
                     </DP>
                   ))
