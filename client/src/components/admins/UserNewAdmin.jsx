@@ -66,6 +66,7 @@ console.log("id_cama")
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
   const [id_areaError, setId_areaCError] = useState(false);
+
   
   const validateFields = () => {
     setNombre_CError(nombre_c === '');
@@ -212,7 +213,6 @@ const handleBtRegistroClick = async () => {
   const [paciente, setPaciente] = useState(0); 
   const handlePaciente_Change = (event) => {
     setIsPaciente(event.target.value === 'true'); 
-    
     setPaciente(event.target.value)
   }
   useEffect(() => {
@@ -371,7 +371,7 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
 
           <h4>Información de Cliente</h4>
-          <span class="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
+          <span class="input-group-text user_span_sociolevel" id="basic-addon1">El cliente es un paciente?</span>
           <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div class="form-check">
                 <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
@@ -388,12 +388,12 @@ const handleBtRegistroClick = async () => {
           </div>    
             <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c}></input>
+              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
               {nombre_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
             <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c}></input>
+              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
               {apellidos_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
            <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
@@ -412,7 +412,7 @@ const handleBtRegistroClick = async () => {
               </div>
             </div>
           </div>
-          <span class="user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
+          <span class="input-group-text user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
           <div class="input-group mb-3 user_checkerito" onChange={handleNivel_SEChange}>
             <div class="user_div_radio">
               <div class="form-check">
@@ -446,7 +446,7 @@ const handleBtRegistroClick = async () => {
                 </label>
               </div>
             </div>
-          </div>
+          </div>          
         </div>
         <div class="user_space_not">
           <div class="mb-3" onChange={handleNotas_CChange}>
