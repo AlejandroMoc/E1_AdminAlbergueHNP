@@ -1,8 +1,9 @@
 const db = require('../db_connection');
 
+// Querie que obtiene toda la info de camasgralinfo, para cada zona.
+// (Ver Función RoomAdmin en RoomAdmin.jsx)
 const getInfo = async() => {
-    try {
-        
+    try { 
         const infoMujeres = await db.any(
             `SELECT * FROM camasgralinfo WHERE id_zona = 1`, [])
         
@@ -13,13 +14,16 @@ const getInfo = async() => {
             `SELECT * FROM camasgralinfo WHERE id_zona = 3`, [])
         
         const info = [infoMujeres, infoHombres, infoAislados]
-        
+
         return info
+
     } catch (error) {
         throw error
     }
 }
 
+
+// Querie para Añadir una Cama
 const anadCama = async(id_zona) => {
     try {
         await db.none(
@@ -31,6 +35,8 @@ const anadCama = async(id_zona) => {
     }
 }    
 
+
+// Querie para Registrar un Servicio
 const regServacio = async(id_cliente, id_servicio, cant) => {
     try {
         db.none(
@@ -42,6 +48,8 @@ const regServacio = async(id_cliente, id_servicio, cant) => {
     }
 }
 
+
+// Querie para Pagar
 const regPago = async(id_cliente, notas_P, monto_T) => {
     try {
         db.none(
@@ -54,6 +62,8 @@ const regPago = async(id_cliente, notas_P, monto_T) => {
     }
 }
 
+
+// Querie para Registrar la Salida de un Huésped
 const regSalida = async(id_cliente) => {
     try {
         db.none(
@@ -66,6 +76,8 @@ const regSalida = async(id_cliente) => {
     }
 }
 
+
+// Querie para Eliminar una Cama
 const eliminarCama = async(id_cama) => {
     try {
         db.none(
