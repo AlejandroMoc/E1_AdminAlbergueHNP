@@ -1,5 +1,6 @@
 
 import { Routes, Route, Navigate} from "react-router-dom";
+import React, { useEffect } from 'react';
 
 //Importar páginas
 import EditUser from "../sites/EditUser";
@@ -14,9 +15,37 @@ import Login from "../sites/Login";
 import SignUp from "../sites/SignUp";
 import InfoUser from "../sites/InfoUser";
 import Navbar from "./Navbar";
+import { useAuth } from '../../auth/AuthProvider';
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
+    // //Vacía información
+    const auth = useAuth();
+
+    // const handleSignOut = async () => {
+    //     try {
+    //     const response = await fetch('http://localhost:8000/signout/', {
+    //         method: 'DELETE',
+    //         headers: {
+    //         'Content-type': 'application/json; charset=UTF-8',
+    //         Authorization: `Bearer ${auth.getRefreshToken()}`,
+    //         },
+    //     });
+
+    //     if (response.ok) {
+    //         auth.signOut();
+    //     } else {
+    //         console.error('Sign out failed');
+    //     }
+    //     } catch (error) {
+    //     console.error('Error during sign out:', error);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     handleSignOut();
+    // }, []);
+
     return (
         <>
             <Routes>
@@ -26,7 +55,7 @@ export const AppRouter = () => {
                 <Route path="/signup" element={<SignUp />}/>
                 <Route path="*" element={<Navigate to="/login" />}/>
 
-                <Route path="/" element = {<ProtectedRoute/>}>
+                <Route path = "/" element = {<ProtectedRoute/>}>
                     <Route element = {<Navbar/>}>
                         <Route exact path="dashboard" element={<Home />}/>
                         <Route path="usernew" element={<UserNew />} />
