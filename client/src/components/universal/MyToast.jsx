@@ -6,7 +6,7 @@ import './MyToast.scss';
 export const successToast = () => {
     toast.success('Proceso Exitoso', {
         position: "bottom-right",
-        autoClose: 1000000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,

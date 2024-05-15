@@ -386,7 +386,7 @@ app.get('/beds', async (req, res) => {
     }
 })
 
-app.post('/pagar', (req, res) => {
+app.post('/beds/pagar', (req, res) => {
     const id_cliente = req.body.id_cliente;
     const notas_P = req.body.notas_p;
     const monto_T = req.body.monto_t;
@@ -395,28 +395,28 @@ app.post('/pagar', (req, res) => {
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/rooms_spacing_addbed', (req, res) => {
+app.post('/beds/addCama', (req, res) => {
     const id = req.body.id_zona;
     anadCama(id)
         .then((data) => res.json(data))
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/regSalida', (req, res) => {
+app.post('/beds/regSalida', (req, res) => {
     const id = req.body.id_cliente;
     regSalida(id)
         .then((data) => res.json(data))
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/eliminarCama', (req, res) => {
+app.post('/beds/eliminarCama', (req, res) => {
     const id = req.body.id_cama;
     eliminarCama(id)
         .then((data) => res.json(data))
         .catch((error) => console.log('ERROR: ', error));
 })
 
-app.post('/regServacio', (req, res) => {
+app.post('/beds/regServacio', (req, res) => {
     const id = req.body.id_cliente;
     const id_s = req.body.id_servicio;
     const can = req.body.cant;

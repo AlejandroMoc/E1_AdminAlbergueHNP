@@ -5,7 +5,7 @@
   margin: 10px;
   //background-color: #dedede;
   align-self: flex-end;
-  z-index: -1;
+  z-index: 0;
 }
 
 .rooms_spacing_beds:hover{
@@ -19,7 +19,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   //background-color: #058844;
-  justify-content: left
+  justify-content: left;
+  z-index: -1;
 }
 
 .rooms_text_beds{
