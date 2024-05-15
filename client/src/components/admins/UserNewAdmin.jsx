@@ -66,6 +66,7 @@ console.log("id_cama")
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
   const [id_areaError, setId_areaCError] = useState(false);
+
   
   const validateFields = () => {
     setNombre_CError(nombre_c === '');
@@ -212,7 +213,6 @@ const handleBtRegistroClick = async () => {
   const [paciente, setPaciente] = useState(0); 
   const handlePaciente_Change = (event) => {
     setIsPaciente(event.target.value === 'true'); 
-    
     setPaciente(event.target.value)
   }
   useEffect(() => {
@@ -388,12 +388,12 @@ const handleBtRegistroClick = async () => {
           </div>    
             <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c}></input>
+              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
               {nombre_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
             <div class="input-group mb-3 ">
               <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c}></input>
+              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
               {apellidos_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
            <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
