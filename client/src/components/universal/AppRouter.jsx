@@ -66,7 +66,7 @@ export const AppRouter = () => {
                         <Route path="/profile" element={<Profile />}/>
                         <Route path="/changepassword" element={<ProfilePassword />}/>
                         <Route path="/reports" element={<Reports />}/>
-                        <Route path="/edituser" element={<EditUser/>}/>
+                        <Route path="/edituser/:id_cliente" element={<EditUser/>}/>
                         
                         {/* TODO crear 404? */}
                         {/* <Route path="*" element={<Navigate to="/login" />}/> */}

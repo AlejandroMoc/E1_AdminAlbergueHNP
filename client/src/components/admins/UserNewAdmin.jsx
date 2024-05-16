@@ -370,7 +370,7 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
           <div class="input-group mb-3 "></div>
 
-          <h4>Información de Cliente</h4>
+          <h4>Información del Familiar</h4>
           <span class="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
           <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div class="form-check">
