@@ -5,8 +5,8 @@ const router = require("express").Router();
 //esto equivale a localhost:8000/delete
 router.delete("/", async (req, res) => {
   try {
-    console.log('HOLA?')
     const refreshToken = getTokenFromHeader(req.headers);
+    console.log(refreshToken)
 
     if (refreshToken) {
       await db.query("DELETE FROM tokens WHERE token = $1", [refreshToken]);
