@@ -1,27 +1,22 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import {Navigate, useNavigate} from "react-router-dom";
-import { useAuth } from '../../auth/AuthProvider';
 import { LuUser } from "react-icons/lu";
-// import { LuCalendarDays } from "react-icons/lu";
-// import { MdOutlineAttachMoney } from "react-icons/md";
+import { LuCalendarDays } from "react-icons/lu";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import { FiHome } from "react-icons/fi";
 import { TbMoodKid } from "react-icons/tb";
 import { FaRegAddressCard } from "react-icons/fa";
-// import { RiHospitalLine } from "react-icons/ri";
+import { RiHospitalLine } from "react-icons/ri";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 //import { registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
-const UserNewAdmin = () => {
-  //Para navegar
-  const goTo = useNavigate();
 
-  //Para sesión
-  const id_u = useAuth().getUser().id_usuario
-  console.log(id_u)
+const UserNewAdmin = () => {
+
+
 
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
@@ -111,62 +106,43 @@ const [btRegistro, setBtRegistro] = useState(false);
 const handleBtRegistroClick = async () => {
   if (validateFields()) {
     if (showServices) {
-      regVisitante()
-    }
-    else if (showBedNumber) {
-      regHuesped()
-    }
-  }
-  else {
-    errorToast()
-  }
-}
-
-const regVisitante = () => {
-  fetch('http://localhost:8000/registerEntradaUnica', {
-    method: 'POST',
-    body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  })
-  .then((response) => {
-    if (response.ok) {
-      successToast()
-      // goTo("/dashboard");
-      setTimeout(() => {
-        goTo("/dashboard");
-      }, 1000);
+      try {
+        await fetch('http://localhost:8000/registerEntradaUnica', {
+          method: 'POST',
+          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        });
+        successToast()
+        window.location.href = '/dashboard';
+        // const goTo = useNavigate();
+        // goTo("/dashboard");
+       } catch (error) {
+        console.error('Error al registrar entrada unica:', error);
+        errorToast()
       }
-    })
-    .catch((error) => {
-      console.error('Error al registrar Visitante: ', error);
-      errorToast()
-    })
-}
-
-const regHuesped = () => {
-  fetch('http://localhost:8000/registerNewPatient', {
-    method: 'POST',
-    body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
     }
-  })
-  .then((response) => {
-    if (response.ok) {
-      successToast()
-      // goTo("/dashboard");
-      setTimeout(() => {
-        goTo("/dashboard");
-      }, 1000);
+    else if(showBedNumber){
+      try {
+        await fetch('http://localhost:8000/registerNewPatient', {
+          method: 'POST',
+          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        });
+        successToast()
+        //window.location.href = '/';
+       } catch (error) {
+        console.error('Error al registrar el paciente:', error);
+        errorToast()
+      }
     }
-  })
-  .catch((error) => {
-    console.error('Error al registrar Huesped: ', error);
-    errorToast()
-  })
-}
+  } else {
+   errorToast()
+  }
+};
 
   const [nombre_c, setNombre_C] = useState([]);
   const handleNombre_CChange = (event) => {
@@ -350,7 +326,7 @@ const regHuesped = () => {
       setDinner(pDinner => pDinner - 1);
     }
   }
-  
+  const [id_zona_vetados, setIdZonaVetados] = useState(3); 
   const [id_zona_hombres, setIdZonaHombres] = useState(2); 
   const [id_zona_mujeres, setIdZonaMujeres] = useState(1); 
   const [id_zona, setIdZona] = useState(null);
@@ -498,11 +474,14 @@ const regHuesped = () => {
             <select class="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
               {bed.map((item) => {
-                if (id_zona !== null && ((sexoUsuario === true && item.id_zona === id_zona_hombres) || (sexoUsuario === false && item.id_zona === id_zona_mujeres))) {
+                if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
+                    (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
+                    item.id_zona === id_zona_vetados) {
                   return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
                 }
                 return null; 
               })}
+
             </select>
 
           </div>
