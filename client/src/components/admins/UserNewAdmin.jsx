@@ -1,6 +1,8 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
+import {Navigate, useNavigate} from "react-router-dom";
+import { useAuth } from '../../auth/AuthProvider';
 import { LuUser } from "react-icons/lu";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -15,8 +17,12 @@ import MyToastContainer, { successToast, errorToast } from '../universal/MyToast
 
 
 const UserNewAdmin = () => {
+  //Para navegar
+  const goTo = useNavigate();
 
-
+  //Para sesión
+  const id_u = useAuth().getUser().id_usuario
+  console.log(id_u)
 
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
@@ -106,43 +112,62 @@ const [btRegistro, setBtRegistro] = useState(false);
 const handleBtRegistroClick = async () => {
   if (validateFields()) {
     if (showServices) {
-      try {
-        await fetch('http://localhost:8000/registerEntradaUnica', {
-          method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        });
-        successToast()
-        window.location.href = '/dashboard';
-        // const goTo = useNavigate();
-        // goTo("/dashboard");
-       } catch (error) {
-        console.error('Error al registrar entrada unica:', error);
-        errorToast()
-      }
+      regVisitante()
     }
-    else if(showBedNumber){
-      try {
-        await fetch('http://localhost:8000/registerNewPatient', {
-          method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        });
-        successToast()
-        //window.location.href = '/';
-       } catch (error) {
-        console.error('Error al registrar el paciente:', error);
-        errorToast()
-      }
+    else if (showBedNumber) {
+      regHuesped()
     }
-  } else {
-   errorToast()
   }
-};
+  else {
+    errorToast()
+  }
+}
+
+const regVisitante = () => {
+  fetch('http://localhost:8000/registerEntradaUnica', {
+    method: 'POST',
+    body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((response) => {
+    if (response.ok) {
+      successToast()
+      // goTo("/dashboard");
+      setTimeout(() => {
+        goTo("/dashboard");
+      }, 1000);
+      }
+    })
+    .catch((error) => {
+      console.error('Error al registrar Visitante: ', error);
+      errorToast()
+    })
+}
+
+const regHuesped = () => {
+  fetch('http://localhost:8000/registerNewPatient', {
+    method: 'POST',
+    body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((response) => {
+    if (response.ok) {
+      successToast()
+      // goTo("/dashboard");
+      setTimeout(() => {
+        goTo("/dashboard");
+      }, 1000);
+    }
+  })
+  .catch((error) => {
+    console.error('Error al registrar Huesped: ', error);
+    errorToast()
+  })
+}
 
   const [nombre_c, setNombre_C] = useState([]);
   const handleNombre_CChange = (event) => {
@@ -334,7 +359,7 @@ const handleBtRegistroClick = async () => {
   return (
     <div class='App-minheight'>
       <div class="user_container_general">
-        <div class="container user_container_reg">
+        <div class="user_container_reg">
 
           <h4>Información del Paciente</h4>
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>

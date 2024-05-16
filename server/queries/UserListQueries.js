@@ -61,8 +61,8 @@ const filterColumnDB = [
     {id: 2, column: 'cliente.sexo', valdb: false},
     {id: 3, column: 'cliente.id_cliente', valdb: 'vetado.id_cliente'},
     {id: 4, column: 'vetado.id_cliente'},
-    {id: 5, column: 'absoluteDeudas.total'},
-    {id: 6, column: 'cliente.id_usuario', valdb: 2},
+    {id: 5, column: 'absoluteDeudas.total', valdb: 0},
+    {id: 6, column: 'cliente.id_usuario', valdb: 1},
 ]
 
 // CHECAR REGLAS DE FILTRO
@@ -76,14 +76,14 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
         if (select_Filters.length !== 0) {
             i[0] = 1
             filterConditions = select_Filters.map((filter) => {
-                if (filter == 1 || filter == 2 || filter == 3 || filter == 6) {
+                if (filter == 1 || filter == 2 || filter == 3) {
                     return `${filterColumnDB[filter - 1].column} = ${filterColumnDB[filter - 1].valdb}`
                 }
                 else if (filter == 4) {
                     return `${filterColumnDB[filter - 1].column} IS NULL`
                 }
-                else if (filter == 5) {
-                    return `${filterColumnDB[filter - 1].column} > 0`
+                else if (filter == 5 || filter == 6) {
+                    return `${filterColumnDB[filter - 1].column} > ${filterColumnDB[filter - 1].valdb}`
                 }
             }).join(' AND ')
             console.log('filterquery: ', filterConditions)

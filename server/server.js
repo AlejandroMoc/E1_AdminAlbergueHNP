@@ -40,6 +40,7 @@ app.get('/alldispbeds', async(req, res) => {
 
 app.post('/registerNewPatient', async(req, res) => {
     try {
+        const id_u = req.body.id_u
         const carnet = req.body.carnet;
         const id_area = req.body.id_area;
         const nombre_p=req.body.nombre_p;
@@ -53,7 +54,7 @@ app.post('/registerNewPatient', async(req, res) => {
         const id_cama=req.body.id_cama;
         const paciente=req.body.paciente;
         // console.log(apellidos_c)
-        const pacienteR = await registerNewPatient(carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
+        const pacienteR = await registerNewPatient(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
         res.json(pacienteR);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -62,6 +63,7 @@ app.post('/registerNewPatient', async(req, res) => {
 
 app.post('/registerEntradaUnica', async(req, res) => {
     try {
+        const id_u = req.body.id_u
         const carnet = req.body.carnet;
         const id_area = req.body.id_area;
         const nombre_p=req.body.nombre_p;
@@ -79,7 +81,7 @@ app.post('/registerEntradaUnica', async(req, res) => {
         const dinner=req.body.dinner;
         const paciente=req.body.paciente;
         // console.log(apellidos_c)
-        const pacienteU = await registerEntradaUnica(carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente);
+        const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente);
         res.json(pacienteU);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
