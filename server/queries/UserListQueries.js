@@ -61,7 +61,8 @@ const filterColumnDB = [
     {id: 2, column: 'cliente.sexo', valdb: false},
     {id: 3, column: 'cliente.id_cliente', valdb: 'vetado.id_cliente'},
     {id: 4, column: 'vetado.id_cliente'},
-    {id: 5, column: 'absoluteDeudas.total'}
+    {id: 5, column: 'absoluteDeudas.total'},
+    {id: 6, column: 'cliente.id_usuario', valdb: 2},
 ]
 
 // CHECAR REGLAS DE FILTRO
@@ -75,7 +76,7 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
         if (select_Filters.length !== 0) {
             i[0] = 1
             filterConditions = select_Filters.map((filter) => {
-                if (filter == 1 || filter == 2 || filter == 3) {
+                if (filter == 1 || filter == 2 || filter == 3 || filter == 6) {
                     return `${filterColumnDB[filter - 1].column} = ${filterColumnDB[filter - 1].valdb}`
                 }
                 else if (filter == 4) {
@@ -94,7 +95,7 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
         }
         if (dateRange.length !== 0) {
             i[2] = 1
-            if (select_View == 6 || select_View == 7) {
+            if (select_View == 10 || select_View == 7) {
                 filterDate = `fecha_i BETWEEN '${dateRange[0]}' AND '${dateRange[1]}'`
             }
             else if (select_View == 8) {
@@ -127,7 +128,7 @@ const getClientsByFilter = async (select_Filters, select_View, debtRange, dateRa
     try {
         const whereClause = genWhereClause(select_Filters, select_View, debtRange, dateRange)
         console.log(whereClause)
-        if (select_View == 6) {
+        if (select_View == 10) {
             const clients = await db.any('SELECT * FROM getClientsByFilterGeneral_func($1)', [whereClause])
             return clients
         }

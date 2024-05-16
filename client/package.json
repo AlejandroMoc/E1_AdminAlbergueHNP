@@ -27,7 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node \"C:/Users/1097770413/OneDrive - Instituto Tecnologico y de Estudios Superiores de Monterrey/Documents/Escuela Tareas/6to Semestre/Código/E1_AdminAlbergueHNP/client/forStart.js\" && vite",
+    "start": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },

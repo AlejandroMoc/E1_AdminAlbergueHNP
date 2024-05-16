@@ -33,7 +33,7 @@ const UserListAdmin = () => {
 
   //Estado para almacenar los filtros
   const [select_Filters, set_Select_Filters] = useState([]); 
-  const [select_View, set_Select_View] = useState(6)
+  const [select_View, set_Select_View] = useState(10)
 
   //Estado para almacenar las fechas
   const [dateRange, setDateRange] = useState([])
@@ -54,13 +54,14 @@ const UserListAdmin = () => {
     { id: 2, label: 'Mujeres'},
     { id: 3, label: 'Vetados' },
     { id: 4, label: 'No Vetados'},
-    { id: 5, label: 'Deudores'}
+    { id: 5, label: 'Deudores'},
+    { id: 6, label: 'A Confirmar'}
   ]; 
 
   
 
   const views = [
-    // {id: 6, label: 'General'},
+    // {id: 10, label: 'General'},
     {id: 7, label: 'Huéspedes'},
     {id: 8, label: 'Visitas Previas'},
     {id: 9, label: 'Uso de Servicios'}
@@ -68,7 +69,7 @@ const UserListAdmin = () => {
 
   //Llamada a las funciones de filtrado
   useEffect(() => {
-    if (select_Filters.length !== 0 || select_View !== 6 || debtRange.length !== 0 || dateRange.length !== 0) {
+    if (select_Filters.length !== 0 || select_View !== 10 || debtRange.length !== 0 || dateRange.length !== 0) {
       // console.log(data)
       fetch('http://localhost:8000/someclients', {
         method: 'POST',
@@ -461,12 +462,12 @@ const UserListAdmin = () => {
 
         <div className='userlist_container_lower'>
           <div>
-              <label className='userlist_container_radio universal_label_radio' key={6}>
+              <label className='userlist_container_radio universal_label_radio' key={10}>
                 <input 
                   className="form-check-input universal_text_HM"
                   type='radio' 
                   name='view' 
-                  value={6}
+                  value={10}
                   onChange={viewChange}
                   defaultChecked
                 />
@@ -489,7 +490,19 @@ const UserListAdmin = () => {
           {data.length !== 0 ? (
             <Table striped bordered hover>
               <thead>
-                {(select_View == 6 || select_View == 7) && (
+                {select_View == 10 && (
+                  <tr>
+                    {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
+                    <th>No. Cama</th>
+                    <th>Nombre</th>
+                    <th>Tipo de Cliente</th>
+                    <th>Lugar de Origen</th>
+                    <th>No. Carnet</th>
+                    <th>N. Socio-económico</th>
+                    <th>Deuda</th>
+                  </tr>
+                )}
+                {select_View == 7 && (
                   <tr>
                     {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
                     <th>No. Cama</th>
@@ -528,7 +541,27 @@ const UserListAdmin = () => {
                 )}
               </thead>
               <tbody>
-                {(select_View == 6 || select_View == 7) && (
+                {select_View == 10 && (
+                  paginatedData.map((item, i) => (
+                    <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
+                      <tr key={i} style={{ background: '#fff' }}>
+                        <td>{item.id_cama ? item.id_cama : '-'}</td>
+                        {/*TODO ver si conviene dividir en nombre y apellidos*/}
+                        <td>
+                          {item.nombre_c ?
+                            <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
+                            : '-'}
+                        </td>
+                        <td>{item.vetado ? 'Vetado' : (item.fecha_i ? 'Huésped' : 'Vistante')}</td>
+                        <td>{item.lugar_o ? item.lugar_o : '-'}</td>
+                        <td>{item.carnet ? item.carnet : '-'}</td>
+                        <td>{item.nivel_se ? item.nivel_se : '-'}</td>
+                        <td>${item.total ? item.total : '-'}</td>
+                      </tr>
+                    </DP>
+                  ))
+                )}
+                {select_View == 7 && (
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{ background: '#fff' }}>
@@ -577,7 +610,7 @@ const UserListAdmin = () => {
                             <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
                             : '-'}
                         </td>
-                        <td>{item.tipo_cliente ? 'Huésped' : 'Visitante'}</td>
+                        <td>{item.vetado ? 'Vetado' : (item.tipo_cliente ? 'Huésped' : 'Visitante')}</td>
                         <td>{item.carnet ? item.carnet : '-'}</td>
                         <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : ''}</td>
                         <td>{item.desayuno ? item.desayuno : '-'}</td>
