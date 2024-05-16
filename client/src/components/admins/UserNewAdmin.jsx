@@ -2,21 +2,18 @@ import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { LuUser } from "react-icons/lu";
-import { LuCalendarDays } from "react-icons/lu";
-import { MdOutlineAttachMoney } from "react-icons/md";
+// import { LuCalendarDays } from "react-icons/lu";
+// import { MdOutlineAttachMoney } from "react-icons/md";
 import { FiHome } from "react-icons/fi";
 import { TbMoodKid } from "react-icons/tb";
 import { FaRegAddressCard } from "react-icons/fa";
-import { RiHospitalLine } from "react-icons/ri";
+// import { RiHospitalLine } from "react-icons/ri";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 //import { registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
-
 const UserNewAdmin = () => {
-
-
 
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])

@@ -3,12 +3,14 @@
     flex-wrap: wrap;
     flex-direction: column;
     margin: 10px;
-    //justify-content: center;
     height: 100%;
-    //background-color: #d84949;
     width: 450px;
-    //margin-left: 150px;
     margin-top: 50px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
 }
 
 .user_space_reg{
@@ -141,24 +143,32 @@
 .user_adjust_debt_input{
     width: 20%;
 }
+
+//TODO renombrar a FORMATO CORRECTO
 .DANI{
     height:  61px!important;
     width: 20% !important;
 }
-.vetar{
+
+.user_button_vetar{
     margin-top: 10%;
     margin-left: 50%;
-    background-color: rgb(186, 186, 186);
+    background-color: #c2c2c2;
 }
+
+.user_button_vetar:hover{
+    background-color: #9d9d9d;
+}
+
 .button-container {
     position: relative;
-  }
-  
-  .edit-button {
+}
+
+.edit-button {
     position: absolute;
     color: #1d4e63;
     top: 10px;  /* Ajusta según sea necesario */
     left: 45px;  /* Ajusta según sea necesario */
     /* Otros estilos para el botón */
     width: 7% !important;
-  }
+}

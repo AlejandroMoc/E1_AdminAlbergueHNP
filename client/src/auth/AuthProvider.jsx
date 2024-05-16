@@ -1,4 +1,5 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
+import Cookies from 'js-cookie';
 // import { r } from "tar";
 // import type {AuthResponse, AccessTokenResponse, User} from "../types/types"
 
@@ -43,15 +44,16 @@ const AuthProvider = ({ children }) => {
     console.log("setAccessTokenAndRefreshToken", accessToken, refreshToken);
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
-
-    localStorage.setItem("token", JSON.stringify({ refreshToken }));
+    Cookies.set("refreshToken", refreshToken);
+    //localStorage.setItem("token", JSON.stringify({ refreshToken }));
   }
 
   function getRefreshToken() {
     if (!!refreshToken) {
       return refreshToken;
     }
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
+    const token = Cookies.get("refreshToken");
     if (token){
       const {refreshToken} = JSON.parse(token);
       console.log("WIIIIII");
@@ -76,7 +78,8 @@ const AuthProvider = ({ children }) => {
   }
 
   function signOut(){
-    localStorage.removeItem("token");
+    //localStorage.removeItem("token");
+    Cookies.remove("refreshToken");
     setAccessToken("");
     setRefreshToken("");
     setUser(undefined);
@@ -98,9 +101,11 @@ const AuthProvider = ({ children }) => {
         setIsLoading(false);
       } else {
         //CESAR AQUI se está yendo el código y no debería
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
+        const token = Cookies.get("refreshToken");
         if (token) {
           console.log("useEffect: token", token);
+          // const refreshToken = JSON.parse(token).refreshToken;
           const refreshToken = JSON.parse(token).refreshToken;
           //Si no existe el access token, voy a pedir un nuevo access token
           console.log("Voy a pedir un nuevo token");

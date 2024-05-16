@@ -6,6 +6,7 @@ import {IoKey} from "react-icons/io5";
 import {FaUserCircle} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import { useAuth } from '../../auth/AuthProvider';
+// import {Navigate, useNavigate} from "react-router-dom";
 
 const ProfileAdmin = () => {
 
@@ -25,7 +26,7 @@ const ProfileAdmin = () => {
       
       if (response.ok){
         auth.signOut();
-        const goTo = useNavigate();
+        // const goTo = useNavigate();
         // goTo("/login");
       }
 

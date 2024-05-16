@@ -325,12 +325,12 @@ console.log("Notas del vetado"+vetadoNota.notas_v)
             <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
           </div>
           <div class="input-group mb-3 ">
-            <button className="App_buttonaccept vetar" onClick={handleDesVetar}>Desvetar</button>
+            <button className="App_buttonaccept user_button_vetar" onClick={handleDesVetar}>Desvetar</button>
           </div>
           </div>)}
           {!showVetadoSelect && (
           <div class="input-group mb-3 ">
-            <button className="App_buttonaccept vetar" onClick={handleVetar}>Vetar</button>
+            <button className="App_buttonaccept user_button_vetar" onClick={handleVetar}>Vetar</button>
           </div>)}
           <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
             ¿Estas Seguro?

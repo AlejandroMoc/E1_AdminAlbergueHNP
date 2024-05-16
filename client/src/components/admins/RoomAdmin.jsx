@@ -438,7 +438,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
 function IndicadorZona({tituloZona}){
   return(
-    <div class="rooms_text_subtitles container">
+    <div class="rooms_text_subtitles container rooms_container">
       <span class="rooms_text_titles">{tituloZona}</span>
       <div class="rooms_spacing_disponibility">
         <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
@@ -548,7 +548,7 @@ const RoomAdmin = () => {
     let contador = -1; // Para acceder al arreglo aisladoLetras en la posición deseada.
   
     return(
-      <div class="container">
+      <div class="container rooms_container">
         {infoZona.length && (
           infoZona.map((item) => {   
             if(item.id_cliente != null){
