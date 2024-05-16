@@ -22,6 +22,8 @@ export const AppRouter = () => {
     // //Vacía información
     const auth = useAuth();
 
+    //Solucion que parece que vamos a tener que usar
+    //Cada que recargas la pagina se sale la sesion
     // const handleSignOut = async () => {
     //     try {
     //     const response = await fetch('http://localhost:8000/signout/', {
@@ -49,28 +51,29 @@ export const AppRouter = () => {
     return (
         <>
             <Routes>
-
                 <Route path="/login" element={<Login />}/>
-                {/* TODO borrar antes de versión final */}
+                {/* TODO mover SIGNUP a ProtectedRoute */}
                 <Route path="/signup" element={<SignUp />}/>
-                <Route path="*" element={<Navigate to="/login" />}/>
-
+                
                 <Route path = "/" element = {<ProtectedRoute/>}>
                     <Route element = {<Navbar/>}>
-                        <Route exact path="dashboard" element={<Home />}/>
-                        <Route path="usernew" element={<UserNew />} />
-                        <Route path="infouser/:id_cliente" element={<InfoUser/>}/>
-                        <Route path="infouser" element={<InfoUser />}/>
-                        <Route path="userlist" element={<UserList />}/>
-                        <Route path="beds" element={<Rooms />}/>
-                        <Route path="profile" element={<Profile />}/>
-                        <Route path="changepassword" element={<ProfilePassword />}/>
-                        <Route path="reports" element={<Reports />}/>
-                        <Route path="edituser" element={<EditUser/>}/> 
+                        <Route exact path="/dashboard" element={<Home />}/>
+                        <Route path="/usernew" element={<UserNew />} />
+                        <Route path="/infouser/:id_cliente" element={<InfoUser/>}/>
+                        {/* <Route path="infouser" element={<InfoUser />}/> */}
+                        <Route path="/userlist" element={<UserList />}/>
+                        <Route path="/beds" element={<Rooms />}/>
+                        <Route path="/profile" element={<Profile />}/>
+                        <Route path="/changepassword" element={<ProfilePassword />}/>
+                        <Route path="/reports" element={<Reports />}/>
+                        <Route path="/edituser" element={<EditUser/>}/>
+                        
                         {/* TODO crear 404? */}
                         {/* <Route path="*" element={<Navigate to="/login" />}/> */}
                     </Route>
                 </Route>
+
+                <Route path="*" element={<Navigate to="/login" />}/>
                 
             </Routes>
         </>

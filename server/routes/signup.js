@@ -6,12 +6,12 @@ const {getNewAdmin} = require('../queries/LoginQueries.js');
 // });
 
 router.post('/', async(req, res) => {
-    const {username, password} = req.body;
-    if (!username || !password){
+    const {nombre_u, password} = req.body;
+    if (!nombre_u || !password){
         return res.status(400).send("Fields are required");
     }
     try{
-        const nombre_u=req.body.username;
+        const nombre_u=req.body.nombre_u;
         const contrasena=req.body.password;
         await getNewAdmin(nombre_u, contrasena);
         res.status(200).json("User created successfully");

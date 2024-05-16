@@ -18,6 +18,7 @@ const AuthContext = createContext({
 const AuthProvider = ({ children }) => {
   // const [user, setUser] = useState<User>();
   const [user, setUser] = useState();
+  //CESAR parece que el setAccessToken no está funcionando bien porque no agarra nada en accessToken
   const [accessToken, setAccessToken] = useState("");
   const [refreshToken, setRefreshToken] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,10 +39,7 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(true);
   }
 
-  function setAccessTokenAndRefreshToken(
-    accessToken,
-    refreshToken,
-  ) {
+  function setAccessTokenAndRefreshToken( accessToken, refreshToken) {
     console.log("setAccessTokenAndRefreshToken", accessToken, refreshToken);
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
@@ -87,29 +85,32 @@ const AuthProvider = ({ children }) => {
 
   async function checkAuth() {
     try {
+      console.log("El accesstoken que no quiere agarrar es", accessToken);
+      //Si existe el accessToken, retribuirlo
       if (!!accessToken) {
-        //existe access token
         const userInfo = await retrieveUserInfo(accessToken);
-        console.log('CHECA')
-        console.log(user)
+        console.log('CHECA1');
+        console.log(user);
         setUser(userInfo);
-        console.log(user)
+        console.log(user);
         setAccessToken(accessToken);
         setIsAuthenticated(true);
         setIsLoading(false);
       } else {
-        //no existe access token
+        //CESAR AQUI se está yendo el código y no debería
         const token = localStorage.getItem("token");
         if (token) {
           console.log("useEffect: token", token);
           const refreshToken = JSON.parse(token).refreshToken;
-          //pedir nuevo access token
+          //Si no existe el access token, voy a pedir un nuevo access token
+          console.log("Voy a pedir un nuevo token");
           getNewAccessToken(refreshToken)
             .then(async (newToken) => {
-              console.log(newToken)
+              console.log("El nuevo token es",newToken);
               const userInfo = await retrieveUserInfo(newToken);
-              console.log('CHECA')
-              console.log(userInfo)
+              console.log('CHECA2');
+              console.log(userInfo);
+              console.log('Este es userInfo:', userInfo);
               setUser(userInfo);
               setAccessToken(newToken);
               setIsAuthenticated(true);
@@ -124,17 +125,16 @@ const AuthProvider = ({ children }) => {
         }
       }
     } catch (error) {
+      console.log("quesera",error);
       setIsLoading(false);
     }
   }
 
   useEffect(()=>{
     checkAuth();
-    console.log('SE LLAMO checkAUTH')
+    console.log('Se llamó a checkAUTH');
   },[]);
-
-
-
+  
   //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
     console.log("Sí está sacando aqui un refreshToken");
@@ -142,7 +142,6 @@ const AuthProvider = ({ children }) => {
     console.log(refreshToken);
     try {
       
-      //CESAR, no se si es aqui donde no lo agarra bien
       const response = await fetch("http://localhost:8000/refreshtoken", {
         method: "POST",
         headers: {
@@ -156,17 +155,17 @@ const AuthProvider = ({ children }) => {
       console.log(response)
 
       if (response.ok) {
-        console.log('OK?')
+        console.log('OK?');
         const json = await response.json();
+        console.log("OKI");
         console.log(json)
+        console.log("OKI");
         if (json.error) {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
-        console.log("LOREM IPSUM A")
         const accessToken = json.body.accessToken
-        console.log("DIMEEEEEEE ACCESS TOKEN")
-        console.log(accessToken)
+        console.log("Dime el access token A", accessToken);
         return accessToken;
       } else {
         const errorResponse = await response.json();
@@ -180,8 +179,7 @@ const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       // CHECAR AQUI
-      console.log("11111111");
-      console.log(error);
+      console.log("11111111",error);
       return null;
     }
   }
@@ -249,11 +247,12 @@ async function retrieveUserInfo(accessToken) {
 
     if (response.ok) {
       const json = await response.json();
-      console.log('Retrieve Info json: ')
-      console.log(json);
+      console.log('Retrieve Info json: ',json);
       return json;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const useAuth = () => useContext(AuthContext);

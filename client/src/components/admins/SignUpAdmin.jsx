@@ -31,9 +31,9 @@ const SignUpAdmin = () => {
       });
   
       if (response.ok) {
-        console.log("User created successfully");
+        console.log("User created successfully",response);
         // setErrorResponse("");
-
+        console.log("Sí me voy a / en SignUpAdmin.jsx 36");
         goTo("/");
       } else {
         console.log("Something went wrong");

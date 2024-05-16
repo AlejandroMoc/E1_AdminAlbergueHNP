@@ -3,6 +3,7 @@ import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import { AuthResponse,AuthResponseError, AccessTokenResponse} from '../../types/types';
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
@@ -40,6 +41,7 @@ const LoginAdmin = () => {
         console.log("Response JSON:", json);
         
         if (json.body.accessToken && json.body.refreshToken) {
+          console.log("Sí me voy al /dashboard en LoginAdmin.jsx 44");
           auth.saveUser(json.body);
           goTo("/dashboard");
         }
@@ -47,6 +49,7 @@ const LoginAdmin = () => {
         // goTo("/");
       } else {
         console.log("Something went wrong");
+        successToast();
         // const json = await response.json() as AuthResponseError;
         // const json: AuthResponseError = await response.json();
       }
