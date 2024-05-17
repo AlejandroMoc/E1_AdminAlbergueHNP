@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { LuUser } from "react-icons/lu";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import {Navigate, useNavigate} from "react-router-dom";
+import { useAuth } from '../../auth/AuthProvider';
 import { FiHome } from "react-icons/fi";
 import { TbMoodKid } from "react-icons/tb";
 import { FaRegAddressCard } from "react-icons/fa";
@@ -15,8 +17,12 @@ import MyToastContainer, { successToast, errorToast } from '../universal/MyToast
 
 
 const UserNewAdmin = () => {
+  //Para pasar a dashboard
+  const goTo = useNavigate();
 
-
+  //Para registrar sesión
+  const id_u = useAuth().getUser().id_usuario
+  console.log(id_u)
 
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
@@ -109,15 +115,14 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerEntradaUnica', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+          body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
         successToast()
-        window.location.href = '/dashboard';
-        // const goTo = useNavigate();
-        // goTo("/dashboard");
+        // window.location.href = '/dashboard';
+        goTo("/dashboard");
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
         errorToast()
@@ -127,13 +132,14 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerNewPatient', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+          body: JSON.stringify({ id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
         successToast()
         //window.location.href = '/';
+        goTo("/dashboard");
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
         errorToast()

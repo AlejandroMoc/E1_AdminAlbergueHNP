@@ -18,15 +18,18 @@ import { LiaCoinsSolid } from "react-icons/lia";
 import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
 import { LuBedDouble } from "react-icons/lu"; //Cama
 import {Navigate, useNavigate} from "react-router-dom";
+
 const infoUserAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() =>{
     fetch('http://localhost:8000/clienteInfo/'+props.id_cliente)
     .then((res) => res.json())
     .then((data) => {setinfoCliente(data); console.log(data)});
-}, [props.id_cliente])
+}, [props.id_cliente, refresh])
 console.log("FECHA Inicio: "+infoCliente.fecha_i)
+
 //FETCH PARA TIPO DE USUARIO "HUESPED"-----------------------------------------
     console.log("VERDADERO HUESPED");
     const [huespedCliente, setHuespedCliente] = useState({id_cama:0, fecha_i:0})
@@ -35,7 +38,7 @@ console.log("FECHA Inicio: "+infoCliente.fecha_i)
       fetch('http://localhost:8000/huespedInfo/'+props.id_cliente)
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); console.log(data)});
-  }, [props.id_cliente])
+  }, [props.id_cliente, refresh])
   console.log("ID CAMA"+huespedCliente.id_cama)
 
 //FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
@@ -45,7 +48,7 @@ useEffect(() =>{
   fetch('http://localhost:8000/deudaCliente/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setDeudaCliente(data); console.log(data)});
-}, [props.id_cliente])
+}, [props.id_cliente, refresh])
 console.log("DEUDA DEL CLIENTE"+deudaCliente.deudacliente)
 console.log("SEXO: "+infoCliente.sexo)
 //FETCH PARA CALCULAR CANTIDAD DE CADA SERVICIO 
@@ -55,7 +58,7 @@ useEffect(() =>{
   fetch('http://localhost:8000/servicioEU/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setservicioCliente(data); console.log(data)});
-}, [props.id_cliente])
+}, [props.id_cliente, refresh])
 console.log("DEUDA DEL CLIENTE"+deudaCliente.deudacliente)
 console.log("SErvicio: "+servicioCliente.servicio1)
 
@@ -73,7 +76,7 @@ useEffect(() =>{
   fetch('http://localhost:8000/tipoCliente/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {settipoCliente(data); console.log(data)});
-}, [props.id_cliente])
+}, [props.id_cliente, refresh])
 console.log("TipoCLIENTE"+tipoCliente.tipo_cliente)
 
 const showNumbersSelect = tipoCliente.tipo_cliente;
@@ -98,8 +101,15 @@ const handleBtRegistroClick = async () => {
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
-        });
-        window.location.href = '/infouser/'+props.id_cliente;
+        })
+        .then((response) => {
+          if (response.ok) {
+            successToast()
+            setRefresh(!refresh)
+            setPago('')
+          }
+        })
+        // window.location.href = '/infouser/'+props.id_cliente;
         //alert('Registro exitoso');
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
@@ -126,7 +136,7 @@ useEffect(() => {
       setvetadoCliente({ vetadobool: vetadobool });
       console.log(data);
     });
-}, [props.id_cliente]);
+}, [props.id_cliente, refresh]);
 console.log("VETADO "+vetadoCliente.vetadobool)
 const showVetadoSelect = vetadoCliente.vetadobool;
 console.log(showVetadoSelect)
@@ -143,6 +153,7 @@ console.log(showVetadoSelect)
       .then((response) => {
         if (response.ok) {
           successToast()
+          setRefresh(!refresh)
         }
       })
       
@@ -150,7 +161,7 @@ console.log(showVetadoSelect)
         errorToast()
         console.error('Error fetching data:', error)
       })
-      window.location.href = '/infouser/'+props.id_cliente;
+      // window.location.href = '/infouser/'+props.id_cliente;
   }
 
   //Llamada a la función de desvetar
@@ -165,13 +176,14 @@ console.log(showVetadoSelect)
       .then((response) => {
         if (response.ok) {
           successToast()
+          setRefresh(!refresh)
         }
       })
       .catch((error) => {
         errorToast()
         console.error('Error fetching data:', error)
       })
-      window.location.href = '/infouser/'+props.id_cliente;
+      // window.location.href = '/infouser/'+props.id_cliente;
   }
     //Para popup
     const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null}) 
@@ -191,8 +203,9 @@ useEffect(() =>{
   fetch('http://localhost:8000/notasVeto/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setvetadoNota(data); console.log(data)});
-}, [props.id_cliente])
+}, [props.id_cliente, refresh])
 console.log("Notas del vetado"+vetadoNota.notas_v)
+
 //Función para ir a la pagina de editar
 const handleEditar = async () => {
       goTo("/edituser/"+props.id_cliente);
