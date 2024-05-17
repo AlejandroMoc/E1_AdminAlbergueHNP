@@ -45,7 +45,7 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
                 COMMIT;
             `,
             [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario],
-            console.log("LISTO 1 :)")
+            console.log("LISTO 1 X)")
         );
     } catch (error) {
         throw error;
@@ -78,7 +78,7 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
                 COMMIT;
             `,
             [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario],
-            console.log("LISTO 2 :)")
+            console.log("LISTO 2 ;()")
         );
     } catch (error) {
         throw error;

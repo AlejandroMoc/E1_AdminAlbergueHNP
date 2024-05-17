@@ -56,7 +56,7 @@ const getNewRegister = async(id_cliente, pago) => {
             VALUES ($1, 'Agregado desde InfoUser', $2, CURRENT_TIMESTAMP);
             `,
             [id_cliente, pago],
-            console.log("LISTO 2 :)")
+            console.log("LISTO 2 B)")
         );
     } catch (error) {
         throw error;

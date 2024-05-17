@@ -69,7 +69,7 @@ import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cam
 #
 ############################################################################################*/
 
-function update(setInfoM, setInfoH, setInfoA){
+async function update(setInfoM, setInfoH, setInfoA){
   fetch('http://localhost:8000/beds')
   .then((res) => res.json())
   .then((info) => {setInfoM(info[0]); setInfoH(info[1]); setInfoA(info[2]);})
@@ -107,6 +107,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       .then((response) => {
         if (response.ok) {
           update(setInfoM, setInfoH, setInfoA);
+          update(setInfoM, setInfoH, setInfoA);
           setMonto_UE_Pagar(0);
           setCliente_UE_Pagar(0);
           setNotas_UE_Pagar("");
@@ -141,6 +142,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         .then((response) => {
           if (response.ok) {
             update(setInfoM, setInfoH, setInfoA);
+            update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
         })
@@ -163,6 +165,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         .then((response) => {
           if (response.ok) {
             update(setInfoM, setInfoH, setInfoA);
+            update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
         })
@@ -184,6 +187,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         })
         .then((response) => {
           if (response.ok) {
+            update(setInfoM, setInfoH, setInfoA);
             update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
@@ -261,6 +265,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       .then((response) => {
         if (response.ok) {
           update(setInfoM, setInfoH, setInfoA);
+          update(setInfoM, setInfoH, setInfoA);
           successToast()
         }
       })
@@ -293,6 +298,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       })
       .then((response) => {
         if (response.ok) {
+          update(setInfoM, setInfoH, setInfoA);
           update(setInfoM, setInfoH, setInfoA);
           successToast()
         }
@@ -334,7 +340,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span class="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
           <div class="input-group mb-3 rooms_width_infoinputs">
-            <span class="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
+            <span class="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); update(setInfoM, setInfoH, setInfoA); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
             <input type="number" class="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
           </div>
           <div class="form-check">

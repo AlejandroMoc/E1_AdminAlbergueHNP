@@ -832,7 +832,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
 
               </tr>
             </thead>
@@ -885,7 +885,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
               </tr>
             </thead>
             <tbody>
@@ -937,7 +937,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
               </tr>
             </thead>
             <tbody>
@@ -981,8 +981,8 @@ const getCurrentDateTime = () => {
               <th>Lugar de Origen</th>
               <th>No.Carnet</th>
               <th>Fecha de Ingreso</th>
-              <th>Fecha de Vetado</th>
-              <th>Motivo Vetado</th>
+              <th>Fecha de Veto</th>
+              <th>Motivo de Veto</th>
               {/* Agregar las columnas adicionales según el servicio seleccionado */}
               {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
               {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
@@ -990,7 +990,7 @@ const getCurrentDateTime = () => {
               {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
               {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
               {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-              {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+              {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
 
             </tr>
           </thead>
@@ -1043,7 +1043,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
 
               </tr>
             </thead>
@@ -1095,7 +1095,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
 
               </tr>
             </thead>
@@ -1139,8 +1139,8 @@ const getCurrentDateTime = () => {
                 <th>Lugar de Origen</th>
                 <th>No.Carnet</th>
                 <th>Fecha de Ingreso</th>
-                <th>Fecha de Vetado</th>
-                <th>Motivo Vetado</th>
+                <th>Fecha de Veto</th>
+                <th>Motivo de Veto</th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
                 {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
@@ -1148,7 +1148,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
                 {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
                 {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas</th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
 
               </tr>
             </thead>
@@ -1186,7 +1186,7 @@ const getCurrentDateTime = () => {
       <div className="reports_button_export">
         {/* Botón de exportar reporte a PDF */}
         <button type="button" className="App_buttonaccept" onClick={generatePDF}>
-          Exportar a PDF
+          Generar PDF
         </button>
       </div>
     </div>

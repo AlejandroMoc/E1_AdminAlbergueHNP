@@ -342,7 +342,7 @@ const UserListAdmin = () => {
         items={id_u == 5 ? [
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
           veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
-          veto ? '' : {key: 'eliminar', label: 'Eliminar', icon: <FaTrashAlt />, danger: true},
+          veto ? '' : {key: 'eliminar', label: 'Eliminar permanentemente', icon: <FaTrashAlt />, danger: true},
         ] : [
           {key: 'nombre', label: <strong>No Tienes Permisos de Administrador</strong>}
         ]}>
