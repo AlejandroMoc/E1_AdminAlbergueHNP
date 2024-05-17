@@ -1,6 +1,6 @@
 
-import { Routes, Route, Navigate} from "react-router-dom";
-import React, { useEffect } from 'react';
+import {Routes, Route, Navigate} from "react-router-dom";
+import React, {useEffect } from 'react';
 
 //Importar páginas
 import EditUser from "../sites/EditUser";
@@ -15,8 +15,8 @@ import Login from "../sites/Login";
 import SignUp from "../sites/SignUp";
 import InfoUser from "../sites/InfoUser";
 import Navbar from "./Navbar";
-import { useAuth } from '../../auth/AuthProvider';
-import { ProtectedRoute } from "./ProtectedRoute";
+import {useAuth } from '../../auth/AuthProvider';
+import {ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
     // //Vacía información

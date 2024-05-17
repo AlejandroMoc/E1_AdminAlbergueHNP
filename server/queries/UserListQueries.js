@@ -149,4 +149,4 @@ const getClientsByFilter = async (select_Filters, select_View, debtRange, dateRa
     }
 }
 
-module.exports = { getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient}
+module.exports = {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient}

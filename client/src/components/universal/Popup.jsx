@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import './Popup.scss'
-import { useAuth } from '../../auth/AuthProvider';
+import {useAuth } from '../../auth/AuthProvider';
 
 const Popup = (props) => {
     const id_u = useAuth().getUser().id_usuario
@@ -28,7 +28,7 @@ const Popup = (props) => {
             <div className='popup_container'>
                 <div className='popup_inner'>
                     {props.children}
-                    <div class="Lmao">
+                    <div className="popup_spacing">
                         <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
                         <button className='accept-btn' onClick={handleAccept}>Aceptar</button>
                     </div>
@@ -44,7 +44,7 @@ const Popup = (props) => {
                     <div className="notas_container" onChange={handleNotas_VChange}>
                         <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Razón de Veto: " value={notas_v}></textarea>
                     </div>
-                    <div class="Lmao">
+                    <div className="popup_spacing">
                         <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
                         <button className='accept-btn' onClick={handleAccept}>Vetar</button>
                     </div>
@@ -56,7 +56,7 @@ const Popup = (props) => {
             <div className='popup_container'>
                 <div className='popup_inner'>
                     {props.children}
-                    <div class="Lmao">
+                    <div className="popup_spacing">
                         <button className='cancel-btn' onClick={() => props.setTrigger({trigger: false, type: -1})}>Cancelar</button>
                         <button className='accept-btn' onClick={handleAccept}>Aceptar</button>
                     </div>

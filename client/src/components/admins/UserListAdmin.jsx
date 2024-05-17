@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import Popup from '../universal/Popup';
-import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
-import { Form } from 'react-bootstrap'; 
-import { Link } from "react-router-dom";
-import { Menu, Dropdown as DP} from 'antd';
-import { FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import {Form } from 'react-bootstrap'; 
+import {Link } from "react-router-dom";
+import {Menu, Dropdown as DP} from 'antd';
+import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa';
 import Table from 'react-bootstrap/Table';
 import MyPagination from '../universal/MyPagination';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DatePicker from 'react-datepicker'; // Importar react-datepicker
-import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -50,12 +50,12 @@ const UserListAdmin = () => {
 
   //Lista de filtros
   const filters = [
-    { id: 1, label: 'Hombres'}, 
-    { id: 2, label: 'Mujeres'},
-    { id: 3, label: 'Vetados' },
-    { id: 4, label: 'No Vetados'},
-    { id: 5, label: 'Deudores'},
-    { id: 6, label: 'A Confirmar'}
+    {id: 1, label: 'Hombres'}, 
+    {id: 2, label: 'Mujeres'},
+    {id: 3, label: 'Vetados' },
+    {id: 4, label: 'No Vetados'},
+    {id: 5, label: 'Deudores'},
+    {id: 6, label: 'A Confirmar'}
   ]; 
 
   
@@ -160,10 +160,10 @@ const UserListAdmin = () => {
     const filterId = parseInt(event.target.value); 
     const choosen = event.target.checked;
 
-    if (choosen) { 
+    if (choosen) {
       set_Select_Filters([...select_Filters, filterId]); 
     }
-    else { 
+    else {
       set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
     }
   };
@@ -336,7 +336,7 @@ const UserListAdmin = () => {
       <Menu onClick={(event) => handleMenuClick(event, id)}
         items={[
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
-          veto ? {key: 'noVetar', label: <span style={{ color: 'green' }}>Desvetar</span>, icon: <span style={{ color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
+          veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
           veto ? '' : {key: 'eliminar', label: 'Eliminar', icon: <FaTrashAlt />, danger: true},
         ]}>
       </Menu>
@@ -413,7 +413,7 @@ const UserListAdmin = () => {
                 />
               </div>
             </div>
-            <div className='userlist_text_error'>
+            <div className='universal_text_error'>
               <p>{dateErrorMessage}</p>
             </div>
           </div>
@@ -454,7 +454,7 @@ const UserListAdmin = () => {
                 </div>
               </div>
             </div>
-            <div className='userlist_text_error'>
+            <div className='universal_text_error'>
               <p>{debtErrorMessage}</p>
             </div>
           </div>
@@ -544,7 +544,7 @@ const UserListAdmin = () => {
                 {select_View == 10 && (
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-                      <tr key={i} style={{ background: '#fff' }}>
+                      <tr key={i} style={{background: '#fff' }}>
                         <td>{item.id_cama ? item.id_cama : '-'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
@@ -564,7 +564,7 @@ const UserListAdmin = () => {
                 {select_View == 7 && (
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-                      <tr key={i} style={{ background: '#fff' }}>
+                      <tr key={i} style={{background: '#fff' }}>
                         <td>{item.id_cama ? item.id_cama : '-'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
@@ -584,7 +584,7 @@ const UserListAdmin = () => {
                 {select_View == 8 && (
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-                      <tr key={i} style={{ background: '#fff' }}>
+                      <tr key={i} style={{background: '#fff' }}>
                         <td>{item.id_cama}</td>
                         <td>
                           {item.nombre_c ?
@@ -604,7 +604,7 @@ const UserListAdmin = () => {
                 {select_View == 9 && (
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-                      <tr key={i} style={{ background: '#fff' }}>
+                      <tr key={i} style={{background: '#fff' }}>
                         <td>
                           {item.nombre_c ?
                             <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>

@@ -115,4 +115,4 @@ const getAllClientInfo = async(nombre_c, apellidos_c) => {
     }
 }
 
-module.exports = { getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica}
+module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica}

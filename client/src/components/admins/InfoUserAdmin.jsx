@@ -1,22 +1,22 @@
-import React, { useEffect,useState } from 'react';
+import React, {useEffect,useState } from 'react';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
-import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
-import { LuUser } from "react-icons/lu";
-import { LuCalendarDays } from "react-icons/lu";
-// import { MdOutlineAttachMoney } from "react-icons/md";
-import { FiHome } from "react-icons/fi";
-import { TbMoodKid } from "react-icons/tb";
-import { FaRegAddressCard } from "react-icons/fa";
-import { RiHospitalLine } from "react-icons/ri";
-// import { IoMdAddCircleOutline } from "react-icons/io";
-// import { IoMdRemoveCircleOutline } from "react-icons/io";
-import { MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
-import { MdOutlineEdit } from "react-icons/md"; //Boton Editar
-import { LiaCoinsSolid } from "react-icons/lia";
-import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
-import { LuBedDouble } from "react-icons/lu"; //Cama
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import {LuUser } from "react-icons/lu";
+import {LuCalendarDays } from "react-icons/lu";
+// import {MdOutlineAttachMoney } from "react-icons/md";
+import {FiHome } from "react-icons/fi";
+import {TbMoodKid } from "react-icons/tb";
+import {FaRegAddressCard } from "react-icons/fa";
+import {RiHospitalLine } from "react-icons/ri";
+// import {IoMdAddCircleOutline } from "react-icons/io";
+// import {IoMdRemoveCircleOutline } from "react-icons/io";
+import {MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
+import {MdOutlineEdit } from "react-icons/md"; //Boton Editar
+import {LiaCoinsSolid } from "react-icons/lia";
+import {PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
+import {LuBedDouble } from "react-icons/lu"; //Cama
 import {Navigate, useNavigate} from "react-router-dom";
 
 const infoUserAdmin = (props) => {
@@ -133,7 +133,7 @@ useEffect(() => {
     .then((data) => {
       // Convertir el valor a minúsculas antes de almacenarlo en el estado
       const vetadobool = data.vetadobool.toLowerCase() === 'true';
-      setvetadoCliente({ vetadobool: vetadobool });
+      setvetadoCliente({vetadobool: vetadobool });
       console.log(data);
     });
 }, [props.id_cliente, refresh]);
@@ -191,7 +191,7 @@ console.log(showVetadoSelect)
    const handleVetar = async () =>{
     setShowPopUp({trigger: true, type: 1, id: props.id_cliente, fun: vetarCliente})
    }
-   const handleDesVetar = async () =>{  
+   const handleDesVetar = async () =>{ 
     setShowPopUp({trigger: true, type: 0, id: props.id_cliente, fun: desvetarCliente})
    }
 
@@ -216,75 +216,79 @@ const handleEditar = async () => {
 ///////////////////////////////////////////////////////////////////////////////
 //EMPIEZA DESARROLLO DEL HTML
   return (
-    <div class='App_minheight'>
-      <div className='button-container'>
-      <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
+    <div className='App_minheight userinfo_justified'>
+      {/*Espaciador*/}
+      <div className='user_spaciator'></div>
+
+
+      <div>
+        <button className='userinfo_button_edit App_buttonaccept ' onClick={handleEditar}><span className="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
       </div>
-      <div class="user_container_general">
-        <div class="container user_container_reg">
+      <div className="user_container_general">
+        <div className="container user_container_reg">
         {/* {!showNumbersSelect && (
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_info" id="basic-addon1">Es Paciente</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">Es Paciente</span>
           </div>)} */}
 
           <h4>Información del Paciente</h4>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.carnet}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.carnet}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
           </div>
 
-          <div class="input-group mb-3 "></div>
-          <div class="input-group mb-3 "></div>
+          <div className="input-group mb-3 "></div>
+          <div className="input-group mb-3 "></div>
 
           <h4>Información de Familiar</h4>
 
 
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
           </div>
           {showNumbersSelect === true && (
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuCalendarDays /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{fechaNueva()}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuCalendarDays /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{fechaNueva()}</span>
           </div>)}
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
-            <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico</span>
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
+            <span className="input-group-text userinfo_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
 
 
 
-          <div class="input-group mb-3 "></div>
+          <div className="input-group mb-3 "></div>
         </div>
 
 
 
-        <div class="user_spacing_not">
-          <div class="input-group mb-3 "></div>
-          <div class="mb-3">
-            <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
+        <div className="user_spacing_not">
+          <div className="input-group mb-3 "></div>
+          <div className="mb-3">
+            <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
           </div>
           {showNumbersSelect === true && (
             <div>
               <div>
-                <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
+                <label className="form-check-label user_span_notesicon" for="flexRadioDefault1">
                 <span>Huésped</span>
                 </label>
               </div>
@@ -292,72 +296,72 @@ const handleEditar = async () => {
             )}
               {showNumbersSelect === false&& (
               <div>
-                <label class="form-check-label user_span_notesicon" for="flexRadioDefault1">
+                <label className="form-check-label user_span_notesicon" for="flexRadioDefault1">
                   <span>Entrada Única</span>
                 </label>
               </div>)}
               {showNumbersSelect === true && ( 
-          <div class="input-group mb-3 ">
-          <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuBedDouble /></span>
-          <span class="input-group-text user_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
+          <div className="input-group mb-3 ">
+          <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuBedDouble /></span>
+          <span className="input-group-text userinfo_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
           {showNumbersSelect === false && (
-          <div class="user_services_register">
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
+          <div className="user_services_register">
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
             </div>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio2}</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio2}</span>
             </div>
           </div>
           )}
         {showNumbersSelect === false && (
           <div>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio3}</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio3}</span>
             </div>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio4}</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio4}</span>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
         </div>)}
-          <div class="input-group mb-3" onChange={handlepagoChange}>
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LiaCoinsSolid /></span>
-            <span class="input-group-text user_span_info user_adjust_debt" id="basic-addon1">
+          <div className="input-group mb-3" onChange={handlepagoChange}>
+            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LiaCoinsSolid /></span>
+            <span className="input-group-text userinfo_span_info userinfo_adjust_debt" id="basic-addon1">
               {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>
-            <input type="number" className="user_adjust_debt_input" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
+            <input type="number" className="userinfo_adjust_debt_input" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón
-              <button className="App_buttonaccept DANI" onClick={handleBtRegistroClick}>Abonar</button>
+              <button className="App_buttonaccept userinfo_size_deposit" onClick={handleBtRegistroClick}>Abonar</button>
             )}
           </div>
           {showVetadoSelect  && (
           <div>
-              <div class="input-group mb-3">
-              <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
-            <span class="input-group-text user_span_infoVeto" id="basic-addon1">Usuario Vetado</span>
+              <div className="input-group mb-3">
+              <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
+            <span className="input-group-text userinfo_span_baninfo" id="basic-addon1">Usuario Vetado</span>
             </div>
-            <div class="mb-3">
-            <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
+            <div className="mb-3">
+            <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
           </div>
-          <div class="input-group mb-3 ">
-            <button className="App_buttonaccept user_button_vetar" onClick={handleDesVetar}>Desvetar</button>
+          <div className="input-group mb-3 ">
+            <button className="App_buttonaccept userinfo_button_ban" onClick={handleDesVetar}>Desvetar</button>
           </div>
           </div>)}
           {!showVetadoSelect && (
-          <div class="input-group mb-3 ">
-            <button className="App_buttonaccept user_button_vetar" onClick={handleVetar}>Vetar</button>
+          <div className="input-group mb-3 ">
+            <button className="App_buttonaccept userinfo_button_ban" onClick={handleVetar}>Vetar</button>
           </div>)}
           <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
             ¿Estas Seguro?

@@ -4,7 +4,7 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
-import { AuthResponseError } from '../../types/types';
+// import {AuthResponseError } from '../../types/types';
 
 const SignUpAdmin = () => {
 

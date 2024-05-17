@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import PropTypes from "prop-types";
 

@@ -3,7 +3,7 @@ import React from "react";
 //Importar componentes
 import EditUserAdmin from '../admins/EditUserAdmin';
 import Footer from '../universal/Footer';
-import { useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 const EditUser = () => {
 	const{id_cliente} = useParams();

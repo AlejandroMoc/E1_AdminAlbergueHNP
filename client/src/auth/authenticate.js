@@ -9,7 +9,7 @@ const {
     if (token) {
       try {
         const decoded = verifyAccessToken(token);
-        req.user = { ...decoded.user };
+        req.user = {...decoded.user };
         next();
       } catch (error) {
         console.log("estem",error);

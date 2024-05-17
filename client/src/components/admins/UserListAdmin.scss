@@ -58,14 +58,11 @@
 
 .userlist_container_inputs .container_dash {
   color: #090909;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 2vh 0 2vh;
 }
 
 .userlist_container_radio {
-  margin-left: 2vh;
-  margin-right: 2vh;
-  margin-bottom: 2vh;
+  margin: 2vh 2vh 2vh 0;
 }
 
 .userlist_color_personlink{
@@ -79,11 +76,4 @@
   transform: translate(-50%, -50%);
   font-weight: bold;
   font-size: small;
-}
-
-.userlist_text_error {
-  color: #d84949;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: left;
 }

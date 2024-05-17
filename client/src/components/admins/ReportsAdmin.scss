@@ -1,0 +1,62 @@
+// TODO Mover a reportes.scss
+.reports_button_export {
+    text-align: right;
+}
+  
+.reports_container_services {
+    margin-bottom: 2vh;
+}
+  
+.reports_dropdown_custommenu {
+    max-height: 200px;
+    max-width: 200px;
+    overflow-y: auto;
+}
+  
+.reports_margin_formcheck{
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+  
+.reports_flex_checkboxes{
+    display: flex;
+    margin: 20px 0px 20px 0px;
+}
+  
+.reports_title_container {
+    display: flex;
+    align-items: center;
+}
+  
+.reports_title_element {
+    margin-right: 10px;
+    margin-left: 5px;
+}
+  
+.reports_image_element {
+    width: 40px;
+    height: auto;
+    margin-left: auto;
+    margin-right: 20px;
+}
+  
+.reports_generated_element {
+    margin-top: 5px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+  
+.reports_container_checkbox {
+    display: flex;
+    align-items: center;
+}
+  
+.reports_container_inputdate {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+  
+.title-element2{
+    margin-left: 5px;
+}

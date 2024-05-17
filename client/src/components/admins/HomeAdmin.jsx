@@ -1,4 +1,5 @@
 import React from 'react';
+import "./UniversalAdmin.scss";
 import "./HomeAdmin.scss";
 
 //Importar elementos
@@ -7,7 +8,7 @@ import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
 import {Link} from "react-router-dom";
-import { useAuth } from '../../auth/AuthProvider';
+import {useAuth } from '../../auth/AuthProvider';
 
 const HomeAdmin = () => {
 
@@ -18,6 +19,7 @@ const HomeAdmin = () => {
     `Ten un buen día, ${auth.getUser()?.nombre_u || ""}.`,
     `Esperamos que hoy sea un buen día, ${auth.getUser()?.nombre_u || ""}.`,
     `Tu potencial es infinito, ${auth.getUser()?.nombre_u || ""}.`,
+    `Hoy es un buen día para hacer un cambio, ${auth.getUser()?.nombre_u || ""}.`,
   ];
   
   const randomIndex = Math.floor(Math.random() * welcomeMessages.length);

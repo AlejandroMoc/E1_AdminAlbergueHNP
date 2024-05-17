@@ -2,8 +2,7 @@ import React from 'react';
 import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
-import { AuthResponse,AuthResponseError, AccessTokenResponse} from '../../types/types';
-import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
+import {successToast} from '../universal/MyToast';
 
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
@@ -16,6 +15,8 @@ const LoginAdmin = () => {
   //Redirigir a dashboard si ya se está autenticado
   const auth = useAuth();
   const goTo = useNavigate();
+
+  const [dateErrorMessage, setLoginErrorMessage] = useState('')
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -45,9 +46,8 @@ const LoginAdmin = () => {
           auth.saveUser(json.body);
           goTo("/dashboard");
         }
-
-        // goTo("/");
       } else {
+        setLoginErrorMessage('Credenciales incorrectas. Intente de nuevo')
         console.log("Something went wrong");
         successToast();
         // const json = await response.json() as AuthResponseError;
@@ -73,9 +73,8 @@ const LoginAdmin = () => {
       
       <form className='login_table' onSubmit={handleSubmit}>
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
-
           <h3>¡Te damos la bienvenida!</h3>
-
+          <p className='login_error'>{dateErrorMessage}</p>
           <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
           <button className="login_inputs App_buttonaccept">Iniciar sesión </button>

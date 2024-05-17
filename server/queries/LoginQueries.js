@@ -94,7 +94,7 @@ const getNewLogin = async (nombre_u, contrasena) => {
     console.log(accessToken);
     console.log("refreshToken");
     console.log(refreshToken);
-    return { existingUser: getUserInfo(existingUser), accessToken, refreshToken };
+    return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
 
   } catch (error) {
     throw error;
@@ -145,4 +145,4 @@ const functionRefreshToken = async (refreshToken) => {
   }
 };
 
-module.exports = { getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken, functionRefreshToken};
+module.exports = {getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken, functionRefreshToken};

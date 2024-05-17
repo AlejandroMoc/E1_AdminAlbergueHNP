@@ -591,4 +591,4 @@ const getAllIngresos = async (startDate, endDate) => {
 
 
 
-module.exports = { getAllUsers,getAllHuespedes,getUserInfo, getAllVisitantes, getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos}
+module.exports = {getAllUsers,getAllHuespedes,getUserInfo, getAllVisitantes, getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos}

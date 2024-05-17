@@ -1,11 +1,12 @@
 import React from 'react';
+import "./UniversalAdmin.scss";
 import "./HomeAdmin.scss";
 
 //Importar elementos
 import {IoKey} from "react-icons/io5";
 import {FaUserCircle} from "react-icons/fa";
 import {Link} from "react-router-dom";
-import { useAuth } from '../../auth/AuthProvider';
+import {useAuth } from '../../auth/AuthProvider';
 // import {Navigate, useNavigate} from "react-router-dom";
 
 const ProfileAdmin = () => {
@@ -37,7 +38,7 @@ const ProfileAdmin = () => {
 
   return (
     <div className='App_minheight'>
-      <table className= 'universal_header_table3'>
+      <table className= 'universal_header_table universal_header_table2'>
         <tbody>
           <tr>
             <td>

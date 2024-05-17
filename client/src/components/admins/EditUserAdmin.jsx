@@ -1,17 +1,14 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useEffect, useState } from 'react';
-import { LuUser } from "react-icons/lu";
-import { LuCalendarDays } from "react-icons/lu";
-import { MdOutlineAttachMoney } from "react-icons/md";
-import { FiHome } from "react-icons/fi";
-import { TbMoodKid } from "react-icons/tb";
-import { FaRegAddressCard } from "react-icons/fa";
-import { RiHospitalLine } from "react-icons/ri";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { IoMdRemoveCircleOutline } from "react-icons/io";
-import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
-//import { registerNewPatient } from '../../../../server/queries/UsernewQueries';
+import React, {useEffect, useState } from 'react';
+import {LuUser } from "react-icons/lu";
+import {FiHome } from "react-icons/fi";
+import {TbMoodKid } from "react-icons/tb";
+import {FaRegAddressCard } from "react-icons/fa";
+import {IoMdAddCircleOutline } from "react-icons/io";
+import {IoMdRemoveCircleOutline } from "react-icons/io";
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+//import {registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
 
 const UserNewAdmin = (props) => {
@@ -117,7 +114,7 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerEntradaUnica', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -135,7 +132,7 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerNewPatient', {
           method: 'POST',
-          body: JSON.stringify({ carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -341,32 +338,35 @@ const handleBtRegistroClick = async () => {
   const [id_zona, setIdZona] = useState(null);
 
   return (
-    <div class='App-minheight'>
-      <div class="user_container_general">
-        <div class="user_container_reg">
+    <div className='App-minheight'>
+      {/*Espaciador*/}
+      <div className='user_spaciator'></div>
+      
+      <div className="user_container_general">
+        <div className="user_container_reg">
 
           <h4>Información del Paciente</h4>
-          <div class="input-group mb-3 " onChange={handleLugar_OChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+          <div className="input-group mb-3 " onChange={handleLugar_OChange}>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
+            <input type="text" className="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
-            {nombre_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" className={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
+            {nombre_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
-            <input type="text" class={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
-            {apellidos_pError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+          <div className="input-group mb-3 ">
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <input type="text" className={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
+            {apellidos_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
-          <div class="input-group mb-3 " onChange={handleCarnetChange}>
-            <span class="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="text" class="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+          <div className="input-group mb-3 " onChange={handleCarnetChange}>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <input type="text" className="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
           </div>
-          <div class="user_label_x" onChange={handleId_areaCChange}>
+          <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
-            <select class="form-select user_select_beds sm" aria-label="Default select example">
+            <select className="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> 
               {(
                 area.map((item) => (
@@ -376,111 +376,111 @@ const handleBtRegistroClick = async () => {
             </select>
           </div>
           
-          <div class="input-group mb-3 "></div>
-          <div class="input-group mb-3 "></div>
+          <div className="input-group mb-3 "></div>
+          <div className="input-group mb-3 "></div>
 
           <h4>Información del Familiar</h4>
-          <span class="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
-          <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">Si</span>
+          <span className="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
+          <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Si</span>
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">No</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span className="universal_text_HM">No</span>
                 </label>
               </div>
           </div>    
-            <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
-              {nombre_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+            <div className="input-group mb-3 ">
+              <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" className={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
+              {nombre_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
-            <div class="input-group mb-3 ">
-              <span class="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" class={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
-              {apellidos_cError && <div class="invalid-feedback text-start">Este campo es obligatorio</div>}
+            <div className="input-group mb-3 ">
+              <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
+              <input type="text" className={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
+              {apellidos_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
-           <div class="input-group mb-3 user_checkerito" onChange={handleSexoChange}>
-              <div class="user_div_radio">
-                <div class="form-check">
-                  <input class="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={true}></input>
-                  <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">Hombre</span>
+           <div className="input-group mb-3" onChange={handleSexoChange}>
+              <div className="user_div_radio">
+                <div className="form-check">
+                  <input className="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={true}></input>
+                  <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Hombre</span>
                   </label>
                 </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={false}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">Mujer</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={false}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Mujer</span>
                 </label>
               </div>
             </div>
           </div>
-          <span class="user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
-          <div class="input-group mb-3 user_checkerito" onChange={handleNivel_SEChange}>
-            <div class="user_div_radio">
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM"  type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={1}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">1</span>
+          <span className="user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
+          <div className="input-group mb-3" onChange={handleNivel_SEChange}>
+            <div className="user_div_radio">
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM"  type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={1}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span className="universal_text_HM">1</span>
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={2}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">2</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={2}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">2</span>
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={3}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">3</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={3}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span className="universal_text_HM">3</span>
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={4}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">4</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={4}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">4</span>
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={5}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">5</span>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="nivelSoc" id="flexRadioDefaultNivelSoc" value={5}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span className="universal_text_HM">5</span>
                 </label>
               </div>
             </div>
           </div>
         </div>
-        <div class="user_space_not">
-          <div class="mb-3" onChange={handleNotas_CChange}>
-            <textarea class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
+        <div className="user_space_not">
+          <div className="mb-3" onChange={handleNotas_CChange}>
+            <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
           </div>
-          <div class="input-group mb-3 user_checkerito">
-            <div class="user_div_radio">
-              <div class="form-check" onChange={handleRadioChange}>
-                <input class="form-check-input universal_checkbox_HM" type="radio"  name="huesEU" id="flexRadioDefaultHuesEU"  value={true}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                <span class="universal_text_HM">Huésped</span>
+          <div className="input-group mb-3">
+            <div className="user_div_radio">
+              <div className="form-check" onChange={handleRadioChange}>
+                <input className="form-check-input universal_checkbox_HM" type="radio"  name="huesEU" id="flexRadioDefaultHuesEU"  value={true}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                <span className="universal_text_HM">Huésped</span>
                 </label>
               </div>
-              <div class="form-check" onChange={handleRadioChange}>
-                <input class="form-check-input universal_checkbox_HM" type="radio"  name="huesEU" id="flexRadioDefaultHuesEU"  value={false}></input>
-                <label class="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span class="universal_text_HM">Entrada Única</span>
+              <div className="form-check" onChange={handleRadioChange}>
+                <input className="form-check-input universal_checkbox_HM" type="radio"  name="huesEU" id="flexRadioDefaultHuesEU"  value={false}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Entrada Única</span>
                 </label>
               </div>
             </div>
           </div>
           {showBedNumber && (
-          <div class="user_label_x2" onChange={handleId_CamaCChange}>
+          <div className="user_label_x2" onChange={handleId_CamaCChange}>
             <span>Número de Cama: </span>
-            <select class="form-select user_select_beds sm" aria-label="Default select example">
+            <select className="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
               {bed.map((item) => {
                 if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
@@ -496,36 +496,36 @@ const handleBtRegistroClick = async () => {
           </div>
           )}
           {showServices && (
-          <div class="user_services_register">
-            <div class="input-group mb-3">
-              <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
-              <span className='button-serv' class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{shower}</span>
+          <div className="user_services_register">
+            <div className="input-group mb-3">
+              <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
+              <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{shower}</span>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{bathroom}</span>
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{bathroom}</span>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{breakfast}</span>
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{breakfast}</span>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{meal}</span>
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{meal}</span>
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
-              <span class="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
-              <span class="input-group-text user_span_notestext" id="basic-addon1">{dinner}</span>
+            <div className="input-group mb-3">
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
+              <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span className="input-group-text user_span_notestext" id="basic-addon1">{dinner}</span>
             </div>
           </div>
            )}

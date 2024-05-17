@@ -3,7 +3,7 @@ const db = require('../db_connection');
 // Querie que obtiene toda la info de camasgralinfo, para cada zona.
 // (Ver Función RoomAdmin en RoomAdmin.jsx)
 const getInfo = async() => {
-    try { 
+    try {
         const infoMujeres = await db.any(
             `SELECT * FROM camasgralinfo WHERE id_zona = 1`, [])
         
@@ -91,4 +91,4 @@ const eliminarCama = async(id_cama) => {
 }
 
 
-module.exports = { getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama }
+module.exports = {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama }

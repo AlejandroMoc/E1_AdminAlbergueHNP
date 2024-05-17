@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import {Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './MyToast.scss';
 

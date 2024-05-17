@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
-import './HomeAdmin.scss'; // Importa tu archivo CSS aquí
+import React, {useEffect, useState, useRef } from 'react';
+import './HomeAdmin.scss';
+import './ReportsAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DatePicker from 'react-datepicker'; // Importar react-datepicker
-import 'react-datepicker/dist/react-datepicker.css'; // Estilos de react-datepicker
-import { useReactToPrint } from "react-to-print";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import {useReactToPrint } from "react-to-print";
 
 const ReportsAdmin = () => {
   // Estado para almacenar las fechas
@@ -258,8 +259,7 @@ const generatePDF = useReactToPrint({
     titleElement.innerText = reportType; // Establecemos el texto del título
     const today = new Date(); // Agregar esta línea para obtener la fecha actual
 
-
-        // Agregar el texto de rango de fechas si se cumplen las condiciones
+      // Agregar el texto de rango de fechas si se cumplen las condiciones
       if ((esGeneral || (esUsuario && mostrarHuespedes && huespedSeleccionado === 'Huesped') || 
       (esUsuario && mostrarVisitantes && visitanteSeleccionado === 'Visitante') || 
       (esUsuario && mostrarVetados && vetadoSeleccionado === 'Vetado') || esIngreso) && startDate && endDate) {
@@ -298,8 +298,8 @@ const generatePDF = useReactToPrint({
   },
   documentTitle: "",
   //Top Right Bottom Left
-  pageStyle: '@page { size: auto; margin: 0mm 5mm 0mm 5mm; } @media print { body { -webkit-print-color-adjust: exact; } }',
-  onAfterPrint: () => alert("Reporte guardado en PDF.")
+  pageStyle: '@page {size: auto; margin: 0mm 5mm 0mm 5mm; } @media print {body {-webkit-print-color-adjust: exact; } }',
+  // onAfterPrint: () => alert("Reporte guardado en PDF.")
 });
 
 // Función para obtener la fecha y hora actual en el formato deseado
@@ -473,38 +473,63 @@ const getCurrentDateTime = () => {
 
     return (
       <div className='App_minheight App_minpadding reports_container_services'>
+
+
+
+
         {/* Div para agrupar los campos de entrada */}
         <div className="reports_container_inputdate">
-          {/* Campo de entrada para la fecha 1 */}
-          <div className="universal_container_pickerdate">
-          <DatePicker
-              selected={startDate}
-              onChange={(date) => handleDateChange(date, endDate)}
 
-              placeholderText='Inicio (DD/MM/YY)'
-              className="universal_input_date"
-              dateFormat="dd/MM/yy"
-              onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
 
-            />
-          </div>
+          {/*Tabla de fechas y de alerta*/}
+          <table>
+            <tbody>
+              <tr className='userlist_container_inputs'>
+                {/*Fila de fechas*/}
+                <td>
+                  {/* Campo de entrada para la fecha 1 */}
+                  <div className="universal_container_pickerdate">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => handleDateChange(date, endDate)}
 
-          {/* Campo de entrada para la fecha 2 */}
-          <div className="universal_container_pickerdate">
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => handleDateChange(startDate, date)}
+                      placeholderText='Inicio (DD/MM/YY)'
+                      className="universal_input_date"
+                      dateFormat="dd/MM/yy"
+                      onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
+                    />
+                  </div>
+                </td>
 
-              placeholderText='Fin (DD/MM/YY)'
-              className="universal_input_date"
-              dateFormat="dd/MM/yy"
-              onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
+                <td>
+                  {/* Campo de entrada para la fecha 2 */}
+                  <div className="universal_container_pickerdate">
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => handleDateChange(startDate, date)}
 
-            />
-            {dateErrorMessage && (
-                <p className="userlist_text_error">{dateErrorMessage}</p>
-              )}
-          </div>
+                      placeholderText='Fin (DD/MM/YY)'
+                      className="universal_input_date"
+                      dateFormat="dd/MM/yy"
+                      onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
+                    />
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                {dateErrorMessage && (
+                  <p className="universal_text_error">{dateErrorMessage}</p>
+                )}
+              </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
 
           <div className="reports_container_checkbox">
             {/* Checkbox para marcar si es General */}
@@ -690,7 +715,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('desayuno')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="desayuno">
-                <span class="universal_text_HM">Desayuno</span>
+                <span className="universal_text_HM">Desayuno</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -702,7 +727,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('comida')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="comida">
-                <span class="universal_text_HM">Comida</span>
+                <span className="universal_text_HM">Comida</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -714,7 +739,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('cena')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="cena">
-                <span class="universal_text_HM">Cena</span>
+                <span className="universal_text_HM">Cena</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -726,7 +751,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('baño')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="baño">
-                <span class="universal_text_HM">Baño</span>
+                <span className="universal_text_HM">Baño</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -738,7 +763,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('regadera')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="regadera">
-                <span class="universal_text_HM">Regadera</span>
+                <span className="universal_text_HM">Regadera</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -750,7 +775,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('deuda')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="deuda">
-                <span class="universal_text_HM">Deuda</span>
+                <span className="universal_text_HM">Deuda</span>
               </label>
             </div>
             <div className="reports_margin_formcheck">
@@ -762,7 +787,7 @@ const getCurrentDateTime = () => {
                 onChange={() => handleServicioChange('notas_cliente')}
               />
               <label className="form-check-label universal_label_radio" htmlFor="notas_cliente">
-                <span class="universal_text_HM">Notas</span>
+                <span className="universal_text_HM">Notas</span>
               </label>
             </div>
            
@@ -1171,7 +1196,7 @@ const getCurrentDateTime = () => {
       </div>
       <div className="reports_button_export">
         {/* Botón de exportar reporte a PDF */}
-        <button type="button" className="App_buttonaccept" onClick={ generatePDF}>
+        <button type="button" className="App_buttonaccept" onClick={generatePDF}>
           Exportar a PDF
         </button>
       </div>

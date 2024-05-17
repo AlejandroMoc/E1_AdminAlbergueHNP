@@ -5,7 +5,7 @@
     margin: 10px;
     height: 100%;
     width: 450px;
-    margin-top: 50px;
+    // margin-top: 40px;
 
     display: flex;
     flex-direction: row;
@@ -40,10 +40,6 @@
     height: 100%;
 }
 
-.user_checkerito{
-    margin-left: 15px;
-}
-
 .user_input_notas{
     border: solid 1px black;
     background-color: #fafafa;
@@ -53,14 +49,14 @@
 }
 
 .user_space_not{
-    margin-top: 50px;
+    margin-top: 40px;
     //background-color: #d84949;
     height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .user_label_x{
@@ -86,8 +82,8 @@
     width: 60%;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 10px; /* Bordes redondos */
-    background-color: #f2f2f2; /* Fondo gris */
+    border-radius: 1vhpx;
+    background-color: #f2f2f2;
     cursor: pointer;
 
 }
@@ -104,7 +100,6 @@
     font-size: larger;
 }
 
-
 .user_span_notestext{
     background-color: #fafafa;
     font-size: larger;
@@ -118,13 +113,22 @@
     align-self: flex-end;
 }
 
-.user_span_info{
+.user_spaciator{
+    height:5vh;
+}
+
+//InfoUser
+.userinfo_justified{
+    text-align: justify;
+}
+
+.userinfo_span_info{
     height: 62px;
     font-size: larger;
     background-color: #fafafa;
     width: 85%;
 }
-.user_span_infoVeto{
+.userinfo_span_baninfo{
     height: 62px;
     font-size: larger;
     background-color: #fafafa;
@@ -132,43 +136,40 @@
     width: 85%;
 }
 
-
-.user_span_textsize{
-    min-width: 150px;
-}
-
-.user_adjust_debt{
-    width: 20%;
-}
-.user_adjust_debt_input{
+.userinfo_adjust_debt{
     width: 20%;
 }
 
-//TODO renombrar a FORMATO CORRECTO
-.DANI{
-    height:  61px!important;
-    width: 20% !important;
+.userinfo_adjust_debt_input{
+    width: 20%;
 }
 
-.user_button_vetar{
+.userinfo_button_ban{
     margin-top: 10%;
     margin-left: 50%;
     background-color: #c2c2c2;
 }
 
-.user_button_vetar:hover{
+.userinfo_button_ban:hover{
     background-color: #9d9d9d;
 }
 
-.button-container {
-    position: relative;
-}
-
-.edit-button {
+.userinfo_button_edit {
     position: absolute;
     color: #1d4e63;
-    top: 10px;  /* Ajusta según sea necesario */
-    left: 45px;  /* Ajusta según sea necesario */
-    /* Otros estilos para el botón */
+    top: 10px;
+    left: 45px;
     width: 7% !important;
 }
+
+.userinfo_size_deposit{
+    height:  61px!important;
+    width: 20% !important;
+}
+
+//UserNew
+.user_span_textsize{
+    min-width: 150px;
+}
+
+//TODO pasar userlist para aca y renombrar archivo a user.scss

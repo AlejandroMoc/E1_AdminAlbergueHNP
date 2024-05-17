@@ -37,8 +37,8 @@
 
 // React
 import React from 'react';
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import {Link } from "react-router-dom";
+import {useState, useEffect } from 'react';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,18 +46,18 @@ import './RoomAdmin.scss';
 import '../universal/MyToast.scss';
 
 // Elementos Externos
-import { Dropdown, Menu } from 'antd';
-import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
+import {Dropdown, Menu } from 'antd';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import Popup from '../universal/Popup';
 
 // Iconografía
 import iconocama from '../../assets/vectors/icon_bed.svg';
-import { IoAddCircleOutline  } from "react-icons/io5"; // Añadir Cama
-import { FaCircle } from "react-icons/fa6"; // Círculos indicadores (gris, azúl y rojo)
-import { RiMoneyDollarCircleLine } from "react-icons/ri"; // Balance
-import { MdOutlineFastfood } from "react-icons/md"; // Servicios
-import { LuUserMinus, LuUserPlus, LuUser} from "react-icons/lu"; // Nombre, Añadir Usuario, Registrar Salida
-import { FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cama, Carnet
+import {IoAddCircleOutline  } from "react-icons/io5"; // Añadir Cama
+import {FaCircle } from "react-icons/fa6"; // Círculos indicadores (gris, azúl y rojo)
+import {RiMoneyDollarCircleLine } from "react-icons/ri"; // Balance
+import {MdOutlineFastfood } from "react-icons/md"; // Servicios
+import {LuUserMinus, LuUserPlus, LuUser} from "react-icons/lu"; // Nombre, Añadir Usuario, Registrar Salida
+import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cama, Carnet
 
 
 
@@ -95,7 +95,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   const [cliente_UE_Pagar, setCliente_UE_Pagar] = useState(0);
   const [notas_UE_Pagar, setNotas_UE_Pagar] = useState("");
 
-  useEffect(() => { 
+  useEffect(() => {
     if(monto_UE_Pagar != 0 && cliente_UE_Pagar != 0 && notas_UE_Pagar != ""){
     fetch('http://localhost:8000/beds/pagar' , {
       method: 'POST',
@@ -128,7 +128,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   const [cantidadS2_UE_RegServicio, setCantidadS2_UE_RegServicio] = useState(0);
   const [cantidadS3_UE_RegServicio, setCantidadS3_UE_RegServicio] = useState(0);
 
-  useEffect(() => { 
+  useEffect(() => {
     if(cliente_UE_RegServicio != 0){
       if(cantidadS1_UE_RegServicio != 0){
         fetch('http://localhost:8000/beds/regServacio' , {
@@ -249,7 +249,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   // UseEffect para Registrar Salida de un Huésped
   const [cliente_UE_RegSalida, setCliente_UE_RegSalida] = useState(0);
 
-  useEffect(() => { 
+  useEffect(() => {
     if(cliente_UE_RegSalida != 0){
     fetch('http://localhost:8000/beds/regSalida' , {
       method: 'POST',
@@ -282,7 +282,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   const [cama_UE_EliminarCama, setCama_UE_EliminarCama] = useState(0);
   const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
 
-  useEffect(() => { 
+  useEffect(() => {
     if(cama_UE_EliminarCama != 0){
     fetch('http://localhost:8000/beds/eliminarCama' , {
       method: 'POST',
@@ -334,7 +334,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span class="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
           <div class="input-group mb-3 rooms_width_infoinputs">
-            <span class="input-group-text" id="basic-addon1" onClick={() => { setCliente_UE_Pagar(idCliente); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
+            <span class="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
             <input type="number" class="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
           </div>
           <div class="form-check">
@@ -370,7 +370,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       <Menu.Divider />
 
       <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => { setTxtPopUp("Registrar salida de "+nombre+" "+apellidos); setShowPopUp({trigger: true, type: 2, id: numCama, fun: popUpRegSalida});}}>Registrar Salida</span>
+        <span class="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("Registrar salida de "+nombre+" "+apellidos); setShowPopUp({trigger: true, type: 2, id: numCama, fun: popUpRegSalida});}}>Registrar Salida</span>
       </Menu.Item>
 
       <Menu.Divider />
@@ -401,7 +401,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       <Menu.Divider />
 
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => { setTxtPopUp("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: popUpEliminarCama}); }}>Eliminar Cama</span>
+        <span class="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: popUpEliminarCama}); }}>Eliminar Cama</span>
       </Menu.Item>
       
     </Menu>
@@ -411,7 +411,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
     <>
       <Dropdown overlay={color == '#e6e6e6' ? menuDisponibles : menuOcupadas } trigger={['contextMenu']}>
         <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+idCliente} className="rooms_text_bedsnot">
-          <div className="card rooms_spacing_beds" style={{ backgroundColor: color }}>
+          <div className="card rooms_spacing_beds" style={{backgroundColor: color }}>
             <img src={iconocama} className="card-img-top" alt="..." />
             <p className="rooms_text_beds">{numCama}</p>
           </div>
@@ -550,7 +550,7 @@ const RoomAdmin = () => {
     return(
       <div class="container rooms_container">
         {infoZona.length && (
-          infoZona.map((item) => {   
+          infoZona.map((item) => { 
             if(item.id_cliente != null){
               contador = contador +1;
               return(
@@ -566,7 +566,7 @@ const RoomAdmin = () => {
           })
         )}
         <div class="card rooms_spacing_addbed">
-          <button id="rooms_logo_addbed" onClick={() => { infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
+          <button id="rooms_logo_addbed" onClick={() => {infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
         </div>
       </div>
     );

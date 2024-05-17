@@ -1,4 +1,4 @@
-TODO falta unificar class y className. Solo puede existir una (me parece que era class).
+TODO falta unificar class y className. Solo puede existir className.
 TODO falta unificar font-sizes
 
 ##Reestructurada página de inicio de sesión.

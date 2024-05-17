@@ -3,7 +3,7 @@ import "./Navbar.scss";
 import {Link} from "react-router-dom";
 import {FaUser} from "react-icons/fa";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
-import { Outlet } from 'react-router-dom';
+import {Outlet } from 'react-router-dom';
 
 const Navbar = () => {
   // const [navToggle, setNavToggle] = useState(false);

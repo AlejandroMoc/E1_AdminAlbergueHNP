@@ -23,7 +23,7 @@ const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient }
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
 const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados, getAllGeneralHuespedes, getAllGeneralVisitantes, getAllGeneralVetados, getAllIngresos} = require('./queries/ReportQueries.js');
-const { verify } = require('jsonwebtoken');
+const {verify } = require('jsonwebtoken');
 
 //TODO urgente reubicar rutas en archivos separados en vez de tener todo aqui
 
@@ -34,7 +34,7 @@ app.get('/alldispbeds', async(req, res) => {
         res.json(beds);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -57,7 +57,7 @@ app.post('/registerNewPatient', async(req, res) => {
         const pacienteR = await registerNewPatient(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
         res.json(pacienteR);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })  
 
@@ -84,7 +84,7 @@ app.post('/registerEntradaUnica', async(req, res) => {
         const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente);
         res.json(pacienteU);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })  
 
@@ -94,7 +94,7 @@ app.get('/allareas', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -105,7 +105,7 @@ app.post('/allclientinfo', async (req, res) => {
         const client = await getAllClientInfo(nombre_c, apellidos_c);
         res.json(client);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -117,7 +117,7 @@ app.get('/allusers', async (req, res) => {
         res.json(allusers);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -128,7 +128,7 @@ app.get('/allhuespedes', async (req, res) => {
         res.json(allHuespedes);
     } catch (error) {
         console.error('Error fetching huespedes:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -139,7 +139,7 @@ app.get('/allvisitantes', async (req, res) => {
         res.json(allVisitantes);
     } catch (error) {
         console.error('Error fetching visitantes:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -150,7 +150,7 @@ app.get('/allvetados', async (req, res) => {
         res.json(allVetados);
     } catch (error) {
         console.error('Error fetching vetados:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -161,7 +161,7 @@ app.get('/userinfo/:userID', async (req, res) => {
         res.json(clientInfo); // Devuelve la información del cliente como respuesta
     } catch (error) {
         console.error('Error fetching client info:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -174,7 +174,7 @@ app.get('/allgeneralhuespedes', async (req, res) => {
         res.json(allgeneralhuespedes);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -187,7 +187,7 @@ app.get('/allgeneralvisitantes', async (req, res) => {
         res.json(allgeneralvisitantes);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -200,7 +200,7 @@ app.post('/allclientinfo', async(req, res) => {
         const client = await getAllClientInfo(nombre_c, apellidos_c);
         res.json(client);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -213,7 +213,7 @@ app.get('/allgeneralvetados', async (req, res) => {
         res.json(allgeneralvetados);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -226,7 +226,7 @@ app.get('/allingresos', async (req, res) => {
         res.json(allingresos);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -237,7 +237,7 @@ app.get('/allclients', async (req, res) => {
         res.json(clients);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -255,7 +255,7 @@ app.post('/someclients', async (req, res) => {
         console.log('clientes:', clients)
         res.json(clients);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 });
 
@@ -271,7 +271,7 @@ app.post('/banclient', async (req, res) => {
         // console.log(ban)
         res.json(ban)
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 
@@ -282,7 +282,7 @@ app.post('/unbanclient', async (req, res) => {
         const unban = await unbanClient(id_cliente)
         res.json(unban)
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 
@@ -293,7 +293,7 @@ app.post('/deleteclient', async (req, res) => {
         const delet = await deleteClient(id_cliente)
         res.json(delet)
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 
@@ -305,7 +305,7 @@ app.get('/clienteInfo/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching cliente INFORMACIÓN:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 app.get('/huespedInfo/:id_cliente', async(req, res) => {
@@ -314,7 +314,7 @@ app.get('/huespedInfo/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching cliente INFORMACIÓN:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 app.get('/deudaCliente/:id_cliente', async(req, res) => {
@@ -323,7 +323,7 @@ app.get('/deudaCliente/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching cliente DEUDA:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 app.get('/servicioEU/:id_cliente', async(req, res) => {
@@ -332,7 +332,7 @@ app.get('/servicioEU/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching SERVICIO CLIENTE:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 
@@ -343,7 +343,7 @@ app.post('/registrarPago', async(req, res) => {
         const registerNewPago = await getNewRegister(id_cliente, pago);
         res.json(registerNewPago);
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })  
 
@@ -353,7 +353,7 @@ app.get('/tipoCliente/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching TIPO CLIENTE:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 app.get('/vetado/:id_cliente', async(req, res) => {
@@ -362,7 +362,7 @@ app.get('/vetado/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching vetado CLIENTE:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 app.get('/notasVeto/:id_cliente', async(req, res) => {
@@ -371,7 +371,7 @@ app.get('/notasVeto/:id_cliente', async(req, res) => {
         res.json(areas);
     } catch (error) {
         console.error('Error fetching Notas Veto:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 
@@ -384,7 +384,7 @@ app.get('/beds', async (req, res) => {
         res.json(info);
     } catch (error) {
         console.error('Error fetching clients:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error' });
     }
 })
 

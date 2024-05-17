@@ -1,6 +1,6 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import React, {useContext, createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-// import { r } from "tar";
+// import {r } from "tar";
 // import type {AuthResponse, AccessTokenResponse, User} from "../types/types"
 
 const AuthContext = createContext({
@@ -16,7 +16,7 @@ const AuthContext = createContext({
   signOut: () => {},
 });
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({children }) => {
   // const [user, setUser] = useState<User>();
   const [user, setUser] = useState();
   //CESAR parece que el setAccessToken no está funcionando bien porque no agarra nada en accessToken
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
     Cookies.set("refreshToken", refreshToken);
-    //localStorage.setItem("token", JSON.stringify({ refreshToken }));
+    //localStorage.setItem("token", JSON.stringify({refreshToken }));
   }
 
   function getRefreshToken() {
@@ -153,7 +153,7 @@ const AuthProvider = ({ children }) => {
           'Content-type': 'application/json',
           Authorization: `Bearer ${refreshToken}`,
         },
-        body: JSON.stringify({ refreshToken }),
+        body: JSON.stringify({refreshToken }),
       });
   
       console.log("MIRAMEAAAA");
