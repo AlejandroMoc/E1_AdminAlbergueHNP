@@ -59,6 +59,7 @@ export const AppRouter = () => {
                     <Route element = {<Navbar/>}>
                         <Route exact path="/dashboard" element={<Home />}/>
                         <Route path="/usernew" element={<UserNew />} />
+                        <Route path="/adminnew" element={<SignUp />} />
                         <Route path="/infouser/:id_cliente" element={<InfoUser/>}/>
                         {/* <Route path="infouser" element={<InfoUser />}/> */}
                         <Route path="/userlist" element={<UserList />}/>
