@@ -2,9 +2,13 @@ import React, {useEffect, useState, useRef } from 'react';
 import './HomeAdmin.scss';
 import './ReportsAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../universal/MyToast.scss';
+
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import {useReactToPrint } from "react-to-print";
 
@@ -291,6 +295,7 @@ const generatePDF = useReactToPrint({
   documentTitle: "",
   //Top Right Bottom Left
   pageStyle: '@page {size: auto; margin: 0mm 5mm 0mm 5mm; } @media print {body {-webkit-print-color-adjust: exact; } }',
+  onAfterPrint: () => successToast(),
   // onAfterPrint: () => alert("Reporte guardado en PDF.")
 });
 
@@ -1189,6 +1194,7 @@ const getCurrentDateTime = () => {
           Generar PDF
         </button>
       </div>
+      <MyToastContainer />
     </div>
   );
 };
