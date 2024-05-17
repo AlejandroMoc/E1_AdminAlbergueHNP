@@ -70,7 +70,7 @@ const today = new Date();
   }
 };
 
-
+//toma una fecha como entrada y devuelve la fecha formateada en la zona horaria local 
   const handleDateFormat = (date) => {
     const dbDate = new Date(date)
     const localDate = dbDate.toLocaleString()
@@ -217,15 +217,7 @@ const today = new Date();
     }
   }, [vetadoSeleccionado]);
 
-  const [showTitlesInPDF, setShowTitlesInPDF] = useState(false);
-
-const getTitle = () => {
-  if (showTitlesInPDF) {
-    return "Título del reporte";
-  }
-  return "";
-};
-
+//función que agrega el contenido al pdf 
 const generatePDF = useReactToPrint({
   content: () => {
     const pdfContent = componentPDF.current.cloneNode(true); // Clonamos el contenido para evitar cambios en la página
@@ -375,7 +367,7 @@ const getCurrentDateTime = () => {
       });
     }
   };
-
+  // Función para manejar el cambio del checkbox de ingresos
   const handleEsIngresoChange = () => {
     if (!esIngreso) {
       // Si se está marcando Ingreso, desmarca General, Usuario y Servicio
@@ -409,10 +401,6 @@ const getCurrentDateTime = () => {
     });
   };
 
-    // Función para manejar la selección de un Usuario en el dropdown
-    const handleUsuarioSelect = (nombre) => {
-      setUsuarioSeleccionado(nombre);
-    };
         // Función para manejar la selección de un Huesped en el dropdown
     const handleHuespedSelect = (huesped) => {
       if (!mostrarHuespedes) {
@@ -564,7 +552,7 @@ const getCurrentDateTime = () => {
           </div>
         </div>
 
-
+        {/*Condicion para cuando es Usuario en el checkbox*/}
         {esUsuario && (
           <div className="reports_flex_checkboxes">
             <div className="reports_margin_formcheck">
@@ -771,9 +759,9 @@ const getCurrentDateTime = () => {
         )}
       </div>
 
+      {/* Renderizado de tablas para la visualización de los datos y su exportación a PDF*/}
       <div ref={componentPDF} style={{width:'100%' , position: 'horizontal'}}>
       <div>
-      <h1>{getTitle()}</h1>
          {/* Mostrar los datos en una tabla si esIngreso está marcado */}
          {esIngreso && (
           <Table striped bordered hover>
@@ -851,7 +839,7 @@ const getCurrentDateTime = () => {
           </Table>
         )}
 
-       
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Huespedes está marcado sin seleccionar ningun huesped */}
         {esUsuario && mostrarHuespedes && huespedSeleccionado == 'Huesped' &&(
           <Table striped bordered hover>
             <thead>
@@ -903,8 +891,7 @@ const getCurrentDateTime = () => {
         )}
 
 
-
-
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado sin seleccionar ningun visitante */}
         {esUsuario && mostrarVisitantes && visitanteSeleccionado=='Visitante' && (
           <Table striped bordered hover>
             <thead>
@@ -955,6 +942,8 @@ const getCurrentDateTime = () => {
           </Table>
         )}
 
+
+      {/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado sin seleccionar ningun vetado */}
        {esUsuario && mostrarVetados && vetadoSeleccionado=='Vetado' && (
           <Table striped bordered hover>
           <thead>
@@ -1008,6 +997,7 @@ const getCurrentDateTime = () => {
         </Table>
         )}
 
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Huesped está marcado y se selecciona un Huesped */}
         {esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped' &&(
           <Table striped bordered hover>
             <thead>
@@ -1059,8 +1049,7 @@ const getCurrentDateTime = () => {
           </Table>
         )}
 
-
-
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado y se selecciona un Visitante */}
         {esUsuario && mostrarVisitantes && visitanteSeleccionado !== 'Visitante' &&(
           <Table striped bordered hover>
             <thead>
@@ -1112,7 +1101,7 @@ const getCurrentDateTime = () => {
           </Table>
         )}
 
-      
+      {/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado y se selecciona un Vetado */}
       {esUsuario && mostrarVetados && vetadoSeleccionado !== 'Vetado' &&(
           <Table striped bordered hover>
             <thead>
