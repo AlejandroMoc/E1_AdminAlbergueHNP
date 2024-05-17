@@ -6,16 +6,16 @@ const { getTokenFromHeader, verifyRefreshToken, generateAccessToken, functionRef
 //el refreshtoken se manda a llamar en el AuthProvider
 router.post('/', async (req, res) => {
 
-  //CESAR SIGUE AQUI PORFA
   //El refreshToken correcto no existe en la base de datos
   //y parece que no se puede acceder a /refreshtoken
-  const refreshToken = getTokenFromHeader(req.headers);
+  // const refreshToken = getTokenFromHeader(req.headers);
+  const refreshToken = req.headers;
+
+  console.log("El refreshytoken es", refreshToken);
 
   if (refreshToken) {
 
-    console.log("AQUI INICIA");
-    console.log(refreshToken);
-    console.log("AQUI TERMINA")
+    console.log("AQUI INICIA", refreshToken);
 
     try {
       //AQUI pasar a sus propias queries en vez de mandar a llamarla desde aqui

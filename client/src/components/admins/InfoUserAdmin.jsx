@@ -17,7 +17,7 @@ import { MdOutlineEdit } from "react-icons/md"; //Boton Editar
 import { LiaCoinsSolid } from "react-icons/lia";
 import { PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
 import { LuBedDouble } from "react-icons/lu"; //Cama
-
+import {Navigate, useNavigate} from "react-router-dom";
 const infoUserAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
 
@@ -186,20 +186,26 @@ console.log(showVetadoSelect)
 
 //FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
 const [vetadoNota, setvetadoNota] = useState({notas_v:""})
-
+const goTo = useNavigate();
 useEffect(() =>{
   fetch('http://localhost:8000/notasVeto/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setvetadoNota(data); console.log(data)});
 }, [props.id_cliente])
 console.log("Notas del vetado"+vetadoNota.notas_v)
+//Función para ir a la pagina de editar
+const handleEditar = async () => {
+      goTo("/edituser/"+props.id_cliente);
+  //window.location.href = '/edituser/'+props.id_cliente;
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //EMPIEZA DESARROLLO DEL HTML
   return (
     <div class='App_minheight'>
       <div className='button-container'>
-        <button className='edit-button App_buttonaccept '><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
+      <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
       </div>
       <div class="user_container_general">
         <div class="container user_container_reg">
@@ -208,7 +214,30 @@ console.log("Notas del vetado"+vetadoNota.notas_v)
             <span class="input-group-text user_span_info" id="basic-addon1">Es Paciente</span>
           </div>)} */}
 
+          <h4>Información del Paciente</h4>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
+          </div>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
+          </div>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.carnet}</span>
+          </div>
+          <div class="input-group mb-3 ">
+            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
+            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
+          </div>
+
+          <div class="input-group mb-3 "></div>
+          <div class="input-group mb-3 "></div>
+
           <h4>Información de Familiar</h4>
+
+
           <div class="input-group mb-3 ">
             <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
             <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
@@ -226,29 +255,14 @@ console.log("Notas del vetado"+vetadoNota.notas_v)
             <span class="input-group-text user_span_spacing_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
             <span class="input-group-text user_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
-          </div>
 
-          <div class="input-group mb-3 "></div>
-          <div class="input-group mb-3 "></div>
 
-          <h4>Información de Paciente</h4>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
-          </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.carnet}</span>
-          </div>
-          <div class="input-group mb-3 ">
-            <span class="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
-            <span class="input-group-text user_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
-          </div>
+
           <div class="input-group mb-3 "></div>
         </div>
+
+
+
         <div class="user_spacing_not">
           <div class="input-group mb-3 "></div>
           <div class="mb-3">
@@ -325,12 +339,12 @@ console.log("Notas del vetado"+vetadoNota.notas_v)
             <span class="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
           </div>
           <div class="input-group mb-3 ">
-            <button className="App_buttonaccept vetar" onClick={handleDesVetar}>Desvetar</button>
+            <button className="App_buttonaccept user_button_vetar" onClick={handleDesVetar}>Desvetar</button>
           </div>
           </div>)}
           {!showVetadoSelect && (
           <div class="input-group mb-3 ">
-            <button className="App_buttonaccept vetar" onClick={handleVetar}>Vetar</button>
+            <button className="App_buttonaccept user_button_vetar" onClick={handleVetar}>Vetar</button>
           </div>)}
           <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
             ¿Estas Seguro?

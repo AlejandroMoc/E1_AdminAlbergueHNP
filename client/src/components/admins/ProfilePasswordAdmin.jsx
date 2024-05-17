@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 
 const ProfilePasswordAdmin = () => {
 
-  const auth=useAuth();
+  const auth = useAuth();
 
   return (
     <div className='App_minheight'>
@@ -17,8 +17,7 @@ const ProfilePasswordAdmin = () => {
         <tbody>
           <tr>
             <td>
-              <h1 className="universal_header_texttitle">Administradora</h1>
-              {/* <h2>¡Te damos la bienvenida, {auth.getUser()?.username || ""}!</h2> */}
+              <h1>{auth.getUser()?.nombre_u || "Admin"}</h1>
               <p className= 'universal_header_text' to="/"><IoKey/>Cambiar contraseña</p>
 
               {/*Formato de cambiar contraseña*/}

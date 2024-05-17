@@ -326,7 +326,7 @@ const handleBtRegistroClick = async () => {
       setDinner(pDinner => pDinner - 1);
     }
   }
-  
+  const [id_zona_vetados, setIdZonaVetados] = useState(3); 
   const [id_zona_hombres, setIdZonaHombres] = useState(2); 
   const [id_zona_mujeres, setIdZonaMujeres] = useState(1); 
   const [id_zona, setIdZona] = useState(null);
@@ -334,7 +334,7 @@ const handleBtRegistroClick = async () => {
   return (
     <div class='App-minheight'>
       <div class="user_container_general">
-        <div class="container user_container_reg">
+        <div class="user_container_reg">
 
           <h4>Información del Paciente</h4>
           <div class="input-group mb-3 " onChange={handleLugar_OChange}>
@@ -370,7 +370,7 @@ const handleBtRegistroClick = async () => {
           <div class="input-group mb-3 "></div>
           <div class="input-group mb-3 "></div>
 
-          <h4>Información de Cliente</h4>
+          <h4>Información del Familiar</h4>
           <span class="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
           <div class="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div class="form-check">
@@ -474,11 +474,14 @@ const handleBtRegistroClick = async () => {
             <select class="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
               {bed.map((item) => {
-                if (id_zona !== null && ((sexoUsuario === true && item.id_zona === id_zona_hombres) || (sexoUsuario === false && item.id_zona === id_zona_mujeres))) {
+                if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
+                    (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
+                    item.id_zona === id_zona_vetados) {
                   return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
                 }
                 return null; 
               })}
+
             </select>
 
           </div>
