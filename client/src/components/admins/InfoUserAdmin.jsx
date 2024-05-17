@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react';
+import { useAuth } from '../../auth/AuthProvider';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
@@ -20,6 +21,10 @@ import { LuBedDouble } from "react-icons/lu"; //Cama
 import {Navigate, useNavigate} from "react-router-dom";
 
 const infoUserAdmin = (props) => {
+  //Para manejo de sesiones
+  const id_u = useAuth().getUser().id_usuario
+  // console.log(id_u)
+
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
   const [refresh, setRefresh] = useState(false)
 
@@ -217,9 +222,12 @@ const handleEditar = async () => {
 //EMPIEZA DESARROLLO DEL HTML
   return (
     <div class='App_minheight'>
-      <div className='button-container'>
-      <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
-      </div>
+      {/* CAMBIA ID A ADMINISTRADOR */}
+      {id_u == 5 && (
+        <div className='button-container'>
+          <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span class="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
+        </div>
+      )}
       <div class="user_container_general">
         <div class="container user_container_reg">
         {/* {!showNumbersSelect && (
