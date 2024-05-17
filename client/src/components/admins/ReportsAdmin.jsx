@@ -815,9 +815,9 @@ const getCurrentDateTime = () => {
               <tr>
                 <td>{dataingreso.fecha_inicio ? handleDateFormat(dataingreso.fecha_inicio) : ''}</td>
                 <td>{dataingreso.fecha_fin ? handleDateFormat(dataingreso.fecha_fin) : ''}</td>
-                <td>{dataingreso.total_pagado}</td>
-                <td>{dataingreso.total_condonado}</td>
-                <td>{dataingreso.ingresos_reales}</td>
+                <td>${dataingreso.total_pagado}</td>
+                <td>${dataingreso.total_condonado}</td>
+                <td>${dataingreso.ingresos_reales}</td>
               </tr>
             </tbody>
           </Table>

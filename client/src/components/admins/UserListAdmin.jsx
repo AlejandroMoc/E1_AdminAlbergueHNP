@@ -3,6 +3,7 @@ import Popup from '../universal/Popup';
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import {Form } from 'react-bootstrap'; 
 import {Link } from "react-router-dom";
+import {useAuth } from '../../auth/AuthProvider';
 import {Menu, Dropdown as DP} from 'antd';
 import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa';
 import Table from 'react-bootstrap/Table';
@@ -16,6 +17,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //MENÚ CLICK DERECHO
 
 const UserListAdmin = () => {
+  //Para manejo de sesiones
+  const id_u = useAuth().getUser().id_usuario
+  // console.log(id_u)
 
   //Para mensajes de error
   const [dateErrorMessage, setDateErrorMessage] = useState('')
@@ -331,13 +335,16 @@ const UserListAdmin = () => {
   }
 
   // Para menú click derecho
+  //CAMBIA ID A ADMINISTRADOR
   const menu = (id, name, last_m, veto) => {
     return (
       <Menu onClick={(event) => handleMenuClick(event, id)}
-        items={[
+        items={id_u == 5 ? [
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
           veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
           veto ? '' : {key: 'eliminar', label: 'Eliminar', icon: <FaTrashAlt />, danger: true},
+        ] : [
+          {key: 'nombre', label: <strong>No Tienes Permisos de Administrador</strong>}
         ]}>
       </Menu>
     )
@@ -493,7 +500,7 @@ const UserListAdmin = () => {
                 {select_View == 10 && (
                   <tr>
                     {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
-                    <th>No. Cama</th>
+                    <th>Registrado Por</th>
                     <th>Nombre</th>
                     <th>Tipo de Cliente</th>
                     <th>Lugar de Origen</th>
@@ -543,9 +550,10 @@ const UserListAdmin = () => {
               <tbody>
                 {select_View == 10 && (
                   paginatedData.map((item, i) => (
+                    // A VER SI ES MEJOR QUE PONGA EL NOMBRE DE QUIEN REGISTRÓ
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-                      <tr key={i} style={{background: '#fff' }}>
-                        <td>{item.id_cama ? item.id_cama : '-'}</td>
+                      <tr key={i} style={{ background: '#fff' }}>
+                        <td>{item.id_cama == 1 ? 'Admin' : 'Guardia'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
                           {item.nombre_c ?
