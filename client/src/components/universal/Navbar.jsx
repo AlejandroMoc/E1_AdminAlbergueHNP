@@ -38,12 +38,14 @@ const Navbar = () => {
           <div className = "navbar_logo"><Link to="/dashboard"><img src={logohnp} alt="logo"/></Link></div>
         </ul>
         <ul className ='navbar_right'>
-          {adminInfo.admin ? <Link className = 'navbar_text' to ="/adminnew"> Agrega Admin </Link> : ''}
+
           <Link className = 'navbar_text' to ="/usernew"> Registro </Link>
           <Link className = 'navbar_text' to ="/beds"> Camas </Link>
           <Link className = 'navbar_text' to ="/userlist"> Clientes </Link>
           <Link className = 'navbar_text' to ="/reports"> Reporte </Link>
+          {adminInfo.admin ? <Link className = 'navbar_text' to ="/adminnew"> N. Admin </Link> : ''}
           <Link className = 'navbar_text' to ="/profile"> <FaUser/> </Link>
+
         </ul>
       </nav>
       <Outlet/>

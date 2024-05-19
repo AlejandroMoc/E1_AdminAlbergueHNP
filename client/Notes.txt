@@ -1,5 +1,7 @@
-TODO falta unificar class y className. Solo puede existir className.
-TODO falta unificar font-sizes
+TODO falta unificar class a className en "camas". Ya nada debería romperse
+TODO falta unificar font-sizes (probablemente a esos ya predeterminados de small, medium y así)
+TODO ver si ponerle puntos a todas las ALERTAS
+
 
 ##Reestructurada página de inicio de sesión.
 

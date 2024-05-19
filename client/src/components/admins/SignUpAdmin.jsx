@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState } from 'react';
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import {Navigate, useNavigate} from "react-router-dom";
+// import {Navigate, useNavigate} from "react-router-dom";
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
 // import {AuthResponseError } from '../../types/types';
@@ -49,18 +49,21 @@ const SignUpAdmin = () => {
   // }
 
   return (
-    <div className='App_minheight_login'>
+    <div className='App_minheight'>
       <br />
       <br />
-      <h1>Administrador del Albergue</h1>
+      <br />
+      <br />
+      <br />
+      {/* <h1>Administrador del Albergue</h1>
       <h2>Hospital del Niño Poblano</h2>
       
-      <br/>
+      <br/> */}
       
       <form className='login_table' onSubmit={handleSubmit}>
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
 
-          <h3>Crear un usuario</h3>
+          <h3>Crear un administrador</h3>
 
           <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
