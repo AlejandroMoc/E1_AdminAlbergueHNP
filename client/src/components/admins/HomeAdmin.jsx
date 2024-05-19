@@ -19,8 +19,12 @@ const HomeAdmin = () => {
     `Ten un buen día, ${auth.getUser()?.nombre_u || ""}.`,
     `Esperamos que hoy sea un buen día, ${auth.getUser()?.nombre_u || ""}.`,
     `Tu potencial es infinito, ${auth.getUser()?.nombre_u || ""}.`,
+    `El cielo es el límite, ${auth.getUser()?.nombre_u || ""}.`,
     `Hoy es un buen día para hacer un cambio, ${auth.getUser()?.nombre_u || ""}.`,
     `Tu límite son las estrellas, ${auth.getUser()?.nombre_u || ""}.`,
+    `Hoy es un día para el bien, ${auth.getUser()?.nombre_u || ""}.`,
+    `¿Qué tal, ${auth.getUser()?.nombre_u || ""}?`,
+    `Nadie es innecesario, ${auth.getUser()?.nombre_u || ""}.`,
   ];
   
   const randomIndex = Math.floor(Math.random() * welcomeMessages.length);

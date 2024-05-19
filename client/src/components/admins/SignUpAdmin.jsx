@@ -65,8 +65,8 @@ const SignUpAdmin = () => {
 
           <h3>Crear un administrador</h3>
 
-          <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" placeholder="Usuario"></input>
-          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
+          <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input>
+          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input>
           <button className="login_inputs App_buttonaccept">Registrarse</button>
       </form>
       <MyToastContainer />

@@ -145,4 +145,74 @@ const functionRefreshToken = async (refreshToken) => {
   }
 };
 
-module.exports = {getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken, functionRefreshToken};
+//Funcion para cambiar contraseña
+const changeAdminPassword = async (nombre_u, contrasena, new_password1, new_password2) => {
+  try {
+
+    //Verificar si existe username con ese nombre
+    const existingUser = await db.oneOrNone(
+      'SELECT * FROM usuario WHERE nombre_u = $1',
+      [nombre_u]
+    );
+
+    if (!existingUser) {
+      throw new Error('Las credenciales son incorrectas.');
+    }
+    console.log("aaasas",existingUser.contrasena);
+
+    const newpasswordsMatch = new_password1 === new_password2;
+    if (!newpasswordsMatch) {
+      throw new Error('Las nuevas contraseñas no coinciden.');
+    }
+
+    const passwordMatch = await bcrypt.compare(contrasena, existingUser.contrasena);
+    if (!passwordMatch) {
+      throw new Error('Las credenciales son incorrectas.');
+    }
+
+    console.log("Existe el usuario, ahora a cambiar la contraseña");
+    console.log(existingUser);
+    
+    //Cambiar contraseña
+    const newHashedPassword = await bcrypt.hash(new_password1, 10);
+    
+    const resultito2 = await db.none(
+      'UPDATE usuario SET contrasena = $2 WHERE nombre_u = $1',
+      [nombre_u, newHashedPassword]
+    );
+
+    console.log("The admin password was succesfully updated (from query)");
+
+    return resultito2;
+    // try {
+    //   const hashedPassword = await bcrypt.hash(contrasena, 10);
+    //   const existingUser = await db.oneOrNone(
+    //     'SELECT * FROM usuario WHERE nombre_u = $1',
+    //     [nombre_u]
+    //   );
+    //   if (existingUser) {
+    //     throw new Error('El nombre de usuario ya está en uso.');
+    //   }
+    //   await db.none(`INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,[nombre_u, hashedPassword]);
+    //   console.log("Se insertó nuevo admin");
+    // } catch (error) {
+    //   throw error;
+    // }
+
+
+    // const accessToken = await createAccessToken(existingUser);
+    // const refreshToken = await createRefreshToken(existingUser);
+
+    // console.log("accessToken");
+    // console.log(accessToken);
+    // console.log("refreshToken");
+    // console.log(refreshToken);
+
+    // return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {getNewAdmin, getNewLogin, generateAccessToken, generateRefreshToken, getTokenFromHeader, verifyAccessToken, verifyRefreshToken, functionRefreshToken, changeAdminPassword};

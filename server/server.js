@@ -15,8 +15,8 @@ app.use("/signup", require("./routes/signup"));
 app.use("/login", require("./routes/login"));
 app.use("/refreshtoken", require("./routes/refreshToken"));
 app.use("/signout", require("./routes/signout"));
+app.use("/changepass", require("./routes/changepass"));
 app.use("/user", authenticate, require("./routes/user"));
-// app.use("/todos", authenticate, require("./routes/todos"));
 
 const {infoUser} = require('./queries/SessionQueries.js')
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');

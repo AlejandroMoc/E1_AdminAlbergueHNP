@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     try {
       const nombre_u = req.body.nombre_u;
       const contrasena = req.body.password;
-      console.log(nombre_u)
+      console.log(nombre_u);
   
       // TODO: Perform the login process and retrieve the necessary data
       const loginResult = await getNewLogin(nombre_u, contrasena);

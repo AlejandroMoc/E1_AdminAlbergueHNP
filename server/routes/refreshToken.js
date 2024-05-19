@@ -1,6 +1,6 @@
 const db = require('../db_connection');
 const router = require("express").Router();
-const {getTokenFromHeader, verifyRefreshToken, generateAccessToken, functionRefreshToken } = require('../queries/LoginQueries.js');
+const {verifyRefreshToken, generateAccessToken, functionRefreshToken } = require('../queries/LoginQueries.js');
 
 //Este archivo es requivalente a localhost:8000/refreshtoken
 //el refreshtoken se manda a llamar en el AuthProvider
