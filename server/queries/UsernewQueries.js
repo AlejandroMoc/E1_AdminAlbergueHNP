@@ -15,9 +15,9 @@ const getAllDispBeds = async() => {
     }
 }
 
-const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente) => {
+const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked) => {
     try {
-        console.log("Registrando nuevo paciente:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
+        console.log("Registrando nuevo paciente:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked);
         await db.none(
             `
             BEGIN TRANSACTION;
@@ -26,8 +26,8 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
                 VALUES ($1, $2, $3, $4);
                     
 
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente)
-                VALUES ( $13, $1, $5, $6, $7, $8, $9, $10, $12);
+                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
+                VALUES ( $13, $1, $5, $6, $7, $8, $9, $10, $12, $14);
 
                 DO $$
                 DECLARE
@@ -44,7 +44,7 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
                 END $$;
                 COMMIT;
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario],
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario, checked],
             console.log("LISTO 1 X)")
         );
     } catch (error) {
@@ -53,17 +53,17 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
 }
 
 
-const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente) => {
+const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked) => {
     try {
-        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente);
+        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked);
         await db.none(
             `
             BEGIN TRANSACTION;
                 INSERT INTO paciente (carnet, id_area, nombre_p, apellidos_p)
                 VALUES ($1, $2, $3, $4);
                     
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente)
-                VALUES ($17, $1, $5, $6, $7, $8, $9, $10, $16);
+                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
+                VALUES ($17, $1, $5, $6, $7, $8, $9, $10, $16, $18);
 
                 DO $$
                 DECLARE
@@ -77,7 +77,7 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
                 END $$;
                 COMMIT;
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario],
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario, checked],
             console.log("LISTO 2 ;()")
         );
     } catch (error) {

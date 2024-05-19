@@ -32,6 +32,7 @@ const {verify } = require('jsonwebtoken');
 app.post('/infouser', async(req, res) => {
     try {
         const id_u = req.body.id_u
+        console.log(id_u)
         const user = await infoUser(id_u)
         res.json(user)
     } catch (error) {
@@ -65,8 +66,9 @@ app.post('/registerNewPatient', async(req, res) => {
         const nivel_se=req.body.nivel_se;
         const id_cama=req.body.id_cama;
         const paciente=req.body.paciente;
+        const checked=req.body.checked;
         // console.log(apellidos_c)
-        const pacienteR = await registerNewPatient(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente);
+        const pacienteR = await registerNewPatient(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked);
         res.json(pacienteR);
     } catch (error) {
         res.status(500).json({error: 'Internal server error' });
@@ -92,8 +94,9 @@ app.post('/registerEntradaUnica', async(req, res) => {
         const meal=req.body.meal;
         const dinner=req.body.dinner;
         const paciente=req.body.paciente;
+        const checked=req.body.checked;
         // console.log(apellidos_c)
-        const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente);
+        const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente, checked);
         res.json(pacienteU);
     } catch (error) {
         res.status(500).json({error: 'Internal server error' });

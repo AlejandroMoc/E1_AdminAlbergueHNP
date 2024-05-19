@@ -27,16 +27,18 @@ const infoUserAdmin = (props) => {
   // console.log(id_u)
 
   //Llamada a la función para información de usuario
-  fetch('http://localhost:8000/infouser', {
-    method: 'POST',
-    body: JSON.stringify({id_u: id_u}),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  })
-  .then((res) => res.json())
-  .then((adminInfo) => setAdminInfo(adminInfo))
-  .catch((error) => console.error('Error fetching data:', error))
+  useEffect(() => {
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
+  }, [])
 
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
   const [refresh, setRefresh] = useState(false)

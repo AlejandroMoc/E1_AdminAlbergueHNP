@@ -39,6 +39,7 @@
 import React from 'react';
 import {Link } from "react-router-dom";
 import {useState, useEffect } from 'react';
+import {useAuth } from '../../auth/AuthProvider';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -82,12 +83,12 @@ async function update(setInfoM, setInfoH, setInfoA){
 #
 #   FUNCIÓN Cama
 #   Esta fución imprime el elemento Cama.
-#   Parámetros: Info del huésped y cama (View camasgralinfo), y setInfo(s) para update()
+#   Parámetros: Info del huésped y cama (View camasgralinfo), setInfo(s) para update(), y permisos del usuario
 #   Return: Elemento Cama como Div, y su respectivo menú.
 #
 ############################################################################################*/
 
-function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, apellidos, balance, txtBalance, setInfoM, setInfoH, setInfoA}){
+function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, apellidos, balance, txtBalance, setInfoM, setInfoH, setInfoA, admin}){
   //idCama y numCama son lo mismo, excepto cuando se trata de los Aislados, por las letras, por eso son 2 variables.
 
   // UseEffect para Pagar
@@ -406,9 +407,16 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
       <Menu.Divider />
 
+      {console.log(admin)}
+
+      {admin ?
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
         <span class="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: popUpEliminarCama}); }}>Eliminar Cama</span>
+      </Menu.Item> :
+      <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true" disabled="true">
+        <span class="rooms_text_infosubtitles">Eliminar Cama</span>
       </Menu.Item>
+      }
       
     </Menu>
   )
@@ -497,9 +505,24 @@ const RoomAdmin = () => {
   const [infoH, setInfoH] = useState({infoH:[]});
   const [infoA, setInfoA] = useState({infoA:[]});
 
+  //Para manejo de sesiones
+  const id_u = useAuth().getUser().id_usuario
+  const [adminInfo, setAdminInfo] = useState([])
+  // console.log(id_u)
+
   // Primer UseEffect para cargar las camas al entrar a /beds.
   useEffect(() => {
     update(setInfoM, setInfoH, setInfoA)
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
   },[])
 
   //UseEffect para Añadir una nueva Cama
@@ -560,20 +583,23 @@ const RoomAdmin = () => {
             if(item.id_cliente != null){
               contador = contador +1;
               return(
-                <Cama idCama={item.id_cama} idCliente={item.id_cliente} color={item.color} iconocama={iconocama} numCama={infoZona == infoA ? aisladoLetras[contador] : item.id_cama} nombre={item.nombre_c} apellidos={item.apellidos_c} carnet={item.carnet} balance={Math.abs(item.balance)} txtBalance={item.balance > 0 ? "A favor: " : "Debe: "} setInfoM={setInfoM} setInfoH={setInfoH} setInfoA={setInfoA} />
+                <Cama idCama={item.id_cama} idCliente={item.id_cliente} color={item.color} iconocama={iconocama} numCama={infoZona == infoA ? aisladoLetras[contador] : item.id_cama} nombre={item.nombre_c} apellidos={item.apellidos_c} carnet={item.carnet} balance={Math.abs(item.balance)} txtBalance={item.balance > 0 ? "A favor: " : "Debe: "} setInfoM={setInfoM} setInfoH={setInfoH} setInfoA={setInfoA} admin={adminInfo.admin}/>
               );
             }
             else{
               contador = contador +1;
               return(
-                <Cama idCama={item.id_cama} color="#e6e6e6" iconocama={iconocama} numCama={infoZona == infoA ? aisladoLetras[contador] : item.id_cama} setInfoM={setInfoM} setInfoH={setInfoH} setInfoA={setInfoA} />
+                <Cama idCama={item.id_cama} color="#e6e6e6" iconocama={iconocama} numCama={infoZona == infoA ? aisladoLetras[contador] : item.id_cama} setInfoM={setInfoM} setInfoH={setInfoH} setInfoA={setInfoA} admin={adminInfo.admin}/>
               );
             }
           })
         )}
+        {adminInfo.admin ?
         <div class="card rooms_spacing_addbed">
           <button id="rooms_logo_addbed" onClick={() => {infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
-        </div>
+        </div> :
+        ''
+        }
       </div>
     );
   }

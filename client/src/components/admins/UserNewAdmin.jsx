@@ -17,9 +17,24 @@ const UserNewAdmin = () => {
   //Para pasar a dashboard
   const goTo = useNavigate();
 
-  //Para registrar sesión
+  //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
-  console.log(id_u)
+  const [adminInfo, setAdminInfo] = useState([])
+  // console.log(id_u)
+
+  //Llamada a la función para información de usuario
+  useEffect(() => {
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
+  }, [])
 
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
@@ -112,14 +127,16 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerEntradaUnica', {
           method: 'POST',
-          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente, checked: adminInfo.admin}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
         successToast()
         // window.location.href = '/dashboard';
-        goTo("/dashboard");
+        setTimeout(() => {
+          goTo("/dashboard");
+        }, 1000);
        } catch (error) {
         console.error('Error al registrar entrada unica:', error);
         errorToast()
@@ -129,14 +146,16 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerNewPatient', {
           method: 'POST',
-          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, checked: adminInfo.admin}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
         successToast()
         //window.location.href = '/';
-        goTo("/dashboard");
+        setTimeout(() => {
+          goTo("/dashboard");
+        }, 1000);
        } catch (error) {
         console.error('Error al registrar el paciente:', error);
         errorToast()

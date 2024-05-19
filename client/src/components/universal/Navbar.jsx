@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Navbar.scss";
 import {useAuth } from '../../auth/AuthProvider';
 import {Link} from "react-router-dom";
@@ -13,16 +13,18 @@ const Navbar = () => {
   // console.log(id_u)
 
   //Llamada a la función para información de usuario
-  fetch('http://localhost:8000/infouser', {
-    method: 'POST',
-    body: JSON.stringify({id_u: id_u}),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  })
-  .then((res) => res.json())
-  .then((adminInfo) => setAdminInfo(adminInfo))
-  .catch((error) => console.error('Error fetching data:', error))
+  useEffect(() => {
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
+  }, [])
 
   // const [navToggle, setNavToggle] = useState(false);
   // const navHandler = () => {

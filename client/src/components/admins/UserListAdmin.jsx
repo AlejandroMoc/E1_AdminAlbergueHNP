@@ -74,13 +74,8 @@ const UserListAdmin = () => {
 
   //Llamada a las funciones de filtrado
   useEffect(() => {
-    console.log(select_Filters.length)
-    console.log(select_View)
-    console.log(debtRange.length)
-    console.log(dateRange.length)
-
     if (select_Filters.length != 0 || select_View != 10 || debtRange.length != 0 || dateRange.length != 0) {
-      console.log('ENTRA')
+      // console.log('ENTRA')
       fetch('http://localhost:8000/someclients', {
         method: 'POST',
         body: JSON.stringify({filters: select_Filters, views: select_View, debts: debtRange, dates: dateRange}),
@@ -100,16 +95,18 @@ const UserListAdmin = () => {
   }, [select_Filters, select_View, debtRange, dateRange, showPopUp])
 
   //Llamada a la función para información de usuario
-  fetch('http://localhost:8000/infouser', {
-    method: 'POST',
-    body: JSON.stringify({id_u: id_u}),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    }
-  })
-  .then((res) => res.json())
-  .then((adminInfo) => setAdminInfo(adminInfo))
-  .catch((error) => console.error('Error fetching data:', error))
+  useEffect(() => {
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
+  }, [])
 
   //Llamada a la función de vetar
   const vetarCliente = (id_u, id_c, n_v) => {
