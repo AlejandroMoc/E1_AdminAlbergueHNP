@@ -18,7 +18,17 @@ const UserNewAdmin = (props) => {
   useEffect(() =>{
     fetch('http://localhost:8000/clienteInfo/'+props.id_cliente)
     .then((res) => res.json())
-    .then((data) => {setinfoCliente(data); setNombre_P(data.nombre_c); console.log(data)});
+    .then((data) => {setinfoCliente(data); 
+    setNombre_P(data.nombre_p); 
+    setApellidos_P(data.apellidos_p);
+    setLugar_O(data.lugar_o);
+    setCarnet(data.carnet);
+    setApellidos_C(data.apellidos_c);
+    setNombre_C(data.nombre_c)
+    setId_areaC(data.id_area);
+    setNotas_C(data.notas_c)
+    //setArea(data.id_area)
+    console.log(data)});
 }, [props.id_cliente])
 console.log("FECHA Inicio: "+infoCliente.nombre_c)
 
@@ -158,6 +168,7 @@ const handleBtRegistroClick = async () => {
     const isError = inputValue.trim() === '';
     setNombre_CError(isError);
     console.log(nombrecString);
+    setNombre_C(event.target.value);
     setNombre_C(nombrecString);
   }
 
@@ -170,6 +181,7 @@ const handleBtRegistroClick = async () => {
     const isError = inputValue.trim() === '';
     setApellidos_CError(isError);
     console.log(apellidoscString);
+    setApellidos_C(event.target.value);
     setApellidos_C(apellidoscString);
   }
 
@@ -182,6 +194,7 @@ const handleBtRegistroClick = async () => {
     const isError = inputValue.trim() === '';
     setApellidos_PError(isError);
     console.log(apellidosString);
+    setApellidos_P(event.target.value);
     setApellidos_P(apellidosString);
   }
   
@@ -366,14 +379,12 @@ const handleBtRegistroClick = async () => {
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
-            <select className="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected>X</option> 
-              {(
-                area.map((item) => (
-                  <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
-                ))
-              )}
-            </select>
+            <select className="form-select user_select_beds sm" aria-label="Default select example" onChange={handleId_areaCChange} value={id_area}>
+  <option value={0}>Seleccione un área</option>
+  {area.map((item) => (
+    <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
+  ))}
+</select>
           </div>
           
           <div className="input-group mb-3 "></div>
