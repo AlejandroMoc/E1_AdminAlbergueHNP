@@ -19,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const UserListAdmin = () => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
+  const [adminInfo, setAdminInfo] = useState([])
   // console.log(id_u)
 
   //Para mensajes de error
@@ -73,8 +74,13 @@ const UserListAdmin = () => {
 
   //Llamada a las funciones de filtrado
   useEffect(() => {
-    if (select_Filters.length !== 0 || select_View !== 10 || debtRange.length !== 0 || dateRange.length !== 0) {
-      // console.log(data)
+    console.log(select_Filters.length)
+    console.log(select_View)
+    console.log(debtRange.length)
+    console.log(dateRange.length)
+
+    if (select_Filters.length != 0 || select_View != 10 || debtRange.length != 0 || dateRange.length != 0) {
+      console.log('ENTRA')
       fetch('http://localhost:8000/someclients', {
         method: 'POST',
         body: JSON.stringify({filters: select_Filters, views: select_View, debts: debtRange, dates: dateRange}),
@@ -93,44 +99,56 @@ const UserListAdmin = () => {
     }
   }, [select_Filters, select_View, debtRange, dateRange, showPopUp])
 
+  //Llamada a la función para información de usuario
+  fetch('http://localhost:8000/infouser', {
+    method: 'POST',
+    body: JSON.stringify({id_u: id_u}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((res) => res.json())
+  .then((adminInfo) => setAdminInfo(adminInfo))
+  .catch((error) => console.error('Error fetching data:', error))
+
   //Llamada a la función de vetar
   const vetarCliente = (id_u, id_c, n_v) => {
     fetch('http://localhost:8000/banclient', {
-        method: 'POST',
-        body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-      .then((response) => {
-        if (response.ok) {
-          successToast()
-        }
-      })
-      .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
-      })
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
   }
 
   //Llamada a la función de desvetar
   const desvetarCliente = (id_c) => {
     fetch('http://localhost:8000/unbanclient', {
-        method: 'POST',
-        body: JSON.stringify({id_c: id_c}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-      .then((response) => {
-        if (response.ok) {
-          successToast()
-        }
-      })
-      .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
-      })
+      method: 'POST',
+      body: JSON.stringify({id_c: id_c}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
   }
 
   //Llamada a la función de eliminar
@@ -174,7 +192,7 @@ const UserListAdmin = () => {
 
   const viewChange = (event) => {
     set_Select_View(event.target.value)
-    console.log(select_View)
+    // console.log(select_View)
   }
 
   const handleDateFormat = (date) => {
@@ -373,11 +391,10 @@ const UserListAdmin = () => {
   }
 
   // Para menú click derecho
-  //CAMBIA ID A ADMINISTRADOR
   const menu = (id, name, last_m, veto) => {
     return (
       <Menu onClick={(event) => handleMenuClick(event, id)}
-        items={id_u == 5 ? [
+        items={adminInfo.admin ? [
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
           veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
           veto ? '' : {key: 'eliminar', label: 'Eliminar permanentemente', icon: <FaTrashAlt />, danger: true},
@@ -438,6 +455,7 @@ const UserListAdmin = () => {
             <div className='userlist_container_inputs'>
               <div>
                 <DatePicker
+                  disabled= {select_View == 10 ? true : false}
                   className='universal_input_date'
                   selected={fecha1}
                   onChange={handleDate1Change}
@@ -450,7 +468,8 @@ const UserListAdmin = () => {
                 <p> - </p>
               </div>
               <div>
-                <DatePicker 
+                <DatePicker
+                  disabled= {select_View == 10 ? true : false}
                   className='universal_input_date universal_container_pickerdate'
                   selected={fecha2}
                   onChange={handleDate2Change}
@@ -593,14 +612,14 @@ const UserListAdmin = () => {
                     // A VER SI ES MEJOR QUE PONGA EL NOMBRE DE QUIEN REGISTRÓ
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{ background: '#fff' }}>
-                        <td>{item.id_cama == 1 ? 'Admin' : 'Guardia'}</td>
+                        <td>{item.nombre_u ? item.nombre_u : '-'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
                           {item.nombre_c ?
                             <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
                             : '-'}
                         </td>
-                        <td>{item.vetado ? 'Vetado' : (item.fecha_i ? 'Huésped' : 'Vistante')}</td>
+                        <td>{item.vetado ? 'Vetado' : (item.tipo_cliente ? 'Huésped' : 'Vistante')}</td>
                         <td>{item.lugar_o ? item.lugar_o : '-'}</td>
                         <td>{item.carnet ? item.carnet : '-'}</td>
                         <td>{item.nivel_se ? item.nivel_se : '-'}</td>
