@@ -18,6 +18,7 @@ app.use("/signout", require("./routes/signout"));
 app.use("/user", authenticate, require("./routes/user"));
 // app.use("/todos", authenticate, require("./routes/todos"));
 
+const {infoUser} = require('./queries/SessionQueries.js')
 const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
@@ -26,6 +27,17 @@ const {getAllUsers, getAllHuespedes, getUserInfo, getAllVisitantes,getAllVetados
 const {verify } = require('jsonwebtoken');
 
 //TODO urgente reubicar rutas en archivos separados en vez de tener todo aqui
+
+//Funciones para Sesiones
+app.post('/infouser', async(req, res) => {
+    try {
+        const id_u = req.body.id_u
+        const user = await infoUser(id_u)
+        res.json(user)
+    } catch (error) {
+        res.status(500).json({error: 'Internal server error' });
+    }
+})
 
 //Funciones para UserNew
 app.get('/alldispbeds', async(req, res) => {

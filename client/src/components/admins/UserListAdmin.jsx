@@ -19,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const UserListAdmin = () => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
+  const [adminInfo, setAdminInfo] = useState([])
   // console.log(id_u)
 
   //Para mensajes de error
@@ -73,8 +74,13 @@ const UserListAdmin = () => {
 
   //Llamada a las funciones de filtrado
   useEffect(() => {
-    if (select_Filters.length !== 0 || select_View !== 10 || debtRange.length !== 0 || dateRange.length !== 0) {
-      // console.log(data)
+    console.log(select_Filters.length)
+    console.log(select_View)
+    console.log(debtRange.length)
+    console.log(dateRange.length)
+
+    if (select_Filters.length != 0 || select_View != 10 || debtRange.length != 0 || dateRange.length != 0) {
+      console.log('ENTRA')
       fetch('http://localhost:8000/someclients', {
         method: 'POST',
         body: JSON.stringify({filters: select_Filters, views: select_View, debts: debtRange, dates: dateRange}),
@@ -93,44 +99,56 @@ const UserListAdmin = () => {
     }
   }, [select_Filters, select_View, debtRange, dateRange, showPopUp])
 
+  //Llamada a la función para información de usuario
+  fetch('http://localhost:8000/infouser', {
+    method: 'POST',
+    body: JSON.stringify({id_u: id_u}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((res) => res.json())
+  .then((adminInfo) => setAdminInfo(adminInfo))
+  .catch((error) => console.error('Error fetching data:', error))
+
   //Llamada a la función de vetar
   const vetarCliente = (id_u, id_c, n_v) => {
     fetch('http://localhost:8000/banclient', {
-        method: 'POST',
-        body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-      .then((response) => {
-        if (response.ok) {
-          successToast()
-        }
-      })
-      .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
-      })
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
   }
 
   //Llamada a la función de desvetar
   const desvetarCliente = (id_c) => {
     fetch('http://localhost:8000/unbanclient', {
-        method: 'POST',
-        body: JSON.stringify({id_c: id_c}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-      .then((response) => {
-        if (response.ok) {
-          successToast()
-        }
-      })
-      .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
-      })
+      method: 'POST',
+      body: JSON.stringify({id_c: id_c}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
   }
 
   //Llamada a la función de eliminar
@@ -174,7 +192,7 @@ const UserListAdmin = () => {
 
   const viewChange = (event) => {
     set_Select_View(event.target.value)
-    console.log(select_View)
+    // console.log(select_View)
   }
 
   const handleDateFormat = (date) => {
@@ -184,12 +202,26 @@ const UserListAdmin = () => {
     return(localDate)
   }
 
+  const handleKeyDown = (e) => {
+    // Verificar si la tecla presionada es una letra
+    if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
+      // Si es una letra, prevenir la acción predeterminada
+      e.preventDefault();
+    }
+  };
+
   //Función para aceptar las entradas de fecha
   const handleDate1Change = (event) => {
-    if (event === null) {
+    if (event === null && fecha2 === null) {
       setFecha1(null)
       setDateRange([])
       setDateErrorMessage('')
+      return false
+    }
+    else if (event == null) {
+      setFecha1(null)
+      setDateRange([])
+      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
       return false
     }
     else {
@@ -201,15 +233,18 @@ const UserListAdmin = () => {
         if (adjustedDate1 > fecha2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
           setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
+          setDateRange([])
           return false;
         } else if (adjustedDate1 < before || fecha2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
           setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
+          setDateRange([])
           return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 fechas')
         setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+        setDateRange([])
         return false;
       }
       setDateRange([adjustedDate1, fecha2]);
@@ -218,10 +253,16 @@ const UserListAdmin = () => {
   }
 
   const handleDate2Change = (event) => {
-    if (event === null) {
+    if (fecha1 === null && event === null) {
       setFecha2(null)
       setDateRange([])
       setDateErrorMessage('')
+      return false
+    }
+    else if (event == null) {
+      setFecha2(null)
+      setDateRange([])
+      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
       return false
     }
     else {
@@ -233,15 +274,18 @@ const UserListAdmin = () => {
         if (fecha1 > adjustedDate2) {
           console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
           setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
+          setDateRange([])
           return false;
         } else if (fecha1 < before || adjustedDate2 < before) {
           console.log('ALERTA: Fecha anterior al año 2020')
           setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
+          setDateRange([])
           return false;
         }
       } else {
         console.log('ALERTA: Se necesitan 2 fechas')
         setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+        setDateRange([])
         return false;
       }
       setDateRange([fecha1, adjustedDate2]);
@@ -252,10 +296,16 @@ const UserListAdmin = () => {
   //Función para controlar entradas de input deuda
   const handleDebt1Change = (event) => {
     const tmpDebt1 = event.target.value
-    if (tmpDebt1.length === 0) {
+    if (tmpDebt1.length === 0 && deuda2 === null) {
       setDeuda1(null)
       setDebtRange([])
       setDebtErrorMessage('')
+      return false
+    }
+    else if (tmpDebt1.length === 0) {
+      setDeuda1(null)
+      setDebtRange([])
+      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
       return false
     }
     else {
@@ -293,10 +343,16 @@ const UserListAdmin = () => {
 
   const handleDebt2Change = (event) => {
     const tmpDebt2 = event.target.value
-    if (tmpDebt2.length === 0) {
+    if (deuda1 === null && tmpDebt2.length === 0) {
       setDeuda2(null)
       setDebtRange([])
       setDebtErrorMessage('')
+      return false
+    }
+    else if (tmpDebt2.length === 0) {
+      setDeuda2(null)
+      setDebtRange([])
+      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
       return false
     }
     else {
@@ -335,11 +391,10 @@ const UserListAdmin = () => {
   }
 
   // Para menú click derecho
-  //CAMBIA ID A ADMINISTRADOR
   const menu = (id, name, last_m, veto) => {
     return (
       <Menu onClick={(event) => handleMenuClick(event, id)}
-        items={id_u == 5 ? [
+        items={adminInfo.admin ? [
           {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
           veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
           veto ? '' : {key: 'eliminar', label: 'Eliminar permanentemente', icon: <FaTrashAlt />, danger: true},
@@ -400,23 +455,27 @@ const UserListAdmin = () => {
             <div className='userlist_container_inputs'>
               <div>
                 <DatePicker
+                  disabled= {select_View == 10 ? true : false}
                   className='universal_input_date'
                   selected={fecha1}
                   onChange={handleDate1Change}
                   placeholderText='Inicio (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
+                  onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
                 />
               </div>
               <div className='container_dash'>
                 <p> - </p>
               </div>
               <div>
-                <DatePicker 
+                <DatePicker
+                  disabled= {select_View == 10 ? true : false}
                   className='universal_input_date universal_container_pickerdate'
                   selected={fecha2}
                   onChange={handleDate2Change}
                   placeholderText='Fin (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
+                  onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
                 />
               </div>
             </div>
@@ -553,14 +612,14 @@ const UserListAdmin = () => {
                     // A VER SI ES MEJOR QUE PONGA EL NOMBRE DE QUIEN REGISTRÓ
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{ background: '#fff' }}>
-                        <td>{item.id_cama == 1 ? 'Admin' : 'Guardia'}</td>
+                        <td>{item.nombre_u ? item.nombre_u : '-'}</td>
                         {/*TODO ver si conviene dividir en nombre y apellidos*/}
                         <td>
                           {item.nombre_c ?
                             <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link>
                             : '-'}
                         </td>
-                        <td>{item.vetado ? 'Vetado' : (item.fecha_i ? 'Huésped' : 'Vistante')}</td>
+                        <td>{item.vetado ? 'Vetado' : (item.tipo_cliente ? 'Huésped' : 'Vistante')}</td>
                         <td>{item.lugar_o ? item.lugar_o : '-'}</td>
                         <td>{item.carnet ? item.carnet : '-'}</td>
                         <td>{item.nivel_se ? item.nivel_se : '-'}</td>

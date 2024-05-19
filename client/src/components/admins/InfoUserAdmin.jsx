@@ -23,7 +23,20 @@ import {Navigate, useNavigate} from "react-router-dom";
 const infoUserAdmin = (props) => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
+  const [adminInfo, setAdminInfo] = useState([])
   // console.log(id_u)
+
+  //Llamada a la función para información de usuario
+  fetch('http://localhost:8000/infouser', {
+    method: 'POST',
+    body: JSON.stringify({id_u: id_u}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((res) => res.json())
+  .then((adminInfo) => setAdminInfo(adminInfo))
+  .catch((error) => console.error('Error fetching data:', error))
 
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
   const [refresh, setRefresh] = useState(false)
@@ -225,8 +238,7 @@ const handleEditar = async () => {
       {/*Espaciador*/}
       <div className='user_spaciator'></div>
 
-      {/* CAMBIA ID A ADMINISTRADOR */}
-      {id_u == 5 && (
+      {adminInfo.admin && (
         <div className='button-container'>
           <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span className="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
         </div>
@@ -362,11 +374,13 @@ const handleEditar = async () => {
             <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
           </div>
-          <div className="input-group mb-3 ">
-            <button className="App_buttonaccept userinfo_button_ban" onClick={handleDesVetar}>Desvetar</button>
-          </div>
+          {adminInfo.admin && (
+            <div className="input-group mb-3 ">
+              <button className="App_buttonaccept userinfo_button_ban" onClick={handleDesVetar}>Desvetar</button>
+            </div>
+          )}
           </div>)}
-          {!showVetadoSelect && (
+          {(!showVetadoSelect && adminInfo.admin) && (
           <div className="input-group mb-3 ">
             <button className="App_buttonaccept userinfo_button_ban" onClick={handleVetar}>Vetar</button>
           </div>)}

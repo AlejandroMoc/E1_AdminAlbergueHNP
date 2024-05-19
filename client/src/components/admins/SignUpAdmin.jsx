@@ -1,19 +1,14 @@
 import React from 'react';
 import {useState } from 'react';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import {Navigate, useNavigate} from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
 // import {AuthResponseError } from '../../types/types';
 
 const SignUpAdmin = () => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  //Redirigir a dashboard si ya se está autenticado
-  const auth = useAuth();
-  const goTo = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,22 +27,26 @@ const SignUpAdmin = () => {
   
       if (response.ok) {
         console.log("User created successfully",response);
-        // setErrorResponse("");
         console.log("Sí me voy a / en SignUpAdmin.jsx 36");
-        goTo("/");
+        setUsername('')
+        setPassword('')
+        successToast()
+        // goTo("/");
       } else {
         console.log("Something went wrong");
+        errorToast()
         // const json = await response.json() as AuthResponseError;
         // const json: AuthResponseError = await response.json();
       }
     } catch (error) {
+      errorToast()
       console.log(error);
     }
   }
 
-  if (auth.isAuthenticated) {
-    return <Navigate to="/dashboard"/>
-  }
+  // if (auth.isAuthenticated) {
+  //   return <Navigate to="/dashboard"/>
+  // }
 
   return (
     <div className='App_minheight_login'>
@@ -67,6 +66,7 @@ const SignUpAdmin = () => {
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" placeholder="Contraseña"></input>
           <button className="login_inputs App_buttonaccept">Registrarse</button>
       </form>
+      <MyToastContainer />
 
     </div>
   )

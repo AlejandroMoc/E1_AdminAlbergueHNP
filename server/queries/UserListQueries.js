@@ -41,13 +41,13 @@ const deleteClient = async(id_cliente) => {
 const getAllClients = async () => {
     try {
         const clients = await db.any(
-            `SELECT DISTINCT cliente.id_cliente, id_cama, nombre_c, apellidos_c, fecha_i, lugar_o,
-            cliente.carnet, nivel_se, total,
+            `SELECT DISTINCT cliente.id_cliente, usuario.nombre_u, cliente.nombre_c, cliente.apellidos_c, servcliente.tipo_cliente, cliente.lugar_o, cliente.carnet, cliente.nivel_se, total,
             CASE WHEN vetado.id_cliente IS NOT NULL THEN TRUE ELSE FALSE END AS Vetado
-            FROM cliente 
-            LEFT JOIN huesped ON cliente.id_cliente = huesped.id_cliente
+            FROM cliente
+            LEFT JOIN usuario ON cliente.id_usuario = usuario.id_usuario
+            LEFT JOIN servcliente ON cliente.id_cliente = servcliente.id_cliente
             LEFT JOIN vetado ON cliente.id_cliente = vetado.id_cliente
-            LEFT JOIN absoluteDeudas ON cliente.id_cliente = absoluteDeudas.id_cliente
+            LEFT JOIN absolutedeudas ON cliente.id_cliente = absolutedeudas.id_cliente
             ORDER BY total DESC`)
         return clients
     } catch (error) {
@@ -62,7 +62,7 @@ const filterColumnDB = [
     {id: 3, column: 'cliente.id_cliente', valdb: 'vetado.id_cliente'},
     {id: 4, column: 'vetado.id_cliente'},
     {id: 5, column: 'absoluteDeudas.total', valdb: 0},
-    {id: 6, column: 'cliente.id_usuario', valdb: 1},
+    {id: 6, column: 'cliente.checked', valdb: true},
 ]
 
 // CHECAR REGLAS DE FILTRO
@@ -76,13 +76,13 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
         if (select_Filters.length !== 0) {
             i[0] = 1
             filterConditions = select_Filters.map((filter) => {
-                if (filter == 1 || filter == 2 || filter == 3) {
+                if (filter == 1 || filter == 2 || filter == 3 || filter == 6) {
                     return `${filterColumnDB[filter - 1].column} = ${filterColumnDB[filter - 1].valdb}`
                 }
                 else if (filter == 4) {
                     return `${filterColumnDB[filter - 1].column} IS NULL`
                 }
-                else if (filter == 5 || filter == 6) {
+                else if (filter == 5) {
                     return `${filterColumnDB[filter - 1].column} > ${filterColumnDB[filter - 1].valdb}`
                 }
             }).join(' AND ')
@@ -129,7 +129,10 @@ const getClientsByFilter = async (select_Filters, select_View, debtRange, dateRa
         const whereClause = genWhereClause(select_Filters, select_View, debtRange, dateRange)
         console.log(whereClause)
         if (select_View == 10) {
+            console.log('ENTRA1')
             const clients = await db.any('SELECT * FROM getClientsByFilterGeneral_func($1)', [whereClause])
+            console.log('LO HIZO')
+            console.log(clients)
             return clients
         }
         else if (select_View == 7) {
