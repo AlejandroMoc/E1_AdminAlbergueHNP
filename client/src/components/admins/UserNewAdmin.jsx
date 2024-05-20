@@ -5,13 +5,13 @@ import {LuUser } from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import {FiHome } from "react-icons/fi";
-
-import { MdFaceUnlock } from "react-icons/md";
+import {TbMoodKid } from "react-icons/tb";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 //import {registerNewPatient } from '../../../../server/queries/UsernewQueries';
+
 
 const UserNewAdmin = () => {
   //Para pasar a dashboard
@@ -127,7 +127,7 @@ const handleBtRegistroClick = async () => {
       try {
         await fetch('http://localhost:8000/registerEntradaUnica', {
           method: 'POST',
-          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente, checked: adminInfo.admin}),
+          body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente, checked: adminInfo.admin, cantidad:cantidad, costo:costo}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -165,6 +165,8 @@ const handleBtRegistroClick = async () => {
    errorToast()
   }
 };
+
+
 
   const [nombre_c, setNombre_C] = useState([]);
   const handleNombre_CChange = (event) => {
@@ -303,6 +305,17 @@ const handleBtRegistroClick = async () => {
   const [breakfast, setBreakfast] = useState(0);
   const [meal, setMeal] = useState(0);
   const [dinner, setDinner] = useState(0);
+  const [cantidad, setCantidad] =useState(0);
+  const [costo, setCosto]= useState(0);
+  useEffect(() => {
+    const totalServicios = shower + bathroom + breakfast + meal + dinner;
+    setCantidad(totalServicios);
+    const costos = totalServicios * 20;
+    setCosto(costos)
+  }, [shower, bathroom, breakfast, meal, dinner]);
+
+  console.log(cantidad)
+  console.log(costo)
 
   const handleSetShower = (sh) => {
     if (sh === 1) {
@@ -348,11 +361,25 @@ const handleBtRegistroClick = async () => {
       setDinner(pDinner => pDinner - 1);
     }
   }
+
   const [id_zona_vetados, setIdZonaVetados] = useState(3); 
   const [id_zona_hombres, setIdZonaHombres] = useState(2); 
   const [id_zona_mujeres, setIdZonaMujeres] = useState(1); 
   const [id_zona, setIdZona] = useState(null);
 
+    // Arreglo para la numeración de camas aisladas. A1, A2, B1, B2, ...
+    const aisladoLetras = [];
+    for (let i = 1; i <= 26; i++) {
+      for (let j = 1; j <= 2; j++) {
+        const letra = String.fromCharCode(64 + i);
+        const combinacion = letra + j;
+        aisladoLetras.push(combinacion);
+      }
+    }
+
+    let contador = -1; // Para acceder al arreglo aisladoLetras en la posición deseada.
+  
+    
   return (
     <div className='App-minheight'>
       {/*Espaciador*/}
@@ -367,12 +394,12 @@ const handleBtRegistroClick = async () => {
             <input type="text" className="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
             <input type="text" className={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
             {nombre_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
             <input type="text" className={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
             {apellidos_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
@@ -396,7 +423,7 @@ const handleBtRegistroClick = async () => {
           <div className="input-group mb-3 "></div>
 
           <h4>Información del Familiar</h4>
-          <span className="user_span_sociolevel" id="basic-addon1">¿El familiar es un paciente?</span>
+          <span className="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
           <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div className="form-check">
                 <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
@@ -498,13 +525,18 @@ const handleBtRegistroClick = async () => {
             <span>Número de Cama: </span>
             <select className="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
-              {bed.map((item) => {
-                if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
-                    (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
-                    item.id_zona === id_zona_vetados) {
-                  return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
-                }
-                return null; 
+              {bed.map((item, index) => {
+                  if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
+                      (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
+                      item.id_zona === id_zona_vetados) {
+                    if (item.id_zona === id_zona_vetados) {
+                      contador++;
+                      return <option key={item.id_cama} value={item.id_cama}>{aisladoLetras[contador]}</option>;
+                    } else {
+                      return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
+                    }
+                  }
+                  return null; 
               })}
 
             </select>
