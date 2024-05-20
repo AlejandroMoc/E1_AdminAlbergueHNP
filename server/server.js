@@ -95,13 +95,16 @@ app.post('/registerEntradaUnica', async(req, res) => {
         const dinner=req.body.dinner;
         const paciente=req.body.paciente;
         const checked=req.body.checked;
+        const cantidad=req.body.cantidad;
+        const costo=req.body.costo;
         // console.log(apellidos_c)
-        const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente, checked);
+        const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente, checked, cantidad, costo);
         res.json(pacienteU);
     } catch (error) {
         res.status(500).json({error: 'Internal server error' });
     }
 })  
+
 
 app.get('/allareas', async(req, res) => {
     try {

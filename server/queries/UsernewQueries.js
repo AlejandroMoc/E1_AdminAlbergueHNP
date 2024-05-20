@@ -53,9 +53,9 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
 }
 
 
-const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked) => {
+const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked, cantidad, costo) => {
     try {
-        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked);
+        console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked, cantidad, costo);
         await db.none(
             `
             BEGIN TRANSACTION;
@@ -73,11 +73,12 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
 
                     -- Llamar al procedimiento almacenado CrearServiciosCliente
                     CALL genServCliente_proc(CAST (ultimo_cliente AS INTEGER), ARRAY[[1, $11], [2, $12], [3, $13],[4, $14], [5, $15]]);
-                    
+                    INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p)
+                    VALUES (CAST(ultimo_cliente AS INTEGER), 'Cantidad total de servicio Entrada Única: $19', $20, CURRENT_TIMESTAMP);
                 END $$;
                 COMMIT;
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario, checked],
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario, checked, cantidad, costo],
             console.log("LISTO 2 ;()")
         );
     } catch (error) {
