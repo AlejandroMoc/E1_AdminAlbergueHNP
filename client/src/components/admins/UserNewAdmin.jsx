@@ -404,7 +404,7 @@ const handleBtRegistroClick = async () => {
           </div>
           <div className="input-group mb-3 " onChange={handleCarnetChange}>
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="text" className="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+            <input type="number" className="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
