@@ -1,136 +1,133 @@
+
+
+/*        _   _
+         ( \ / )
+        __\ Y /,-')
+       (__     .-'
+          |   (
+          [___]
+          |oo |
+        ,' \  |
+       <___/  |
+          |   |
+          |   |
+          |   |
+          |   |
+      _,-/_._  \,_
+_.-"^`  //   \    `^"-.,__
+\     ,//     \          /
+ `\,-":;       ;  \-.,_/'
+      ||       |   ;
+      ||       ;   |
+      :\      /    ;
+       \`----'    /
+        `._____.-'
+          | | |
+        __| | |__
+       /    |    \
+       `""""`""""`        */
+
+       
+
+/*############################################################################################
+#
+#   Imports
+#
+############################################################################################*/
+
+// React
 import React, {useEffect, useState } from 'react';
-import Popup from '../universal/Popup';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import {Form } from 'react-bootstrap'; 
-import {Link } from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
-import {Menu, Dropdown as DP} from 'antd';
-import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa';
+import { Form } from 'react-bootstrap'; 
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-import MyPagination from '../universal/MyPagination';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker';
+import {useAuth } from '../../auth/AuthProvider';
+
+// CSS
 import 'react-datepicker/dist/react-datepicker.css';
 import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//MENÚ CLICK DERECHO
+// Elementos Externos
+import Popup from '../universal/Popup';
+import MyPagination from '../universal/MyPagination';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import {Menu, Dropdown as DP} from 'antd';
 
-const UserListAdmin = () => {
-  //Para manejo de sesiones
-  const id_u = useAuth().getUser().id_usuario
-  const [adminInfo, setAdminInfo] = useState([])
-  // console.log(id_u)
+// Iconografía
+import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y DesVetar
 
-  //Para mensajes de error
-  const [dateErrorMessage, setDateErrorMessage] = useState('')
-  const [debtErrorMessage, setDebtErrorMessage] = useState('')
 
-  //Para popup
-  const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
 
-  //Estado para almacenar data
-  const [data, setData] = useState([])
+/*###########################################################################################
+#
+#   FUNCIÓN vetarCliente
+#   Esta fución veta al cliente seleccionado.
+#   Parámetros: Id del usuario que veta, id del cliente a vetar, y las notas del veto
+#
+############################################################################################*/
 
-  //Para paginación
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8;
-
-  //Estado para almacenar los filtros
-  const [select_Filters, set_Select_Filters] = useState([]); 
-  const [select_View, set_Select_View] = useState(10)
-
-  //Estado para almacenar las fechas
-  const [dateRange, setDateRange] = useState([])
-  const [fecha1, setFecha1] = useState(null);
-  const [fecha2, setFecha2] = useState(null);
-
-  const before = new Date('2020-01-01T00:00:00Z');
-  const today = new Date();
-
-  //Estado para almacenar las deudas
-  const [debtRange, setDebtRange] = useState([])
-  const [deuda1, setDeuda1] = useState(null);
-  const [deuda2, setDeuda2] = useState(null);
-
-  //Lista de filtros
-  const filters = [
-    {id: 1, label: 'Hombres'}, 
-    {id: 2, label: 'Mujeres'},
-    {id: 3, label: 'Vetados' },
-    {id: 4, label: 'No Vetados'},
-    {id: 5, label: 'Deudores'},
-    {id: 6, label: 'A Confirmar'}
-  ]; 
-
-  
-
-  const views = [
-    // {id: 10, label: 'General'},
-    {id: 7, label: 'Huéspedes'},
-    {id: 8, label: 'Visitas Previas'},
-    {id: 9, label: 'Uso de Servicios'}
-  ];
-
-  //Llamada a las funciones de filtrado
-  useEffect(() => {
-    if (select_Filters.length != 0 || select_View != 10 || debtRange.length != 0 || dateRange.length != 0) {
-      // console.log('ENTRA')
-      fetch('http://localhost:8000/someclients', {
-        method: 'POST',
-        body: JSON.stringify({filters: select_Filters, views: select_View, debts: debtRange, dates: dateRange}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-      .then((res) => res.json())
-      .then((clientes) => setData(clientes))
-      .catch((error) => console.error('Error fetching data:', error));
+const vetarCliente = (id_u, id_c, n_v) => {
+  fetch('http://localhost:8000/banclient', {
+    method: 'POST',
+    body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
     }
-    else {
-      fetch('http://localhost:8000/allclients')
-      .then((res) => res.json())
-      .then((clientes) => setData(clientes));
+  })
+  .then((response) => {
+    if (response.ok) {
+      successToast()
     }
-  }, [select_Filters, select_View, debtRange, dateRange, showPopUp])
+  })
+  .catch((error) => {
+    errorToast()
+    console.error('Error fetching data:', error)
+  })
+}
 
-  //Llamada a la función para información de usuario
-  useEffect(() => {
-    fetch('http://localhost:8000/infouser', {
-      method: 'POST',
-      body: JSON.stringify({id_u: id_u}),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
-    })
-    .then((res) => res.json())
-    .then((adminInfo) => setAdminInfo(adminInfo))
-    .catch((error) => console.error('Error fetching data:', error))
-  }, [])
 
-  //Llamada a la función de vetar
-  const vetarCliente = (id_u, id_c, n_v) => {
-    fetch('http://localhost:8000/banclient', {
-      method: 'POST',
-      body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
-    })
-    .then((response) => {
-      if (response.ok) {
-        successToast()
-      }
-    })
-    .catch((error) => {
-      errorToast()
-      console.error('Error fetching data:', error)
-    })
-  }
 
-  //Llamada a la función de desvetar
-  const desvetarCliente = (id_c) => {
-    fetch('http://localhost:8000/unbanclient', {
+/*###########################################################################################
+#
+#   FUNCIÓN desvetarCliente
+#   Esta fución desveta al cliente seleccionado.
+#   Parámetros: Id del cliente a desvetar
+#
+############################################################################################*/
+
+const desvetarCliente = (id_c) => {
+  fetch('http://localhost:8000/unbanclient', {
+    method: 'POST',
+    body: JSON.stringify({id_c: id_c}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
+  .then((response) => {
+    if (response.ok) {
+      successToast()
+    }
+  })
+  .catch((error) => {
+    errorToast()
+    console.error('Error fetching data:', error)
+  })
+}
+
+
+
+/*###########################################################################################
+#
+#   FUNCIÓN eliminarCliente
+#   Esta fución elimina, de la base de datos, al cliente seleccionado.
+#   Parámetros: Id del cliente a eliminar
+#
+############################################################################################*/
+
+const eliminarCliente = (id_c) => {
+  fetch('http://localhost:8000/deleteclient', {
       method: 'POST',
       body: JSON.stringify({id_c: id_c}),
       headers: {
@@ -146,248 +143,251 @@ const UserListAdmin = () => {
       errorToast()
       console.error('Error fetching data:', error)
     })
-  }
+}
 
-  //Llamada a la función de eliminar
-  const eliminarCliente = (id_c) => {
-    fetch('http://localhost:8000/deleteclient', {
+
+
+/*###########################################################################################
+#
+#   FUNCIÓN handleDateFormat
+#   Esta fución da formato DD/MM/YY, HH/MM/SS a la fecha.
+#   Parámetros: Fecha a la que se quiere dar formato
+#   Return: String con fecha en nuevo formato.
+#
+############################################################################################*/
+
+const handleDateFormat = (date) => {
+  const dbDate = new Date(date)
+  const localDate = dbDate.toLocaleString()
+  // console.log(typeof(localDate))
+  return(localDate)
+}
+
+
+
+/*###########################################################################################
+#
+#   FUNCIÓN handleKeyDown
+#   Esta fución evita entradas de texto en el datepicker.
+#   Parámetros: Evento de interacción con el datepicker
+#
+############################################################################################*/
+
+const handleKeyDown = (e) => {
+  // Verificar si la tecla presionada es una letra
+  if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
+    // Si es una letra, prevenir la acción predeterminada
+    e.preventDefault()
+  }
+};
+
+
+
+/*###########################################################################################
+#
+#   FUNCIÓN UserListAdmin
+#   Esta fución es la principal de la Página de Camas.
+#   Return: Página /userlist
+#
+############################################################################################*/
+
+const UserListAdmin = () => {
+
+  // UseEffect para Información de Sesión
+  const id_u = useAuth().getUser().id_usuario
+  const [adminInfo, setAdminInfo] = useState([])
+  // console.log(id_u)
+
+  useEffect(() => {
+    fetch('http://localhost:8000/infouser', {
+      method: 'POST',
+      body: JSON.stringify({id_u: id_u}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((res) => res.json())
+    .then((adminInfo) => setAdminInfo(adminInfo))
+    .catch((error) => console.error('Error fetching data:', error))
+  }, [])
+
+  // UseEffect para Información de Filtrado
+  const [data, setData] = useState([])
+  const [select_Filters, set_Select_Filters] = useState([])
+  const [select_View, set_Select_View] = useState(10)
+  const [dateRange, setDateRange] = useState([])
+  const [debtRange, setDebtRange] = useState([])
+
+  const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
+
+  useEffect(() => {
+    if (select_Filters.length != 0 || select_View != 10 || dateRange.length != 0 || debtRange.length != 0) {
+      // console.log('ENTRA')
+      fetch('http://localhost:8000/someclients', {
         method: 'POST',
-        body: JSON.stringify({id_c: id_c}),
+        body: JSON.stringify({filters: select_Filters, views: select_View, dates: dateRange, debts: debtRange}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
       })
-      .then((response) => {
-        if (response.ok) {
-          successToast()
-        }
-      })
-      .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
-      })
-  }
-
-  //Función para paginación
-  const paginatedData = data.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
-  
-  //Función para mostrar que filtros fueron seleccionados
-  const filterChange = (event) => {
-    const filterId = parseInt(event.target.value); 
-    const choosen = event.target.checked;
-
-    if (choosen) {
-      set_Select_Filters([...select_Filters, filterId]); 
+      .then((res) => res.json())
+      .then((clientes) => setData(clientes))
+      .catch((error) => console.error('Error fetching data:', error))
     }
     else {
-      set_Select_Filters(select_Filters.filter((id) => id !== filterId)); 
+      fetch('http://localhost:8000/allclients')
+      .then((res) => res.json())
+      .then((clientes) => setData(clientes))
     }
-  };
+  }, [select_Filters, select_View, dateRange, debtRange, showPopUp])
+
+  // Para Control de Filtros
+  const filters = [
+    {id: 1, label: 'Hombres'}, 
+    {id: 2, label: 'Mujeres'},
+    {id: 3, label: 'Vetados' },
+    {id: 4, label: 'No Vetados'},
+    {id: 5, label: 'Deudores'},
+    {id: 6, label: 'A Confirmar'}
+  ]; 
+
+  const filterChange = (event) => {
+    const filterId = parseInt(event.target.value);
+    const choosen = event.target.checked
+
+    if (choosen) {
+      set_Select_Filters([...select_Filters, filterId])
+    }
+    else {
+      set_Select_Filters(select_Filters.filter((id) => id !== filterId))
+    }
+  }
+
+  // Para Control de Views
+  const views = [
+    // {id: 10, label: 'General'},
+    {id: 7, label: 'Huéspedes'},
+    {id: 8, label: 'Visitas Previas'},
+    {id: 9, label: 'Uso de Servicios'}
+  ];
 
   const viewChange = (event) => {
     set_Select_View(event.target.value)
     // console.log(select_View)
   }
 
-  const handleDateFormat = (date) => {
-    const dbDate = new Date(date)
-    const localDate = dbDate.toLocaleString()
-    // console.log(localDate)
-    return(localDate)
-  }
+  // Para Control de Fecha
+  const [fecha1, setFecha1] = useState(null)
+  const [fecha2, setFecha2] = useState(null)
+  const before = new Date('2020-01-01T00:00:00Z')
+  const today = new Date()
 
-  const handleKeyDown = (e) => {
-    // Verificar si la tecla presionada es una letra
-    if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
-      // Si es una letra, prevenir la acción predeterminada
-      e.preventDefault();
+  const handleDateChange = (startDate, endDate) => {
+    setFecha1(startDate)
+    setFecha2(endDate)
+  
+    if (!startDate && !endDate) {
+      // Verifica si no hay ni una fecha seleccionada
+      setDateErrorMessage('')
+      setDateRange([])
+    }  else if ((startDate && !endDate) || (!startDate && endDate)) {
+      // Verificar si solo se ha seleccionado una fecha
+      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+      setDateRange([])
+    } else if (startDate > endDate) {
+      // Verificar si la fecha de inicio es posterior a la fecha de fin
+      setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
+      setDateRange([])
+    } else if (startDate < before || endDate < before) {
+      // Verificar que ni una fecha sea anterior al año 2020
+      setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
+      setDateRange([])
+    } else {
+      // Limpiar el mensaje de error si las fechas son válidas
+      setDateErrorMessage('')
+      const adjustedDate1 = new Date(startDate)
+      adjustedDate1.setHours(0, 0, 1)
+      const adjustedDate2 = new Date(endDate)
+      adjustedDate2.setHours(23, 59, 59)
+      setDateRange([adjustedDate1, adjustedDate2])
     }
   };
 
-  //Función para aceptar las entradas de fecha
-  const handleDate1Change = (event) => {
-    if (event === null && fecha2 === null) {
-      setFecha1(null)
-      setDateRange([])
-      setDateErrorMessage('')
-      return false
-    }
-    else if (event == null) {
-      setFecha1(null)
-      setDateRange([])
-      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
-      return false
-    }
-    else {
-      const adjustedDate1 = new Date(event)
-      adjustedDate1.setHours(0, 0, 1)
+  // Para Control de Deuda
+  const [deuda1, setDeuda1] = useState(null)
+  const [deuda2, setDeuda2] = useState(null)
 
-      setFecha1(adjustedDate1);
-      if (adjustedDate1 && fecha2) {
-        if (adjustedDate1 > fecha2) {
-          console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateRange([])
-          return false;
-        } else if (adjustedDate1 < before || fecha2 < before) {
-          console.log('ALERTA: Fecha anterior al año 2020')
-          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
-          setDateRange([])
-          return false;
-        }
-      } else {
-        console.log('ALERTA: Se necesitan 2 fechas')
-        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
-        setDateRange([])
-        return false;
-      }
-      setDateRange([adjustedDate1, fecha2]);
-      setDateErrorMessage('')
-    }
-  }
-
-  const handleDate2Change = (event) => {
-    if (fecha1 === null && event === null) {
-      setFecha2(null)
-      setDateRange([])
-      setDateErrorMessage('')
-      return false
-    }
-    else if (event == null) {
-      setFecha2(null)
-      setDateRange([])
-      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
-      return false
-    }
-    else {
-      const adjustedDate2 = new Date(event)
-      adjustedDate2.setHours(23, 59, 59)
-
-      setFecha2(adjustedDate2)
-      if (fecha1 && adjustedDate2) {
-        if (fecha1 > adjustedDate2) {
-          console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateRange([])
-          return false;
-        } else if (fecha1 < before || adjustedDate2 < before) {
-          console.log('ALERTA: Fecha anterior al año 2020')
-          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
-          setDateRange([])
-          return false;
-        }
-      } else {
-        console.log('ALERTA: Se necesitan 2 fechas')
-        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
-        setDateRange([])
-        return false;
-      }
-      setDateRange([fecha1, adjustedDate2]);
-      setDateErrorMessage('')
-    }
-  }
-
-  //Función para controlar entradas de input deuda
-  const handleDebt1Change = (event) => {
-    const tmpDebt1 = event.target.value
-    if (tmpDebt1.length === 0 && deuda2 === null) {
-      setDeuda1(null)
-      setDebtRange([])
+  const validDebt = (startDebt, endDebt) => {
+    setDeuda1(startDebt)
+    setDeuda2(endDebt)
+  
+    if (!startDebt && !endDebt) {
+      // Verifica si no hay ni una deuda seleccionada
       setDebtErrorMessage('')
-      return false
-    }
-    else if (tmpDebt1.length === 0) {
-      setDeuda1(null)
-      setDebtRange([])
+      return(false)
+    } else if ((startDebt && !endDebt) || (!startDebt && endDebt)) {
+      // Verificar si solo se ha seleccionado una deuda
       setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
-      return false
-    }
-    else {
-      if (/^\d*$/.test(tmpDebt1)) {
-        console.log('ENTRA')
-        setDeuda1(parseInt(tmpDebt1));
-      }
-      if (tmpDebt1 !== null && deuda2 !== null) {
-        if (tmpDebt1 > deuda2) {
-          console.log('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtRange([])
-          return false;
-        } else if (tmpDebt1 < 0 || deuda2 < 0) {
-          console.log('ALERTA: Deuda menor a 0')
-          setDebtErrorMessage('ALERTA: Deuda menor a 0')
-          setDebtRange([])
-          return false;
-        } else if (tmpDebt1 > 10000 || deuda2 > 10000) {
-          console.log('ALERTA: Deuda mayor a $10,000')
-          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
-          setDebtRange([])
-          return false;
-        }
-      } else {
-        console.log('ALERTA: Se necesitan 2 deudas')
-        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
-        setDebtRange([])
-        return false;
-      }
-      setDebtRange([parseInt(tmpDebt1), deuda2]);
+      return(false)
+    } else if (startDebt < 0 || endDebt < 0) {
+      // Verificar que ni una deuda sea menor a 0
+      setDebtErrorMessage('ALERTA: Deuda menor a 0')
+      return(false)
+    } else if (startDebt > 10000 || endDebt > 10000) {
+      // Verificar que ni una deuda sea mayor a 10,000
+      setDebtErrorMessage('ALERTA: Deuda mayor a 10,000')
+      return(false)
+    } else if (startDebt > endDebt) {
+      // Verificar si la fecha de inicio es posterior a la fecha de fin
+      setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
+      return(false)
+    } else {
+      // Limpiar el mensaje de error si las fechas son válidas
       setDebtErrorMessage('')
+      return(true)
+    }
+  };
+
+  const handleDebt1Change = (event) => {
+    const tmpDebt1 = parseInt(event.target.value)
+    const accepted = validDebt(tmpDebt1, deuda2)
+    if (accepted) {
+      setDebtRange([tmpDebt1, deuda2]);
+    } else {
+      setDebtRange([])
     }
   }
 
   const handleDebt2Change = (event) => {
-    const tmpDebt2 = event.target.value
-    if (deuda1 === null && tmpDebt2.length === 0) {
-      setDeuda2(null)
+    const tmpDebt2 = parseInt(event.target.value)
+    const accepted = validDebt(deuda1, tmpDebt2)
+    if (accepted) {
+      setDebtRange([deuda1, tmpDebt2]);
+    } else {
       setDebtRange([])
-      setDebtErrorMessage('')
-      return false
-    }
-    else if (tmpDebt2.length === 0) {
-      setDeuda2(null)
-      setDebtRange([])
-      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
-      return false
-    }
-    else {
-      if (/^\d*$/.test(tmpDebt2)) {
-        console.log('entra')
-        setDeuda2(parseInt(tmpDebt2));
-      }
-      console.log(deuda1)
-      console.log(tmpDebt2)
-      if (deuda1 !== null && tmpDebt2 !== null) {
-        if (deuda1 > tmpDebt2) {
-          console.log('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtRange([])
-          return false;
-        } else if (deuda1 < 0 || tmpDebt2 < 0) {
-          console.log('ALERTA: Deuda menor a 0')
-          setDebtErrorMessage('ALERTA: Deuda menor a 0')
-          setDebtRange([])
-          return false;
-        } else if (deuda1 > 10000 || tmpDebt2 > 10000) {
-          console.log('ALERTA: Deuda mayor a $10,000')
-          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
-          setDebtRange([])
-          return false;
-        }
-      } else {
-        console.log('ALERTA: Se necesitan 2 deudas')
-        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
-        setDebtRange([])
-        return false;
-      }
-      setDebtRange([deuda1, parseInt(tmpDebt2)]);
-      setDebtErrorMessage('')
     }
   }
 
-  // Para menú click derecho
+  // Para Paginación
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 8
+  
+  const paginatedData = data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  // Para Mensajes de Error
+  const [dateErrorMessage, setDateErrorMessage] = useState('')
+  const [debtErrorMessage, setDebtErrorMessage] = useState('')
+
+  //Estado para almacenar data
+  // const [filterText, setFilterText] = useState("");
+  // function handleChange(e) {
+  //   setFilterText(e.target.value.toUpperCase());
+  // }
+
+  // Para Menú Contextual
   const menu = (id, name, last_m, veto) => {
     return (
       <Menu onClick={(event) => handleMenuClick(event, id)}
@@ -449,13 +449,14 @@ const UserListAdmin = () => {
           </div>
 
           <div>
+            {/* Div para datepicker */}
             <div className='userlist_container_inputs'>
               <div>
                 <DatePicker
                   disabled= {select_View == 10 ? true : false}
                   className='universal_input_date'
                   selected={fecha1}
-                  onChange={handleDate1Change}
+                  onChange={(date) => handleDateChange(date, fecha2)}
                   placeholderText='Inicio (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
                   onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
@@ -464,12 +465,12 @@ const UserListAdmin = () => {
               <div className='container_dash'>
                 <p> - </p>
               </div>
-              <div>
+              <div className='universal_container_pickerdate'>
                 <DatePicker
                   disabled= {select_View == 10 ? true : false}
-                  className='universal_input_date universal_container_pickerdate'
+                  className='universal_input_date'
                   selected={fecha2}
-                  onChange={handleDate2Change}
+                  onChange={(date) => handleDateChange(fecha1, date)}
                   placeholderText='Fin (DD/MM/YY)'
                   dateFormat='dd/MM/yy'
                   onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
@@ -482,6 +483,7 @@ const UserListAdmin = () => {
           </div>
 
           <div>
+            {/* Div para debtpciker */}
             <div className='userlist_container_inputs'>
               <div className='deuda-picker-container'>
                   <div className='deuda-box-container'>
@@ -525,6 +527,7 @@ const UserListAdmin = () => {
 
         <div className='userlist_container_lower'>
           <div>
+            {/* Div para viewpicker */}
               <label className='userlist_container_radio universal_label_radio' key={10}>
                 <input 
                   className="form-check-input universal_text_HM"
@@ -548,14 +551,17 @@ const UserListAdmin = () => {
                   {option.label}
                 </label>
               ))}
+              {/* <div className='filter'>
+                  <input type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
+              </div> */}
           </div>
 
+          {/* Tabla de Contenido */}
           {data.length !== 0 ? (
             <Table striped bordered hover>
               <thead>
                 {select_View == 10 && (
                   <tr>
-                    {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
                     <th>Registrado Por</th>
                     <th>Nombre</th>
                     <th>Tipo de Cliente</th>
@@ -567,7 +573,6 @@ const UserListAdmin = () => {
                 )}
                 {select_View == 7 && (
                   <tr>
-                    {/*TODO ver si dividir nombre y apellidos para estandarizacion*/}
                     <th>No. Cama</th>
                     <th>Nombre</th>
                     <th>Fecha de Ingreso</th>
@@ -604,7 +609,7 @@ const UserListAdmin = () => {
                 )}
               </thead>
               <tbody>
-                {select_View == 10 && (
+                {select_View == 10 && ( //item.carnet.toUpperCase().includes(filterText) &&
                   paginatedData.map((item, i) => (
                     // A VER SI ES MEJOR QUE PONGA EL NOMBRE DE QUIEN REGISTRÓ
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
@@ -625,7 +630,7 @@ const UserListAdmin = () => {
                     </DP>
                   ))
                 )}
-                {select_View == 7 && (
+                {select_View == 7 && ( //item.carnet.toUpperCase().includes(filterText) &&
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{background: '#fff' }}>
@@ -645,7 +650,7 @@ const UserListAdmin = () => {
                     </DP>
                   ))
                 )}
-                {select_View == 8 && (
+                {select_View == 8 && ( //item.carnet.toUpperCase().includes(filterText) &&
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{background: '#fff' }}>
@@ -665,7 +670,7 @@ const UserListAdmin = () => {
                     </DP>
                   ))
                 )}
-                {select_View == 9 && (
+                {select_View == 9 && ( //item.carnet.toUpperCase().includes(filterText) &&
                   paginatedData.map((item, i) => (
                     <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
                       <tr key={i} style={{background: '#fff' }}>
@@ -694,6 +699,7 @@ const UserListAdmin = () => {
             </div>
           )}
           <div className="userlist_pagination">
+            {/* Llamada a Paginación */}
             {data.length > 0 &&
               <>
                 <MyPagination
@@ -705,10 +711,12 @@ const UserListAdmin = () => {
                 />
               </>
             }
-          <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
-            ¿Estas Seguro?
-          </Popup>
-          <MyToastContainer />
+            {/* Llamada a PopUp */}
+            <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
+              ¿Estas Seguro?
+            </Popup>
+            {/* Llamada a Toasts */}
+            <MyToastContainer />
           </div>
         </div>
       </div>
