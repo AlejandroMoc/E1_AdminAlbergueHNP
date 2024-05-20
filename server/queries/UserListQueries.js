@@ -62,7 +62,7 @@ const filterColumnDB = [
     {id: 3, column: 'cliente.id_cliente', valdb: 'vetado.id_cliente'},
     {id: 4, column: 'vetado.id_cliente'},
     {id: 5, column: 'absoluteDeudas.total', valdb: 0},
-    {id: 6, column: 'cliente.checked', valdb: true},
+    {id: 6, column: 'cliente.checked', valdb: false},
 ]
 
 // CHECAR REGLAS DE FILTRO
