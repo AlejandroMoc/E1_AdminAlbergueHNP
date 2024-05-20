@@ -3,8 +3,8 @@ import "./Navbar.scss";
 import {useAuth } from '../../auth/AuthProvider';
 import {Link} from "react-router-dom";
 import {FaUser} from "react-icons/fa";
-import logohnp from '../../assets/vectors/logo_hnp.svg';
 import {Outlet } from 'react-router-dom';
+import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const Navbar = () => {
   //Para manejo de sesiones
@@ -37,14 +37,14 @@ const Navbar = () => {
         <ul className = "navbar_left">
           <div className = "navbar_logo"><Link to="/dashboard"><img src={logohnp} alt="logo"/></Link></div>
         </ul>
-        <ul className ='navbar_right'>
+        <ul className ='navbar_right d-flex flex-row'>
 
-          <Link className = 'navbar_text' to ="/usernew"> Registro </Link>
-          <Link className = 'navbar_text' to ="/beds"> Camas </Link>
-          <Link className = 'navbar_text' to ="/userlist"> Clientes </Link>
-          <Link className = 'navbar_text' to ="/reports"> Reporte </Link>
-          {adminInfo.admin ? <Link className = 'navbar_text' to ="/adminnew"> N. Admin </Link> : ''}
-          <Link className = 'navbar_text' to ="/profile"> <FaUser/> </Link>
+          <div className='navbar_div_text'><Link className = 'navbar_text' to ="/usernew"> Registro </Link></div>
+          <div className='navbar_div_text'><Link className = 'navbar_text' to ="/beds"> Camas </Link></div>
+          <div className='navbar_div_text'><Link className = 'navbar_text' to ="/userlist"> Clientes </Link></div>
+          <div className='navbar_div_text'><Link className = 'navbar_text' to ="/reports"> Reporte </Link></div>
+          <div className='navbar_div_text'>{adminInfo.admin ? <Link className = 'navbar_text' to ="/adminnew"> N. Admin </Link> : ''}</div>
+          <div className='navbar_div_text'><Link className = 'navbar_text' to ="/profile"> <FaUser/> </Link></div>
 
         </ul>
       </nav>

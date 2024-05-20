@@ -59,16 +59,16 @@ const today = new Date();
   // Verificar si la fecha de inicio es posterior a la fecha de fin
   if (startDate && endDate && startDate > endDate) {
     // Establecer el mensaje de error
-    setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin');
+    setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin.');
   } else if ((startDate && !endDate) || (!startDate && endDate)) {
     // Verificar si solo se ha seleccionado una fecha
-    setDateErrorMessage('ALERTA: Se necesitan 2 fechas');
+    setDateErrorMessage('ALERTA: Se necesitan 2 fechas.');
   } else if (startDate && startDate < before ||endDate && endDate < before) {
     // Verificar si solo se ha seleccionado una fecha
-    setDateErrorMessage('ALERTA: Fecha anterior al año 2020');
+    setDateErrorMessage('ALERTA: Fecha anterior al año 2020.');
   }  else if (startDate > today || endDate > today) {
     // Verificar si solo se ha seleccionado una fecha
-    setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual');
+    setDateErrorMessage('ALERTA: Fecha posterior a la fecha actual.');
   } else {
     // Limpiar el mensaje de error si las fechas son válidas
     setDateErrorMessage('');
@@ -465,10 +465,7 @@ const getCurrentDateTime = () => {
     };
 
     return (
-      <div className='App_minheight App_minpadding reports_container_services'>
-
-
-
+      <div className='App_minheight App_minpadding user_justified'>
 
         {/* Div para agrupar los campos de entrada */}
         <div className="reports_container_inputdate">
@@ -481,7 +478,7 @@ const getCurrentDateTime = () => {
                 {/*Fila de fechas*/}
                 <td>
                   {/* Campo de entrada para la fecha 1 */}
-                  <div className="universal_container_pickerdate">
+                  <div>
                     <DatePicker
                       selected={startDate}
                       onChange={(date) => handleDateChange(date, endDate)}
@@ -491,6 +488,12 @@ const getCurrentDateTime = () => {
                       dateFormat="dd/MM/yy"
                       onKeyDown={handleKeyDown} // Intercepta el evento de tecla presionada
                     />
+                  </div>
+                </td>
+
+                <td>
+                  <div className='container_dash'>
+                    <p> - </p>
                   </div>
                 </td>
 
@@ -859,7 +862,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
@@ -911,7 +914,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
                 </tr>
@@ -963,7 +966,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
                 </tr>
@@ -1018,7 +1021,7 @@ const getCurrentDateTime = () => {
                 {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                 {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                 {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                 {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
               </tr>
@@ -1070,7 +1073,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
                 </tr>
@@ -1122,7 +1125,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
                 </tr>
@@ -1176,7 +1179,7 @@ const getCurrentDateTime = () => {
                   {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
                   {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
                   {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
-                  {esServicio && serviciosSeleccionados.deuda && <td>{item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
                   {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
                 </tr>

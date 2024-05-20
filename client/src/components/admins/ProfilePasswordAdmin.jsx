@@ -16,7 +16,7 @@ const ProfilePasswordAdmin = () => {
   const [new_password1, setNewPassword1] = useState("");
   const [new_password2, setNewPassword2] = useState("");
 
-  // Estado para almacenar mensajes de error y éxito
+  //Mensajes de error y éxito
   const [changeErrorMessage, setChangeErrorMessage] = useState('');
   const [changeSuccessMessage, setChangeSuccessMessage] = useState('');
 

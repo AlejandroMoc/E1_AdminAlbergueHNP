@@ -6,13 +6,11 @@ import Popup from '../universal/Popup';
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import {LuUser } from "react-icons/lu";
 import {LuCalendarDays } from "react-icons/lu";
-// import {MdOutlineAttachMoney } from "react-icons/md";
 import {FiHome } from "react-icons/fi";
-import {TbMoodKid } from "react-icons/tb";
+
+import { MdFaceUnlock } from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {RiHospitalLine } from "react-icons/ri";
-// import {IoMdAddCircleOutline } from "react-icons/io";
-// import {IoMdRemoveCircleOutline } from "react-icons/io";
 import {MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
 import {MdOutlineEdit } from "react-icons/md"; //Boton Editar
 import {LiaCoinsSolid } from "react-icons/lia";
@@ -236,15 +234,18 @@ const handleEditar = async () => {
 ///////////////////////////////////////////////////////////////////////////////
 //EMPIEZA DESARROLLO DEL HTML
   return (
-    <div className='App_minheight  userinfo_justified'>
+    
+    <div className='App_minheight user_justified'>
       {/*Espaciador*/}
       <div className='user_spaciator'></div>
 
+      {/*Botón de edición*/}
+      {/*TODO corregir posición*/}
+                {/* <button className='App_buttonaccept' onClick={handleEditar}><span className="user_span_space_icon" id="basic-addon1"></span> Editar</button> */}
       {adminInfo.admin && (
-        <div className='button-container'>
-          <button className='edit-button App_buttonaccept ' onClick={handleEditar}><span className="user_span_spacing_icon" id="basic-addon1"><MdOutlineEdit /></span> Editar</button>
-        </div>
+          <button className='App_buttonaccept userinfo_position_buttonedit' onClick={handleEditar}><MdOutlineEdit/> Editar</button>
       )}
+
       <div className="user_container_general">
         <div className="container user_container_reg">
         {/* {!showNumbersSelect && (
@@ -254,19 +255,19 @@ const handleEditar = async () => {
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><FiHome /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.lugar_o}</span>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_p} {infoCliente.apellidos_p}</span>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><FaRegAddressCard /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.carnet}</span>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><RiHospitalLine /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><RiHospitalLine /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_a}</span>
           </div>
 
@@ -277,31 +278,27 @@ const handleEditar = async () => {
 
 
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuUser /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.nombre_c} {infoCliente.apellidos_c}</span>
           </div>
           {showNumbersSelect === true && (
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuCalendarDays /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuCalendarDays /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{fechaNueva()}</span>
           </div>)}
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1">{infoCliente.nivel_se}</span>
+            <span className="input-group-text user_span_space_icon user_center_number" id="basic-addon1">{infoCliente.nivel_se}</span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
-
-
 
           <div className="input-group mb-3 "></div>
         </div>
 
-
-
-        <div className="user_spacing_not">
+        <div className="user_spacing_not user_container_reg">
           <div className="input-group mb-3 "></div>
           <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
@@ -323,7 +320,7 @@ const handleEditar = async () => {
               </div>)}
               {showNumbersSelect === true && ( 
           <div className="input-group mb-3 ">
-          <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LuBedDouble /></span>
+          <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuBedDouble /></span>
           <span className="input-group-text userinfo_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
@@ -358,7 +355,7 @@ const handleEditar = async () => {
             </div>
         </div>)}
           <div className="input-group mb-3" onChange={handlepagoChange}>
-            <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><LiaCoinsSolid /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
             <span className="input-group-text userinfo_span_info userinfo_adjust_debt" id="basic-addon1">
               {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
             </span>
@@ -370,7 +367,7 @@ const handleEditar = async () => {
           {showVetadoSelect  && (
           <div>
               <div className="input-group mb-3">
-              <span className="input-group-text user_span_spacing_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
+              <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
             <span className="input-group-text userinfo_span_baninfo" id="basic-addon1">Usuario Vetado</span>
             </div>
             <div className="mb-3">
@@ -393,7 +390,7 @@ const handleEditar = async () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default infoUserAdmin

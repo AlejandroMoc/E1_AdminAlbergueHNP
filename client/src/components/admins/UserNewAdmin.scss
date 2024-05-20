@@ -18,9 +18,14 @@
 }
 
 .user_span_space_icon{
-    background-color: #fafafa;
+    // background-color: #fafafa;
     font-size: xx-large;
-    min-width: 60px;
+    // align-content: baseline;
+    // text-align: center;
+    min-width: 8vh;
+    width: 8vh;
+    // width: 8vh;
+    // margin: 0;
 }
 
 .user_span_sociolevel{
@@ -79,12 +84,11 @@
 
 .user_select_beds{
     width: 60%;
-    font-size: 16px;
+    font-size: medium;
     border: 1px solid #ccc;
     border-radius: 1vhpx;
     background-color: #f2f2f2;
     cursor: pointer;
-
 }
 
 .user_container_general{
@@ -116,27 +120,41 @@
     height:5vh;
 }
 
+// .user_center_number{
+//     text-align: center;
+//     // color:red;
+// }
+
 //InfoUser
-.userinfo_justified{
+.user_justified{
     text-align: justify;
+    // margin-left: 6vh;
+}
+
+.userinfo_position_buttonedit{
+    position: absolute;
+    max-width: 25vh;
+    // margin-left: 32vh;
+    margin-top: 2vh;
+    margin-left: 4vh;
+    margin-bottom: 2vh;
 }
 
 .userinfo_span_info{
     height: 62px;
     font-size: larger;
-    background-color: #fafafa;
     width: 85%;
 }
+
 .userinfo_span_baninfo{
     height: 62px;
-    font-size: larger;
-    background-color: #fafafa;
     color: red;
     width: 85%;
 }
 
 .userinfo_adjust_debt{
-    width: 20%;
+    width: 65%;
+    // width: 25%;
 }
 
 .userinfo_adjust_debt_input{

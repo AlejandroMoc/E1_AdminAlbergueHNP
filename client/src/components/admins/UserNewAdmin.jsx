@@ -5,13 +5,13 @@ import {LuUser } from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import {FiHome } from "react-icons/fi";
-import {TbMoodKid } from "react-icons/tb";
+
+import { MdFaceUnlock } from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 //import {registerNewPatient } from '../../../../server/queries/UsernewQueries';
-
 
 const UserNewAdmin = () => {
   //Para pasar a dashboard
@@ -367,12 +367,12 @@ const handleBtRegistroClick = async () => {
             <input type="text" className="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
             <input type="text" className={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
             {nombre_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
-            <span className="input-group-text user_span_space_icon" id="basic-addon1"><TbMoodKid /></span>
+            <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
             <input type="text" className={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
             {apellidos_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
@@ -396,7 +396,7 @@ const handleBtRegistroClick = async () => {
           <div className="input-group mb-3 "></div>
 
           <h4>Información del Familiar</h4>
-          <span className="user_span_sociolevel" id="basic-addon1">¿El cliente es un paciente?</span>
+          <span className="user_span_sociolevel" id="basic-addon1">¿El familiar es un paciente?</span>
           <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
               <div className="form-check">
                 <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>

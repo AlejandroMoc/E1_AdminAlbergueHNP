@@ -325,35 +325,35 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
     <Menu>
 
       <Menu.Item key="numeroCama">
-        <span class="rooms_text_infotitle">Cama {numCama}</span>
+        <span className="rooms_text_infotitle">Cama {numCama}</span>
       </Menu.Item>
 
       <Menu.Divider />
 
       <Menu.Item key="nombreCompleto" icon={<LuUser size="20px" />}>
-        <span class="rooms_text_infosubtitles">{nombre + " " + apellidos}</span>
+        <span className="rooms_text_infosubtitles">{nombre + " " + apellidos}</span>
       </Menu.Item>
       
       <Menu.Item key="carnet" icon={<FaRegAddressCard size="20px" />}>
-        <span class="rooms_text_infosubtitles">{carnet}</span>
+        <span className="rooms_text_infosubtitles">{carnet}</span>
       </Menu.Item>
       
-      <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span class="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
+      <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span className="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
-          <div class="input-group mb-3 rooms_width_infoinputs">
-            <span class="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); update(setInfoM, setInfoH, setInfoA); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
-            <input type="number" class="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
+          <div className="input-group mb-3 rooms_width_infoinputs">
+            <span className="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); update(setInfoM, setInfoH, setInfoA); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
+            <input type="number" className="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={() => {setNotas_UE_Pagar("Pago (Condonado)")}}/>
-            <label class="form-check-label rooms_text_condpay" for="flexCheckDefault">
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={() => {setNotas_UE_Pagar("Pago (Condonado)")}}/>
+            <label className="form-check-label rooms_text_condpay" for="flexCheckDefault">
               Condonar Pago
             </label>
           </div>
         </Menu.Item>
       </Menu.SubMenu>
       
-      <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" />} title={<span class="rooms_text_infosubtitles">Servicios</span>}>
+      <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" />} title={<span className="rooms_text_infosubtitles">Servicios</span>}>
         <Menu.Item key="subItemReg" onClick={(event) => event.stopPropagation()}>
         <div className="input-group mb-3 rooms_width_infoinputs">
           <span className="input-group-text" onClick={sumaServicio1}>+</span>
@@ -370,20 +370,20 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
           <span className="input-group-text" onClick={restaServicio3}>-</span>
           <input type="text" className="form-control" value={servicio3Clicked ? countServicio3 : ''}  placeholder={servicio3Clicked ? '' : 'Cena: 0'} aria-label="Amount (to the nearest dollar)" id='cen' readonly/>
         </div>
-          <button type="button" class="btn btn-light App_buttonaccept" onClick={() => {setCliente_UE_RegServicio(idCliente); if(document.getElementById('des').value != ""){setCantidadS1_UE_RegServicio(document.getElementById('des').value)}; if(document.getElementById('com').value != ""){setCantidadS2_UE_RegServicio(document.getElementById('com').value)}; if(document.getElementById('cen').value != ""){setCantidadS3_UE_RegServicio(document.getElementById('cen').value)}; setServicio1Clicked(false); setServicio2Clicked(false); setServicio3Clicked(false); setCountServicio1(0); setCountServicio2(0); setCountServicio3(0);}}>Registrar</button>
+          <button type="button" className="btn btn-light App_buttonaccept" onClick={() => {setCliente_UE_RegServicio(idCliente); if(document.getElementById('des').value != ""){setCantidadS1_UE_RegServicio(document.getElementById('des').value)}; if(document.getElementById('com').value != ""){setCantidadS2_UE_RegServicio(document.getElementById('com').value)}; if(document.getElementById('cen').value != ""){setCantidadS3_UE_RegServicio(document.getElementById('cen').value)}; setServicio1Clicked(false); setServicio2Clicked(false); setServicio3Clicked(false); setCountServicio1(0); setCountServicio2(0); setCountServicio3(0);}}>Registrar</button>
         </Menu.Item>
       </Menu.SubMenu>
 
       <Menu.Divider />
 
       <Menu.Item key="eliminarUsuario" icon={<LuUserMinus size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("Registrar salida de "+nombre+" "+apellidos); setShowPopUp({trigger: true, type: 2, id: numCama, fun: popUpRegSalida});}}>Registrar Salida</span>
+        <span className="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("Registrar salida de "+nombre+" "+apellidos); setShowPopUp({trigger: true, type: 2, id: numCama, fun: popUpRegSalida});}}>Registrar Salida</span>
       </Menu.Item>
 
       <Menu.Divider />
 
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true" disabled="true">
-        <span class="rooms_text_infosubtitles">Eliminar Cama</span>
+        <span className="rooms_text_infosubtitles">Eliminar Cama</span>
       </Menu.Item>
 
     </Menu>
@@ -394,14 +394,14 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
     <Menu>
 
       <Menu.Item key="numeroCama">
-        <span class="rooms_text_infotitle">Cama {numCama}</span>
+        <span className="rooms_text_infotitle">Cama {numCama}</span>
       </Menu.Item>
 
       <Menu.Divider />
 
       <Link to="/usernew" className="rooms_text_bedsnot">
         <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
-          <span class="rooms_text_infosubtitles">Añadir Huésped</span>
+          <span className="rooms_text_infosubtitles">Añadir Huésped</span>
         </Menu.Item>
       </Link>
 
@@ -411,10 +411,10 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
       {admin ?
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
-        <span class="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: popUpEliminarCama}); }}>Eliminar Cama</span>
+        <span className="rooms_text_infosubtitles" onClick={() => {setTxtPopUp("¿Eliminar la Cama "+numCama+"?"); setShowPopUp({trigger: true, type: 0, id: numCama, fun: popUpEliminarCama}); }}>Eliminar Cama</span>
       </Menu.Item> :
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true" disabled="true">
-        <span class="rooms_text_infosubtitles">Eliminar Cama</span>
+        <span className="rooms_text_infosubtitles">Eliminar Cama</span>
       </Menu.Item>
       }
       
@@ -452,12 +452,12 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
 function IndicadorZona({tituloZona}){
   return(
-    <div class="rooms_text_subtitles container rooms_container">
-      <span class="rooms_text_titles">{tituloZona}</span>
-      <div class="rooms_spacing_disponibility">
-        <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
-        <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_blue"/> Ocupado</span>
-        <span class="rooms_text_disponibility"><FaCircle className="rooms_circle_red"/> Deudor</span>
+    <div className="rooms_text_subtitles container rooms_container">
+      <span className="rooms_text_titles">{tituloZona}</span>
+      <div className="rooms_spacing_disponibility">
+        <span className="rooms_text_disponibility"><FaCircle className="rooms_circle_gray"/> Disponible</span>
+        <span className="rooms_text_disponibility"><FaCircle className="rooms_circle_blue"/> Ocupado</span>
+        <span className="rooms_text_disponibility"><FaCircle className="rooms_circle_red"/> Deudor</span>
       </div>
     </div>
   );
@@ -573,11 +573,18 @@ const RoomAdmin = () => {
         aisladoLetras.push(combinacion);
       }
     }
+    // for (let i = 1; i <= 26; i++) {
+    //   for (let j = 1; j <= 2; j++) {
+    //     const letra = i <= 26 ? String.fromCharCode(64 + i) : String.fromCharCode(64 + Math.floor((i - 1) / 26));
+    //     const combinacion = letra + (j % 2 === 0 ? Math.ceil(j / 2) + 1 : Math.ceil(j / 2));
+    //     aisladoLetras.push(combinacion);
+    //   }
+    // }
 
     let contador = -1; // Para acceder al arreglo aisladoLetras en la posición deseada.
   
     return(
-      <div class="container rooms_container">
+      <div className="container rooms_container">
         {infoZona.length && (
           infoZona.map((item) => { 
             if(item.id_cliente != null){
@@ -595,7 +602,7 @@ const RoomAdmin = () => {
           })
         )}
         {adminInfo.admin ?
-        <div class="card rooms_spacing_addbed">
+        <div className="card rooms_spacing_addbed">
           <button id="rooms_logo_addbed" onClick={() => {infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
         </div> :
         ''

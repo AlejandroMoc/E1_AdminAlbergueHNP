@@ -218,7 +218,7 @@ const UserListAdmin = () => {
     else if (event == null) {
       setFecha1(null)
       setDateRange([])
-      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+      setDateErrorMessage('ALERTA: Se necesitan 2 fechas.')
       return false
     }
     else {
@@ -228,19 +228,19 @@ const UserListAdmin = () => {
       setFecha1(adjustedDate1);
       if (adjustedDate1 && fecha2) {
         if (adjustedDate1 > fecha2) {
-          console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
+          console.log('ALERTA: Fecha de inicio posterior a fecha de fin.')
+          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin.')
           setDateRange([])
           return false;
         } else if (adjustedDate1 < before || fecha2 < before) {
-          console.log('ALERTA: Fecha anterior al año 2020')
-          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
+          console.log('ALERTA: Fecha anterior al año 2020.')
+          setDateErrorMessage('ALERTA: Fecha anterior al año 2020.')
           setDateRange([])
           return false;
         }
       } else {
-        console.log('ALERTA: Se necesitan 2 fechas')
-        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+        console.log('ALERTA: Se necesitan 2 fechas.')
+        setDateErrorMessage('ALERTA: Se necesitan 2 fechas.')
         setDateRange([])
         return false;
       }
@@ -259,7 +259,7 @@ const UserListAdmin = () => {
     else if (event == null) {
       setFecha2(null)
       setDateRange([])
-      setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+      setDateErrorMessage('ALERTA: Se necesitan 2 fechas.')
       return false
     }
     else {
@@ -269,19 +269,19 @@ const UserListAdmin = () => {
       setFecha2(adjustedDate2)
       if (fecha1 && adjustedDate2) {
         if (fecha1 > adjustedDate2) {
-          console.log('ALERTA: Fecha de inicio posterior a fecha de fin')
-          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin')
+          console.log('ALERTA: Fecha de inicio posterior a fecha de fin.')
+          setDateErrorMessage('ALERTA: Fecha de inicio posterior a fecha de fin.')
           setDateRange([])
           return false;
         } else if (fecha1 < before || adjustedDate2 < before) {
-          console.log('ALERTA: Fecha anterior al año 2020')
-          setDateErrorMessage('ALERTA: Fecha anterior al año 2020')
+          console.log('ALERTA: Fecha anterior al año 2020.')
+          setDateErrorMessage('ALERTA: Fecha anterior al año 2020.')
           setDateRange([])
           return false;
         }
       } else {
-        console.log('ALERTA: Se necesitan 2 fechas')
-        setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
+        console.log('ALERTA: Se necesitan 2 fechas.')
+        setDateErrorMessage('ALERTA: Se necesitan 2 fechas.')
         setDateRange([])
         return false;
       }
@@ -302,7 +302,7 @@ const UserListAdmin = () => {
     else if (tmpDebt1.length === 0) {
       setDeuda1(null)
       setDebtRange([])
-      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
+      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas.')
       return false
     }
     else {
@@ -312,24 +312,24 @@ const UserListAdmin = () => {
       }
       if (tmpDebt1 !== null && deuda2 !== null) {
         if (tmpDebt1 > deuda2) {
-          console.log('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
+          console.log('ALERTA: Deuda mínima mayor a deuda máxima.')
+          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima.')
           setDebtRange([])
           return false;
         } else if (tmpDebt1 < 0 || deuda2 < 0) {
-          console.log('ALERTA: Deuda menor a 0')
-          setDebtErrorMessage('ALERTA: Deuda menor a 0')
+          console.log('ALERTA: Deuda menor a 0.')
+          setDebtErrorMessage('ALERTA: Deuda menor a 0.')
           setDebtRange([])
           return false;
         } else if (tmpDebt1 > 10000 || deuda2 > 10000) {
-          console.log('ALERTA: Deuda mayor a $10,000')
-          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
+          console.log('ALERTA: Deuda mayor a $10,000.')
+          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000.')
           setDebtRange([])
           return false;
         }
       } else {
-        console.log('ALERTA: Se necesitan 2 deudas')
-        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
+        console.log('ALERTA: Se necesitan 2 deudas.')
+        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas.')
         setDebtRange([])
         return false;
       }
@@ -349,7 +349,7 @@ const UserListAdmin = () => {
     else if (tmpDebt2.length === 0) {
       setDeuda2(null)
       setDebtRange([])
-      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
+      setDebtErrorMessage('ALERTA: Se necesitan 2 deudas.')
       return false
     }
     else {
@@ -361,24 +361,24 @@ const UserListAdmin = () => {
       console.log(tmpDebt2)
       if (deuda1 !== null && tmpDebt2 !== null) {
         if (deuda1 > tmpDebt2) {
-          console.log('ALERTA: Deuda mínima mayor a deuda máxima')
-          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
+          console.log('ALERTA: Deuda mínima mayor a deuda máxima.')
+          setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima.')
           setDebtRange([])
           return false;
         } else if (deuda1 < 0 || tmpDebt2 < 0) {
-          console.log('ALERTA: Deuda menor a 0')
-          setDebtErrorMessage('ALERTA: Deuda menor a 0')
+          console.log('ALERTA: Deuda menor a 0.')
+          setDebtErrorMessage('ALERTA: Deuda menor a 0.')
           setDebtRange([])
           return false;
         } else if (deuda1 > 10000 || tmpDebt2 > 10000) {
-          console.log('ALERTA: Deuda mayor a $10,000')
-          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000')
+          console.log('ALERTA: Deuda mayor a $10,000.')
+          setDebtErrorMessage('ALERTA: Deuda mayor a $10,000.')
           setDebtRange([])
           return false;
         }
       } else {
-        console.log('ALERTA: Se necesitan 2 deudas')
-        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
+        console.log('ALERTA: Se necesitan 2 deudas.')
+        setDebtErrorMessage('ALERTA: Se necesitan 2 deudas.')
         setDebtRange([])
         return false;
       }

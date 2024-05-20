@@ -12,7 +12,7 @@ import {useAuth } from '../../auth/AuthProvider';
 
 const HomeAdmin = () => {
 
-  const auth=useAuth();
+  const auth = useAuth();
 
   const welcomeMessages = [
     `¡Te damos la bienvenida, ${auth.getUser()?.nombre_u || ""}!`,
@@ -33,7 +33,7 @@ const HomeAdmin = () => {
   return (
     <div className='App_minheight'>
       <br/>
-      <h2>{randomWelcomeMessage}</h2>
+      <h2 className="home_welcomemessage">{randomWelcomeMessage}</h2>
       
       <table className='universal_header_table'>
         <tbody>
