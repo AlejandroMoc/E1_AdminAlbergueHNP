@@ -295,7 +295,7 @@ const generatePDF = useReactToPrint({
   documentTitle: "",
   //Top Right Bottom Left
   pageStyle: '@page {size: auto; margin: 0mm 5mm 0mm 5mm; } @media print {body {-webkit-print-color-adjust: exact; } }',
-  onAfterPrint: () => successToast(),
+  onAfterPrint: () => successToast(), //Se agrega el toast de proceso exitoso al generar el reporte en PDF
   // onAfterPrint: () => alert("Reporte guardado en PDF.")
 });
 
