@@ -379,7 +379,7 @@ const handleEditar = async () => {
             </div>
           )}
           </div>)}
-          {(!showVetadoSelect && adminInfo.admin) && (
+          {(!showVetadoSelect) && (
           <div className="input-group mb-3 ">
             <button className="App_buttonaccept userinfo_button_ban" onClick={handleVetar}>Vetar</button>
           </div>)}
