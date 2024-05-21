@@ -73,7 +73,8 @@ const getAllUsers = async (startDate, endDate) => {
         LEFT JOIN
             (SELECT id_cliente, ABS(SUM(monto_t)) AS total
             FROM pago
-            GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente`;
+            GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
+        ORDER BY cliente.id_cliente ASC`;
 
         let params = [];
 
@@ -116,7 +117,8 @@ const getAllHuespedes = async () => {
             logsalidas ls ON cliente.id_cliente = ls.id_cliente
         WHERE
             (h.id_cliente IS NOT NULL OR ls.id_cliente IS NOT NULL)
-            AND cliente.id_cliente NOT IN (SELECT id_cliente FROM vetado)`,
+            AND cliente.id_cliente NOT IN (SELECT id_cliente FROM vetado)
+        ORDER BY cliente.id_cliente ASC`,
         )
         return allHuespedes;
     } catch (error) {
@@ -141,7 +143,8 @@ const getAllVisitantes = async () => {
         WHERE
             h.id_cliente IS NULL
             AND l.id_cliente IS NULL
-            AND cliente.id_cliente NOT IN (SELECT id_cliente FROM vetado)`,
+            AND cliente.id_cliente NOT IN (SELECT id_cliente FROM vetado)
+        ORDER BY cliente.id_cliente ASC`,
         )
         return allVisitantes;
     } catch (error) {
@@ -162,6 +165,7 @@ const getAllVetados = async () => {
             vetado v ON cliente.id_cliente = v.id_cliente
         WHERE
             v.id_cliente IS NOT NULL
+        ORDER BY cliente.id_cliente ASC
         `,
         )
         return allVetados;
@@ -333,7 +337,9 @@ const getAllGeneralVisitantes = async (startDate, endDate) => {
         WHERE
             h.id_cliente IS NULL 
             AND l.id_cliente IS NULL
-            AND v.id_cliente IS NULL`;
+            AND v.id_cliente IS NULL
+            ORDER BY cliente.id_cliente ASC
+            `;
 
         let params = [];
 
@@ -435,6 +441,7 @@ const getAllGeneralHuespedes = async (startDate, endDate) => {
             GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
         WHERE
             v.id_cliente IS NULL
+            ORDER BY cliente.id_cliente ASC
         `;
 
         let params = [];
@@ -534,6 +541,7 @@ const getAllGeneralVetados = async (startDate, endDate) => {
             GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
         WHERE
             v.id_cliente IS NOT NULL
+            ORDER BY cliente.id_cliente ASC
     
         `;
 
