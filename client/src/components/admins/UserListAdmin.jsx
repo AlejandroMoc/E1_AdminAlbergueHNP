@@ -217,6 +217,7 @@ const UserListAdmin = () => {
   const [select_View, set_Select_View] = useState(10)
   const [dateRange, setDateRange] = useState([])
   const [debtRange, setDebtRange] = useState([])
+  const [filterText, setFilterText] = useState("")
 
   const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
 
@@ -373,6 +374,16 @@ const UserListAdmin = () => {
     }
   }
 
+  // Para Control de Carnet
+  const handleChange = (event) => {
+    setFilterText(event.target.value.toUpperCase())
+    // const tmpData = data.filter((item) => (
+    //   item.carnet.toUpperCase().includes(event.target.value)
+    // ))
+    // console.log(tmpData)
+    // setData(tmpData)
+  }
+
   // Para Paginación
   const [currentPage, setCurrentPage] = useState(1)
   const pageSize = 8
@@ -380,17 +391,13 @@ const UserListAdmin = () => {
   const paginatedData = data.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
-  );
+  )
+
+  console.log(paginatedData)
 
   // Para Mensajes de Error
   const [dateErrorMessage, setDateErrorMessage] = useState('')
   const [debtErrorMessage, setDebtErrorMessage] = useState('')
-
-  //Estado para almacenar data
-  // const [filterText, setFilterText] = useState("");
-  // function handleChange(e) {
-  //   setFilterText(e.target.value.toUpperCase());
-  // }
 
   // Para Menú Contextual
   const menu = (id, name, last_m, veto) => {
@@ -473,7 +480,9 @@ const UserListAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {paginatedData.map((item, i) => (
+          {(filterText.length == 0 ? 
+            paginatedData : data
+          ).map((item, i) => (item.carnet.toUpperCase().includes(filterText) && //SE PUEDE MEJORAR, PERO ES FUNCIONAL
             <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
               <tr key={i} style={{background: '#fff' }}>
                 {select_View == 10 ?
@@ -646,9 +655,7 @@ const UserListAdmin = () => {
                   {option.label}
                 </label>
               ))}
-              {/* <div className='filter'>
-                  <input type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
-              </div> */}
+              <input  className='filter_carnet' type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
           </div>
 
           {/* Tabla de Contenido */}
@@ -661,7 +668,7 @@ const UserListAdmin = () => {
           )}
           <div className="userlist_pagination">
             {/* Llamada a Paginación */}
-            {data.length > 0 &&
+            {(data.length > 0 && filterText.length == 0) &&
               <>
                 <MyPagination
                   itemsCount={data.length}
