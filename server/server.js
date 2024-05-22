@@ -19,7 +19,7 @@ app.use("/changepass", require("./routes/changepass"));
 app.use("/user", authenticate, require("./routes/user"));
 
 const {infoUser} = require('./queries/SessionQueries.js')
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica } = require('./queries/UsernewQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet } = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
@@ -41,6 +41,16 @@ app.post('/infouser', async(req, res) => {
 })
 
 //Funciones para UserNew
+app.get('/carnetExist/:carnet', async(req, res) => {
+    try {
+        const areas = await getcarnet(req.params.carnet);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching vetado CLIENTE:', error);
+        res.status(500).json({error: 'Internal server error' });
+    }
+})
+
 app.get('/alldispbeds', async(req, res) => {
     try {
         const beds = await getAllDispBeds();
