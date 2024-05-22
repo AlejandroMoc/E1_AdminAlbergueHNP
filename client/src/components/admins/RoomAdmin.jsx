@@ -36,9 +36,8 @@
 ############################################################################################*/
 
 // React
-import React from 'react';
 import {Link } from "react-router-dom";
-import {useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import {useAuth } from '../../auth/AuthProvider';
 
 // CSS
@@ -70,7 +69,7 @@ import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cam
 #
 ############################################################################################*/
 
-async function update(setInfoM, setInfoH, setInfoA){
+function update(setInfoM, setInfoH, setInfoA){
   fetch('http://localhost:8000/beds')
   .then((res) => res.json())
   .then((info) => {setInfoM(info[0]); setInfoH(info[1]); setInfoA(info[2]);})
@@ -106,12 +105,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       }
       })
       .then((response) => {
-        if (response.ok) {
-          update(setInfoM, setInfoH, setInfoA);
-          update(setInfoM, setInfoH, setInfoA);
-          setMonto_UE_Pagar(0);
-          setCliente_UE_Pagar(0);
-          setNotas_UE_Pagar("");
+        if (response.ok) {          
           successToast()
         }
       })
@@ -119,6 +113,13 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         errorToast()
         console.error('Error fetching data:', error)
       })
+
+      .finally(() => {
+        update(setInfoM, setInfoH, setInfoA)
+        setMonto_UE_Pagar(0)
+        setCliente_UE_Pagar(0)
+        setNotas_UE_Pagar("");
+      });
 
       
     }
@@ -142,8 +143,6 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         })
         .then((response) => {
           if (response.ok) {
-            update(setInfoM, setInfoH, setInfoA);
-            update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
         })
@@ -151,7 +150,11 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
           errorToast()
           console.error('Error fetching data:', error)
         })
-        setCantidadS1_UE_RegServicio(0);
+        
+        .finally(() => {
+          update(setInfoM, setInfoH, setInfoA)
+          setCantidadS1_UE_RegServicio(0)
+        });
         
       }
     
@@ -165,8 +168,6 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         })
         .then((response) => {
           if (response.ok) {
-            update(setInfoM, setInfoH, setInfoA);
-            update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
         })
@@ -174,7 +175,11 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
           errorToast()
           console.error('Error fetching data:', error)
         })
-        setCantidadS2_UE_RegServicio(0);
+
+        .finally(() => {
+          update(setInfoM, setInfoH, setInfoA)
+          setCantidadS2_UE_RegServicio(0)
+        });
         
       }
   
@@ -188,8 +193,6 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         })
         .then((response) => {
           if (response.ok) {
-            update(setInfoM, setInfoH, setInfoA);
-            update(setInfoM, setInfoH, setInfoA);
             successToast()
           }
         })
@@ -197,7 +200,12 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
           errorToast()
           console.error('Error fetching data:', error)
         })
-        setCantidadS3_UE_RegServicio(0);
+        
+
+        .finally(() => {
+          update(setInfoM, setInfoH, setInfoA)
+          setCantidadS3_UE_RegServicio(0)
+        });
         
       }
 
@@ -265,8 +273,6 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       })
       .then((response) => {
         if (response.ok) {
-          update(setInfoM, setInfoH, setInfoA);
-          update(setInfoM, setInfoH, setInfoA);
           successToast()
         }
       })
@@ -274,7 +280,11 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
         errorToast()
         console.error('Error fetching data:', error)
       })
-      setCliente_UE_RegSalida(0)
+
+      .finally(() => {
+        update(setInfoM, setInfoH, setInfoA)
+        setCliente_UE_RegSalida(0)
+      });
 
     }
   },[cliente_UE_RegSalida])
@@ -289,29 +299,31 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
 
   useEffect(() => {
-    if(cama_UE_EliminarCama != 0){
-    fetch('http://localhost:8000/beds/eliminarCama' , {
-      method: 'POST',
-      body: JSON.stringify({id_cama: cama_UE_EliminarCama}),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
+    if (cama_UE_EliminarCama !== 0) {
+      fetch('http://localhost:8000/beds/eliminarCama', {
+        method: 'POST',
+        body: JSON.stringify({ id_cama: cama_UE_EliminarCama }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
       })
       .then((response) => {
         if (response.ok) {
-          update(setInfoM, setInfoH, setInfoA);
-          update(setInfoM, setInfoH, setInfoA);
-          successToast()
+          successToast();
+        } else {
+          throw new Error('Error al eliminar la cama');
         }
       })
       .catch((error) => {
-        errorToast()
-        console.error('Error fetching data:', error)
+        errorToast();
+        console.error('Error fetching data:', error);
       })
-      if(cama_UE_EliminarCama != 0){setCama_UE_EliminarCama(0)}
-
+      .finally(() => {
+        update(setInfoM, setInfoH, setInfoA)
+        setCama_UE_EliminarCama(0); // Reset the state to 0 after completion
+      });
     }
-  },[cama_UE_EliminarCama, showPopUp])
+  }, [cama_UE_EliminarCama, showPopUp]);
 
   // Asigna el idCama para el PopUp
   function popUpEliminarCama(){
@@ -341,7 +353,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span className="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
         <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
           <div className="input-group mb-3 rooms_width_infoinputs">
-            <span className="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); update(setInfoM, setInfoH, setInfoA); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
+            <span className="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
             <input type="number" className="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
           </div>
           <div className="form-check">
@@ -406,8 +418,6 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       </Link>
 
       <Menu.Divider />
-
-      {console.log(admin)}
 
       {admin ?
       <Menu.Item key="eliminarCama" icon={<FaRegTrashAlt size="20px" />} danger="true">
@@ -548,6 +558,7 @@ const RoomAdmin = () => {
       })
 
       setZona(0)
+      update(setInfoM, setInfoH, setInfoA);
     }
   },[zona])
 
@@ -573,13 +584,6 @@ const RoomAdmin = () => {
         aisladoLetras.push(combinacion);
       }
     }
-    // for (let i = 1; i <= 26; i++) {
-    //   for (let j = 1; j <= 2; j++) {
-    //     const letra = i <= 26 ? String.fromCharCode(64 + i) : String.fromCharCode(64 + Math.floor((i - 1) / 26));
-    //     const combinacion = letra + (j % 2 === 0 ? Math.ceil(j / 2) + 1 : Math.ceil(j / 2));
-    //     aisladoLetras.push(combinacion);
-    //   }
-    // }
 
     let contador = -1; // Para acceder al arreglo aisladoLetras en la posición deseada.
   
