@@ -4,9 +4,9 @@ const pgp=require('pg-promise')();
 const cn={
     host: 'localhost',
     port: '5432',
-    database: 'dump_2.16',
+    database: 'Dump_2.16',
     user:'postgres',
-    password:'Papucho135#',
+    password:'',
     allowExitOnIdle:true
 }
 
