@@ -357,7 +357,7 @@ const handleBtRegistroClick = async () => {
       <div className='user_spaciator'></div>
       
       <div className="user_container_general">
-        <div className="user_container_reg">
+        <div className="userinfo_container_reg">
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 " onChange={handleLugar_OChange}>
@@ -512,31 +512,31 @@ const handleBtRegistroClick = async () => {
             <div className="input-group mb-3">
               <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
               <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Regadera</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{shower}</span>
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(1)}><IoMdAddCircleOutline /></span>
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBathroom(0)}><IoMdRemoveCircleOutline /></span>
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Baño</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{bathroom}</span>
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(1)}><IoMdAddCircleOutline /></span>
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetBreakfast(0)}><IoMdRemoveCircleOutline /></span>
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Desayuno</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{breakfast}</span>
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(1)}><IoMdAddCircleOutline /></span>
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetMeal(0)}><IoMdRemoveCircleOutline /></span>
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Comida</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{meal}</span>
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(1)}><IoMdAddCircleOutline /></span>
               <span className="input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetDinner(0)}><IoMdRemoveCircleOutline /></span>
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Cena</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{dinner}</span>
             </div>
           </div>

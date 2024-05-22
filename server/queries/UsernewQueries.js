@@ -115,5 +115,16 @@ const getAllClientInfo = async(nombre_c, apellidos_c) => {
         throw error
     }
 }
+//Función para saber si el carnet ya existe
+const getcarnet = async(carnet) => {
+    try {
+        const carnetExist = await db.any(`SELECT CASE WHEN EXISTS (
+            SELECT 1 FROM paciente WHERE carnet = $1
+        ) THEN 'true' ELSE 'false' END AS carnetExist;;`, [carnet])
+        return carnetExist
+    } catch (error) {
+        throw error
+    }
+}
 
-module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica}
+module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet}

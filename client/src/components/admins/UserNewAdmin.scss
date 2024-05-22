@@ -1,17 +1,3 @@
-.user_container_reg{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin: 10px;
-    height: 100%;
-    width: 450px;
-    // margin-top: 40px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: left;
-}
-
 .user_space_reg{
     background-color: #f2f2f2;
     height: 62px;
@@ -106,7 +92,13 @@
 .user_span_notestext{
     background-color: #fafafa;
     font-size: larger;
+    // width: 50vh;
 }
+
+//TODO activar este CSS
+// .user_span_notesleft{
+//     width: 20vh;
+// }
 
 .user_services_register{
     margin-top: 2vh;
@@ -184,9 +176,34 @@
     width: 20% !important;
 }
 
-//UserNew
-.user_span_textsize{
-    min-width: 150px;
+.userinfo_container_reg{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10px;
+    height: 100%;
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
 }
+
+//UserNew
+.usernew_container_reg{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    height: 100%;
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+//Esta clase no se usa en ningún lado
+// .user_span_textsize{
+//     min-width: 150px;
+// }
 
 //TODO pasar userlist para aca y renombrar archivo a user.scss

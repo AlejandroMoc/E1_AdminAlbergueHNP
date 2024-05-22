@@ -247,7 +247,7 @@ const handleEditar = async () => {
       )}
 
       <div className="user_container_general">
-        <div className="container user_container_reg">
+        <div className="container userinfo_container_reg">
         {/* {!showNumbersSelect && (
           <div className="input-group mb-3 ">
             <span className="input-group-text userinfo_span_info" id="basic-addon1">Es Paciente</span>
@@ -298,7 +298,7 @@ const handleEditar = async () => {
           <div className="input-group mb-3 "></div>
         </div>
 
-        <div className="user_spacing_not user_container_reg">
+        <div className="user_spacing_not userinfo_container_reg">
           <div className="input-group mb-3 "></div>
           <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
@@ -327,12 +327,12 @@ const handleEditar = async () => {
           {showNumbersSelect === false && (
           <div className="user_services_register">
             <div className="input-group mb-3">
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Regadera</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
             </div>
             <div className="input-group mb-3">
               
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Baño</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio2}</span>
             </div>
           </div>
@@ -341,16 +341,16 @@ const handleEditar = async () => {
           <div>
             <div className="input-group mb-3">
               
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Desayuno</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio3}</span>
             </div>
             <div className="input-group mb-3">
               
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Comida</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio4}</span>
             </div>
             <div className="input-group mb-3">
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Cena</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
         </div>)}
