@@ -393,12 +393,13 @@ console.log("TipoCLIENTE"+tipoCliente.tipo_cliente)
 const showNumbersSelect = tipoCliente.tipo_cliente;
 
   return (
-    <div className='App-minheight'>
+    <div className='App-minheight user_justified'>
       {/*Espaciador*/}
       <div className='user_spaciator'></div>
       
       <div className="user_container_general">
-        <div className="userinfo_container_reg">
+        <div className="usernew_container_reg">
+        {/* <div className="userinfo_container_reg"> */}
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 " onChange={handleLugar_OChange}>
@@ -422,11 +423,11 @@ const showNumbersSelect = tipoCliente.tipo_cliente;
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
             <select className="form-select user_select_beds sm" aria-label="Default select example" onChange={handleId_areaCChange} value={id_area}>
-  <option value={0}>Seleccione un área</option>
-  {area.map((item) => (
-    <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
-  ))}
-</select>
+              <option value={0}>Seleccione un área</option>
+              {area.map((item) => (
+                <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
+              ))}
+            </select>
           </div>
           
           <div className="input-group mb-3 "></div>
@@ -634,25 +635,25 @@ const showNumbersSelect = tipoCliente.tipo_cliente;
                 </label>
               </div>
             <div className="input-group mb-3">
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Regadera</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Regadera</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
             </div>
             <div className="input-group mb-3">
               
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Baño</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Baño</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio2}</span>
             </div>
             <div className="input-group mb-3">
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Desayuno</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Desayuno</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio3}</span>
             </div>
             <div className="input-group mb-3">
               
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Comida</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Comida</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio4}</span>
             </div>
             <div className="input-group mb-3">
-              <span className="input-group-text user_span_notestext" id="basic-addon1">Cena</span>
+              <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Cena</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio5}</span>
             </div>
         </div>)}
