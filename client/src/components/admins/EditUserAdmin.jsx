@@ -553,3 +553,4 @@ const handleBtRegistroClick = async () => {
 }
 
 export default UserNewAdmin;
+//Intento para confirmar que estoy en mi rama
