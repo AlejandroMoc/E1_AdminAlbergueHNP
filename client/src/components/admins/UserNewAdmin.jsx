@@ -9,7 +9,7 @@ import {MdFaceUnlock} from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import MyToastContainer, {successToast, errorToast, errorCarnet, errorConstantes } from '../universal/MyToast';
 
 
 
@@ -159,24 +159,19 @@ console.log("id_cama")
             }, 1000);
            } catch (error) {
             console.error('Error al registrar el paciente:', error);
-            errorToast()
+            errorConstantes()
           }
         }
       } else {
         // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-        errorToast()
+        errorCarnet()
       }
     } else {
-     errorToast()
+     errorConstantes()
     }
   };
   
   
-  const errorToast1 = (message) => {
-    toast.error(message, {
-      position: toast.POSITION.TOP_RIGHT
-    });
-  };
 
   const [nombre_c, setNombre_C] = useState([]);
   const handleNombre_CChange = (event) => {
@@ -436,9 +431,10 @@ console.log("id_cama")
         <div className="usernew_container_reg">
 
           <h4>Información del Paciente</h4>
-          <div className="input-group mb-3 " onChange={handleLugar_OChange}>
+          <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" className="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+            <input type="text" className={`form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
+            {lugar_oError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
@@ -452,7 +448,8 @@ console.log("id_cama")
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="number" className="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet} onChange={handleCarnetChange} />
+            <input type="number" className={`form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
+            {carnetError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
