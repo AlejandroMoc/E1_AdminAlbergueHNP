@@ -1,5 +1,6 @@
 import React from 'react';
-import {useState } from 'react';
+import { useState } from 'react';
+import { Form } from 'react-bootstrap'; 
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
@@ -7,7 +8,18 @@ import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const SignUpAdmin = () => {
   const [username, setUsername] = useState("");
+  const usernameChange = (event) => {
+    setUsername(event.target.value)
+    setChangeErrorMessage('')
+  }
+
   const [password, setPassword] = useState("");
+  const passwordChange = (event) => {
+    setPassword(event.target.value)
+    setChangeErrorMessage('')
+  }
+
+  const [isAdmin, setIsAdmin] = useState(false);
 
   //Mensaje de error y éxito
   const [changeErrorMessage, setChangeErrorMessage] = useState('');
@@ -31,7 +43,8 @@ const SignUpAdmin = () => {
           },
           body: JSON.stringify({
             username,
-            password
+            password,
+            isAdmin
           })
         });
     
@@ -45,7 +58,7 @@ const SignUpAdmin = () => {
           // goTo("/");
         } else {
           console.log("Something went wrong");
-          setChangeErrorMessage('Credenciales incorrectas. Intente de nuevo.');
+          setChangeErrorMessage('Usuario Existente');
           errorToast()
           // const json = await response.json() as AuthResponseError;
           // const json: AuthResponseError = await response.json();
@@ -78,11 +91,21 @@ const SignUpAdmin = () => {
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
 
           <h3>Crear un administrador</h3>
-          <p className='universal_text_error'>{changeErrorMessage}</p>
-          <p className='universal_text_success'>{changeSuccessMessage}</p>
+          {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
-          <input value={username} onChange={(e)=>setUsername(e.target.value)} className="login_inputs" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input>
-          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input>
+          <input value={username} onChange={(e)=>usernameChange(e)} className="login_inputs" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input>
+          <input value={password} onChange={(e)=>passwordChange(e)} className="login_inputs" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input>
+          <p className='universal_text_error'>{changeErrorMessage}</p>
+          
+          <Form.Check
+            className='admin_checkbox'
+            type='checkbox'
+            id='isAdmin'
+            label='Administrador'
+            checked={isAdmin}
+            onChange={() => setIsAdmin(prevIsAdmin => !prevIsAdmin)}
+          />
+          
           <button className="login_inputs App_buttonaccept">Registrar</button>
       </form>
       <MyToastContainer />

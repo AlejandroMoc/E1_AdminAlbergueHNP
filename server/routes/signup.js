@@ -14,7 +14,8 @@ router.post('/', async(req, res) => {
     try{
         const nombre_u=req.body.username;
         const contrasena=req.body.password;
-        await getNewAdmin(nombre_u, contrasena);
+        const admin=req.body.isAdmin;
+        await getNewAdmin(nombre_u, contrasena, admin);
         res.status(200).json("User created successfully");
     } catch(error){
         console.error("Error creating user:", error);
