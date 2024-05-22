@@ -52,7 +52,7 @@ const createRefreshToken = async (existingUser) => {
 };
 
 //Funciones para SignUp y LogIn
-const getNewAdmin = async (nombre_u, contrasena) => {
+const getNewAdmin = async (nombre_u, contrasena, admin) => {
   try {
     const hashedPassword = await bcrypt.hash(contrasena, 10);
     const existingUser = await db.oneOrNone(
@@ -60,9 +60,9 @@ const getNewAdmin = async (nombre_u, contrasena) => {
       [nombre_u]
     );
     if (existingUser) {
-      throw new Error('El nombre de usuario ya está en uso.');
+      throw new Error('Usuario existente');
     }
-    await db.none(`INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,[nombre_u, hashedPassword]);
+    await db.none(`INSERT INTO usuario (nombre_u, contrasena, admin) VALUES ($1, $2, $3)`,[nombre_u, hashedPassword, admin]);
     console.log("Se insertó nuevo admin");
   } catch (error) {
     throw error;
