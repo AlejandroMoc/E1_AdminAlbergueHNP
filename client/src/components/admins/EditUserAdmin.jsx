@@ -8,7 +8,7 @@ import { MdFaceUnlock } from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import MyToastContainer, {successToast, errorToast, errorCarnet, errorConstantes } from '../universal/MyToast';
 //import {registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
 
@@ -155,43 +155,54 @@ console.log("id_cama")
 const [btRegistro, setBtRegistro] = useState(false);
 const handleBtRegistroClick = async () => {
   if (validateFields()) {
-    if (showNumbersSelect === false) {
-      try {
-        await fetch('http://localhost:8000/updateinfoEntrada', {
-          method: 'POST',
-          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        });
-        successToast()
-        // const goTo = useNavigate();
-        // goTo("/dashboard");
-       } catch (error) {
-        console.error('Error al registrar entrada unica:', error);
-        errorToast()
+    if (!carnetExist) { // Verificamos si el carnet no existe
+      if (showNumbersSelect === false) {
+        try {
+          await fetch('http://localhost:8000/updateinfoEntrada', {
+            method: 'POST',
+            body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8'
+            }
+          });
+          successToast()
+          // window.location.href = '/dashboard';
+          setTimeout(() => {
+            goTo("/dashboard");
+          }, 1000);
+         } catch (error) {
+          console.error('Error al registrar entrada unica:', error);
+          errorToast()
+        }
       }
-    }
-    else if(showNumbersSelect === true){
-      try {
-        await fetch('http://localhost:8000/updateinfocliente', {
-          method: 'POST',
-          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        });
-        successToast()
-        //window.location.href = '/';
-       } catch (error) {
-        console.error('Error al registrar el paciente:', error);
-        errorToast()
+      else if(showNumbersSelect === true){
+        try {
+          await fetch('http://localhost:8000/updateinfocliente', {
+            method: 'POST',
+            body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8'
+            }
+          });
+          successToast()
+          //window.location.href = '/';
+          setTimeout(() => {
+            goTo("/dashboard");
+          }, 1000);
+         } catch (error) {
+          console.error('Error al registrar el paciente:', error);
+          errorConstantes()
+        }
       }
+    } else {
+      // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+      errorCarnet()
     }
   } else {
-   errorToast()
+   errorConstantes()
   }
 };
+
 
   const [nombre_c, setNombre_C] = useState([]);
   const handleNombre_CChange = (event) => {
@@ -288,12 +299,43 @@ const handleBtRegistroClick = async () => {
   }
 
 
-  const [carnet, setCarnet] = useState('')
-  const handleCarnetChange = (event) => {
-    // console.log(event.target.value)
-    setCarnet(event.target.value)
-  }
+  const [carnet, setCarnet] = useState('');
+  const [carnetExist, setCarnetExist] = useState(null);
 
+  const handleCarnetChange = (event) => {
+    setCarnet(event.target.value);
+  };
+
+  useEffect(() => {
+    const obtenerEstadoCarnet = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/carnetExist/${carnet}`);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+          const carnetExist2 = data[0].carnetexist === 'true';
+          setCarnetExist(carnetExist2);
+          console.log("ESTADO DEL CARNET: ", carnetExist2);
+        } else {
+          setCarnetExist(false);
+          console.log("ESTADO DEL CARNET: FALSE");
+        }
+      } catch (error) {
+        console.error('Error al obtener el estado del carnet:', error);
+        setCarnetExist(false);
+      }
+    };
+
+    obtenerEstadoCarnet();
+  }, [carnet]);
+  
+  const handleRegister = () => {
+    // Aquí pondrías la lógica para registrar el carnet
+    // Por ahora, solo mostraremos un mensaje de éxito simulado
+    toast.success('Carnet registrado correctamente', {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  };
   const [notas_c, setNotas_C] = useState('')
   const handleNotas_CChange = (event) => {
     // console.log(event.target.value)
@@ -404,7 +446,8 @@ const showNumbersSelect = tipoCliente.tipo_cliente;
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 " onChange={handleLugar_OChange}>
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" className="form-control user_space_reg" placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" value={lugar_o}></input>
+            <input type="text" className={`form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
+            {lugar_oError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
@@ -418,7 +461,8 @@ const showNumbersSelect = tipoCliente.tipo_cliente;
           </div>
           <div className="input-group mb-3 " onChange={handleCarnetChange}>
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="number" className="form-control user_space_reg" placeholder="Número de Carnet" aria-label="Username" aria-describedby="basic-addon1" value={carnet}></input>
+            <input type="number" className={`form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
+            {carnetError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span>Área de Paciente: </span>
