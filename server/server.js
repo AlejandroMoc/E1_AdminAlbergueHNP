@@ -19,7 +19,7 @@ app.use("/changepass", require("./routes/changepass"));
 app.use("/user", authenticate, require("./routes/user"));
 
 const {infoUser} = require('./queries/SessionQueries.js')
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada, getcarnetEdit} = require('./queries/UsernewQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada, getcarnetEdit, getlDispBeds} = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
@@ -62,6 +62,15 @@ app.get('/alldispbeds', async(req, res) => {
     }
 });
 //Funciones para UserNew
+app.get('/zonabed/:id_cama', async(req, res) => {
+    try {
+        const zona = await getlDispBeds(req.params.id_cama);
+        res.json(zona);
+    } catch (error) {
+        console.error('Error fetching zona de cama:', error);
+        res.status(500).json({error: 'Internal server error' });
+    }
+})
 app.get('/carnetExistEdit/:carnet/:id_cliente', async(req, res) => {
     try {
         const areas = await getcarnetEdit(req.params.carnet, req.params.id_cliente);

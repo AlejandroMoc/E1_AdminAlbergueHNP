@@ -13,7 +13,8 @@ import MyToastContainer, {successToast, errorToast, errorCarnet, errorConstantes
 
 
 
-const UserNewAdmin = () => {
+const UserNewAdmin = (props) => {
+
   //Para pasar a dashboard
   const goTo = useNavigate();
 
@@ -35,20 +36,21 @@ const UserNewAdmin = () => {
     .then((adminInfo) => setAdminInfo(adminInfo))
     .catch((error) => console.error('Error fetching data:', error))
   }, [])
-
+  const [sexo, setSexo] = useState(null)
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
     fetch('http://localhost:8000/alldispbeds')
     .then((res) => res.json())
     .then((beds) => setBed(beds));
+    setId_CamaC(props.id_cama)
     if (sexo === true) {
       setIdZona(id_zona_hombres);
     } else {
       setIdZona(id_zona_mujeres);
     }
-  }, [])
-  
+  }, [sexo])
+
 
   const [area, setArea] = useState([{id_area: 0, nombre_a: ''}]) //PARA DROPDOWN DE AREA PACIENTE
   useEffect(() => {
@@ -225,12 +227,14 @@ console.log("id_cama")
 
   const [sexoUsuario, setSexoUsuario] = useState(null); // Inicializamos el sexo del usuario como null
 
-  const [sexo, setSexo] = useState(null)
+
   const handleSexoChange = (event) => {
     const sexoSeleccionado = event.target.value === 'true'; // Convertimos el valor del radio button a un booleano
     setSexoUsuario(sexoSeleccionado); // Actualizamos el estado con el sexo seleccionado
     setSexo(event.target.value)
+      console.log("PIZZA"+sexoSeleccionado);
   }
+
 
   const [nivel_se, setNivel_SE] = useState(0)
   const handleNivel_SEChange = (event) => {
@@ -329,7 +333,24 @@ console.log("id_cama")
     // console.log(event.target.value)
     setId_CamaC(event.target.value)
   }
+  /*
+  console.log("Dont cry"+id_cama)
+  {  const [huespedCliente, setHuespedCliente] = useState({id_zona:0})
+    if (id_cama === undefined){
+      console.log('Sin cama asignada')
+    } else{
+      console.log("cama asignada")
 
+      useEffect(() =>{
+      fetch('http://localhost:8000/zonabed/'+props.id_cama)
+      .then((res) => res.json())
+      .then((data) => {setHuespedCliente(data); 
+        setHuespedCliente(data);
+        console.log(data)});
+      
+    }, [props.id_cama])
+    }
+    console.log("ID CAMAfff"+huespedCliente.id_zona)}*/
 
   const [id_area, setId_areaC] = useState('')
   const handleId_areaCChange = (event) => {
@@ -470,25 +491,13 @@ console.log("id_cama")
           <span className="user_span_sociolevel" id="basic-addon1">¿El familiar es un paciente?</span>
           <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
             <div className="form-check">
-              <input
-                className="form-check-input universal_checkbox_HM"
-                type="radio"
-                name="pacient"
-                id="flexRadioDefaultNivelSoc"
-                value={true}
-              />
+              <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}/>
               <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefault1">
                 <span className="universal_text_HM">Si</span>
               </label>
             </div>
             <div className="form-check">
-              <input
-                className="form-check-input universal_checkbox_HM"
-                type="radio"
-                name="pacient"
-                id="flexRadioDefaultNivelSoc"
-                value={false}
-              />
+              <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}/>
               <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefault1">
                 <span className="universal_text_HM">No</span>
               </label>
@@ -580,7 +589,7 @@ console.log("id_cama")
           <div className="user_label_x2" onChange={handleId_CamaCChange}>
             <span>Número de Cama: </span>
             <select className="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected>X</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
+              <option selected>{id_cama}</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
               {bed.map((item, index) => {
                   if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
                       (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||

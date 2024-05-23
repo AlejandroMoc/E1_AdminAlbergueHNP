@@ -14,7 +14,17 @@ const getAllDispBeds = async() => {
         throw error
     }
 }
-
+//Función para obtener ids de cama libres
+const getlDispBeds = async(id_cama) => {
+    try {
+        const beds = await db.any(
+            `SELECT cama.id_zona
+            FROM cama WHERE id_cama =$1;`, [id_cama])
+        return beds
+    } catch (error) {
+        throw error
+    }
+}
 const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked) => {
     try {
         console.log("Registrando nuevo paciente:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked);
@@ -189,4 +199,4 @@ const getcarnetEdit = async(carnet, id_cliente) => {
     }
 }
 
-module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada, getcarnetEdit}
+module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada, getcarnetEdit, getlDispBeds}
