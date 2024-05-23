@@ -86,7 +86,52 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
     }
 }
 
+//FUNCION PARA ACTUALIZAR INFO DEL PACIENTE
+const updateInfocliente = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_cliente) => {
+    try {
+        console.log("Actualizando huesped:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_cliente);
+        await db.none(
+            `
 
+                UPDATE huesped SET id_cama = $11 Where id_cliente= $14;
+
+                UPDATE paciente SET carnet = $1,id_area = $2, nombre_p = $3, apellidos_p = $4
+                 WHERE carnet IN ( SELECT carnet FROM cliente WHERE id_cliente = $14);
+
+                UPDATE cliente SET id_usuario = $13, carnet = $1, nombre_c = $5, apellidos_c = $6, 
+                lugar_o = $7, notas_c = $8, sexo = $9, nivel_se = $10, paciente = $12, checked = true
+                WHERE id_cliente = $14;
+
+            `,
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario, id_cliente],
+            console.log("LISTO 1 X)")
+        );
+    } catch (error) {
+        throw error;
+    }
+}
+//FUNCION PARA ACTUALIZAR INFO DEL PACIENTE tipo entrada unica
+const updateInfoentrada = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, id_cliente) => {
+    try {
+        console.log("Actualizando entrada unica:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, id_cliente);
+        await db.none(
+            `
+
+                UPDATE paciente SET carnet = $1,id_area = $2, nombre_p = $3, apellidos_p = $4
+                 WHERE carnet IN ( SELECT carnet FROM cliente WHERE id_cliente = $13);
+
+                UPDATE cliente SET id_usuario = $12, carnet = $1, nombre_c = $5, apellidos_c = $6, 
+                lugar_o = $7, notas_c = $8, sexo = $9, nivel_se = $10, paciente = $11,checked = true
+                WHERE id_cliente = $13;
+
+            `,
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, id_usuario, id_cliente],
+            console.log("LISTO 1 X)")
+        );
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 
@@ -127,4 +172,4 @@ const getcarnet = async(carnet) => {
     }
 }
 
-module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet}
+module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada}
