@@ -252,7 +252,7 @@ console.log("id_cama")
       setNombre_C('');
       setApellidos_C('');
     }
-  }, [isPaciente]);
+  },  [nombre_p, apellidos_p, isPaciente]);
 
   const [id_cliente, setId_cliente] = useState(0)
   const handleId_clienteChange = (event) => {
@@ -469,19 +469,31 @@ console.log("id_cama")
           <h4>Información del Familiar</h4>
           <span className="user_span_sociolevel" id="basic-addon1">¿El familiar es un paciente?</span>
           <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
-              <div className="form-check">
-                <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true}></input>
-                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
-                  <span className="universal_text_HM">Si</span>
-                </label>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={false}></input>
-                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+            <div className="form-check">
+              <input
+                className="form-check-input universal_checkbox_HM"
+                type="radio"
+                name="pacient"
+                id="flexRadioDefaultNivelSoc"
+                value={true}
+              />
+              <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefault1">
+                <span className="universal_text_HM">Si</span>
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input universal_checkbox_HM"
+                type="radio"
+                name="pacient"
+                id="flexRadioDefaultNivelSoc"
+                value={false}
+              />
+              <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefault1">
                 <span className="universal_text_HM">No</span>
-                </label>
-              </div>
-          </div>    
+              </label>
+            </div>
+          </div>  
             <div className="input-group mb-3 ">
               <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
               <input type="text" className={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
