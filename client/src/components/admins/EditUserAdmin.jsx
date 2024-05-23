@@ -157,15 +157,14 @@ const handleBtRegistroClick = async () => {
   if (validateFields()) {
     if (showNumbersSelect === false) {
       try {
-        await fetch('http://localhost:8000/registerEntradaUnica', {
+        await fetch('http://localhost:8000/updateinfoEntrada', {
           method: 'POST',
-          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente}),
+          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
         });
         successToast()
-        window.location.href = '/dashboard';
         // const goTo = useNavigate();
         // goTo("/dashboard");
        } catch (error) {

@@ -19,7 +19,7 @@ app.use("/changepass", require("./routes/changepass"));
 app.use("/user", authenticate, require("./routes/user"));
 
 const {infoUser} = require('./queries/SessionQueries.js')
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente } = require('./queries/UsernewQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada} = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
@@ -130,15 +130,36 @@ app.post('/updateinfocliente', async(req, res) => {
         const nivel_se=req.body.nivel_se;
         const id_cama=req.body.id_cama;
         const paciente=req.body.paciente;
-        const checked=req.body.checked;
         const id_cliente=req.body.id_cliente;
         // console.log(apellidos_c)
-        const pacienteR = await updateInfocliente(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked, id_cliente);
+        const pacienteR = await updateInfocliente(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_cliente);
         res.json(pacienteR);
     } catch (error) {
         res.status(500).json({error: 'Internal server error' });
     }
 })  
+app.post('/updateinfoEntrada', async(req, res) => {
+    try {
+        const id_u = req.body.id_u
+        const carnet = req.body.carnet;
+        const id_area = req.body.id_area;
+        const nombre_p=req.body.nombre_p;
+        const apellidos_p=req.body.apellidos_p;
+        const nombre_c = req.body.nombre_c;
+        const apellidos_c = req.body.apellidos_c;
+        const lugar_o=req.body.lugar_o;
+        const notas_c=req.body.notas_c;
+        const sexo = req.body.sexo;
+        const nivel_se=req.body.nivel_se;
+        const paciente=req.body.paciente;
+        const id_cliente=req.body.id_cliente;
+        // console.log(apellidos_c)
+        const pacienteR = await updateInfoentrada(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, id_cliente);
+        res.json(pacienteR);
+    } catch (error) {
+        res.status(500).json({error: 'Internal server error' });
+    }
+})
 
 
 app.get('/allareas', async(req, res) => {
