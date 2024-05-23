@@ -86,8 +86,30 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
     }
 }
 
+//FUNCION PARA ACTUALIZAR INFO DEL PACIENTE
+const updateInfocliente = async (id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked, id_cliente) => {
+    try {
+        console.log("Registrando nuevo paciente:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked, id_cliente);
+        await db.none(
+            `
 
+                UPDATE huesped SET id_cama = $11 Where id_cliente= $15;
 
+                UPDATE paciente SET carnet = $1,id_area = $2, nombre_p = $3, apellidos_p = $4
+                 WHERE carnet IN ( SELECT carnet FROM cliente WHERE id_cliente = $15);
+
+                UPDATE cliente SET id_usuario = $13, carnet = $1, nombre_c = $5, apellidos_c = $6, 
+                lugar_o = $7, notas_c = $8, sexo = $9, nivel_se = $10, paciente = $12,checked = $14
+                WHERE id_cliente = $15;
+
+            `,
+            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario, checked, id_cliente],
+            console.log("LISTO 1 X)")
+        );
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 //Función para obtener todas las areas del HNP
@@ -127,4 +149,4 @@ const getcarnet = async(carnet) => {
     }
 }
 
-module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet}
+module.exports = {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente}

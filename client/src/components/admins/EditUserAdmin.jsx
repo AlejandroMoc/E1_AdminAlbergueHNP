@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState } from 'react';
 import {LuUser } from "react-icons/lu";
 import {FiHome } from "react-icons/fi";
-
+import {useAuth } from '../../auth/AuthProvider';
 import { MdFaceUnlock } from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
@@ -13,6 +13,7 @@ import MyToastContainer, {successToast, errorToast } from '../universal/MyToast'
 
 
 const UserNewAdmin = (props) => {
+  const id_u = useAuth().getUser().id_usuario
   //Fetch para jalar información desde info cliente
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
 
@@ -30,11 +31,16 @@ const UserNewAdmin = (props) => {
     setNotas_C(data.notas_c)
     setPaciente(data.paciente); 
     setSexo(data.sexo); 
+    setSexoUsuario(data.sexo);
     setNivel_SE(data.nivel_se);
+    setId_cliente(props.id_cliente);
     //setArea(data.id_area)
     console.log(data)});
 }, [props.id_cliente])
 console.log("FECHA Inicio: "+infoCliente.nombre_c)
+const [id_cliente, setId_cliente] = useState(0)
+console.log("TRISTEMENTE"+id_cliente)
+
 //FETCH PARA TIPO DE USUARIO "HUESPED"-----------------------------------------
 console.log("VERDADERO HUESPED");
 const [huespedCliente, setHuespedCliente] = useState({id_cama:0, fecha_i:0})
@@ -169,9 +175,9 @@ const handleBtRegistroClick = async () => {
     }
     else if(showNumbersSelect === true){
       try {
-        await fetch('http://localhost:8000/registerNewPatient', {
+        await fetch('http://localhost:8000/updateinfocliente', {
           method: 'POST',
-          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente}),
+          body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, id_u: id_u, id_cliente:id_cliente}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           }
@@ -237,6 +243,7 @@ const handleBtRegistroClick = async () => {
     console.log(nombrepString);
     setNombre_P(event.target.value);
     setNombre_P(nombrepString);
+    // if paciente = true hacer setnombre_c =
   }
 
   console.log(client)
@@ -274,12 +281,6 @@ const handleBtRegistroClick = async () => {
       setApellidos_C('');
     }
   }, [isPaciente]);
-
-  const [id_cliente, setId_cliente] = useState(0)
-  const handleId_clienteChange = (event) => {
-    // console.log(event.target.value)
-    setNivel_SE(event.target.value)
-  }
 
   const [lugar_o, setLugar_O] = useState('')
   const handleLugar_OChange = (event) => {
