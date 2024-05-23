@@ -30,6 +30,7 @@ const UserNewAdmin = (props) => {
     setId_areaC(data.id_area);
     setNotas_C(data.notas_c)
     setPaciente(data.paciente); 
+    setIsPaciente(data.paciente);
     setSexo(data.sexo); 
     setSexoUsuario(data.sexo);
     setNivel_SE(data.nivel_se);
@@ -290,7 +291,7 @@ const handleBtRegistroClick = async () => {
       setNombre_C('');
       setApellidos_C('');
     }
-  }, [isPaciente]);
+  },  [nombre_p, apellidos_p, isPaciente]);
 
   const [lugar_o, setLugar_O] = useState('')
   const handleLugar_OChange = (event) => {
@@ -309,7 +310,7 @@ const handleBtRegistroClick = async () => {
   useEffect(() => {
     const obtenerEstadoCarnet = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/carnetExist/${carnet}`);
+        const response = await fetch(`http://localhost:8000/carnetExistEdit/${carnet}/${id_cliente}`);
         const data = await response.json();
 
         if (data && data.length > 0) {

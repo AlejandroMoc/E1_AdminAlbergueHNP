@@ -19,7 +19,7 @@ app.use("/changepass", require("./routes/changepass"));
 app.use("/user", authenticate, require("./routes/user"));
 
 const {infoUser} = require('./queries/SessionQueries.js')
-const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada} = require('./queries/UsernewQueries.js');
+const {getAllDispBeds, getAllAreas, getAllClientInfo, registerNewPatient, registerEntradaUnica, getcarnet, updateInfocliente, updateInfoentrada, getcarnetEdit} = require('./queries/UsernewQueries.js');
 const {getAllClients, getClientsByFilter, banClient, unbanClient, deleteClient } = require('./queries/UserListQueries.js');
 const {getHuespedInfo, getclienteInfoD, getDeudaCliente, getServicioEU, getNewRegister, getTipoCliente, getVetado, getNotaVeto}= require('./queries/InfoUserQueries.js');
 const {getInfo, regServacio, regPago, regSalida, eliminarCama, anadCama} = require('./queries/RoomAdminQueries.js');
@@ -51,6 +51,7 @@ app.get('/carnetExist/:carnet', async(req, res) => {
     }
 })
 
+
 app.get('/alldispbeds', async(req, res) => {
     try {
         const beds = await getAllDispBeds();
@@ -60,7 +61,16 @@ app.get('/alldispbeds', async(req, res) => {
         res.status(500).json({error: 'Internal server error' });
     }
 });
-
+//Funciones para UserNew
+app.get('/carnetExistEdit/:carnet/:id_cliente', async(req, res) => {
+    try {
+        const areas = await getcarnetEdit(req.params.carnet, req.params.id_cliente);
+        res.json(areas);
+    } catch (error) {
+        console.error('Error fetching vetado CLIENTE:', error);
+        res.status(500).json({error: 'Internal server error' });
+    }
+})
 app.post('/registerNewPatient', async(req, res) => {
     try {
         const id_u = req.body.id_u
