@@ -30,31 +30,66 @@ const registerNewPatient = async (id_usuario, carnet, id_area, nombre_p, apellid
         console.log("Registrando nuevo paciente:", id_usuario, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked);
         await db.none(
             `
-            BEGIN TRANSACTION;
-            
-                INSERT INTO paciente (carnet, id_area, nombre_p, apellidos_p)
-                VALUES ($1, $2, $3, $4);
+            DO $$
+            DECLARE
+                id_toBe INT = 0;
+            BEGIN
+                BEGIN 
+                    INSERT INTO paciente(carnet, id_area, nombre_p, apellidos_p)
+                    VALUES ($1, $2, $3, $4)
+                    ON CONFLICT (carnet) DO UPDATE
+                    SET id_area = EXCLUDED.id_area;
                     
-
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
-                VALUES ( $13, $1, $5, $6, $7, $8, $9, $10, $12, $14);
-
-                DO $$
-                DECLARE
-                    ultimo_cliente VARCHAR(30);
-                BEGIN
-                    SELECT id_cliente INTO ultimo_cliente FROM cliente ORDER BY id_cliente DESC LIMIT 1;
-
-                INSERT INTO huesped (id_cliente, id_cama, fecha_i, fecha_s)
-                VALUES (CAST(ultimo_cliente AS INTEGER), $11, CURRENT_TIMESTAMP, NULL);
-
-                CALL genServCliente_procHuesped(CAST (ultimo_cliente AS INTEGER), ARRAY[[1, 1], [2, 1], [3, 1],[4, 1], [5, 1]]);
-                INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p)
-                VALUES (CAST(ultimo_cliente AS INTEGER), 'primer dia', -20, CURRENT_TIMESTAMP);
-                END $$;
-                COMMIT;
+                    INSERT INTO cliente(id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
+                    VALUES ($5, $1, $6, $7, $8, $9, $10, $11, $12, $13)
+                    ON CONFLICT (nombre_c, apellidos_c, lugar_o) DO UPDATE
+                    SET (id_usuario, carnet, notas_c, nivel_se, paciente, checked) =
+                    (EXCLUDED.id_usuario, EXCLUDED.carnet, EXCLUDED.notas_c, EXCLUDED.nivel_se, EXCLUDED.paciente, EXCLUDED.checked);
+                    
+                    SELECT id_cliente INTO id_toBe FROM cliente WHERE nombre_c = $6
+                        AND apellidos_c = $7
+                        AND lugar_o = $8;
+                    RAISE NOTICE 'ID %', id_toBe;
+                    
+                    CALL genServCliente_procHuesped(id_toBe, ARRAY[[1, 1], [2, 1], [3, 1],[4, 1], [5, 1]]);
+                    INSERT INTO pago(id_cliente, notas_p, monto_t, fecha_p)
+                    VALUES (id_toBe, 'primer dia', -20, CURRENT_TIMESTAMP);
+                    
+                    INSERT INTO huesped(id_cliente, id_cama, fecha_i, fecha_s)
+                    VALUES (id_toBe, $14, CURRENT_TIMESTAMP, NULL)
+                    ON CONFLICT (id_cliente) DO NOTHING;
+                    IF NOT FOUND
+                        THEN RAISE NOTICE 'HUESPED ACTIVO';
+                        ROLLBACK;
+                        RETURN;
+                    END IF;
+                    
+                    CASE
+                        WHEN EXISTS (SELECT 1 FROM vetado WHERE id_cliente = id_toBe)
+                            THEN BEGIN
+                                RAISE NOTICE 'CLIENTE VETADO';
+                                ROLLBACK;
+                                RETURN;
+                            END;
+                            ELSE
+                                RAISE NOTICE 'CLIENTE NO VETADO';
+                    END CASE;
+                    
+                    CASE
+                        WHEN EXISTS (SELECT 1 FROM paciente WHERE carnet = $1
+                            AND nombre_p = $3
+                            AND apellidos_p = $4)
+                            THEN RAISE NOTICE 'PACIENTE COINCIDE';
+                            ELSE BEGIN
+                                RAISE NOTICE 'PACIENTE NO COINCIDE';
+                                ROLLBACK;
+                                RETURN;
+                            END;
+                    END CASE;
+                END;
+            END $$
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, id_usuario, checked],
+            [carnet, id_area, nombre_p, apellidos_p, id_usuario, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked, id_cama],
             console.log("LISTO 1 X)")
         );
     } catch (error) {
@@ -68,27 +103,68 @@ const registerEntradaUnica = async (id_usuario, carnet, id_area, nombre_p, apell
         console.log("Registrando nuevo paciente:", carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, checked, cantidad, costo);
         await db.none(
             `
-            BEGIN TRANSACTION;
-                INSERT INTO paciente (carnet, id_area, nombre_p, apellidos_p)
-                VALUES ($1, $2, $3, $4);
+            DO $$
+            DECLARE
+                id_toBe INT = 0;
+            BEGIN
+                BEGIN 
+                    INSERT INTO paciente(carnet, id_area, nombre_p, apellidos_p)
+                    VALUES ($1, $2, $3, $4)
+                    ON CONFLICT (carnet) DO UPDATE
+                    SET id_area = EXCLUDED.id_area;
                     
-                INSERT INTO cliente (id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
-                VALUES ($17, $1, $5, $6, $7, $8, $9, $10, $16, $18);
+                    INSERT INTO cliente(id_usuario, carnet, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked)
+                    VALUES ($5, $1, $6, $7, $8, $9, $10, $11, $12, $13)
+                    ON CONFLICT (nombre_c, apellidos_c, lugar_o) DO UPDATE
+                    SET (id_usuario, carnet, notas_c, nivel_se, paciente, checked) =
+                    (EXCLUDED.id_usuario, EXCLUDED.carnet, EXCLUDED.notas_c, EXCLUDED.nivel_se, EXCLUDED.paciente, EXCLUDED.checked);
+                    
+                    SELECT id_cliente INTO id_toBe FROM cliente WHERE nombre_c = $6
+                        AND apellidos_c = $7
+                        AND lugar_o = $8;
+                    RAISE NOTICE 'ID %', id_toBe;
+                    
+                    CALL genServCliente_proc(id_toBe, ARRAY[[1, $14], [2, $15], [3, $16],[4, $17], [5, $18]]);
+                    INSERT INTO pago(id_cliente, notas_p, monto_t, fecha_p)
+                    VALUES (id_toBe, 'Cantidad total de servicio Entrada Única: $19', $20, CURRENT_TIMESTAMP);
 
-                DO $$
-                DECLARE
-                    ultimo_cliente VARCHAR(30);
-                BEGIN
-                    SELECT id_cliente INTO ultimo_cliente FROM cliente ORDER BY id_cliente DESC LIMIT 1;
-
-                    -- Llamar al procedimiento almacenado CrearServiciosCliente
-                    CALL genServCliente_proc(CAST (ultimo_cliente AS INTEGER), ARRAY[[1, $11], [2, $12], [3, $13],[4, $14], [5, $15]]);
-                    INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p)
-                    VALUES (CAST(ultimo_cliente AS INTEGER), 'Cantidad total de servicio Entrada Única: $19', $20, CURRENT_TIMESTAMP);
-                END $$;
-                COMMIT;
+                    CASE
+                        WHEN EXISTS (SELECT 1 FROM huesped WHERE id_cliente = id_toBe)
+                            THEN BEGIN
+                                RAISE NOTICE 'HUESPED ACTIVO';
+                                ROLLBACK;
+                                RETURN;
+                            END;
+                            ELSE
+                                RAISE NOTICE 'NO ES HUESPED ACTIVO';
+                    END CASE;
+                    
+                    CASE
+                        WHEN EXISTS (SELECT 1 FROM vetado WHERE id_cliente = id_toBe)
+                            THEN BEGIN
+                                RAISE NOTICE 'CLIENTE VETADO';
+                                ROLLBACK;
+                                RETURN;
+                            END;
+                            ELSE
+                                RAISE NOTICE 'CLIENTE NO VETADO';
+                    END CASE;
+                    
+                    CASE
+                        WHEN EXISTS (SELECT 1 FROM paciente WHERE carnet = $1
+                            AND nombre_p = $3
+                            AND apellidos_p = $4)
+                            THEN RAISE NOTICE 'PACIENTE COINCIDE';
+                            ELSE BEGIN
+                                RAISE NOTICE 'PACIENTE NO COINCIDE';
+                                ROLLBACK;
+                                RETURN;
+                            END;
+                    END CASE;
+                END;
+            END $$
             `,
-            [carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, shower, bathroom, breakfast, meal, dinner, paciente, id_usuario, checked, cantidad, costo],
+            [carnet, id_area, nombre_p, apellidos_p, id_usuario, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, paciente, checked, shower, bathroom, breakfast, meal, dinner, cantidad, costo],
             console.log("LISTO 2 ;()")
         );
     } catch (error) {
