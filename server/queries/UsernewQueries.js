@@ -17,10 +17,9 @@ const getAllDispBeds = async() => {
 //Función para obtener ids de cama libres
 const getlDispBeds = async(id_cama) => {
     try {
-        const beds = await db.any(
-            `SELECT cama.id_zona
-            FROM cama WHERE id_cama =$1;`, [id_cama])
-        return beds
+        const beds2 = await db.any(
+            `SELECT id_zona FROM cama WHERE id_cama =$1;`, [id_cama])
+        return beds2[0]
     } catch (error) {
         throw error
     }
