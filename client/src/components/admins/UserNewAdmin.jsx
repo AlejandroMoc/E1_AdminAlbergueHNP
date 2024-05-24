@@ -444,32 +444,32 @@ console.log("id_cama")
   
     
   return (
-    <div className='App-minheight'>
+    <div className='App-minheight user_justified'>
       {/*Espaciador*/}
       <div className='user_spaciator'></div>
       
       <div className="user_container_general">
-        <div className="usernew_container_reg">
+        <div className="container user_container_column">
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" className={`form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
             {lugar_oError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
-            <input type="text" className={`form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
             {nombre_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
-            <input type="text" className={`form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1"  onChange={handleApellidos_PChange} value={apellidos_p}></input>
             {apellidos_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
-            <input type="number" className={`form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
+            <input type="number" className={`userinfo_span_info form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
             {carnetError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
@@ -505,12 +505,12 @@ console.log("id_cama")
           </div>  
             <div className="input-group mb-3 ">
               <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" className={`form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
+              <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
               {nombre_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
             <div className="input-group mb-3 ">
               <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-              <input type="text" className={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
+              <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
               {apellidos_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
            <div className="input-group mb-3" onChange={handleSexoChange}>
@@ -565,7 +565,9 @@ console.log("id_cama")
             </div>
           </div>
         </div>
-        <div className="user_space_not">
+
+        <div className="user_space_not user_container_column">
+          <div className="input-group mb-3 "></div>
           <div className="mb-3" onChange={handleNotas_CChange}>
             <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
           </div>
@@ -586,7 +588,7 @@ console.log("id_cama")
             </div>
           </div>
           {showBedNumber && (
-          <div className="user_label_x2" onChange={handleId_CamaCChange}>
+          <div className="user_label_x" onChange={handleId_CamaCChange}>
             <span>Número de Cama: </span>
             <select className="form-select user_select_beds sm" aria-label="Default select example">
               <option selected>{id_cama}</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
@@ -609,7 +611,7 @@ console.log("id_cama")
           </div>
           )}
           {showServices && (
-          <div className="user_services_register">
+          <div>
             <div className="input-group mb-3">
               <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(1)}><IoMdAddCircleOutline /></span>
               <span className="button-serv input-group-text user_span_notesicon" id="basic-addon1" onClick={() => handleSetShower(0)}><IoMdRemoveCircleOutline /></span>

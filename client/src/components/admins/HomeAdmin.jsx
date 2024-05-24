@@ -8,7 +8,7 @@ import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
 import {Link} from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
+import {useAuth} from '../../auth/AuthProvider';
 
 const HomeAdmin = () => {
 

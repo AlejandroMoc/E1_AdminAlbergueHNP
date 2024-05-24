@@ -1,7 +1,6 @@
 TODO falta unificar class a className en "camas". Ya nada debería romperse
 TODO falta unificar font-sizes (probablemente a esos ya predeterminados de small, medium y así)
-TODO ver si ponerle puntos a todas las ALERTAS
-
+TODO cambiar widths a % (parece escalarse mejor)
 
 ##Reestructurada página de inicio de sesión.
 

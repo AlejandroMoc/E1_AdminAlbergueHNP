@@ -92,13 +92,15 @@ const ProfilePasswordAdmin = () => {
         <h1>{auth.getUser()?.nombre_u || "Admin"}</h1>
         <p className= 'universal_header_text' to="/"><IoKey/>Cambiar contraseña</p>
 
-        {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
+
 
         {/*Formato de cambiar contraseña*/}
         <p><input value={actual_password} onChange={(e)=>apChange(e)} type="password" id="oldpass" name="oldpassword" minLength="8" maxLength="16" required placeholder="Contraseña actual" /></p>
         <p><input value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
         <p><input value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
+        
         <p className='universal_text_error'>{changeErrorMessage}</p>
+        {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Link to="/profile"><p><button className="App_buttoncancel">Cancelar</button></p></Link>
         <p><button className="App_buttonaccept">Cambiar contraseña</button></p>

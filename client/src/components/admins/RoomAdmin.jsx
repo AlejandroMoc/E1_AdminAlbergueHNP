@@ -105,7 +105,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       }
       })
       .then((response) => {
-        if (response.ok) {          
+        if (response.ok) {
           successToast()
         }
       })
@@ -302,7 +302,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
     if (cama_UE_EliminarCama !== 0) {
       fetch('http://localhost:8000/beds/eliminarCama', {
         method: 'POST',
-        body: JSON.stringify({ id_cama: cama_UE_EliminarCama }),
+        body: JSON.stringify({id_cama: cama_UE_EliminarCama }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
@@ -411,7 +411,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
       <Menu.Divider />
 
-      <Link to="/usernew" className="rooms_text_bedsnot">
+      <Link to={"/usernew/" +numCama} className="rooms_text_bedsnot">
         <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
           <span className="rooms_text_infosubtitles">Añadir Huésped</span>
         </Menu.Item>
@@ -434,7 +434,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   return (
     <>
       <Dropdown overlay={color == '#e6e6e6' ? menuDisponibles : menuOcupadas } trigger={['contextMenu']}>
-        <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+idCliente} className="rooms_text_bedsnot">
+        <Link to={color == '#e6e6e6' ? '/usernew/' + numCama: '/infouser/'+idCliente} className="rooms_text_bedsnot">
           <div className="card rooms_spacing_beds" style={{backgroundColor: color }}>
             <img src={iconocama} className="card-img-top" alt="..." />
             <p className="rooms_text_beds">{numCama}</p>
@@ -590,7 +590,7 @@ const RoomAdmin = () => {
     return(
       <div className="container rooms_container">
         {infoZona.length && (
-          infoZona.map((item) => { 
+          infoZona.map((item) => {
             if(item.id_cliente != null){
               contador = contador +1;
               return(
