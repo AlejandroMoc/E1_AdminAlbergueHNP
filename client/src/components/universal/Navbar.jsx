@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import "./Navbar.scss";
 import {useAuth } from '../../auth/AuthProvider';
 import {Link} from "react-router-dom";
