@@ -163,7 +163,7 @@ console.log("id_cama")
   const [btRegistro, setBtRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
-      if (!carnetExist) { // Verificamos si el carnet no existe
+      // if (!carnetExist) { // Verificamos si el carnet no existe
         if (showServices) {
           try {
             await fetch('http://localhost:8000/registerEntradaUnica', {
@@ -202,10 +202,10 @@ console.log("id_cama")
             errorConstantes()
           }
         }
-      } else {
-        // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-        errorCarnet()
-      }
+      // } else {
+      //   // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+      //   errorCarnet()
+      // }
     } else {
      errorConstantes()
     }
