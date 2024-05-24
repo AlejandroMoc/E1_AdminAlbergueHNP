@@ -411,7 +411,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
       <Menu.Divider />
 
-      <Link to="/usernew" className="rooms_text_bedsnot">
+      <Link to={"/usernew/" +numCama} className="rooms_text_bedsnot">
         <Menu.Item key="eliminarUsuario" icon={<LuUserPlus size="20px" />}>
           <span className="rooms_text_infosubtitles">Añadir Huésped</span>
         </Menu.Item>
@@ -434,7 +434,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   return (
     <>
       <Dropdown overlay={color == '#e6e6e6' ? menuDisponibles : menuOcupadas } trigger={['contextMenu']}>
-        <Link to={color == '#e6e6e6' ? '/usernew' : '/infouser/'+idCliente} className="rooms_text_bedsnot">
+        <Link to={color == '#e6e6e6' ? '/usernew/' + numCama: '/infouser/'+idCliente} className="rooms_text_bedsnot">
           <div className="card rooms_spacing_beds" style={{backgroundColor: color }}>
             <img src={iconocama} className="card-img-top" alt="..." />
             <p className="rooms_text_beds">{numCama}</p>
