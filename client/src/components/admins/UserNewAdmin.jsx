@@ -23,43 +23,6 @@ const UserNewAdmin = (props) => {
   const [adminInfo, setAdminInfo] = useState([])
   // console.log(id_u)
 
-  const [id_cama, setId_CamaC] = useState('')
-  const [sexo, setSexo] = useState(null)
-  const [zonaCama, setzonaCama] = useState({ id_zona: 0 });
-  const [sexoUsuario, setSexoUsuario] = useState(null);
-
-  const handleId_CamaCChange = (event) => {
-    // console.log(event.target.value)
-    setId_CamaC(event.target.value)
-  }
-  console.log("Dont cry"+id_cama)
-
-  //FETCH PARA ZONA DE CAMA-----------------------------------------
-console.log("ZOOONNNNAAAA");
-useEffect(() =>{
-  fetch('http://localhost:8000/zonabed/'+id_cama)
-  .then((res) => res.json())
-  .then((data) => {setzonaCama(data); 
-    setzonaCama(data);
-    console.log(data)});
-  
-}, [id_cama])
-console.log("ID zona"+zonaCama.id_zona)
-useEffect(() => {
-  if (zonaCama.id_zona === 1) {
-    setSexoUsuario(false); // Mujer
-    setSexo(false);
-  } else if (zonaCama.id_zona === 2) {
-    setSexoUsuario(true); // Hombre
-    setSexo(true);
-  } else {
-    // En caso de cualquier otro valor, establecer valores predeterminados
-    setSexoUsuario(null);
-    setSexo(null);
-  }
-}, [zonaCama.id_zona]);
-
-
   //Llamada a la función para información de usuario
   useEffect(() => {
     fetch('http://localhost:8000/infouser', {
@@ -73,7 +36,7 @@ useEffect(() => {
     .then((adminInfo) => setAdminInfo(adminInfo))
     .catch((error) => console.error('Error fetching data:', error))
   }, [])
-
+  const [sexo, setSexo] = useState(null)
 console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
@@ -87,7 +50,6 @@ console.log("id_cama")
       setIdZona(id_zona_mujeres);
     }
   }, [sexo])
- console.log("Dani"+sexo)
 
 
   const [area, setArea] = useState([{id_area: 0, nombre_a: ''}]) //PARA DROPDOWN DE AREA PACIENTE
@@ -163,7 +125,7 @@ console.log("id_cama")
   const [btRegistro, setBtRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
-      // if (!carnetExist) { // Verificamos si el carnet no existe
+      if (!carnetExist) { // Verificamos si el carnet no existe
         if (showServices) {
           try {
             await fetch('http://localhost:8000/registerEntradaUnica', {
@@ -202,10 +164,10 @@ console.log("id_cama")
             errorConstantes()
           }
         }
-      // } else {
-      //   // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-      //   errorCarnet()
-      // }
+      } else {
+        // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+        errorCarnet()
+      }
     } else {
      errorConstantes()
     }
@@ -263,12 +225,14 @@ console.log("id_cama")
   console.log(client)
 
 
+  const [sexoUsuario, setSexoUsuario] = useState(null); // Inicializamos el sexo del usuario como null
+
+
   const handleSexoChange = (event) => {
     const sexoSeleccionado = event.target.value === 'true'; // Convertimos el valor del radio button a un booleano
     setSexoUsuario(sexoSeleccionado); // Actualizamos el estado con el sexo seleccionado
     setSexo(event.target.value)
-    const selectedSexo = event.target.value === 'true';
-    setSexo(selectedSexo);
+      console.log("PIZZA"+sexoSeleccionado);
   }
 
 
@@ -362,6 +326,31 @@ console.log("id_cama")
     setTipoCliente(event.target.value);
   };
 
+
+  
+  const [id_cama, setId_CamaC] = useState('')
+  const handleId_CamaCChange = (event) => {
+    // console.log(event.target.value)
+    setId_CamaC(event.target.value)
+  }
+  /*
+  console.log("Dont cry"+id_cama)
+  {  const [huespedCliente, setHuespedCliente] = useState({id_zona:0})
+    if (id_cama === undefined){
+      console.log('Sin cama asignada')
+    } else{
+      console.log("cama asignada")
+
+      useEffect(() =>{
+      fetch('http://localhost:8000/zonabed/'+props.id_cama)
+      .then((res) => res.json())
+      .then((data) => {setHuespedCliente(data); 
+        setHuespedCliente(data);
+        console.log(data)});
+      
+    }, [props.id_cama])
+    }
+    console.log("ID CAMAfff"+huespedCliente.id_zona)}*/
 
   const [id_area, setId_areaC] = useState('')
   const handleId_areaCChange = (event) => {
@@ -461,6 +450,7 @@ console.log("id_cama")
       
       <div className="user_container_general">
         <div className="usernew_container_reg">
+
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
@@ -523,36 +513,22 @@ console.log("id_cama")
               <input type="text" className={`form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
               {apellidos_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
             </div>
-            <div className="input-group mb-3" onChange={handleSexoChange}>
-  <div className="user_div_radio">
-    <div className="form-check">
-      <input
-        className="form-check-input universal_checkbox_HM"
-        type="radio"
-        name="sexo"
-        id="flexRadioDefaultSexoH"
-        value={true}
-        checked={sexoUsuario === true}
-      />
-      <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefaultSexoH">
-        <span className="universal_text_HM">Hombre</span>
-      </label>
-    </div>
-    <div className="form-check">
-      <input
-        className="form-check-input universal_checkbox_HM"
-        type="radio"
-        name="sexo"
-        id="flexRadioDefaultSexoM"
-        value={false}
-        checked={sexoUsuario === false}
-      />
-      <label className="form-check-label universal_label_radio" htmlFor="flexRadioDefaultSexoM">
-        <span className="universal_text_HM">Mujer</span>
-      </label>
-    </div>
-  </div>
-</div>
+           <div className="input-group mb-3" onChange={handleSexoChange}>
+              <div className="user_div_radio">
+                <div className="form-check">
+                  <input className="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={true}></input>
+                  <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Hombre</span>
+                  </label>
+                </div>
+              <div className="form-check">
+                <input className="form-check-input universal_checkbox_HM" type="radio" name="sexo" id="flexRadioDefaultSexo" value={false}></input>
+                <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
+                  <span className="universal_text_HM">Mujer</span>
+                </label>
+              </div>
+            </div>
+          </div>
           <span className="user_span_sociolevel" id="basic-addon1">Nivel Socioeconómico</span>
           <div className="input-group mb-3" onChange={handleNivel_SEChange}>
             <div className="user_div_radio">
@@ -612,26 +588,23 @@ console.log("id_cama")
           {showBedNumber && (
           <div className="user_label_x2" onChange={handleId_CamaCChange}>
             <span>Número de Cama: </span>
-            <select className="form-select user_select_beds sm" aria-label="Default select example" value={id_cama} onChange={handleId_CamaCChange}>
-              <option disabled value="">X</option>
+            <select className="form-select user_select_beds sm" aria-label="Default select example">
+              <option selected>{id_cama}</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
               {bed.map((item, index) => {
-              if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
-                  (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
-                  item.id_zona === id_zona_vetados) {
-                if ((sexoUsuario === true && item.id_cama !== id_cama) || (sexoUsuario === false && item.id_cama !== id_cama)) {
-                  if (item.id_zona === id_zona_vetados) {
-                    contador++;
-                    return <option key={item.id_cama} value={item.id_cama}>{aisladoLetras[contador]}</option>;
-                  } else {
-                    return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
+                  if ((sexoUsuario === true && item.id_zona === id_zona_hombres) || 
+                      (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
+                      item.id_zona === id_zona_vetados) {
+                    if (item.id_zona === id_zona_vetados) {
+                      contador++;
+                      return <option key={item.id_cama} value={item.id_cama}>{aisladoLetras[contador]}</option>;
+                    } else {
+                      return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
+                    }
                   }
-                } else {
-                  return null; // Evita que se muestren camas no deseadas
-                }
-              }
-              return null; 
-            })}
-          </select>
+                  return null; 
+              })}
+
+            </select>
 
           </div>
           )}
