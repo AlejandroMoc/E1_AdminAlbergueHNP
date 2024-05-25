@@ -124,6 +124,7 @@ console.log("id_cama")
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
   const [id_areaError, setId_areaCError] = useState(false);
+  const [generalError, setGeneralError] = useState('')
 
   
   const validateFields = () => {
@@ -172,12 +173,24 @@ console.log("id_cama")
               headers: {
                 'Content-type': 'application/json; charset=UTF-8'
               }
+            })
+            .then((res) => res.json())
+            .then((response) => {
+              console.log(response)
+              if (response.registervisitante_func) {
+                successToast()
+                setTimeout(() => {
+                  goTo("/dashboard");
+                }, 1000);
+              }
+              else {
+                errorToast()
+                setGeneralError(response.error)
+              }
+            })
+            .catch(() => {
+              errorToast()
             });
-            successToast()
-            // window.location.href = '/dashboard';
-            setTimeout(() => {
-              goTo("/dashboard");
-            }, 1000);
            } catch (error) {
             console.error('Error al registrar entrada unica:', error);
             errorToast()
@@ -191,15 +204,26 @@ console.log("id_cama")
               headers: {
                 'Content-type': 'application/json; charset=UTF-8'
               }
+            })
+            .then((res) => res.json())
+            .then((response) => {
+              console.log(response)
+              if (response.registerhuesped_func) {
+                successToast()
+                setTimeout(() => {
+                  goTo("/dashboard");
+                }, 1000);
+              }
+              else {
+                errorToast()
+                setGeneralError(response.error)
+              }
+            })
+            .catch(() => {
+              errorToast()
             });
-            successToast()
-            //window.location.href = '/';
-            setTimeout(() => {
-              goTo("/dashboard");
-            }, 1000);
-           } catch (error) {
-            console.error('Error al registrar el paciente:', error);
-            errorConstantes()
+          } catch (error) {
+            errorToast()
           }
         }
       // } else {
@@ -207,7 +231,8 @@ console.log("id_cama")
       //   errorCarnet()
       // }
     } else {
-     errorConstantes()
+     errorToast()
+     setGeneralError('Favor de llenar los campos faltantes')
     }
   };
   
@@ -672,6 +697,9 @@ console.log("id_cama")
         <button type="button" className={`user_button_register App_buttonaccept ${btRegistro ? 'activo' : ''}`} onClick={handleBtRegistroClick}>
           {btRegistro ? 'Desactivar' : 'Registrar'}
         </button>
+        <div className='universal_text_error'>
+          {generalError}
+        </div>
 
         </div>
       </div>

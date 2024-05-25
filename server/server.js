@@ -100,7 +100,8 @@ app.post('/registerNewPatient', async(req, res) => {
         const pacienteR = await registerNewPatient(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se, id_cama, paciente, checked);
         res.json(pacienteR);
     } catch (error) {
-        res.status(500).json({error: 'Internal server error' });
+        console.log(error.hint)
+        res.status(500).json({ error: error.hint});
     }
 })  
 
@@ -130,7 +131,8 @@ app.post('/registerEntradaUnica', async(req, res) => {
         const pacienteU = await registerEntradaUnica(id_u, carnet, id_area, nombre_p, apellidos_p, nombre_c, apellidos_c, lugar_o, notas_c, sexo, nivel_se,shower, bathroom, breakfast, meal, dinner, paciente, checked, cantidad, costo);
         res.json(pacienteU);
     } catch (error) {
-        res.status(500).json({error: 'Internal server error' });
+        console.log(error.hint)
+        res.status(500).json({ error: error.hint});
     }
 })  
 
