@@ -1,209 +1,190 @@
-.user_space_reg{
-    background-color: #f2f2f2;
-    height: 62px;
+.user_space_reg {
+  background-color: #f2f2f2;
+  height: 62px;
 }
 
-.user_span_space_icon{
-    // background-color: #fafafa;
-    font-size: xx-large;
-    // align-content: baseline;
-    // text-align: center;
-    min-width: 8vh;
-    width: 8vh;
-    // width: 8vh;
-    // margin: 0;
+.user_span_space_icon {
+  // background-color: #fafafa;
+  font-size: xx-large;
+  // align-content: baseline;
+  // text-align: center;
+  // min-width: 8vh;
+  //95%-85%
+  width: 15%;
+  // width: 8vh;
+  // margin: 0;
 }
 
-.user_span_sociolevel{
-    font-size: larger;
-    margin-bottom: 15px;
+.user_span_sociolevel {
+  font-size: larger;
+  margin-bottom: 15px;
 }
 
-.user_div_radio{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    //align-items: center;
-    justify-content: left;
-    //background-color: #d84949;
-    width: 100%;
-    height: 100%;
+.user_div_radio {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  //align-items: center;
+  justify-content: left;
+  //background-color: #d84949;
+  width: 100%;
+  height: 100%;
 }
 
-.user_input_notas{
-    border: solid 1px black;
-    background-color: #fafafa;
-    height: 100px;
-    width: 450px;
-    padding-top: 10px;
+.user_input_notas {
+  border: solid 1px black;
+  background-color: #fafafa;
+  height: 100px;
+  width: 100%;
+  padding-top: 10px;
 }
 
-.user_space_not{
-    margin-top: 40px;
-    //background-color: #d84949;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 40px;
+.user_space_not {
+  margin-top: 40px;
+  //background-color: #d84949;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
-.user_label_x{
-    text-align: left;
-    font-size: larger;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
+.user_label_x {
+  text-align: left;
+  font-size: larger;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 40%;
 }
 
-.user_label_x2{
-    text-align: left;
-    font-size: larger;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 40%;
+.user_select_beds {
+  // width: 60%;
+  font-size: medium;
+  border: 1px solid #ccc;
+  border-radius: 1vhpx;
+  background-color: #f2f2f2;
+  cursor: pointer;
 }
 
-.user_select_beds{
-    width: 60%;
-    font-size: medium;
-    border: 1px solid #ccc;
-    border-radius: 1vhpx;
-    background-color: #f2f2f2;
-    cursor: pointer;
+.user_container_general {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px 150px;
 }
 
-.user_container_general{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px 150px;
+.user_span_notesicon {
+  font-size: larger;
 }
 
-.user_span_notesicon{
-    font-size: larger;
-}
-
-.user_span_notestext{
-    background-color: #fafafa;
-    font-size: larger;
-    // width: 50vh;
+.user_span_notestext {
+  background-color: #fafafa;
+  font-size: larger;
+  // width: 50vh;
 }
 
 //TODO activar este CSS
-.user_span_notesleft{
-    width: 20vh;
+.user_span_notesleft {
+  width: 40%;
 }
 
-.user_services_register{
-    margin-top: 2vh;
+.user_button_register {
+  align-self: flex-end;
 }
 
-.user_button_register{
-    align-self: flex-end;
+.user_spaciator {
+  height: 5vh;
 }
 
-.user_spaciator{
-    height:5vh;
+.user_container_column {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 10px;
+  height: 100%;
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
 }
 
-// .user_center_number{
-//     text-align: center;
-//     // color:red;
-// }
+.user_container_row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  height: 100%;
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.user_center_number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 //InfoUser
-.user_justified{
-    text-align: justify;
-    // margin-left: 6vh;
+.user_justified {
+  text-align: justify;
+  // margin-left: 6vh;
 }
 
-.userinfo_position_buttonedit{
-    // position: absolute;
-    max-width: 25vh;
-    // margin-left: 32vh;
-    margin-top: 2vh;
-    margin-left: 4vh;
-    margin-bottom: 2vh;
+.userinfo_position_buttonedit {
+  // position: absolute;
+  //TODO cambiar width de botones a %
+  // width: 5%;
+  // margin-left: 32vh;
+  // margin-top: 2vh;
+  margin-left: 4vh;
+  margin-bottom: 2vh;
 }
 
-.userinfo_span_info{
-    height: 62px;
-    font-size: larger;
-    width: 85%;
+.userinfo_span_info {
+  height: 62px;
+  font-size: larger;
+  width: 85%;
 }
 
-.userinfo_span_baninfo{
-    height: 62px;
-    color: red;
-    width: 85%;
+.userinfo_span_baninfo {
+  color: red;
 }
 
-.userinfo_adjust_debt{
-    width: 65%;
-    // width: 25%;
+.userinfo_adjust_debt {
+  width: 65%;
 }
 
-.userinfo_adjust_debt_input{
-    width: 20%;
+.userinfo_adjust_debt_input {
+  width: 20%;
 }
 
-.userinfo_button_ban{
-    margin-top: 10%;
-    margin-left: 50%;
-    background-color: #c2c2c2;
+.userinfo_button_ban {
+  margin-top: 10%;
+  margin-left: 50%;
+  background-color: #c2c2c2;
 }
 
-.userinfo_button_ban:hover{
-    background-color: #9d9d9d;
+.userinfo_button_ban:hover {
+  background-color: #9d9d9d;
 }
 
 .userinfo_button_edit {
-    position: absolute;
-    color: #1d4e63;
-    top: 10px;
-    left: 45px;
-    width: 7% !important;
+  position: absolute;
+  color: #1d4e63;
+  top: 10px;
+  left: 45px;
+  width: 7% !important;
 }
 
-.userinfo_size_deposit{
-    height:  61px!important;
-    width: 20% !important;
+.userinfo_size_deposit {
+  height: 61px !important;
+  width: 20% !important;
 }
-
-.userinfo_container_reg{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin: 10px;
-    height: 100%;
-    width: 450px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-}
-
-//UserNew
-.usernew_container_reg{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px;
-    height: 100%;
-    width: 450px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: left;
-}
-
-//Esta clase no se usa en ningún lado
-// .user_span_textsize{
-//     min-width: 150px;
-// }
 
 //TODO pasar userlist para aca y renombrar archivo a user_general.scss o algo asi

@@ -1,4 +1,4 @@
-.login_table{
+.login_table {
   padding: 2vh;
   border-collapse: separate;
   background-color: #fafafa;
@@ -12,10 +12,15 @@
   height: 15vmin;
 }
 
-.login_inputs{
+.login_inputs {
   margin: 1vh;
 }
 
-.admin_checkbox {
-  margin: 1vh;
+.login_checkbox_admin {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
 }

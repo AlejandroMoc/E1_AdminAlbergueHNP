@@ -8,7 +8,7 @@ import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
 import {Link} from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
+import {useAuth} from '../../auth/AuthProvider';
 
 const HomeAdmin = () => {
 
@@ -40,7 +40,7 @@ const HomeAdmin = () => {
           <tr>
             {/* Boton 1 */}
             <td className='home_squarebutton'>
-              <Link className= 'home_text_squarebutton' to="/usernew/4">
+              <Link className= 'home_text_squarebutton' to="/usernew">
                 <table className='home_text_squarebutton2'>
                     <tbody>
                       <tr><td><RiUserAddFill size={80}/></td></tr>

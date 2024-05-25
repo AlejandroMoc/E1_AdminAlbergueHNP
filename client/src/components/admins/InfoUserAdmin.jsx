@@ -1,21 +1,21 @@
-import React, { useEffect,useState } from 'react';
-import { useAuth } from '../../auth/AuthProvider';
+import React, {useEffect,useState} from 'react';
+import {useAuth} from '../../auth/AuthProvider';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import {LuUser } from "react-icons/lu";
-import {LuCalendarDays } from "react-icons/lu";
-import {FiHome } from "react-icons/fi";
+import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
+import {LuUser} from "react-icons/lu";
+import {LuCalendarDays} from "react-icons/lu";
+import {FiHome} from "react-icons/fi";
 
-import { MdFaceUnlock } from "react-icons/md";
-import {FaRegAddressCard } from "react-icons/fa";
-import {RiHospitalLine } from "react-icons/ri";
-import {MdOutlineNotInterested } from "react-icons/md"; //Usuario vetado
-import {MdOutlineEdit } from "react-icons/md"; //Boton Editar
-import {LiaCoinsSolid } from "react-icons/lia";
-import {PiGenderIntersexLight } from "react-icons/pi"; //GENERO 
-import {LuBedDouble } from "react-icons/lu"; //Cama
+import {MdFaceUnlock} from "react-icons/md";
+import {FaRegAddressCard} from "react-icons/fa";
+import {RiHospitalLine} from "react-icons/ri";
+import {MdOutlineNotInterested} from "react-icons/md"; //Usuario vetado
+import {MdOutlineEdit} from "react-icons/md"; //Boton Editar
+import {LiaCoinsSolid} from "react-icons/lia";
+import {PiGenderIntersexLight} from "react-icons/pi"; //GENERO 
+import {LuBedDouble} from "react-icons/lu"; //Cama
 import {Navigate, useNavigate} from "react-router-dom";
 
 const infoUserAdmin = (props) => {
@@ -31,12 +31,12 @@ const infoUserAdmin = (props) => {
       body: JSON.stringify({id_u: id_u}),
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
-      }
-    })
+     }
+   })
     .then((res) => res.json())
     .then((adminInfo) => setAdminInfo(adminInfo))
     .catch((error) => console.error('Error fetching data:', error))
-  }, [])
+ }, [])
 
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
   const [refresh, setRefresh] = useState(false)
@@ -56,7 +56,7 @@ console.log("FECHA Inicio: "+infoCliente.fecha_i)
       fetch('http://localhost:8000/huespedInfo/'+props.id_cliente)
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); console.log(data)});
-  }, [props.id_cliente, refresh])
+ }, [props.id_cliente, refresh])
   console.log("ID CAMA"+huespedCliente.id_cama)
 
 //FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
@@ -118,21 +118,21 @@ const handleBtRegistroClick = async () => {
           body: JSON.stringify({id_cliente:props.id_cliente, pago:pago}),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
-          }
-        })
+         }
+       })
         .then((response) => {
           if (response.ok) {
             successToast()
             setRefresh(!refresh)
             setPago('')
-          }
-        })
+         }
+       })
         // window.location.href = '/infouser/'+props.id_cliente;
         //alert('Registro exitoso');
-       } catch (error) {
+      } catch (error) {
         console.error('Error al registrar entrada unica:', error);
         alert('Error al registrar el paciente');
-      }
+     }
 
 };
 //fecha
@@ -151,9 +151,9 @@ useEffect(() => {
     .then((data) => {
       // Convertir el valor a minúsculas antes de almacenarlo en el estado
       const vetadobool = data.vetadobool.toLowerCase() === 'true';
-      setvetadoCliente({vetadobool: vetadobool });
+      setvetadoCliente({vetadobool: vetadobool});
       console.log(data);
-    });
+   });
 }, [props.id_cliente, refresh]);
 console.log("VETADO "+vetadoCliente.vetadobool)
 const showVetadoSelect = vetadoCliente.vetadobool;
@@ -166,21 +166,21 @@ console.log(showVetadoSelect)
         body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
+       }
+     })
       .then((response) => {
         if (response.ok) {
           successToast()
           setRefresh(!refresh)
-        }
-      })
+       }
+     })
       
       .catch((error) => {
         errorToast()
         console.error('Error fetching data:', error)
-      })
+     })
       // window.location.href = '/infouser/'+props.id_cliente;
-  }
+ }
 
   //Llamada a la función de desvetar
   const desvetarCliente = (id_c) => {
@@ -189,29 +189,29 @@ console.log(showVetadoSelect)
         body: JSON.stringify({id_c: id_c}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
+       }
+     })
       .then((response) => {
         if (response.ok) {
           successToast()
           setRefresh(!refresh)
-        }
-      })
+       }
+     })
       .catch((error) => {
         errorToast()
         console.error('Error fetching data:', error)
-      })
+     })
       // window.location.href = '/infouser/'+props.id_cliente;
-  }
+ }
     //Para popup
     const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null}) 
 
    const handleVetar = async () =>{
     setShowPopUp({trigger: true, type: 1, id: props.id_cliente, fun: vetarCliente})
-   }
-   const handleDesVetar = async () =>{ 
+  }
+   const handleDesVetar = async () =>{
     setShowPopUp({trigger: true, type: 0, id: props.id_cliente, fun: desvetarCliente})
-   }
+  }
 
 
 //FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
@@ -233,8 +233,7 @@ const handleEditar = async () => {
 
 ///////////////////////////////////////////////////////////////////////////////
 //EMPIEZA DESARROLLO DEL HTML
-  return (
-    
+  return ( 
     <div className='App_minheight user_justified'>
       {/*Espaciador*/}
       <div className='user_spaciator'></div>
@@ -247,7 +246,7 @@ const handleEditar = async () => {
       )}
 
       <div className="user_container_general">
-        <div className="container userinfo_container_reg">
+        <div className="container user_container_column">
         {/* {!showNumbersSelect && (
           <div className="input-group mb-3 ">
             <span className="input-group-text userinfo_span_info" id="basic-addon1">Es Paciente</span>
@@ -290,15 +289,13 @@ const handleEditar = async () => {
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><PiGenderIntersexLight /></span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">{infoCliente.sexo ? "Hombre" : "Mujer"}</span>
           </div>
-          <div className="input-group mb-3 ">
+          <div className="input-group mb-3">
             <span className="input-group-text user_span_space_icon user_center_number" id="basic-addon1">{infoCliente.nivel_se}</span>
             <span className="input-group-text userinfo_span_info" id="basic-addon1">Nivel socioeconómico</span>
           </div>
-
-          <div className="input-group mb-3 "></div>
         </div>
 
-        <div className="user_spacing_not userinfo_container_reg">
+        <div className="user_space_not user_container_column">
           <div className="input-group mb-3 "></div>
           <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
@@ -319,13 +316,13 @@ const handleEditar = async () => {
                 </label>
               </div>)}
               {showNumbersSelect === true && ( 
-          <div className="input-group mb-3 ">
+          <div className="input-group">
           <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuBedDouble /></span>
           <span className="input-group-text userinfo_span_info" id="basic-addon1">Cama: {huespedCliente.id_cama}</span>
         </div>
         )}
           {showNumbersSelect === false && (
-          <div className="user_services_register">
+          <div>
             <div className="input-group mb-3">
               <span className="input-group-text user_span_notestext user_span_notesleft" id="basic-addon1">Regadera</span>
               <span className="input-group-text user_span_notestext" id="basic-addon1">{servicioCliente.servicio1}</span>
@@ -368,7 +365,7 @@ const handleEditar = async () => {
           <div>
               <div className="input-group mb-3">
               <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdOutlineNotInterested /></span>
-            <span className="input-group-text userinfo_span_baninfo" id="basic-addon1">Usuario Vetado</span>
+            <span className="input-group-text userinfo_span_info userinfo_span_baninfo" id="basic-addon1">Usuario Vetado</span>
             </div>
             <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>

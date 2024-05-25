@@ -572,14 +572,15 @@ const getAllGeneralVetados = async (startDate, endDate) => {
 const getAllIngresos = async (startDate, endDate) => {
     try {
         let query = `
-            SELECT 
+           SELECT 
                 MIN(fecha_p) AS fecha_inicio,
                 MAX(fecha_p) AS fecha_fin,
-                ABS(SUM(CASE WHEN notas_p <> 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS total_pagado,
+                ABS(SUM(CASE WHEN notas_p <> 'Pago (Condonado)' THEN monto_t ELSE 0 END)) + ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS total_pagado,
                 ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS total_condonado,
-                ABS(SUM(CASE WHEN notas_p <> 'Pago (Condonado)' THEN monto_t ELSE 0 END)) - ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS ingresos_reales 
+                ABS(SUM(CASE WHEN notas_p <> 'Pago (Condonado)' THEN monto_t ELSE 0 END)) + ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) - ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS ingresos_reales 
             FROM 
-                pago`;
+                pago
+    `;
 
         const params = [];
         

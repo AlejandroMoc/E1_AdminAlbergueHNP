@@ -105,7 +105,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       }
       })
       .then((response) => {
-        if (response.ok) {          
+        if (response.ok) {
           successToast()
         }
       })
@@ -302,7 +302,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
     if (cama_UE_EliminarCama !== 0) {
       fetch('http://localhost:8000/beds/eliminarCama', {
         method: 'POST',
-        body: JSON.stringify({ id_cama: cama_UE_EliminarCama }),
+        body: JSON.stringify({id_cama: cama_UE_EliminarCama }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
@@ -590,7 +590,7 @@ const RoomAdmin = () => {
     return(
       <div className="container rooms_container">
         {infoZona.length && (
-          infoZona.map((item) => { 
+          infoZona.map((item) => {
             if(item.id_cliente != null){
               contador = contador +1;
               return(
