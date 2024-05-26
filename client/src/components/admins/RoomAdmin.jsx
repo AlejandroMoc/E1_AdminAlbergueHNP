@@ -136,7 +136,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       if(cantidadS1_UE_RegServicio != 0){
         fetch('http://localhost:8000/beds/regServacio' , {
         method: 'POST',
-        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 1, cant: cantidadS1_UE_RegServicio}),
+        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 3, cant: cantidadS1_UE_RegServicio}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
@@ -161,7 +161,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       if(cantidadS2_UE_RegServicio != 0){
         fetch('http://localhost:8000/beds/regServacio' , {
         method: 'POST',
-        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 2, cant: cantidadS2_UE_RegServicio}),
+        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 4, cant: cantidadS2_UE_RegServicio}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
@@ -186,7 +186,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       if(cantidadS3_UE_RegServicio != 0){
         fetch('http://localhost:8000/beds/regServacio' , {
         method: 'POST',
-        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 3, cant: cantidadS3_UE_RegServicio}),
+        body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 5, cant: cantidadS3_UE_RegServicio}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }

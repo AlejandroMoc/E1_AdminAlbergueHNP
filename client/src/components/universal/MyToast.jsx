@@ -17,34 +17,6 @@ export const successToast = () => {
   });
 };
   
-export const errorCarnet = () => {
-  toast.error('El carnet que intenta ingresar ya esta utilizado', {
-    position: "bottom-right",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce
-  });
-};
-
-export const errorConstantes = () => {
-  toast.error('Favor de llenar los campos faltantes', {
-    position: "bottom-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce
-  });
-};
-  
 export const errorToast = () => {
   toast.error('Proceso Fallido', {
     position: "bottom-right",

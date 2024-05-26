@@ -9,7 +9,7 @@ import {MdFaceUnlock} from "react-icons/md";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
-import MyToastContainer, {successToast, errorToast, errorCarnet, errorConstantes } from '../universal/MyToast';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 
 
 
@@ -126,7 +126,7 @@ console.log("id_cama")
   const [btRegistro, setBtRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
-      if (!carnetExist) { // Verificamos si el carnet no existe
+      // if (!carnetExist) { // Verificamos si el carnet no existe
         if (showServices) {
           try {
             await fetch('http://localhost:8000/registerEntradaUnica', {
@@ -188,10 +188,10 @@ console.log("id_cama")
             errorToast()
           }
         }
-      } else {
-        // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-        errorCarnet()
-      }
+      // } else {
+      //   // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+      //   errorCarnet()
+      // }
     } else {
      errorToast()
      setGeneralError('Favor de llenar los campos faltantes')
@@ -392,11 +392,11 @@ console.log("id_cama")
   const [costo, setCosto]= useState(0);
   useEffect(() => {
     const totalServicios = shower + bathroom + breakfast + meal + dinner;
-    const cshower = shower * 30;
+    const cshower = shower * -30;
     const cbathroom = bathroom * 0;
-    const cbreakfast = breakfast * 20;
-    const cmeal = meal * 20;
-    const cdinner = dinner * 20;
+    const cbreakfast = breakfast * -20;
+    const cmeal = meal * -20;
+    const cdinner = dinner * -20;
     setCantidad(totalServicios);
     const costos = cshower + cbathroom + cbreakfast + cmeal + cdinner;
     setCosto(costos)

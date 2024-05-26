@@ -5,14 +5,18 @@ import {LuUser } from "react-icons/lu";
 import {FiHome } from "react-icons/fi";
 import {useAuth } from '../../auth/AuthProvider';
 import {MdFaceUnlock } from "react-icons/md";
+import {useNavigate} from "react-router-dom";
 import {FaRegAddressCard } from "react-icons/fa";
 import {IoMdAddCircleOutline } from "react-icons/io";
 import {IoMdRemoveCircleOutline } from "react-icons/io";
-import MyToastContainer, {successToast, errorToast, errorCarnet, errorConstantes } from '../universal/MyToast';
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 //import {registerNewPatient } from '../../../../server/queries/UsernewQueries';
 
 
 const UserNewAdmin = (props) => {
+  //Para pasar a dashboard
+  const goTo = useNavigate();
+
   const id_u = useAuth().getUser().id_usuario
   //Fetch para jalar información desde info cliente
   const [infoCliente, setinfoCliente] = useState({nombre_c:"", apellidos_c:"", fecha_i:0, lugar_o:"", nombre_p:"", apellidos_p:"", carnet:"", nombre_a:"", nivel_se:0, notas_c:0, sexo:""})
@@ -117,6 +121,8 @@ console.log("id_cama")
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
   const [id_areaError, setId_areaCError] = useState(false);
+  const [generalError, setGeneralError] = useState('')
+
 
   
   const validateFields = () => {
@@ -156,7 +162,7 @@ console.log("id_cama")
 const [btRegistro, setBtRegistro] = useState(false);
 const handleBtRegistroClick = async () => {
   if (validateFields()) {
-    if (!carnetExist) {// Verificamos si el carnet no existe
+    // if (!carnetExist) {// Verificamos si el carnet no existe
       if (showNumbersSelect === false) {
         try {
           await fetch('http://localhost:8000/updateinfoEntrada', {
@@ -169,7 +175,7 @@ const handleBtRegistroClick = async () => {
           successToast()
           // window.location.href = '/dashboard';
           setTimeout(() => {
-            goTo("/dashboard");
+            goTo('/infouser/'+props.id_cliente);
           }, 1000);
          } catch (error) {
           console.error('Error al registrar entrada unica:', error);
@@ -188,19 +194,20 @@ const handleBtRegistroClick = async () => {
           successToast()
           //window.location.href = '/';
           setTimeout(() => {
-            goTo("/dashboard");
+            goTo('/infouser/'+props.id_cliente);
           }, 1000);
          } catch (error) {
           console.error('Error al registrar el paciente:', error);
-          errorConstantes()
+          errorToast()
         }
       }
-    } else {
-      // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-      errorCarnet()
-    }
+    // } else {
+    //   // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+    //   errorCarnet()
+    // }
   } else {
-   errorConstantes()
+    errorToast()
+    setGeneralError('Favor de llenar los campos faltantes')
   }
 };
 
@@ -708,6 +715,9 @@ const showNumbersSelect = tipoCliente.tipo_cliente;
       <button type="button" className={`user_button_register App_buttonaccept ${btRegistro ? 'activo' : ''}`} onClick={handleBtRegistroClick}>
         {btRegistro ? 'Desactivar' : 'Registrar'}
       </button>
+      <div className='universal_text_error'>
+          {generalError}
+        </div>
 
         </div>
       </div>
