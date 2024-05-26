@@ -3,22 +3,22 @@
 //LOGIN
 
 //Base de datos
-Paciente renombrar a Christian
-{}{}
+Paciente renombrar a Christian✅
+{}{}✅
 
 //Contadora
-¿Todos pueden registrar huesped, etc, etc?
-Funcionalidades para admins y admins pro
+¿Todos pueden registrar huesped, etc, etc?✅
+Funcionalidades para admins y admins pro✅
 
-Carnet numeros y letras?
+Carnet solamente números✅
 
 //Registro
-Error al registrar y que no haya nada en campos
+Error al registrar y que no haya nada en campos✅
 Numeros de cama aislados como A1, A2, etc
 En el autollenado quitar "Este campo es obl" en información del familiar
 
 
-¿El cliente es un paciente? a el familiar es un paciente
+¿El cliente es un paciente? a el familiar es un paciente✅
 
 
 handleChange if es paciente, tambien que se escriba en el nombre del familiar
@@ -37,7 +37,7 @@ No se coloca bien el dinero (se tiene que recargar pagina pero no podemos recarg
 
 //Clients
 Al vetar a Odin, no aparece como vetado
-Eliminar->Eliminar previamente✅
+Eliminar->Eliminar permanentemente✅
 Cambiar tamaño de letra del menu
 Colocar alerta en deuda y fecha: cuando se colocan dos numeros y luego se elimina 1
 1 toast cuando registras los 3 servicios
