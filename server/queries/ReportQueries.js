@@ -575,9 +575,9 @@ const getAllIngresos = async (startDate, endDate) => {
         SELECT 
             MIN(fecha_p) AS fecha_inicio,
             MAX(fecha_p) AS fecha_fin,
-            SUM(ABS(monto_t)) AS total_pagado,
+            SUM(CASE WHEN monto_t >= 0 THEN monto_t ELSE 0 END) AS total_pagado,
             ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS total_condonado,
-            SUM(ABS(monto_t)) - ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS ingresos_reales
+            SUM(CASE WHEN monto_t >= 0 THEN monto_t ELSE 0 END) - ABS(SUM(CASE WHEN notas_p = 'Pago (Condonado)' THEN monto_t ELSE 0 END)) AS ingresos_reales
         FROM 
             pago
     `;
