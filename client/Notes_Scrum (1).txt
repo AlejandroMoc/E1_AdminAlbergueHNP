@@ -1,0 +1,16 @@
+##Notas para despues de la presentación
+
+Corregir que no aparece error de apellidos y de carnet
+
+Pag Reportes
+
+Fechas no funcionan
+
+
+Pag clientes
+Renombrar a entrada unica y visitante (o como se llamara)
+
+
+
+#Lista de usuarios
+Cuando paga en una cama azul, a veces lo hace, a veces no
