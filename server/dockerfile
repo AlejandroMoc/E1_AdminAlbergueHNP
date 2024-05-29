@@ -1,0 +1,15 @@
+#PRIMERO INSTALAN DOCKER EN LA COMPU
+#DESPUES SE CREAN LAS IMAGENES CON EL COMANDO EN LA CARPETA SERVER
+#docker image build -t gestion-back-image:latest .
+
+FROM node:16
+
+WORKDIR /server
+
+COPY package*.json /server/
+RUN npm install
+
+COPY . /server/
+
+EXPOSE 8008
+CMD [ "npm", "run", "dev" ]

@@ -1,0 +1,31 @@
+#DESPUES SE CREA EL COMPOSE EN LA CARPETA RAMA
+#docker-compose up
+
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: gestionAlbergue
+
+  app-frontend:
+    image: gestion-front-image
+    ports:
+      - "88:88"
+    restart: always
+  
+  app-backend:
+    image: gestion-back-image
+    # volumes:
+    #   - my-vol:/app/client
+    ports:
+      - "8008:8008"
+
+# volumes:
+#   my-vol:
+
+#AUNQUE YA CARGA EL FRONT Y SE HACE LA IMAGEN DEL BACK, COMO SERVER.JS TIENE REFERENCIA A UN ARCHIVO DE CLIENT EL SERVER CRASHEA
+#ESTO SE DEBE A QUE, POR EL USO DE DOCKER CADA CARPETA SE PASA A UN ESPACIO TOTALMENTE DIFERENTE, POR LO QUE LA REFERENCIA NO
+#ENCUENTRA NADA. SEGUN ESTO SE RESUELVE CON VOLUMES, PERO NO LO LOGRÉ, TAL VEZ JOSAFAT SEPA

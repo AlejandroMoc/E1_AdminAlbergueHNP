@@ -1,0 +1,29 @@
+#PRIMERO INSTALAN DOCKER EN LA COMPU
+#DESPUES SE CREAN LAS IMAGENES CON EL COMANDO EN LA CARPETA CLIENT
+#docker image build -t gestion-front-image:latest .
+
+# Etapa 1: Build
+FROM node:lts-alpine3.20 AS build
+
+WORKDIR /client
+
+COPY package*.json /client/
+RUN npm install
+
+COPY . /client/
+RUN npm run build
+
+RUN ls -la /client
+RUN ls -la /client/dist
+
+# Etapa 2: Nginx
+FROM nginx:stable-perl
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /client/dist /usr/share/nginx/html
+
+EXPOSE 88
+
+CMD [ "nginx", "-g", "daemon off;" ]
