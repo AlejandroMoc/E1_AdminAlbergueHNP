@@ -4,7 +4,7 @@ const app = express();
 const authenticate = require("../client/src/auth/authenticate");
 require('dotenv').config();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8008;
 
 app.use(cors());
 app.use(express.json());

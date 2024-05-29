@@ -14,7 +14,7 @@ const Navbar = () => {
 
   //Llamada a la función para información de usuario
   useEffect(() => {
-    fetch('http://localhost:8000/infouser', {
+    fetch('http://localhost:8008/infouser', {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {

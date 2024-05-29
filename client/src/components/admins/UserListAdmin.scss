@@ -44,10 +44,6 @@
   padding-right: 4vh;
 }
 
-.universal_input_date:disabled {
-  cursor: not-allowed;
-}
-
 .userlist_inputdebt {
   background-color: #f2f2f2;
   text-align: center;
@@ -82,10 +78,10 @@
   font-size: small;
 }
 
-.filter_carnet {
+.userlist_filter_carnet {
   background-color: #f2f2f2;
   display: flex;
-  margin-top: 1.5%;
+  margin-top: 1%;
   margin-bottom: 1%;
   align-self: center;
 }

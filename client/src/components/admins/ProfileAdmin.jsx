@@ -17,7 +17,7 @@ const ProfileAdmin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000/signout/',{
+      const response = await fetch('http://localhost:8008/signout/',{
         method: "DELETE",
         headers:{
           'Content-type': 'application/json; charset=UTF-8',
@@ -44,7 +44,7 @@ const ProfileAdmin = () => {
   
     //Llamada a la función para información de usuario
     useEffect(() => {
-      fetch('http://localhost:8000/infouser', {
+      fetch('http://localhost:8008/infouser', {
         method: 'POST',
         body: JSON.stringify({id_u: id_u}),
         headers: {
@@ -66,7 +66,7 @@ const ProfileAdmin = () => {
             <td>
                 <FaUserCircle size={160}/>
                 <h1 className="universal_header_texttitle">{auth.getUser()?.nombre_u || "Admin"}</h1>
-                {adminInfo.admin ? <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom"><FaPlus/>Crear un administrador</button></p></Link> : ''}
+                {adminInfo.admin ? <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom"><FaPlus/> Crear un administrador</button></p></Link> : ''}
                 <Link to="/changepassword"><p><button className="App_buttonaccept universal_marginbottom"><IoKey/> Cambiar contraseña</button></p></Link>
                 <p><button className="App_buttoncancel" onClick={handleSignOut}>Cerrar sesión</button></p>
             </td>

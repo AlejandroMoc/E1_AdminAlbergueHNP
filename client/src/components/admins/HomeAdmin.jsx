@@ -37,6 +37,11 @@ const HomeAdmin = () => {
     `Confía en ti, ${auth.getUser()?.nombre_u || ""}.`,
     `Confía en tu potencial, ${auth.getUser()?.nombre_u || ""}.`,
     `Confío en ti, ${auth.getUser()?.nombre_u || ""}.`,
+    `A veces se gana, ${auth.getUser()?.nombre_u || ""}.`,
+    `El cielo está en la tierra, ${auth.getUser()?.nombre_u || ""}.`,
+    `No dejes para mañana lo que puedes hacer hoy, ${auth.getUser()?.nombre_u || ""}.`,
+    `Un paso a la vez, ${auth.getUser()?.nombre_u || ""}.`,
+    `Hoy eres el cambio, ${auth.getUser()?.nombre_u || ""}.`,
   ];
   
   const randomIndex = Math.floor(Math.random() * welcomeMessages.length);

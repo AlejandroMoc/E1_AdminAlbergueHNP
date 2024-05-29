@@ -65,7 +65,7 @@ import { FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y
 ############################################################################################*/
 
 const vetarCliente = (id_u, id_c, n_v) => {
-  fetch('http://localhost:8000/banclient', {
+  fetch('http://localhost:8008/banclient', {
     method: 'POST',
     body: JSON.stringify({ id_u: id_u, id_c: id_c, n_v: n_v }),
     headers: {
@@ -94,7 +94,7 @@ const vetarCliente = (id_u, id_c, n_v) => {
 ############################################################################################*/
 
 const desvetarCliente = (id_c) => {
-  fetch('http://localhost:8000/unbanclient', {
+  fetch('http://localhost:8008/unbanclient', {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
     headers: {
@@ -123,7 +123,7 @@ const desvetarCliente = (id_c) => {
 ############################################################################################*/
 
 const eliminarCliente = (id_c) => {
-  fetch('http://localhost:8000/deleteclient', {
+  fetch('http://localhost:8008/deleteclient', {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
     headers: {
@@ -195,7 +195,7 @@ const UserListAdmin = () => {
   // console.log(id_u)
 
   useEffect(() => {
-    fetch('http://localhost:8000/infouser', {
+    fetch('http://localhost:8008/infouser', {
       method: 'POST',
       body: JSON.stringify({ id_u: id_u }),
       headers: {
@@ -220,7 +220,7 @@ const UserListAdmin = () => {
   useEffect(() => {
     if (select_Filters.length != 0 || select_View != 10 || dateRange.length != 0 || debtRange.length != 0) {
       // console.log('ENTRA')
-      fetch('http://localhost:8000/someclients', {
+      fetch('http://localhost:8008/someclients', {
         method: 'POST',
         body: JSON.stringify({ filters: select_Filters, views: select_View, dates: dateRange, debts: debtRange }),
         headers: {
@@ -232,7 +232,7 @@ const UserListAdmin = () => {
         .catch((error) => console.error('Error fetching data:', error))
     }
     else {
-      fetch('http://localhost:8000/allclients')
+      fetch('http://localhost:8008/allclients')
         .then((res) => res.json())
         .then((clientes) => setData(clientes))
     }
@@ -651,7 +651,7 @@ const UserListAdmin = () => {
                 {option.label}
               </label>
             ))}
-            <input className='filter_carnet universal_limit_input' type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
+            <input className='userlist_filter_carnet universal_limit_input' type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
           </div>
 
           {/* Tabla de Contenido */}

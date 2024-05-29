@@ -50,7 +50,7 @@ const ProfilePasswordAdmin = () => {
     else{
 
       try {
-        const response = await fetch("http://localhost:8000/changepass", {
+        const response = await fetch("http://localhost:8008/changepass", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=UTF-8'
@@ -89,13 +89,13 @@ const ProfilePasswordAdmin = () => {
   return (
     <div className='App_minheight'>
       <form className='universal_header_table universal_header_table2' onSubmit={handleSubmit}>
-        <h1>{auth.getUser()?.nombre_u || "Admin"}</h1>
-        <p className= 'universal_header_text' to="/"><IoKey/>Cambiar contraseña</p>
+        <h1 className='universal_marginbottom'>{auth.getUser()?.nombre_u || "Admin"}</h1>
+        <p className= 'universal_header_text universal_marginbottom' to="/"><IoKey/>Cambiar contraseña</p>
 
         {/*Formato de cambiar contraseña*/}
-        <p><input className="universal_limit_input" value={actual_password} onChange={(e)=>apChange(e)} type="password" id="oldpass" name="oldpassword" minLength="8" maxLength="16" required placeholder="Contraseña actual" /></p>
-        <p><input className="universal_limit_input" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
-        <p><input className="universal_limit_input" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={actual_password} onChange={(e)=>apChange(e)} type="password" id="oldpass" name="oldpassword" minLength="8" maxLength="16" required placeholder="Contraseña actual" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
         
         <p className='universal_text_error universal_limit_input'>{changeErrorMessage}</p>
         {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}

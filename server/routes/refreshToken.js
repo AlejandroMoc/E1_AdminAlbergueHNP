@@ -2,7 +2,7 @@ const db = require('../db_connection');
 const router = require("express").Router();
 const {verifyRefreshToken, generateAccessToken, functionRefreshToken } = require('../queries/LoginQueries.js');
 
-//Este archivo es requivalente a localhost:8000/refreshtoken
+//Este archivo es requivalente a localhost:8008/refreshtoken
 //el refreshtoken se manda a llamar en el AuthProvider
 router.post('/', async (req, res) => {
 
