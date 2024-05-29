@@ -23,7 +23,7 @@ const LoginAdmin = () => {
 
     try {
       console.log(e)
-      const response = await fetch("http://localhost:8008/login", {
+      const response = await fetch("http://10.50.91.88:8008/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'

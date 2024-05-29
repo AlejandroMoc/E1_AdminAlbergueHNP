@@ -1,7 +1,7 @@
 const {
     getTokenFromHeader,
     verifyAccessToken,
-  } = require("../../../server/queries/LoginQueries.js");
+  } = require("./queries/LoginQueries.js");
   
   function authenticate(req, res, next) {
     const token = getTokenFromHeader(req.headers);
