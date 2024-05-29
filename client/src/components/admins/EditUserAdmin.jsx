@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {FaRegAddressCard} from "react-icons/fa";
 // import {IoMdAddCircleOutline} from "react-icons/io";
 // import {IoMdRemoveCircleOutline} from "react-icons/io";
-import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
+import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
 //import {registerNewPatient} from '../../../../server/queries/UsernewQueries';
 
 
@@ -168,7 +168,7 @@ const UserNewAdmin = (props) => {
   const [btRegistro, setBtRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
-      // if (!carnetExist) {// Verificamos si el carnet no existe
+      if (!carnetExist) {// Verificamos si el carnet no existe
       if (showNumbersSelect === false) {
         try {
           await fetch('http://localhost:8008/updateinfoEntrada', {
@@ -207,10 +207,10 @@ const UserNewAdmin = (props) => {
           errorToast()
        }
      }
-      //} else {
-      //   // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
-      //   errorCarnet()
-      //}
+      } else {
+        // Si el carnet existe, mostramos un toast indicando que el carnet está en uso
+         errorCarnet()
+      }
    } else {
       errorToast()
       setGeneralError('Favor de llenar los campos faltantes')
@@ -301,8 +301,8 @@ const UserNewAdmin = (props) => {
       setNombre_C(nombre_p);
       setApellidos_C(apellidos_p);
    } else {
-      setNombre_C('');
-      setApellidos_C('');
+      setNombre_C(nombre_c);
+      setApellidos_C(apellidos_c);
    }
  }, [nombre_p, apellidos_p, isPaciente]);
 
@@ -343,6 +343,8 @@ const UserNewAdmin = (props) => {
     obtenerEstadoCarnet();
  }, [carnet]);
 
+console.log("carnet"+carnet)
+console.log("carnet Existe"+carnetExist)
   const handleRegister = () => {
     // Aquí pondrías la lógica para registrar el carnet
     // Por ahora, solo mostraremos un mensaje de éxito simulado

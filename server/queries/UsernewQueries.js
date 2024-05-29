@@ -138,7 +138,7 @@ const getcarnetEdit = async(carnet, id_cliente) => {
         CASE 
             WHEN EXISTS (SELECT 1 FROM paciente WHERE carnet = $1) THEN 
                 CASE 
-                    WHEN (SELECT id_cliente FROM cliente WHERE id_cliente = $2) = $2 THEN 'false'
+                    WHEN (SELECT carnet FROM cliente WHERE id_cliente = $2) = $1 THEN 'false'
                     ELSE 'true'
                 END
             ELSE 'false'

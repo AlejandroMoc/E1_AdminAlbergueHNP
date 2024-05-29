@@ -30,6 +30,20 @@ export const errorToast = () => {
     transition: Bounce
   });
 };
+
+export const errorCarnet = () => {
+  toast.error('El carnet que intenta ingresar ya existe y corresponde a otro cliente', {
+    position: "bottom-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce
+  });
+};
   
 export default function MyToastContainer() {
   return <ToastContainer className="toastify_color"/>;
