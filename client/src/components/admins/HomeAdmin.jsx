@@ -24,7 +24,19 @@ const HomeAdmin = () => {
     `Tu límite son las estrellas, ${auth.getUser()?.nombre_u || ""}.`,
     `Hoy es un día para el bien, ${auth.getUser()?.nombre_u || ""}.`,
     `¿Qué tal, ${auth.getUser()?.nombre_u || ""}?`,
-    `Nadie es innecesario, ${auth.getUser()?.nombre_u || ""}.`,
+    `Todos somos necesarios, ${auth.getUser()?.nombre_u || ""}.`,
+    `Todos tenemos un papel importante, ${auth.getUser()?.nombre_u || ""}.`,
+    `Sé fiel a tu propia persona, ${auth.getUser()?.nombre_u || ""}.`,
+    `Si te caíste ayer, levántate hoy, ${auth.getUser()?.nombre_u || ""}.`,
+    `Siempre es adecuado para hacer el bien a otros, ${auth.getUser()?.nombre_u || ""}.`,
+    `Hoy puedes dar el primer paso, ${auth.getUser()?.nombre_u || ""}.`,
+    `Cree en ti, ${auth.getUser()?.nombre_u || ""}.`,
+    `El esfuerzo de hoy es el éxito de mañana, ${auth.getUser()?.nombre_u || ""}.`,
+    `Vivir es nacer cada instante, ${auth.getUser()?.nombre_u || ""}.`,
+    `Vive la vida que amas. Ama la vida que vives, ${auth.getUser()?.nombre_u || ""}.`,
+    `Confía en ti, ${auth.getUser()?.nombre_u || ""}.`,
+    `Confía en tu potencial, ${auth.getUser()?.nombre_u || ""}.`,
+    `Confío en ti, ${auth.getUser()?.nombre_u || ""}.`,
   ];
   
   const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
@@ -33,11 +45,17 @@ const HomeAdmin = () => {
   return (
     <div className='App_minheight'>
       <br/>
+
+      {/*Texto de bienvenida*/}
       <h2 className="home_welcomemessage">{randomWelcomeMessage}</h2>
       
+      {/*Tabla de botones*/}
       <table className='universal_header_table'>
         <tbody>
           <tr>
+            {/*TODO cambiar a función para generar elementos en vez de ir uno por uno*/}
+            {/*se debería mandar el link, el icono y el texto*/}
+
             {/* Boton 1 */}
             <td className='home_squarebutton'>
               <Link className= 'home_text_squarebutton' to="/usernew">

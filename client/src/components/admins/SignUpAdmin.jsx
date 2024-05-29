@@ -1,7 +1,7 @@
 import React from 'react';
-import {useState } from 'react';
-import {Form } from 'react-bootstrap'; 
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
 // import {AuthResponseError } from '../../types/types';
@@ -28,13 +28,13 @@ const SignUpAdmin = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!username || !password){
+    if (!username || !password) {
       setChangeErrorMessage('ALERTA: Se deben ingresar los campos.');
     }
-    else if(username === password){
+    else if (username === password) {
       setChangeErrorMessage('ALERTA: Los campos no pueden ser iguales.');
     }
-    else{
+    else {
       try {
         const response = await fetch("http://localhost:8000/signup", {
           method: 'POST',
@@ -47,9 +47,9 @@ const SignUpAdmin = () => {
             isAdmin
           })
         });
-    
+
         if (response.ok) {
-          console.log("User created successfully",response);
+          console.log("User created successfully", response);
           setChangeSuccessMessage('Se creó el usuario correctamente.');
           console.log("Sí me voy a / en SignUpAdmin.jsx 36");
           setUsername('')
@@ -78,36 +78,36 @@ const SignUpAdmin = () => {
 
   return (
     <div className='App_minheight'>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       {/* <h1>Administrador del Albergue</h1>
       <h2>Hospital del Niño Poblano</h2>
       <br/> */}
 
       <form className='login_table' onSubmit={handleSubmit}>
-          <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
+        <div><img src={logohnp} className="login_header_logo" alt="logo" /></div>
 
-          <h3>Crear un administrador</h3>
-          
+        <h3>Crear un administrador</h3>
 
-          <input value={username} onChange={(e)=>usernameChange(e)} className="login_inputs" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input>
-          <input value={password} onChange={(e)=>passwordChange(e)} className="login_inputs" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input>
-          <p className='universal_text_error'>{changeErrorMessage}</p>
-          {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
+        <div><input value={username} onChange={(e) => usernameChange(e)} className="login_inputs universal_limit_input" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input></div>
+        <div><input value={password} onChange={(e) => passwordChange(e)} className="login_inputs universal_limit_input" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input></div>
+        
+        <p className='universal_text_error universal_limit_input'>{changeErrorMessage}</p>
+        {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
-          <Form.Check
-            className='login_checkbox_admin'
-            type='checkbox'
-            id='isAdmin'
-            label=' Permisos de edición'
-            checked={isAdmin}
-            onChange={() => setIsAdmin(prevIsAdmin => !prevIsAdmin)}
-          />
-          
-          <button className="login_inputs App_buttonaccept">Registrar</button>
+        <Form.Check
+          className='login_checkbox_admin'
+          type='checkbox'
+          id='isAdmin'
+          label=' Permisos de edición'
+          checked={isAdmin}
+          onChange={() => setIsAdmin(prevIsAdmin => !prevIsAdmin)}
+        />
+
+        <button className="login_inputs App_buttonaccept">Registrar</button>
       </form>
       <MyToastContainer />
 

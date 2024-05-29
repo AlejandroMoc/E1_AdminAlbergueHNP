@@ -7,7 +7,7 @@ import '../universal/MyToast.scss';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import MyToastContainer, {successToast} from '../universal/MyToast';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import {useReactToPrint } from "react-to-print";
@@ -800,20 +800,20 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Fecha Primer Pago</th>
-                <th>Fecha Último Pago</th>
-                <th>Total Pagado</th>
-                <th>Total Condonado</th>
-                <th>Ingresos Reales</th>
+                <th><p>Fecha Primer Pago</p></th>
+                <th><p>Fecha Último Pago</p></th>
+                <th><p>Total Pagado</p></th>
+                <th><p>Total Condonado</p></th>
+                <th><p>Ingresos Reales</p></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{dataingreso.fecha_inicio ? handleDateFormat(dataingreso.fecha_inicio) : ''}</td>
-                <td>{dataingreso.fecha_fin ? handleDateFormat(dataingreso.fecha_fin) : ''}</td>
-                <td>${dataingreso.total_pagado}</td>
-                <td>${dataingreso.total_condonado}</td>
-                <td>${dataingreso.ingresos_reales}</td>
+                <td><p>{dataingreso.fecha_inicio ? handleDateFormat(dataingreso.fecha_inicio) : ''}</p></td>
+                <td><p>{dataingreso.fecha_fin ? handleDateFormat(dataingreso.fecha_fin) : ''}</p></td>
+                <td><p>${dataingreso.total_pagado}</p></td>
+                <td><p>${dataingreso.total_condonado}</p></td>
+                <td><p>${dataingreso.ingresos_reales}</p></td>
               </tr>
             </tbody>
           </Table>
@@ -824,38 +824,38 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Salida</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
               </tr>
             </thead>
             <tbody>
               {(data.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -877,37 +877,37 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Salida</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
               </tr>
             </thead>
             <tbody>
               {(datahuesped.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -929,37 +929,37 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Salida</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
               </tr>
             </thead>
             <tbody>
               {(datavisitante.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -981,40 +981,41 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID Cliente</th>
-              <th>Tipo Usuario</th>
-              <th>Nombre</th>
-              <th>Apellidos</th>
-              <th>Sexo</th>
-              <th>Lugar de Origen</th>
-              <th>No.Carnet</th>
-              <th>Fecha de Ingreso</th>
-              <th>Fecha de Veto</th>
-              <th>Motivo de Veto</th>
+
+              <th><p>ID Cliente</p></th>
+              <th><p>Tipo de Usuario</p></th>
+              <th><p>Nombre</p></th>
+              <th><p>Apellidos</p></th>
+              <th><p>Sexo</p></th>
+              <th><p>Lugar de Origen</p></th>
+              <th><p>No.Carnet</p></th>
+              <th><p>Fecha de Ingreso</p></th>
+              <th><p>Fecha de Veto</p></th>
+              <th><p>Motivo de Veto</p></th>
               {/* Agregar las columnas adicionales según el servicio seleccionado */}
-              {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-              {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-              {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-              {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-              {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-              {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-              {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+              {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+              {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+              {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+              {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+              {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+              {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+              {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
             </tr>
           </thead>
           <tbody>
             {(datavetado.map((item) => (
               <tr key={item.id_cliente}>
-                <td>{item.id_cliente}</td>
-                <td>{item.tipo_usuario}</td>
-                <td>{item.nombre_c}</td>
-                <td>{item.apellidos_c}</td>
-                <td>{item.sexo}</td>
-                <td>{item.lugar_o}</td>
-                <td>{item.carnet}</td>
-                <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
-                <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
-                <td>{item.notas_v}</td>
+                <td><p>{item.id_cliente}</p></td>
+                <td><p>{item.tipo_usuario}</p></td>
+                <td><p>{item.nombre_c}</p></td>
+                <td><p>{item.apellidos_c}</p></td>
+                <td><p>{item.sexo}</p></td>
+                <td><p>{item.lugar_o}</p></td>
+                <td><p>{item.carnet}</p></td>
+                <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                <td><p>{item.notas_v}</p></td>
                 {/* Agregar las celdas adicionales según el servicio seleccionado */}
                 {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                 {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -1035,38 +1036,38 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Salida</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
               </tr>
             </thead>
             <tbody>
               {(datauser.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -1087,38 +1088,38 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Salida</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
               </tr>
             </thead>
             <tbody>
               {(datauser.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
@@ -1139,40 +1140,40 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID Cliente</th>
-                <th>Tipo Usuario</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Sexo</th>
-                <th>Lugar de Origen</th>
-                <th>No.Carnet</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Veto</th>
-                <th>Motivo de Veto</th>
+                <th><p>ID Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Veto</p></th>
+                <th><p>Motivo de Veto</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
-                {esServicio && serviciosSeleccionados.desayuno && <th>Cantidad Desayuno</th>}
-                {esServicio && serviciosSeleccionados.comida && <th>Cantidad Comida</th>}
-                {esServicio && serviciosSeleccionados.cena && <th>Cantidad Cena</th>}
-                {esServicio && serviciosSeleccionados.baño && <th>Cantidad Baño</th>}
-                {esServicio && serviciosSeleccionados.regadera && <th>Cantidad Regadera</th>}
-                {esServicio && serviciosSeleccionados.deuda && <th>Total Deuda</th>}
-                {esServicio && serviciosSeleccionados.notas_cliente && <th>Notas de cliente</th>}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
               </tr>
             </thead>
             <tbody>
               {(datauser.map((item) => (
                 <tr key={item.id_cliente}>
-                  <td>{item.id_cliente}</td>
-                  <td>{item.tipo_usuario}</td>
-                  <td>{item.nombre_c}</td>
-                  <td>{item.apellidos_c}</td>
-                  <td>{item.sexo}</td>
-                  <td>{item.lugar_o}</td>
-                  <td>{item.carnet}</td>
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</td>
-                  <td>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</td>
-                  <td>{item.notas_v}</td>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                  <td><p>{item.notas_v}</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
                   {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
                   {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}

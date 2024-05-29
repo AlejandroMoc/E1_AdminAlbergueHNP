@@ -10,7 +10,7 @@
   padding: 20px;
   background-color: #fafafa;
   border-radius: 1vh;
-  width: 50vh;
+  width: 25vw;
 }
 
 .universal_header_texttitle {
@@ -82,4 +82,12 @@
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.universal_marginbottom{
+  margin-bottom: 1rem;
+}
+
+.universal_limit_input{
+  max-width: 30vh !important;
 }

@@ -298,7 +298,7 @@ const handleEditar = async () => {
         <div className="user_space_not user_container_column">
           <div className="input-group mb-3 "></div>
           <div className="mb-3">
-            <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Notas:  {infoCliente.notas_c}</span>
+            <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> <p>Notas:</p>  {infoCliente.notas_c}</span>
           </div>
           {showNumbersSelect === true && (
             <div>
@@ -354,7 +354,7 @@ const handleEditar = async () => {
           <div className="input-group mb-3" onChange={handlepagoChange}>
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><LiaCoinsSolid /></span>
             <span className="input-group-text userinfo_span_info userinfo_adjust_debt" id="basic-addon1">
-              {deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}
+              <p>{deudaCliente.deudacliente < 0 ? "A pagar:" : "A favor:"}</p>
             </span>
             <input type="number" className="userinfo_adjust_debt_input" aria-label="Username" aria-describedby="basic-addon1" placeholder={'$'+placeholderText} value={pago}/>
             {inputModified && pago !== '' && ( // Condición para mostrar el botón

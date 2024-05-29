@@ -59,7 +59,9 @@ import {MdOutlineFastfood } from "react-icons/md"; // Servicios
 import {LuUserMinus, LuUserPlus, LuUser} from "react-icons/lu"; // Nombre, Añadir Usuario, Registrar Salida
 import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cama, Carnet
 
-
+const zona_1 = "ZONA DE MUJERES";
+const zona_2 = "ZONA DE HOMBRES";
+const zona_3 = "ZONA DE AISLADOS";
 
 /*###########################################################################################
 #
@@ -474,7 +476,6 @@ function IndicadorZona({tituloZona}){
 }
 
 
-
 /*###########################################################################################
 #
 #   FUNCIÓN RoomAdmin
@@ -617,13 +618,13 @@ const RoomAdmin = () => {
   
   return (
     <div className='App_minheight'>
-      <IndicadorZona tituloZona="ZONA DE MUJERES" />
+      <IndicadorZona className = 'rooms_text_zonetitle' tituloZona={zona_1} />
       <MapeoCamas infoZona={infoM} />  
       <hr />
-      <IndicadorZona tituloZona="ZONA DE HOMBRES" />
+      <IndicadorZona className = 'rooms_text_zonetitle' tituloZona={zona_2} />
       <MapeoCamas infoZona={infoH} /> 
       <hr />
-      <IndicadorZona tituloZona="ZONA DE AISLADOS" />
+      <IndicadorZona className = 'rooms_text_zonetitle' tituloZona={zona_3} />
       <MapeoCamas infoZona={infoA} /> 
       <br/>
       <MyToastContainer />

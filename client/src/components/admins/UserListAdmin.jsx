@@ -1,5 +1,3 @@
-
-
 /*        _   _
          ( \ / )
         __\ Y /,-')
@@ -27,7 +25,7 @@ _.-"^`  //   \    `^"-.,__
        /    |    \
        `""""`""""`        */
 
-       
+
 
 /*############################################################################################
 #
@@ -36,13 +34,13 @@ _.-"^`  //   \    `^"-.,__
 ############################################################################################*/
 
 // React
-import React, {useEffect, useState } from 'react';
-import {Form } from 'react-bootstrap'; 
-import {Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker';
-import {useAuth } from '../../auth/AuthProvider';
+import { useAuth } from '../../auth/AuthProvider';
 
 // CSS
 import 'react-datepicker/dist/react-datepicker.css';
@@ -52,13 +50,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Elementos Externos
 import Popup from '../universal/Popup';
 import MyPagination from '../universal/MyPagination';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import {Menu, Dropdown as DP} from 'antd';
+import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
+import { Menu, Dropdown as DP } from 'antd';
 
 // Iconografía
-import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y DesVetar
-
-
+import { FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y DesVetar
 
 /*###########################################################################################
 #
@@ -71,20 +67,20 @@ import {FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y 
 const vetarCliente = (id_u, id_c, n_v) => {
   fetch('http://localhost:8000/banclient', {
     method: 'POST',
-    body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
+    body: JSON.stringify({ id_u: id_u, id_c: id_c, n_v: n_v }),
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     }
   })
-  .then((response) => {
-    if (response.ok) {
-      successToast()
-    }
-  })
-  .catch((error) => {
-    errorToast()
-    console.error('Error fetching data:', error)
-  })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
 }
 
 
@@ -100,20 +96,20 @@ const vetarCliente = (id_u, id_c, n_v) => {
 const desvetarCliente = (id_c) => {
   fetch('http://localhost:8000/unbanclient', {
     method: 'POST',
-    body: JSON.stringify({id_c: id_c}),
+    body: JSON.stringify({ id_c: id_c }),
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     }
   })
-  .then((response) => {
-    if (response.ok) {
-      successToast()
-    }
-  })
-  .catch((error) => {
-    errorToast()
-    console.error('Error fetching data:', error)
-  })
+    .then((response) => {
+      if (response.ok) {
+        successToast()
+      }
+    })
+    .catch((error) => {
+      errorToast()
+      console.error('Error fetching data:', error)
+    })
 }
 
 
@@ -128,12 +124,12 @@ const desvetarCliente = (id_c) => {
 
 const eliminarCliente = (id_c) => {
   fetch('http://localhost:8000/deleteclient', {
-      method: 'POST',
-      body: JSON.stringify({id_c: id_c}),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
-    })
+    method: 'POST',
+    body: JSON.stringify({ id_c: id_c }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  })
     .then((response) => {
       if (response.ok) {
         successToast()
@@ -160,7 +156,7 @@ const handleDateFormat = (date) => {
   const dbDate = new Date(date)
   const localDate = dbDate.toLocaleString()
   // console.log(typeof(localDate))
-  return(localDate)
+  return (localDate)
 }
 
 
@@ -201,14 +197,14 @@ const UserListAdmin = () => {
   useEffect(() => {
     fetch('http://localhost:8000/infouser', {
       method: 'POST',
-      body: JSON.stringify({id_u: id_u}),
+      body: JSON.stringify({ id_u: id_u }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
       }
     })
-    .then((res) => res.json())
-    .then((adminInfo) => setAdminInfo(adminInfo))
-    .catch((error) => console.error('Error fetching data:', error))
+      .then((res) => res.json())
+      .then((adminInfo) => setAdminInfo(adminInfo))
+      .catch((error) => console.error('Error fetching data:', error))
   }, [])
 
   // UseEffect para Información de Filtrado
@@ -219,38 +215,38 @@ const UserListAdmin = () => {
   const [debtRange, setDebtRange] = useState([])
   const [filterText, setFilterText] = useState("")
 
-  const [showPopUp, setShowPopUp] = useState({trigger: false, type: -1, id: null, fun: null})
+  const [showPopUp, setShowPopUp] = useState({ trigger: false, type: -1, id: null, fun: null })
 
   useEffect(() => {
     if (select_Filters.length != 0 || select_View != 10 || dateRange.length != 0 || debtRange.length != 0) {
       // console.log('ENTRA')
       fetch('http://localhost:8000/someclients', {
         method: 'POST',
-        body: JSON.stringify({filters: select_Filters, views: select_View, dates: dateRange, debts: debtRange}),
+        body: JSON.stringify({ filters: select_Filters, views: select_View, dates: dateRange, debts: debtRange }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8'
         }
       })
-      .then((res) => res.json())
-      .then((clientes) => setData(clientes))
-      .catch((error) => console.error('Error fetching data:', error))
+        .then((res) => res.json())
+        .then((clientes) => setData(clientes))
+        .catch((error) => console.error('Error fetching data:', error))
     }
     else {
       fetch('http://localhost:8000/allclients')
-      .then((res) => res.json())
-      .then((clientes) => setData(clientes))
+        .then((res) => res.json())
+        .then((clientes) => setData(clientes))
     }
   }, [select_Filters, select_View, dateRange, debtRange, showPopUp])
 
   // Para Control de Filtros
   const filters = [
-    {id: 1, label: 'Hombres'}, 
-    {id: 2, label: 'Mujeres'},
-    {id: 3, label: 'Vetados' },
-    {id: 4, label: 'No Vetados'},
-    {id: 5, label: 'Deudores'},
-    {id: 6, label: 'A Confirmar'}
-  ]; 
+    { id: 1, label: 'Hombres' },
+    { id: 2, label: 'Mujeres' },
+    { id: 3, label: 'Vetados' },
+    { id: 4, label: 'No Vetados' },
+    { id: 5, label: 'Deudores' },
+    { id: 6, label: 'A Confirmar' }
+  ];
 
   const filterChange = (event) => {
     const filterId = parseInt(event.target.value);
@@ -267,15 +263,15 @@ const UserListAdmin = () => {
   // Para Control de Views
   const views = [
     // {id: 10, label: 'General'},
-    {id: 7, label: 'Huéspedes'},
-    {id: 8, label: 'Visitas Previas'},
-    {id: 9, label: 'Uso de Servicios'}
+    { id: 7, label: 'Huéspedes' },
+    { id: 8, label: 'Visitas Previas' },
+    { id: 9, label: 'Uso de Servicios' }
   ];
 
   const viewChange = (event) => {
     if (event.target.value == 10) {
       setFecha1(null)
-      setFecha2(null)      
+      setFecha2(null)
       setDateRange([])
     }
     set_Select_View(event.target.value)
@@ -291,12 +287,12 @@ const UserListAdmin = () => {
   const handleDateChange = (startDate, endDate) => {
     setFecha1(startDate)
     setFecha2(endDate)
-  
+
     if (!startDate && !endDate) {
       // Verifica si no hay ni una fecha seleccionada
       setDateErrorMessage('')
       setDateRange([])
-    }  else if ((startDate && !endDate) || (!startDate && endDate)) {
+    } else if ((startDate && !endDate) || (!startDate && endDate)) {
       // Verificar si solo se ha seleccionado una fecha
       setDateErrorMessage('ALERTA: Se necesitan 2 fechas')
       setDateRange([])
@@ -326,31 +322,31 @@ const UserListAdmin = () => {
   const validDebt = (startDebt, endDebt) => {
     setDeuda1(startDebt)
     setDeuda2(endDebt)
-  
+
     if (!startDebt && !endDebt) {
       // Verifica si no hay ni una deuda seleccionada
       setDebtErrorMessage('')
-      return(false)
+      return (false)
     } else if ((startDebt && !endDebt) || (!startDebt && endDebt)) {
       // Verificar si solo se ha seleccionado una deuda
       setDebtErrorMessage('ALERTA: Se necesitan 2 deudas')
-      return(false)
+      return (false)
     } else if (startDebt < 0 || endDebt < 0) {
       // Verificar que ni una deuda sea menor a 0
       setDebtErrorMessage('ALERTA: Deuda menor a 0')
-      return(false)
+      return (false)
     } else if (startDebt > 10000 || endDebt > 10000) {
       // Verificar que ni una deuda sea mayor a 10,000
       setDebtErrorMessage('ALERTA: Deuda mayor a 10,000')
-      return(false)
+      return (false)
     } else if (startDebt > endDebt) {
       // Verificar si la fecha de inicio es posterior a la fecha de fin
       setDebtErrorMessage('ALERTA: Deuda mínima mayor a deuda máxima')
-      return(false)
+      return (false)
     } else {
       // Limpiar el mensaje de error si las fechas son válidas
       setDebtErrorMessage('')
-      return(true)
+      return (true)
     }
   };
 
@@ -387,7 +383,7 @@ const UserListAdmin = () => {
   // Para Paginación
   const [currentPage, setCurrentPage] = useState(1)
   const pageSize = 8
-  
+
   const paginatedData = data.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
@@ -404,15 +400,15 @@ const UserListAdmin = () => {
     return (
       <Menu onClick={(event) => handleMenuClick(event, id)}
         items={adminInfo.admin ? [
-          {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
-          veto ? {key: 'noVetar', label: <span style={{color: 'green' }}>Desvetar</span>, icon: <span style={{color: 'green' }}><FaCheck /></span>} : {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true},
-          veto ? '' : {key: 'eliminar', label: 'Eliminar permanentemente', icon: <FaTrashAlt />, danger: true},
+          { key: 'nombre', label: <strong>{name + ' ' + last_m}</strong> },
+          veto ? { key: 'noVetar', label: <span style={{ color: 'green' }}>Desvetar</span>, icon: <span style={{ color: 'green' }}><FaCheck /></span> } : { key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true },
+          veto ? '' : { key: 'eliminar', label: 'Eliminar permanentemente', icon: <FaTrashAlt />, danger: true },
         ] : (
           veto ? [
-          {key: 'nombre', label: <strong>No Tienes Permisos de Administrador</strong>}
+            { key: 'nombre', label: <strong>No Tienes Permisos de Administrador</strong> }
           ] : [
-          {key: 'nombre', label: <strong>{name + ' ' + last_m}</strong>},
-          {key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true}
+            { key: 'nombre', label: <strong>{name + ' ' + last_m}</strong> },
+            { key: 'vetar', label: 'Vetar', icon: <FaBan />, danger: true }
           ]
         )}>
       </Menu>
@@ -422,17 +418,17 @@ const UserListAdmin = () => {
   const handleMenuClick = (event, id) => {
     if (event.key == 'vetar') {
       console.log('Vetar')
-      setShowPopUp({trigger: true, type: 1, id: id, fun: vetarCliente})
+      setShowPopUp({ trigger: true, type: 1, id: id, fun: vetarCliente })
       // setType(0)
     }
     else if (event.key == 'noVetar') {
       console.log('Des-Vetar?')
-      setShowPopUp({trigger: true, type: 0, id: id, fun: desvetarCliente})
+      setShowPopUp({ trigger: true, type: 0, id: id, fun: desvetarCliente })
       // setType(1)
     }
     else if (event.key == 'eliminar') {
       console.log('Eliminar')
-      setShowPopUp({trigger: true, type: 0, id: id, fun: eliminarCliente})
+      setShowPopUp({ trigger: true, type: 0, id: id, fun: eliminarCliente })
       // setType(2)
     }
   }
@@ -452,86 +448,86 @@ const UserListAdmin = () => {
         <thead>
           <tr>
             {select_View == 10 ?
-              <th>Registrado Por</th> :
+              <th><p>Registrado por</p></th> :
               (select_View == 9 ?
-                '' : 
-                <th>No. Cama</th>
+                '' :
+                <th><p>No. Cama</p></th>
               )
             }
-            <th>Nombre</th>
+            <th><p>Nombre</p></th>
             {(select_View == 10 || select_View == 9) ?
-              <th>Tipo de Cliente</th> :
-              <th>Fecha de Ingreso</th>
+              <th><p>Tipo de Cliente</p></th> :
+              <th><p>Fecha de Ingreso</p></th>
             }
             {select_View == 9 ?
-              <th>Ultima Fecha de Uso</th> :
+              <th><p>Ultima Fecha de Uso</p></th> :
               (select_View == 8 ?
-                <th>Fecha de Salida</th> :
+                <th><p>Fecha de Salida</p></th> :
                 ''
               )
             }
-            {select_View != 9 && (<th>Lugar de Origen</th>)}
-            {select_View == 9 && (<th>Desayuno</th>)}
-            {select_View == 9 && (<th>Comida</th>)}
-            {select_View == 9 && (<th>Cena</th>)}
-            <th>No. Carnet</th>
-            <th>N. Socio-económico</th>
-            <th>Deuda</th>
+            {select_View != 9 && (<th><p>Lugar de Origen</p></th>)}
+            {select_View == 9 && (<th><p>Desayuno</p></th>)}
+            {select_View == 9 && (<th><p>Comida</p></th>)}
+            {select_View == 9 && (<th><p>Cena</p></th>)}
+            <th><p>No. Carnet</p></th>
+            <th><p>N. Socio-económico</p></th>
+            <th><p>Deuda</p></th>
           </tr>
         </thead>
         <tbody>
-          {(filterText.length == 0 ? 
+          {(filterText.length == 0 ?
             paginatedData : data
           ).map((item, i) => (item.carnet.toUpperCase().includes(filterText) && //SE PUEDE MEJORAR, PERO ES FUNCIONAL
             <DP overlay={menu(item.id_cliente, item.nombre_c, item.apellidos_c, item.vetado)} trigger={['contextMenu']}>
-              <tr key={i} style={{background: '#fff' }}>
+              <tr key={i} style={{ background: '#fff' }}>
                 {select_View == 10 ?
-                  <td>{item.nombre_u ? item.nombre_u : '-'}</td> :
+                  <td><p>{item.nombre_u ? item.nombre_u : '-'}</p></td> :
                   (select_View == 9 ?
-                    '' : 
-                    <td>{item.id_cama ? item.id_cama : '-'}</td>
+                    '' :
+                    <td><p>{item.id_cama ? item.id_cama : '-'}</p></td>
                   )
                 }
                 <td>
                   {item.nombre_c ?
-                    <Link className='userlist_color_personlink' to={'/infouser/'+item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link> :
+                    <Link className='userlist_color_personlink' to={'/infouser/' + item.id_cliente}>{item.nombre_c} {item.apellidos_c}</Link> :
                     '-'
                   }
                 </td>
                 {(select_View == 10 || select_View == 9) ?
-                  <td>{item.vetado ? 'Vetado' : (item.tipo_cliente ? 'Huésped' : 'Vistante')}</td> :
-                  <td>{item.fecha_i ? handleDateFormat(item.fecha_i) : '-'}</td>
+                  <td><p>{item.vetado ? 'Vetado' : (item.tipo_cliente ? 'Huésped' : 'Vistante')}</p></td> :
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : '-'}</p></td>
                 }
                 {select_View == 9 ?
-                  <td>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : '-'}</td> :
+                  <td><p>{item.l_fecha_u ? handleDateFormat(item.l_fecha_u) : '-'}</p></td> :
                   (select_View == 8 ?
-                    <td>{item.fecha_s ? handleDateFormat(item.fecha_s) : '-'}</td> :
+                    <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : '-'}</p></td> :
                     ''
                   )
                 }
-                {select_View != 9 && (<td>{item.lugar_o ? item.lugar_o : '-'}</td>)}
-                {select_View == 9 && (<td>{item.desayuno ? item.desayuno : '-'}</td>)}
-                {select_View == 9 && (<td>{item.comida ? item.comida : '-'}</td>)}
-                {select_View == 9 && (<td>{item.cena ? item.cena : '-'}</td>)}
-                <td>{item.carnet ? item.carnet : '-'}</td>
-                <td>{item.nivel_se ? item.nivel_se : '-'}</td>
-                <td>${item.total ? item.total : '-'}</td>
+                {select_View != 9 && (<td><p>{item.lugar_o ? item.lugar_o : '-'}</p></td>)}
+                {select_View == 9 && (<td><p>{item.desayuno ? item.desayuno : '-'}</p></td>)}
+                {select_View == 9 && (<td><p>{item.comida ? item.comida : '-'}</p></td>)}
+                {select_View == 9 && (<td><p>{item.cena ? item.cena : '-'}</p></td>)}
+                <td><p>{item.carnet ? item.carnet : '-'}</p></td>
+                <td><p>{item.nivel_se ? item.nivel_se : '-'}</p></td>
+                <td><p>${item.total ? item.total : '-'}</p></td>
               </tr>
             </DP>
           ))}
         </tbody>
       </Table>
     )
-  }  
+  }
 
   return (
     <div className='App_minheight App_minpadding'>
       <div className='userlist_container_flex'>
-        <div className='userlist_container_upper'>  
+        <div className='userlist_container_upper'>
           <div className='universal_container_dropdown universal_container_pickerdate'>
             {/* Div para dropdown */}
             <Dropdown className='universal_container_dropdown'>
-              <Dropdown.Toggle  className='userlist_toggle_dropdown universal_toggle_dropdown' variant='success' id='dropdown-basic'>
+              <Dropdown.Toggle className='userlist_toggle_dropdown universal_toggle_dropdown' variant='success' id='dropdown-basic'>
                 Filtros
               </Dropdown.Toggle>
               <Dropdown.Menu className='userlist_dropdown_custommenu'>
@@ -557,7 +553,7 @@ const UserListAdmin = () => {
             <div className='userlist_container_inputs'>
               <div>
                 <DatePicker
-                  disabled= {select_View == 10 ? true : false}
+                  disabled={select_View == 10 ? true : false}
                   className='universal_input_date'
                   selected={fecha1}
                   onChange={(date) => handleDateChange(date, fecha2)}
@@ -571,7 +567,7 @@ const UserListAdmin = () => {
               </div>
               <div className='universal_container_pickerdate'>
                 <DatePicker
-                  disabled= {select_View == 10 ? true : false}
+                  disabled={select_View == 10 ? true : false}
                   className='universal_input_date'
                   selected={fecha2}
                   onChange={(date) => handleDateChange(fecha1, date)}
@@ -590,36 +586,36 @@ const UserListAdmin = () => {
             {/* Div para debtpciker */}
             <div className='userlist_container_inputs'>
               <div className='deuda-picker-container'>
-                  <div className='deuda-box-container'>
-                    {/* Div para deuda 1 */}
-                    <input
-                      className='userlist_inputdebt'
-                      type='number'
-                      onChange={handleDebt1Change}
-                      placeholder='Deuda Mínima'
-                      min='0'
-                      max='10000'
-                    />
-                    {/* Deuda 1: {deuda1} */}
-                  </div>
+                <div className='deuda-box-container'>
+                  {/* Div para deuda 1 */}
+                  <input
+                    className='userlist_inputdebt'
+                    type='number'
+                    onChange={handleDebt1Change}
+                    placeholder='Deuda Mínima'
+                    min='0'
+                    max='10000'
+                  />
+                  {/* Deuda 1: {deuda1} */}
+                </div>
               </div>
               <div className='container_dash'>
                 <p> - </p>
               </div>
               <div className='deuda-picker-container'>
                 {/* Div para deudas */}
-                  <div className='deuda-box-container'>
-                    {/* Div para deuda 2*/}
-                    <input
-                      className='userlist_inputdebt'
-                      type='number'
-                      onChange={handleDebt2Change}
-                      placeholder='Deuda Máxima'
-                      min='0'
-                      max='10000'
-                    />
-                    {/* Deuda 2: {deuda2} */}
-                    {/* Rango: {debtRange} */}
+                <div className='deuda-box-container'>
+                  {/* Div para deuda 2*/}
+                  <input
+                    className='userlist_inputdebt'
+                    type='number'
+                    onChange={handleDebt2Change}
+                    placeholder='Deuda Máxima'
+                    min='0'
+                    max='10000'
+                  />
+                  {/* Deuda 2: {deuda2} */}
+                  {/* Rango: {debtRange} */}
                 </div>
               </div>
             </div>
@@ -632,30 +628,30 @@ const UserListAdmin = () => {
         <div className='userlist_container_lower'>
           <div>
             {/* Div para viewpicker */}
-              <label className='userlist_container_radio universal_label_radio' key={10}>
-                <input 
+            <label className='userlist_container_radio universal_label_radio' key={10}>
+              <input
+                className="form-check-input universal_text_HM"
+                type='radio'
+                name='view'
+                value={10}
+                onChange={viewChange}
+                defaultChecked
+              />
+              {'General'}
+            </label>
+            {views.map((option) => (
+              <label className='userlist_container_radio universal_label_radio' key={option.id}>
+                <input
                   className="form-check-input universal_text_HM"
-                  type='radio' 
-                  name='view' 
-                  value={10}
+                  type='radio'
+                  name='view'
+                  value={option.id}
                   onChange={viewChange}
-                  defaultChecked
                 />
-                {'General'}
+                {option.label}
               </label>
-              {views.map((option) => (
-                <label className='userlist_container_radio universal_label_radio' key={option.id}>
-                  <input 
-                    className="form-check-input universal_text_HM"
-                    type='radio'
-                    name='view'
-                    value={option.id}
-                    onChange={viewChange}
-                  />
-                  {option.label}
-                </label>
-              ))}
-              <input  className='filter_carnet' type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
+            ))}
+            <input className='filter_carnet universal_limit_input' type='text' value={filterText} onChange={handleChange} placeholder='Carnet'></input>
           </div>
 
           {/* Tabla de Contenido */}

@@ -19,7 +19,8 @@
 }
 
 .rooms_text_beds {
-  margin-top: -67%;
+  margin-bottom: 1rem !important;
+  margin-top: -67% !important;
   font-weight: bold;
   font-size: x-large;
   color: #090909;
@@ -103,6 +104,10 @@
 
 .rooms_text_condpay {
   margin-left: 10px;
+}
+
+.rooms_text_zonetitle{
+  color: #090909;
 }
 
 hr {

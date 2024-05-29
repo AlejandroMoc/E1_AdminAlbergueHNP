@@ -149,15 +149,15 @@
 .userinfo_span_info {
   height: 62px;
   font-size: larger;
-  width: 85%;
+  width: 85% !important;
 }
 
 .userinfo_span_baninfo {
-  color: red;
+  color: #090909;
 }
 
 .userinfo_adjust_debt {
-  width: 45%;
+  width: 45% !important;
 }
 
 .userinfo_adjust_debt_input {

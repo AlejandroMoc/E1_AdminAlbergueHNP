@@ -515,5 +515,5 @@ app.post('/beds/regServacio', (req, res) => {
 //Para LogIn y Signup se han importado las rutas arriba
 
 app.listen(port, () =>{
-    console.log('Servidor corriendo en el puerto 8000')
+    console.log('Servidor corriendo en el puerto')
 });

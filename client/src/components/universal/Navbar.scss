@@ -27,12 +27,12 @@
     text-decoration: none;
     font-weight: bold;
     margin: 10px 20px 20px 10px;
-    color: #fafafa;
+    color: #fafafa !important;
 }
 
 .navbar_text:hover{
     // transform: scale(1.05);
-    color: #c2c2c2;
+    color: #c2c2c2 !important;
 }
 
 .navbar_logo{

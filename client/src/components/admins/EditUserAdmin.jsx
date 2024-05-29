@@ -481,9 +481,9 @@ const UserNewAdmin = (props) => {
             {carnetError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
-            <span>Área de Paciente: </span>
+            <span><p>Área de Paciente: </p></span>
             <select className="form-select user_select_beds sm" aria-label="Default select example" onChange={handleId_areaCChange} value={id_area}>
-              <option value={0}>Seleccione un área</option>
+              <option value={0}><p>Seleccione un área</p></option>
               {area.map((item) => (
                 <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
               ))}
