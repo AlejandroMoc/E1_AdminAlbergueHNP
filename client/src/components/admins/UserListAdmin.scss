@@ -66,14 +66,19 @@
 }
 
 .userlist_color_personlink {
-  color: #376faa;
+  color: #376faa !important;
 }
 
 .userlist_text_noresults {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  text-align: center;
+  padding: 15vh 0;
+  height: 50vh;
+  // vertical-align: baseline;
+  margin: auto;
+  // transform: translate(50%, 50%);
   font-weight: bold;
   font-size: small;
 }
