@@ -51,13 +51,15 @@ a{
 
 button{
   color:#090909 !important;
+  min-height: 45px;
+  min-width: 120px;
 }
 
 ///Clases globales de los botones
 .App_global button {
   width: 30vw;
   max-width: 30vh;
-  height: 5.5vh;
+  // height: 5.5vh;
   border-radius: 1vh;
   border: none;
   cursor: pointer;
@@ -71,6 +73,7 @@ button{
 ///Clases globales de inputs
 input {
   width: 30vw;
+  // min-width: 80px;
   // max-width: 400px;
   margin: 5px;
   padding: 10px;

@@ -12,7 +12,7 @@ const {
         req.user = {...decoded.user };
         next();
       } catch (error) {
-        console.log("estem",error);
+        //console.log("estem",error);
         res.status(401).json({
           message: "Invalid token",
         });

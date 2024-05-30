@@ -35,7 +35,7 @@ const UserNewAdmin = (props) => {
       .catch((error) => console.error('Error fetching data:', error))
  }, [])
   const [sexo, setSexo] = useState(null)
-  console.log("id_cama")
+  //console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
     fetch('http://localhost:8008/alldispbeds')
@@ -112,7 +112,7 @@ const UserNewAdmin = (props) => {
   const handleSelectChange = (event) => {
     const selectedId = event.target.value;
     setNumeroA(selectedId);
-    console.log('ID del área seleccionada:', selectedId);
+    //console.log('ID del área seleccionada:', selectedId);
  };
 
   const [isVisitantePrevio, setIsVisitantePrevio] = useState(false);
@@ -136,7 +136,7 @@ const UserNewAdmin = (props) => {
          })
             .then((res) => res.json())
             .then((response) => {
-              console.log(response)
+              //console.log(response)
               if (response.registervisitante_func) {
                 successToast()
                 setTimeout(() => {
@@ -167,7 +167,7 @@ const UserNewAdmin = (props) => {
          })
             .then((res) => res.json())
             .then((response) => {
-              console.log(response)
+              //console.log(response)
               if (response.registerhuesped_func) {
                 successToast()
                 setTimeout(() => {
@@ -202,11 +202,11 @@ const UserNewAdmin = (props) => {
   const handleNombre_CChange = (event) => {
     const inputValue = event.target.value;
     const nombrecArray = inputValue.split(' ');
-    console.log(nombrecArray);
+    //console.log(nombrecArray);
     const nombrecString = nombrecArray.join(' ');
     const isError = inputValue.trim() === '';
     setNombre_CError(isError);
-    console.log(nombrecString);
+    //console.log(nombrecString);
     setNombre_C(nombrecString);
  }
 
@@ -214,11 +214,11 @@ const UserNewAdmin = (props) => {
   const handleApellidos_CChange = (event) => {
     const inputValue = event.target.value;
     const apellidoscArray = inputValue.split(' ');
-    console.log(apellidoscArray);
+    //console.log(apellidoscArray);
     const apellidoscString = apellidoscArray.join(' ');
     const isError = inputValue.trim() === '';
     setApellidos_CError(isError);
-    console.log(apellidoscString);
+    //console.log(apellidoscString);
     setApellidos_C(apellidoscString);
  }
 
@@ -226,11 +226,11 @@ const UserNewAdmin = (props) => {
   const handleApellidos_PChange = (event) => {
     const inputValue = event.target.value;
     const apellidosArray = inputValue.split(' ');
-    console.log(apellidosArray);
+    //console.log(apellidosArray);
     const apellidosString = apellidosArray.join(' ');
     const isError = inputValue.trim() === '';
     setApellidos_PError(isError);
-    console.log(apellidosString);
+    //console.log(apellidosString);
     setApellidos_P(apellidosString);
  }
 
@@ -241,11 +241,11 @@ const UserNewAdmin = (props) => {
     const nombrepString = nombrepArray.join(' ');
     const isError = inputValue.trim() === '';
     setNombre_PError(isError);
-    console.log(nombrepString);
+    //console.log(nombrepString);
     setNombre_P(nombrepString);
  }
 
-  console.log(client)
+  //console.log(client)
 
 
   const [sexoUsuario, setSexoUsuario] = useState(null); // Inicializamos el sexo del usuario como null
@@ -255,7 +255,7 @@ const UserNewAdmin = (props) => {
     const sexoSeleccionado = event.target.value === 'true'; // Convertimos el valor del radio button a un booleano
     setSexoUsuario(sexoSeleccionado); // Actualizamos el estado con el sexo seleccionado
     setSexo(event.target.value)
-    console.log("PIZZA" + sexoSeleccionado);
+    //console.log("PIZZA" + sexoSeleccionado);
  }
 
 
@@ -310,10 +310,10 @@ const UserNewAdmin = (props) => {
         if (data && data.length > 0) {
           const carnetExist2 = data[0].carnetexist === 'true';
           setCarnetExist(carnetExist2);
-          console.log("ESTADO DEL CARNET: ", carnetExist2);
+          //console.log("ESTADO DEL CARNET: ", carnetExist2);
        } else {
           setCarnetExist(false);
-          console.log("ESTADO DEL CARNET: FALSE");
+          //console.log("ESTADO DEL CARNET: FALSE");
        }
      } catch (error) {
         console.error('Error al obtener el estado del carnet:', error);
@@ -357,23 +357,23 @@ const UserNewAdmin = (props) => {
     setId_CamaC(event.target.value)
  }
   /*
-  console.log("Dont cry"+id_cama)
+  //console.log("Dont cry"+id_cama)
   { const [huespedCliente, setHuespedCliente] = useState({id_zona:0})
     if (id_cama === undefined){
-      console.log('Sin cama asignada')
+      //console.log('Sin cama asignada')
    } else{
-      console.log("cama asignada")
+      //console.log("cama asignada")
 
       useEffect(() =>{
       fetch('http://localhost:8008/zonabed/'+props.id_cama)
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); 
         setHuespedCliente(data);
-        console.log(data)});
+        //console.log(data)});
       
    }, [props.id_cama])
    }
-    console.log("ID CAMAfff"+huespedCliente.id_zona)}*/
+    //console.log("ID CAMAfff"+huespedCliente.id_zona)}*/
 
   const [id_area, setId_areaC] = useState('')
   const handleId_areaCChange = (event) => {
@@ -400,8 +400,8 @@ const UserNewAdmin = (props) => {
     setCosto(costos)
  }, [shower, bathroom, breakfast, meal, dinner]);
 
-  console.log(cantidad)
-  console.log(costo)
+  //console.log(cantidad)
+  //console.log(costo)
 
   const handleSetShower = (sh) => {
     if (sh === 1) {

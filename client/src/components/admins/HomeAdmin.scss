@@ -11,6 +11,7 @@
   border-radius: 1vh;
   height: 20vw;
   width: 20vw;
+  min-width: 150px;
 }
 
 .home_squarebutton:hover {
@@ -22,6 +23,7 @@
 .home_text_squarebutton2 {
   margin-left: auto;
   margin-right: auto;
+    min-height: 150px;
 }
 
 .home_welcomemessage {
@@ -30,5 +32,5 @@
   margin-left: auto;
   margin-right: auto;
   font-size: xx-large;
-  // color: #090909;
+  font-size: calc(8px + 3vmin);
 }

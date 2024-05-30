@@ -50,13 +50,13 @@ const getServicioEU = async(id_cliente) => {
 
 const getNewRegister = async(id_cliente, pago) => {
     try {
-        console.log("Registrando nuevo pago:",id_cliente, pago);
+        //console.log("Registrando nuevo pago:",id_cliente, pago);
         await db.none(
             `INSERT INTO pago (id_cliente, notas_p, monto_t, fecha_p) 
             VALUES ($1, 'Agregado desde InfoUser', $2, CURRENT_TIMESTAMP);
             `,
             [id_cliente, pago],
-            console.log("LISTO 2 B)")
+            //console.log("LISTO 2 B)")
         );
     } catch (error) {
         throw error;

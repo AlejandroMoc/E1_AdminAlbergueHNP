@@ -22,7 +22,7 @@ const LoginAdmin = () => {
     e.preventDefault();
 
     try {
-      console.log(e)
+      //console.log(e)
       const response = await fetch("http://localhost:8008/login", {
         method: 'POST',
         headers: {
@@ -35,26 +35,26 @@ const LoginAdmin = () => {
       });
   
       if (response.ok) {
-        console.log("Login successful");
+        //console.log("Login successful");
         // setErrorResponse("");
         // const json = (await response.json()) as AuthResponse;
         const json = await response.json();
-        console.log("Response JSON:", json);
+        //console.log("Response JSON:", json);
         
         if (json.body.accessToken && json.body.refreshToken) {
-          console.log("Sí me voy al /dashboard en LoginAdmin.jsx 44");
+          //console.log("Sí me voy al /dashboard en LoginAdmin.jsx 44");
           auth.saveUser(json.body);
           goTo("/dashboard");
         }
       } else {
         setLoginErrorMessage('Credenciales incorrectas. Intente de nuevo');
-        console.log("Something went wrong");
+        //console.log("Something went wrong");
         successToast();
         // const json = await response.json() as AuthResponseError;
         // const json: AuthResponseError = await response.json();
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 

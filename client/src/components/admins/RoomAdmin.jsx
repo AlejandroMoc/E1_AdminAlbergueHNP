@@ -608,7 +608,7 @@ const RoomAdmin = () => {
         )}
         {adminInfo.admin ?
         <div className="card rooms_spacing_addbed">
-          <button id="rooms_logo_addbed" onClick={() => {infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
+          <button className="room_min_width" id="rooms_logo_addbed" onClick={() => {infoZona == infoM ? setZona(1) : infoZona == infoH ? setZona(2) : setZona(3);}}><IoAddCircleOutline /></button>
         </div> :
         ''
         }

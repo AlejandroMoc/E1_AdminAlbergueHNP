@@ -63,7 +63,7 @@ const getNewAdmin = async (nombre_u, contrasena, admin) => {
       throw new Error('Usuario existente');
     }
     await db.none(`INSERT INTO usuario (nombre_u, contrasena, admin) VALUES ($1, $2, $3)`,[nombre_u, hashedPassword, admin]);
-    console.log("Se insertó nuevo admin");
+    //console.log("Se insertó nuevo admin");
   } catch (error) {
     throw error;
   }
@@ -78,22 +78,22 @@ const getNewLogin = async (nombre_u, contrasena) => {
     if (!existingUser) {
       throw new Error('Las credenciales son incorrectas.');
     }
-    console.log(existingUser.contrasena);
+    //console.log(existingUser.contrasena);
 
     const passwordMatch = await bcrypt.compare(contrasena, existingUser.contrasena);
     if (!passwordMatch) {
       throw new Error('Las credenciales son incorrectas.');
     }
-    console.log("Inicio de sesión exitoso");
-    console.log(existingUser);
+    //console.log("Inicio de sesión exitoso");
+    //console.log(existingUser);
     
     const accessToken = await createAccessToken(existingUser);
     const refreshToken = await createRefreshToken(existingUser);
 
-    console.log("accessToken");
-    console.log(accessToken);
-    console.log("refreshToken");
-    console.log(refreshToken);
+    //console.log("accessToken");
+    //console.log(accessToken);
+    //console.log("refreshToken");
+    //console.log(refreshToken);
     return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
 
   } catch (error) {
@@ -102,8 +102,8 @@ const getNewLogin = async (nombre_u, contrasena) => {
 };
 
 function getTokenFromHeader(headers) {
-  // console.log("JAJAJAJ");
-  // console.log(headers);
+  //console.log("JAJAJAJ");
+  //console.log(headers);
   //ESTO SI LO ESTÁ HACIENDO BIEEEN QUE ES ENTONCES AAA
 
   if (headers && headers.authorization) {
@@ -136,8 +136,8 @@ const functionRefreshToken = async (refreshToken) => {
     if (!resultito){
       throw new Error('No hay resultito.');
     }
-    console.log("Estesmiresult");
-    console.log(resultito);
+    //console.log("Estesmiresult");
+    //console.log(resultito);
     return resultito;
 
   } catch (error) {
@@ -158,7 +158,7 @@ const changeAdminPassword = async (nombre_u, contrasena, new_password1, new_pass
     if (!existingUser) {
       throw new Error('Las credenciales son incorrectas.');
     }
-    console.log("aaasas",existingUser.contrasena);
+    //console.log("aaasas",existingUser.contrasena);
 
     const newpasswordsMatch = new_password1 === new_password2;
     if (!newpasswordsMatch) {
@@ -170,8 +170,8 @@ const changeAdminPassword = async (nombre_u, contrasena, new_password1, new_pass
       throw new Error('Las credenciales son incorrectas.');
     }
 
-    console.log("Existe el usuario, ahora a cambiar la contraseña");
-    console.log(existingUser);
+    //console.log("Existe el usuario, ahora a cambiar la contraseña");
+    //console.log(existingUser);
     
     //Cambiar contraseña
     const newHashedPassword = await bcrypt.hash(new_password1, 10);
@@ -181,7 +181,7 @@ const changeAdminPassword = async (nombre_u, contrasena, new_password1, new_pass
       [nombre_u, newHashedPassword]
     );
 
-    console.log("The admin password was succesfully updated (from query)");
+    //console.log("The admin password was succesfully updated (from query)");
 
     return resultito2;
     // try {
@@ -203,10 +203,10 @@ const changeAdminPassword = async (nombre_u, contrasena, new_password1, new_pass
     // const accessToken = await createAccessToken(existingUser);
     // const refreshToken = await createRefreshToken(existingUser);
 
-    // console.log("accessToken");
-    // console.log(accessToken);
-    // console.log("refreshToken");
-    // console.log(refreshToken);
+    //console.log("accessToken");
+    //console.log(accessToken);
+    //console.log("refreshToken");
+    //console.log(refreshToken);
 
     // return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
 

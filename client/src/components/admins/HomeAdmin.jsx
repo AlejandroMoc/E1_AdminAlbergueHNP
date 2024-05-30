@@ -66,7 +66,7 @@ const HomeAdmin = () => {
               <Link className= 'home_text_squarebutton' to="/usernew">
                 <table className='home_text_squarebutton2'>
                     <tbody>
-                      <tr><td><RiUserAddFill size={80}/></td></tr>
+                      <tr><td><RiUserAddFill size="28%"/></td></tr>
                       <tr><td>Registro de<br/>Nuevo Cliente</td></tr>
                     </tbody>
                 </table>
@@ -78,7 +78,7 @@ const HomeAdmin = () => {
               <Link className= 'home_text_squarebutton' to="/beds">
                 <table className='home_text_squarebutton2'>
                   <tbody>
-                    <tr><td><IoIosBed size={80}/></td></tr>
+                    <tr><td><IoIosBed size="28%"/></td></tr>
                     <tr><td>Administración<br/>de Camas</td></tr>
                   </tbody>
                 </table>
@@ -92,7 +92,7 @@ const HomeAdmin = () => {
               <Link className= 'home_text_squarebutton' to="/userlist">
                 <table className='home_text_squarebutton2'>
                   <tbody>
-                    <tr><td><IoIosListBox size={80}/></td></tr>
+                    <tr><td><IoIosListBox size="28%"/></td></tr>
                     <tr><td>Administración<br/>de Clientes</td></tr>
                   </tbody>
                 </table>
@@ -104,7 +104,7 @@ const HomeAdmin = () => {
               <Link className= 'home_text_squarebutton' to="/reports">
                 <table className='home_text_squarebutton2'>
                   <tbody>
-                    <tr><td><IoDocumentAttach size={80}/></td></tr>
+                    <tr><td><IoDocumentAttach size="28%"/></td></tr>
                     <tr><td>Generación de<br/>Nuevo Reporte</td></tr>
                   </tbody>
                 </table>

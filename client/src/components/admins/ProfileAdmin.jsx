@@ -32,7 +32,9 @@ const ProfileAdmin = () => {
       }
 
     } catch (error){
-      console.log(error);
+      res.status(500).json({ error: 'An error occurred while processing the request.' });
+      // errorToast()
+      //console.log(error);
     }
   }
 
@@ -64,7 +66,7 @@ const ProfileAdmin = () => {
         <tbody>
           <tr>
             <td>
-                <FaUserCircle size={160}/>
+                <FaUserCircle size="60%"/>
                 <h1 className="universal_header_texttitle">{auth.getUser()?.nombre_u || "Admin"}</h1>
                 {adminInfo.admin ? <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom"><FaPlus/> Crear un administrador</button></p></Link> : ''}
                 <Link to="/changepassword"><p><button className="App_buttonaccept universal_marginbottom"><IoKey/> Cambiar contraseña</button></p></Link>

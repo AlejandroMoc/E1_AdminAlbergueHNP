@@ -41,7 +41,7 @@ const AuthProvider = ({children }) => {
   }
 
   function setAccessTokenAndRefreshToken( accessToken, refreshToken) {
-    console.log("setAccessTokenAndRefreshToken", accessToken, refreshToken);
+    //console.log("setAccessTokenAndRefreshToken", accessToken, refreshToken);
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
     Cookies.set("refreshToken", refreshToken);
@@ -56,8 +56,8 @@ const AuthProvider = ({children }) => {
     const token = Cookies.get("refreshToken");
     if (token){
       const {refreshToken} = JSON.parse(token);
-      console.log("WIIIIII");
-      console.log({refreshToken});
+      //console.log("WIIIIII");
+      //console.log({refreshToken});
       setRefreshToken(refreshToken);
       return refreshToken;
     }
@@ -88,14 +88,14 @@ const AuthProvider = ({children }) => {
 
   async function checkAuth() {
     try {
-      console.log("El accesstoken que no quiere agarrar es", accessToken);
+      //console.log("El accesstoken que no quiere agarrar es", accessToken);
       //Si existe el accessToken, retribuirlo
       if (!!accessToken) {
         const userInfo = await retrieveUserInfo(accessToken);
-        console.log('CHECA1');
-        console.log(user);
+        //console.log('CHECA1');
+        //console.log(user);
         setUser(userInfo);
-        console.log(user);
+        //console.log(user);
         setAccessToken(accessToken);
         setIsAuthenticated(true);
         setIsLoading(false);
@@ -104,25 +104,25 @@ const AuthProvider = ({children }) => {
         // const token = localStorage.getItem("token");
         const token = Cookies.get("refreshToken");
         if (token) {
-          console.log("useEffect: token", token);
+          //console.log("useEffect: token", token);
           // const refreshToken = JSON.parse(token).refreshToken;
           const refreshToken = JSON.parse(token).refreshToken;
           //Si no existe el access token, voy a pedir un nuevo access token
-          console.log("Voy a pedir un nuevo token");
+          //console.log("Voy a pedir un nuevo token");
           getNewAccessToken(refreshToken)
             .then(async (newToken) => {
-              console.log("El nuevo token es",newToken);
+              //console.log("El nuevo token es",newToken);
               const userInfo = await retrieveUserInfo(newToken);
-              console.log('CHECA2');
-              console.log(userInfo);
-              console.log('Este es userInfo:', userInfo);
+              //console.log('CHECA2');
+              //console.log(userInfo);
+              //console.log('Este es userInfo:', userInfo);
               setUser(userInfo);
               setAccessToken(newToken);
               setIsAuthenticated(true);
               setIsLoading(false);
             })
             .catch((error) => {
-              console.log(error);
+              //console.log(error);
               setIsLoading(false);
             });
         } else {
@@ -130,21 +130,21 @@ const AuthProvider = ({children }) => {
         }
       }
     } catch (error) {
-      console.log("quesera",error);
+      //console.log("quesera",error);
       setIsLoading(false);
     }
   }
 
   useEffect(()=>{
     checkAuth();
-    console.log('Se llamó a checkAUTH');
+    //console.log('Se llamó a checkAUTH');
   },[]);
   
   //el requestNewAccessToken se manda a llamar en la funcion checkAuth, en este mismo archivo
   async function requestNewAccessToken(refreshToken) {
-    console.log("Sí está sacando aqui un refreshToken");
-    console.log("Hasta aquí está bien");
-    console.log(refreshToken);
+    //console.log("Sí está sacando aqui un refreshToken");
+    //console.log("Hasta aquí está bien");
+    //console.log(refreshToken);
     try {
       
       const response = await fetch("http://localhost:8008/refreshtoken", {
@@ -156,35 +156,35 @@ const AuthProvider = ({children }) => {
         body: JSON.stringify({refreshToken }),
       });
   
-      console.log("MIRAMEAAAA");
-      console.log(response)
+      //console.log("MIRAMEAAAA");
+      //console.log(response)
 
       if (response.ok) {
-        console.log('OK?');
+        //console.log('OK?');
         const json = await response.json();
-        console.log("OKI");
-        console.log(json)
-        console.log("OKI");
+        //console.log("OKI");
+        //console.log(json)
+        //console.log("OKI");
         if (json.error) {
           throw new Error(json.error);
         }
         //TODO checar si es .body o sin el .body
         const accessToken = json.body.accessToken
-        console.log("Dime el access token A", accessToken);
+        //console.log("Dime el access token A", accessToken);
         return accessToken;
       } else {
         const errorResponse = await response.json();
         // CHECAR QUE SE VA DIRECTO A AQUI Y NO SE POR QUE
-        console.log("Luego se va aqui, lo que quiere decir que no está regresando una respuesta ok");
-        console.log("33333333333");
-        console.log("Error Response:", errorResponse);
-        console.log("Response Status Text:", response.statusText);
+        //console.log("Luego se va aqui, lo que quiere decir que no está regresando una respuesta ok");
+        //console.log("33333333333");
+        //console.log("Error Response:", errorResponse);
+        //console.log("Response Status Text:", response.statusText);
         throw new Error(errorResponse.error || response.statusText);
 
       }
     } catch (error) {
       // CHECAR AQUI
-      console.log("11111111",error);
+      //console.log("11111111",error);
       return null;
     }
   }
@@ -204,19 +204,19 @@ const AuthProvider = ({children }) => {
         // const json = await response.json() as AccessTokenResponse;
         const json = await response.json();
         if (json.error){
-          console.log("LOREM IPSUM B")
+          //console.log("LOREM IPSUM B")
           throw new Error(json.error);
         }
-        console.log("LOREM IPSUM 2");
+        //console.log("LOREM IPSUM 2");
         const dime =json.body;
-        console.log(dime);
+        //console.log(dime);
         return json.body;
       }else{
         throw new Error(response.statusText);
       }
 
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return null;
     }
   }
@@ -241,7 +241,7 @@ const AuthProvider = ({children }) => {
 
 async function retrieveUserInfo(accessToken) {
   try {
-    console.log('Entra')
+    //console.log('Entra')
     const response = await fetch(`http://localhost:8008/user`, {
       method: "GET",
       headers: {
@@ -252,11 +252,11 @@ async function retrieveUserInfo(accessToken) {
 
     if (response.ok) {
       const json = await response.json();
-      console.log('Retrieve Info json: ',json);
+      //console.log('Retrieve Info json: ',json);
       return json;
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 }
 

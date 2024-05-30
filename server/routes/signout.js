@@ -6,14 +6,14 @@ const router = require("express").Router();
 router.delete("/", async (req, res) => {
   try {
     const refreshToken = getTokenFromHeader(req.headers);
-    console.log(refreshToken)
+    // console.log(refreshToken)
 
     if (refreshToken) {
       await db.query("DELETE FROM tokens WHERE token = $1", [refreshToken]);
       res.status(200).json({message: "Token deleted" });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({message: "Server Error" });
   }
 });

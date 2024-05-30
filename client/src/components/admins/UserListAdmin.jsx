@@ -389,7 +389,7 @@ const UserListAdmin = () => {
     currentPage * pageSize
   )
 
-  console.log(paginatedData)
+  //console.log(paginatedData)
 
   // Para Mensajes de Error
   const [dateErrorMessage, setDateErrorMessage] = useState('')
@@ -417,17 +417,17 @@ const UserListAdmin = () => {
 
   const handleMenuClick = (event, id) => {
     if (event.key == 'vetar') {
-      console.log('Vetar')
+      //console.log('Vetar')
       setShowPopUp({ trigger: true, type: 1, id: id, fun: vetarCliente })
       // setType(0)
     }
     else if (event.key == 'noVetar') {
-      console.log('Des-Vetar?')
+      //console.log('Des-Vetar?')
       setShowPopUp({ trigger: true, type: 0, id: id, fun: desvetarCliente })
       // setType(1)
     }
     else if (event.key == 'eliminar') {
-      console.log('Eliminar')
+      //console.log('Eliminar')
       setShowPopUp({ trigger: true, type: 0, id: id, fun: eliminarCliente })
       // setType(2)
     }

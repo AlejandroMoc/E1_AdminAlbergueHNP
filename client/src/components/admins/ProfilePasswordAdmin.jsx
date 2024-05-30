@@ -64,7 +64,7 @@ const ProfilePasswordAdmin = () => {
         });
     
         if (response.ok) {
-          console.log("Password changed succesfully",response);
+          // console.log("Password changed succesfully",response);
           setChangeSuccessMessage('Se cambió la contraseña correctamente.');
           setActualPassword('')
           setNewPassword1('')
@@ -72,7 +72,7 @@ const ProfilePasswordAdmin = () => {
           successToast()
           // goTo("/");
         } else {
-          console.log("Something went wrong");
+          //console.log("Something went wrong");
           setChangeErrorMessage('Credenciales incorrectas. Intente de nuevo.');
           errorToast()
           // const json = await response.json() as AuthResponseError;
@@ -81,7 +81,7 @@ const ProfilePasswordAdmin = () => {
   
       } catch (error) {
         errorToast()
-        console.log(error);
+        //console.log(error);
       }
     }
   }

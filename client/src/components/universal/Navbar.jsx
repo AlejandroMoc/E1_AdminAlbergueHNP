@@ -33,19 +33,17 @@ const Navbar = () => {
   
   return ( 
     <>
-        <nav className = "navbar">
+      <nav className = "navbar d-flex flex-row">
         <ul className = "navbar_left">
           <div className = "navbar_logo"><Link to="/dashboard"><img src={logohnp} alt="logo"/></Link></div>
         </ul>
         <ul className ='navbar_right d-flex flex-row'>
-
           <div className='navbar_div_text'><Link className = 'navbar_text' to ="/usernew"> Registro </Link></div>
           <div className='navbar_div_text'><Link className = 'navbar_text' to ="/beds"> Camas </Link></div>
           <div className='navbar_div_text'><Link className = 'navbar_text' to ="/userlist"> Clientes </Link></div>
           <div className='navbar_div_text'><Link className = 'navbar_text' to ="/reports"> Reporte </Link></div>
           <div className='navbar_div_text'>{adminInfo.admin ? <Link className = 'navbar_text' to ="/adminnew"> N. Admin </Link> : ''}</div>
           <div className='navbar_div_text'><Link className = 'navbar_text' to ="/profile"> <FaUser/> </Link></div>
-
         </ul>
       </nav>
       <Outlet/>

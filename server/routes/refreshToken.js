@@ -11,11 +11,11 @@ router.post('/', async (req, res) => {
   // const refreshToken = getTokenFromHeader(req.headers);
   const refreshToken = req.headers;
 
-  console.log("El refreshytoken es", refreshToken);
+  // console.log("El refreshytoken es", refreshToken);
 
   if (refreshToken) {
 
-    console.log("AQUI INICIA", refreshToken);
+    // console.log("AQUI INICIA", refreshToken);
 
     try {
       //AQUI pasar a sus propias queries en vez de mandar a llamarla desde aqui
@@ -23,8 +23,8 @@ router.post('/', async (req, res) => {
       // const {rows } = await db.any(`SELECT * FROM tokens WHERE token = $1;`, [refreshToken]);
       const  rows  = await functionRefreshToken(refreshToken);
 
-      console.log("ESTE ES TOKENNS");
-      console.log(rows);
+      // console.log("ESTE ES TOKENNS");
+      // console.log(rows);
       
       if (rows && rows.length > 0) {
 

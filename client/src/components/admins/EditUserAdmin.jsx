@@ -41,15 +41,15 @@ const UserNewAdmin = (props) => {
         setNivel_SE(data.nivel_se);
         setId_cliente(props.id_cliente);
         //setArea(data.id_area)
-        console.log(data)
+        //console.log(data)
      });
  }, [props.id_cliente])
-  console.log("FECHA Inicio: " + infoCliente.nombre_c)
+  //console.log("FECHA Inicio: " + infoCliente.nombre_c)
   const [id_cliente, setId_cliente] = useState(0)
-  console.log("TRISTEMENTE" + id_cliente)
+  //console.log("TRISTEMENTE" + id_cliente)
 
   //FETCH PARA TIPO DE USUARIO "HUESPED"-----------------------------------------
-  console.log("VERDADERO HUESPED");
+  //console.log("VERDADERO HUESPED");
   const [huespedCliente, setHuespedCliente] = useState({id_cama: 0, fecha_i: 0})
   useEffect(() => {
     fetch('http://localhost:8008/huespedInfo/' + props.id_cliente)
@@ -58,11 +58,11 @@ const UserNewAdmin = (props) => {
         setHuespedCliente(data);
         setHuespedCliente(data);
         setId_CamaC(data.id_cama);
-        console.log(data)
+        //console.log(data)
      });
 
  }, [props.id_cliente])
-  console.log("ID CAMA" + huespedCliente.id_cama)
+  //console.log("ID CAMA" + huespedCliente.id_cama)
 
   //FETCH PARA CALCULAR CANTIDAD DE CADA SERVICIO 
   const [servicioCliente, setservicioCliente] = useState({servicio1: 0, servicio2: 0, servicio3: 0, servicio4: 0, servicio5: 0})
@@ -73,13 +73,13 @@ const UserNewAdmin = (props) => {
       .then((data) => {
         setservicioCliente(data);
         setShower(data.servicio1);
-        console.log(data)
+        //console.log(data)
      });
  }, [props.id_cliente])
-  console.log("SErvicio: " + servicioCliente.servicio5)
+  //console.log("SErvicio: " + servicioCliente.servicio5)
 
 
-  console.log("id_cama")
+  //console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
     fetch('http://localhost:8008/alldispbeds')
@@ -156,7 +156,7 @@ const UserNewAdmin = (props) => {
   const handleSelectChange = (event) => {
     const selectedId = event.target.value;
     setNumeroA(selectedId);
-    console.log('ID del área seleccionada:', selectedId);
+    //console.log('ID del área seleccionada:', selectedId);
  };
 
   const [isVisitantePrevio, setIsVisitantePrevio] = useState(false);
@@ -222,11 +222,11 @@ const UserNewAdmin = (props) => {
   const handleNombre_CChange = (event) => {
     const inputValue = event.target.value;
     const nombrecArray = inputValue.split(' ');
-    console.log(nombrecArray);
+    //console.log(nombrecArray);
     const nombrecString = nombrecArray.join(' ');
     const isError = inputValue.trim() === '';
     setNombre_CError(isError);
-    console.log(nombrecString);
+    //console.log(nombrecString);
     setNombre_C(event.target.value);
     setNombre_C(nombrecString);
  }
@@ -235,11 +235,11 @@ const UserNewAdmin = (props) => {
   const handleApellidos_CChange = (event) => {
     const inputValue = event.target.value;
     const apellidoscArray = inputValue.split(' ');
-    console.log(apellidoscArray);
+    //console.log(apellidoscArray);
     const apellidoscString = apellidoscArray.join(' ');
     const isError = inputValue.trim() === '';
     setApellidos_CError(isError);
-    console.log(apellidoscString);
+    //console.log(apellidoscString);
     setApellidos_C(event.target.value);
     setApellidos_C(apellidoscString);
  }
@@ -248,11 +248,11 @@ const UserNewAdmin = (props) => {
   const handleApellidos_PChange = (event) => {
     const inputValue = event.target.value;
     const apellidosArray = inputValue.split(' ');
-    console.log(apellidosArray);
+    //console.log(apellidosArray);
     const apellidosString = apellidosArray.join(' ');
     const isError = inputValue.trim() === '';
     setApellidos_PError(isError);
-    console.log(apellidosString);
+    //console.log(apellidosString);
     setApellidos_P(event.target.value);
     setApellidos_P(apellidosString);
  }
@@ -264,13 +264,13 @@ const UserNewAdmin = (props) => {
     const nombrepString = nombrepArray.join(' ');
     const isError = inputValue.trim() === '';
     setNombre_PError(isError);
-    console.log(nombrepString);
+    //console.log(nombrepString);
     setNombre_P(event.target.value);
     setNombre_P(nombrepString);
     // if paciente = true hacer setnombre_c =
  }
 
-  console.log(client)
+  //console.log(client)
 
 
   const [sexoUsuario, setSexoUsuario] = useState(null); // Inicializamos el sexo del usuario como null
@@ -329,10 +329,10 @@ const UserNewAdmin = (props) => {
         if (data && data.length > 0) {
           const carnetExist2 = data[0].carnetexist === 'true';
           setCarnetExist(carnetExist2);
-          console.log("ESTADO DEL CARNET: ", carnetExist2);
+          //console.log("ESTADO DEL CARNET: ", carnetExist2);
        } else {
           setCarnetExist(false);
-          console.log("ESTADO DEL CARNET: FALSE");
+          //console.log("ESTADO DEL CARNET: FALSE");
        }
      } catch (error) {
         console.error('Error al obtener el estado del carnet:', error);
@@ -343,8 +343,8 @@ const UserNewAdmin = (props) => {
     obtenerEstadoCarnet();
  }, [carnet]);
 
-console.log("carnet"+carnet)
-console.log("carnet Existe"+carnetExist)
+//console.log("carnet"+carnet)
+//console.log("carnet Existe"+carnetExist)
   const handleRegister = () => {
     // Aquí pondrías la lógica para registrar el carnet
     // Por ahora, solo mostraremos un mensaje de éxito simulado
@@ -447,7 +447,7 @@ console.log("carnet Existe"+carnetExist)
       .then((res) => res.json())
       .then((data) => {settipoCliente(data); console.log(data)});
  }, [props.id_cliente])
-  console.log("TipoCLIENTE" + tipoCliente.tipo_cliente)
+  //console.log("TipoCLIENTE" + tipoCliente.tipo_cliente)
   const showNumbersSelect = tipoCliente.tipo_cliente;
 
   return (
