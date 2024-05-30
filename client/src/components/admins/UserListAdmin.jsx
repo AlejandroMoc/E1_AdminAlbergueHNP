@@ -32,12 +32,8 @@ _.-"^`  //   \    `^"-.,__
 
 // React
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DatePicker from 'react-datepicker';
-import { useAuth } from '../../auth/AuthProvider';
 import { API_URL } from '../../App';
 
 // CSS
@@ -46,8 +42,6 @@ import "./UserListAdmin.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Elementos Externos
-import Popup from '../universal/Popup';
-import MyPagination from '../universal/MyPagination';
 import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 import { Menu, Dropdown as DP } from 'antd';
 
@@ -63,7 +57,7 @@ import { FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y
 ############################################################################################*/
 
 const vetarCliente = (id_u, id_c, n_v) => {
-  fetch('${API_URL}/banclient', {
+  fetch(`${API_URL}/banclient`, {
     method: 'POST',
     body: JSON.stringify({ id_u: id_u, id_c: id_c, n_v: n_v }),
     headers: {
@@ -92,7 +86,7 @@ const vetarCliente = (id_u, id_c, n_v) => {
 ############################################################################################*/
 
 const desvetarCliente = (id_c) => {
-  fetch('${API_URL}/unbanclient', {
+  fetch(`${API_URL}/unbanclient`, {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
     headers: {
@@ -121,7 +115,7 @@ const desvetarCliente = (id_c) => {
 ############################################################################################*/
 
 const eliminarCliente = (id_c) => {
-  fetch('${API_URL}/deleteclient', {
+  fetch(`${API_URL}/deleteclient`, {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
     headers: {
@@ -193,7 +187,7 @@ const UserListAdmin = () => {
   // console.log(id_u)
 
   useEffect(() => {
-    fetch('${API_URL}/infouser', {
+    fetch(`${API_URL}/infouser`, {
       method: 'POST',
       body: JSON.stringify({ id_u: id_u }),
       headers: {
@@ -218,7 +212,7 @@ const UserListAdmin = () => {
   useEffect(() => {
     if (select_Filters.length != 0 || select_View != 10 || dateRange.length != 0 || debtRange.length != 0) {
       // console.log('ENTRA')
-      fetch('${API_URL}/someclients', {
+      fetch(`${API_URL}/someclients`, {
         method: 'POST',
         body: JSON.stringify({ filters: select_Filters, views: select_View, dates: dateRange, debts: debtRange }),
         headers: {
@@ -230,7 +224,7 @@ const UserListAdmin = () => {
         .catch((error) => console.error('Error fetching data:', error))
     }
     else {
-      fetch('${API_URL}/allclients')
+      fetch(`${API_URL}/allclients`)
         .then((res) => res.json())
         .then((clientes) => setData(clientes))
     }

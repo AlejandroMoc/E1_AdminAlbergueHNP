@@ -146,7 +146,7 @@ const AuthProvider = ({children }) => {
     //console.log(refreshToken);
     try {
       
-      const response = await fetch("${API_URL}/refreshtoken", {
+      const response = await fetch(`${API_URL}/refreshtoken`, {
         method: "POST",
         headers: {
           'Content-type': 'application/json',

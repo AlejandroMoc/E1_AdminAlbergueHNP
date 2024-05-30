@@ -26,7 +26,7 @@ export const AppRouter = () => {
     //Cada que recargas la pagina se sale la sesion
     // const handleSignOut = async () => {
     //     try {
-    //     const response = await fetch('${API_URL}/signout/', {
+    //     const response = await fetch(`${API_URL}/signout/`, {
     //         method: 'DELETE',
     //         headers: {
     //         'Content-type': 'application/json; charset=UTF-8',

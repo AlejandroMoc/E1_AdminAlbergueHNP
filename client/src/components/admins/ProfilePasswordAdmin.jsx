@@ -51,7 +51,7 @@ const ProfilePasswordAdmin = () => {
     else{
 
       try {
-        const response = await fetch("${API_URL}/changepass", {
+        const response = await fetch(`${API_URL}/changepass`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=UTF-8'

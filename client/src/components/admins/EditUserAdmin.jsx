@@ -1,12 +1,8 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState} from 'react';
-import {LuUser} from "react-icons/lu";
-import {FiHome} from "react-icons/fi";
 import {useAuth} from '../../auth/AuthProvider';
-import {MdFaceUnlock} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
-import {FaRegAddressCard} from "react-icons/fa";
 import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
 import { API_URL } from '../../App';
 
@@ -19,7 +15,7 @@ const UserNewAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c: "", apellidos_c: "", fecha_i: 0, lugar_o: "", nombre_p: "", apellidos_p: "", carnet: "", nombre_a: "", nivel_se: 0, notas_c: 0, sexo: ""})
 
   useEffect(() => {
-    fetch('${API_URL}/clienteInfo/' + props.id_cliente)
+    fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setinfoCliente(data);
@@ -49,7 +45,7 @@ const UserNewAdmin = (props) => {
   //console.log("VERDADERO HUESPED");
   const [huespedCliente, setHuespedCliente] = useState({id_cama: 0, fecha_i: 0})
   useEffect(() => {
-    fetch('${API_URL}/huespedInfo/' + props.id_cliente)
+    fetch(`${API_URL}/huespedInfo/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setHuespedCliente(data);
@@ -65,7 +61,7 @@ const UserNewAdmin = (props) => {
   const [servicioCliente, setservicioCliente] = useState({servicio1: 0, servicio2: 0, servicio3: 0, servicio4: 0, servicio5: 0})
 
   useEffect(() => {
-    fetch('${API_URL}/servicioEU/' + props.id_cliente)
+    fetch(`${API_URL}/servicioEU/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setservicioCliente(data);
@@ -79,7 +75,7 @@ const UserNewAdmin = (props) => {
   //console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
-    fetch('${API_URL}/alldispbeds')
+    fetch(`${API_URL}/alldispbeds`)
       .then((res) => res.json())
       .then((beds) => setBed(beds));
     if (sexo === true) {
@@ -92,7 +88,7 @@ const UserNewAdmin = (props) => {
 
   const [area, setArea] = useState([{id_area: 0, nombre_a: ''}]) //PARA DROPDOWN DE AREA PACIENTE
   useEffect(() => {
-    fetch('${API_URL}/allareas')
+    fetch(`${API_URL}/allareas`)
       .then((res) => res.json())
       .then((areas) => setArea(areas));
  }, [])
@@ -101,7 +97,7 @@ const UserNewAdmin = (props) => {
   const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '', id_cliente: 0, paciente: null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
-      fetch('${API_URL}/allclientinfo', {
+      fetch(`${API_URL}/allclientinfo`, {
         method: 'POST',
         body: JSON.stringify({nombre: nombre_c, apellidos: apellidos_c}),
         headers: {
@@ -168,7 +164,7 @@ const UserNewAdmin = (props) => {
       if (!carnetExist) {// Verificamos si el carnet no existe
       if (showNumbersSelect === false) {
         try {
-          await fetch('${API_URL}/updateinfoEntrada', {
+          await fetch(`${API_URL}/updateinfoEntrada`, {
             method: 'POST',
             body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, paciente: paciente, id_u: id_u, id_cliente: id_cliente}),
             headers: {
@@ -187,7 +183,7 @@ const UserNewAdmin = (props) => {
      }
       else if (showNumbersSelect === true) {
         try {
-          await fetch('${API_URL}/updateinfocliente', {
+          await fetch(`${API_URL}/updateinfocliente`, {
             method: 'POST',
             body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, id_u: id_u, id_cliente: id_cliente}),
             headers: {
@@ -440,7 +436,7 @@ const UserNewAdmin = (props) => {
   const [tipoCliente, settipoCliente] = useState({tipo_cliente: 0})
   //FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
   useEffect(() => {
-    fetch('${API_URL}/tipoCliente/' + props.id_cliente)
+    fetch(`${API_URL}/tipoCliente/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {settipoCliente(data); console.log(data)});
  }, [props.id_cliente])

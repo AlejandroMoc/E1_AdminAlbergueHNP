@@ -94,39 +94,39 @@ const today = new Date();
   useEffect(() => {
     if (startDate === null || endDate === null) {
       // Cuando startDate y endDate son null, realizar estas operaciones
-      fetch('${API_URL}/allusers')
+      fetch(`${API_URL}/allusers`)
         .then((res) => res.json())
         .then((allusers) => setData(allusers));
 
-      fetch('${API_URL}/allgeneralhuespedes')
+      fetch(`${API_URL}/allgeneralhuespedes`)
         .then((res) => res.json())
         .then((allgeneralhuespedes) => setDataHuesped(allgeneralhuespedes));
 
-      fetch('${API_URL}/allgeneralvisitantes')
+      fetch(`${API_URL}/allgeneralvisitantes`)
         .then((res) => res.json())
         .then((allgeneralvisitantes) => setDataVisitante(allgeneralvisitantes));
 
-      fetch('${API_URL}/allgeneralvetados')
+      fetch(`${API_URL}/allgeneralvetados`)
         .then((res) => res.json())
         .then((allgeneralvetados) => setDataVetado(allgeneralvetados));
 
       // Fetch para obtener todos los huéspedes
-      fetch('${API_URL}/allhuespedes')
+      fetch(`${API_URL}/allhuespedes`)
         .then((res) => res.json())
         .then((huespedesData) => setHuespedes(huespedesData));
 
       // Fetch para obtener todos los huéspedes
-      fetch('${API_URL}/allvisitantes')
+      fetch(`${API_URL}/allvisitantes`)
         .then((res) => res.json())
         .then((visitantesData) => setVisitantes(visitantesData));
 
       // Fetch para obtener todos los vetados
-      fetch('${API_URL}/allvetados')
+      fetch(`${API_URL}/allvetados`)
         .then((res) => res.json())
         .then((vetadosData) => setVetados(vetadosData));
       
       // Fetch para obtener todos los pagos
-      fetch('${API_URL}/allingresos')
+      fetch(`${API_URL}/allingresos`)
         .then((res) => res.json())
         .then((allingresos) => setDataIngreso(allingresos));
     } else {

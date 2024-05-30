@@ -15,7 +15,7 @@ const Navbar = () => {
 
   //Llamada a la función para información de usuario
   useEffect(() => {
-    fetch('${API_URL}/infouser', {
+    fetch(`${API_URL}/infouser`, {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {

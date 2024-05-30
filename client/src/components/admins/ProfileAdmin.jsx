@@ -18,7 +18,7 @@ const ProfileAdmin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('${API_URL}/signout/',{
+      const response = await fetch(`${API_URL}/signout/`,{
         method: "DELETE",
         headers:{
           'Content-type': 'application/json; charset=UTF-8',
@@ -47,7 +47,7 @@ const ProfileAdmin = () => {
   
     //Llamada a la función para información de usuario
     useEffect(() => {
-      fetch('${API_URL}/infouser', {
+      fetch(`${API_URL}/infouser`, {
         method: 'POST',
         body: JSON.stringify({id_u: id_u}),
         headers: {
