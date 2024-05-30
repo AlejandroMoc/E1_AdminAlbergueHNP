@@ -16,12 +16,12 @@ services:
       - "88:88"
     restart: always
   
-  app-backend:
-    image: gestion-back-image
-    # volumes:
-    #   - my-vol:/app/client
-    ports:
-      - "8008:8008"
+  # app-backend:
+  #   image: gestion-back-image
+  #   # volumes:
+  #   #   - my-vol:/app/client
+  #   ports:
+  #     - "8008:8008"
 
 # volumes:
 #   my-vol:

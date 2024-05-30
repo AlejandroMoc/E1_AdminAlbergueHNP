@@ -147,7 +147,7 @@ const AuthProvider = ({children }) => {
     //console.log(refreshToken);
     try {
       
-      const response = await fetch("http://localhost:8008/refreshtoken", {
+      const response = await fetch("http://10.50.91.88:8008/refreshtoken", {
         method: "POST",
         headers: {
           'Content-type': 'application/json',
@@ -192,7 +192,7 @@ const AuthProvider = ({children }) => {
   //Parece que esta función ni se usa
   async function getUserInfo(accessToken){
     try {
-      const response = await fetch ("http://localhost:8008/user",{
+      const response = await fetch ("http://10.50.91.88:8008/user",{
         method: "GET",
         headers: {
           'Content-type': "application/json; charset=UTF-8",
@@ -242,7 +242,7 @@ const AuthProvider = ({children }) => {
 async function retrieveUserInfo(accessToken) {
   try {
     //console.log('Entra')
-    const response = await fetch(`http://localhost:8008/user`, {
+    const response = await fetch(`http://10.50.91.88:8008/user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

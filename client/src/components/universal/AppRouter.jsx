@@ -26,7 +26,7 @@ export const AppRouter = () => {
     //Cada que recargas la pagina se sale la sesion
     // const handleSignOut = async () => {
     //     try {
-    //     const response = await fetch('http://localhost:8008/signout/', {
+    //     const response = await fetch('http://10.50.91.88:8008/signout/', {
     //         method: 'DELETE',
     //         headers: {
     //         'Content-type': 'application/json; charset=UTF-8',

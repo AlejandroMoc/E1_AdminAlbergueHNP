@@ -50,7 +50,7 @@ const ProfilePasswordAdmin = () => {
     else{
 
       try {
-        const response = await fetch("http://localhost:8008/changepass", {
+        const response = await fetch("http://10.50.91.88:8008/changepass", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=UTF-8'

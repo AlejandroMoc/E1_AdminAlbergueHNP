@@ -23,7 +23,7 @@ const UserNewAdmin = (props) => {
 
   //Llamada a la función para información de usuario
   useEffect(() => {
-    fetch('http://localhost:8008/infouser', {
+    fetch('http://10.50.91.88:8008/infouser', {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {
@@ -38,7 +38,7 @@ const UserNewAdmin = (props) => {
   //console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
-    fetch('http://localhost:8008/alldispbeds')
+    fetch('http://10.50.91.88:8008/alldispbeds')
       .then((res) => res.json())
       .then((beds) => setBed(beds));
     setId_CamaC(props.id_cama)
@@ -52,7 +52,7 @@ const UserNewAdmin = (props) => {
 
   const [area, setArea] = useState([{id_area: 0, nombre_a: ''}]) //PARA DROPDOWN DE AREA PACIENTE
   useEffect(() => {
-    fetch('http://localhost:8008/allareas')
+    fetch('http://10.50.91.88:8008/allareas')
       .then((res) => res.json())
       .then((areas) => setArea(areas));
  }, [])
@@ -61,7 +61,7 @@ const UserNewAdmin = (props) => {
   const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '', id_cliente: 0, paciente: null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
-      fetch('http://localhost:8008/allclientinfo', {
+      fetch('http://10.50.91.88:8008/allclientinfo', {
         method: 'POST',
         body: JSON.stringify({nombre: nombre_c, apellidos: apellidos_c}),
         headers: {
@@ -127,7 +127,7 @@ const UserNewAdmin = (props) => {
       // if (!carnetExist) {// Verificamos si el carnet no existe
       if (showServices) {
         try {
-          await fetch('http://localhost:8008/registerEntradaUnica', {
+          await fetch('http://10.50.91.88:8008/registerEntradaUnica', {
             method: 'POST',
             body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, shower: shower, bathroom: bathroom, breakfast: breakfast, meal: meal, dinner: dinner, paciente: paciente, checked: adminInfo.admin, cantidad: cantidad, costo: costo}),
             headers: {
@@ -158,7 +158,7 @@ const UserNewAdmin = (props) => {
      }
       else if (showBedNumber) {
         try {
-          await fetch('http://localhost:8008/registerNewPatient', {
+          await fetch('http://10.50.91.88:8008/registerNewPatient', {
             method: 'POST',
             body: JSON.stringify({id_u: id_u, carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, checked: adminInfo.admin}),
             headers: {
@@ -304,7 +304,7 @@ const UserNewAdmin = (props) => {
   useEffect(() => {
     const obtenerEstadoCarnet = async () => {
       try {
-        const response = await fetch(`http://localhost:8008/carnetExist/${carnet}`);
+        const response = await fetch(`http://10.50.91.88:8008/carnetExist/${carnet}`);
         const data = await response.json();
 
         if (data && data.length > 0) {
@@ -365,7 +365,7 @@ const UserNewAdmin = (props) => {
       //console.log("cama asignada")
 
       useEffect(() =>{
-      fetch('http://localhost:8008/zonabed/'+props.id_cama)
+      fetch('http://10.50.91.88:8008/zonabed/'+props.id_cama)
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); 
         setHuespedCliente(data);
