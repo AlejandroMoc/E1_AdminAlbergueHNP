@@ -19,8 +19,9 @@ Cuando paga en una cama azul, a veces lo hace, a veces no
 Quitar consolelogs
 Revisar EXHAUSTIVAMENTE el CSS
 
-Revisar EXHAUSTIVAMENTE la pag en celular
+Revisar EXHAUSTIVAMENTE la pag en celular y corregir CSS
 
+Crear variable universal para la URL
 
 #Notas para instalacion
 

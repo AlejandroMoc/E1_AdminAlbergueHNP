@@ -7,11 +7,8 @@ import {useAuth} from '../../auth/AuthProvider';
 import {MdFaceUnlock} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import {FaRegAddressCard} from "react-icons/fa";
-// import {IoMdAddCircleOutline} from "react-icons/io";
-// import {IoMdRemoveCircleOutline} from "react-icons/io";
 import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
-//import {registerNewPatient} from '../../../../server/queries/UsernewQueries';
-
+import { API_URL } from '../../App';
 
 const UserNewAdmin = (props) => {
   //Para pasar a dashboard
@@ -22,7 +19,7 @@ const UserNewAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c: "", apellidos_c: "", fecha_i: 0, lugar_o: "", nombre_p: "", apellidos_p: "", carnet: "", nombre_a: "", nivel_se: 0, notas_c: 0, sexo: ""})
 
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/clienteInfo/' + props.id_cliente)
+    fetch('${API_URL}/clienteInfo/' + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setinfoCliente(data);
@@ -52,7 +49,7 @@ const UserNewAdmin = (props) => {
   //console.log("VERDADERO HUESPED");
   const [huespedCliente, setHuespedCliente] = useState({id_cama: 0, fecha_i: 0})
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/huespedInfo/' + props.id_cliente)
+    fetch('${API_URL}/huespedInfo/' + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setHuespedCliente(data);
@@ -68,7 +65,7 @@ const UserNewAdmin = (props) => {
   const [servicioCliente, setservicioCliente] = useState({servicio1: 0, servicio2: 0, servicio3: 0, servicio4: 0, servicio5: 0})
 
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/servicioEU/' + props.id_cliente)
+    fetch('${API_URL}/servicioEU/' + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setservicioCliente(data);
@@ -82,7 +79,7 @@ const UserNewAdmin = (props) => {
   //console.log("id_cama")
   const [bed, setBed] = useState([{id_cama: 0}])
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/alldispbeds')
+    fetch('${API_URL}/alldispbeds')
       .then((res) => res.json())
       .then((beds) => setBed(beds));
     if (sexo === true) {
@@ -95,7 +92,7 @@ const UserNewAdmin = (props) => {
 
   const [area, setArea] = useState([{id_area: 0, nombre_a: ''}]) //PARA DROPDOWN DE AREA PACIENTE
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/allareas')
+    fetch('${API_URL}/allareas')
       .then((res) => res.json())
       .then((areas) => setArea(areas));
  }, [])
@@ -104,7 +101,7 @@ const UserNewAdmin = (props) => {
   const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '', id_cliente: 0, paciente: null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
-      fetch('http://10.50.91.88:8008/allclientinfo', {
+      fetch('${API_URL}/allclientinfo', {
         method: 'POST',
         body: JSON.stringify({nombre: nombre_c, apellidos: apellidos_c}),
         headers: {
@@ -171,7 +168,7 @@ const UserNewAdmin = (props) => {
       if (!carnetExist) {// Verificamos si el carnet no existe
       if (showNumbersSelect === false) {
         try {
-          await fetch('http://10.50.91.88:8008/updateinfoEntrada', {
+          await fetch('${API_URL}/updateinfoEntrada', {
             method: 'POST',
             body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, paciente: paciente, id_u: id_u, id_cliente: id_cliente}),
             headers: {
@@ -190,7 +187,7 @@ const UserNewAdmin = (props) => {
      }
       else if (showNumbersSelect === true) {
         try {
-          await fetch('http://10.50.91.88:8008/updateinfocliente', {
+          await fetch('${API_URL}/updateinfocliente', {
             method: 'POST',
             body: JSON.stringify({carnet: carnet, id_area: id_area, nombre_p: nombre_p, apellidos_p: apellidos_p, nombre_c: nombre_c, apellidos_c: apellidos_c, lugar_o: lugar_o, notas_c: notas_c, sexo: sexo, nivel_se: nivel_se, id_cama: id_cama, paciente: paciente, id_u: id_u, id_cliente: id_cliente}),
             headers: {
@@ -323,7 +320,7 @@ const UserNewAdmin = (props) => {
   useEffect(() => {
     const obtenerEstadoCarnet = async () => {
       try {
-        const response = await fetch(`http://10.50.91.88:8008/carnetExistEdit/${carnet}/${id_cliente}`);
+        const response = await fetch(`${API_URL}/carnetExistEdit/${carnet}/${id_cliente}`);
         const data = await response.json();
 
         if (data && data.length > 0) {
@@ -443,7 +440,7 @@ const UserNewAdmin = (props) => {
   const [tipoCliente, settipoCliente] = useState({tipo_cliente: 0})
   //FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/tipoCliente/' + props.id_cliente)
+    fetch('${API_URL}/tipoCliente/' + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {settipoCliente(data); console.log(data)});
  }, [props.id_cliente])

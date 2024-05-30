@@ -8,9 +8,9 @@ import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DatePicker from 'react-datepicker';
 import MyToastContainer, {successToast} from '../universal/MyToast';
-
 import 'react-datepicker/dist/react-datepicker.css';
 import {useReactToPrint } from "react-to-print";
+import { API_URL } from '../../App';
 
 const ReportsAdmin = () => {
   // Estado para almacenar las fechas
@@ -83,7 +83,6 @@ const today = new Date();
     return(localDate)
   }
 
-
   const handleKeyDown = (e) => {
     // Verificar si la tecla presionada es una letra
     if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
@@ -92,44 +91,42 @@ const today = new Date();
     }
   };
 
-
-
   useEffect(() => {
     if (startDate === null || endDate === null) {
       // Cuando startDate y endDate son null, realizar estas operaciones
-      fetch('http://10.50.91.88:8008/allusers')
+      fetch('${API_URL}/allusers')
         .then((res) => res.json())
         .then((allusers) => setData(allusers));
 
-      fetch('http://10.50.91.88:8008/allgeneralhuespedes')
+      fetch('${API_URL}/allgeneralhuespedes')
         .then((res) => res.json())
         .then((allgeneralhuespedes) => setDataHuesped(allgeneralhuespedes));
 
-      fetch('http://10.50.91.88:8008/allgeneralvisitantes')
+      fetch('${API_URL}/allgeneralvisitantes')
         .then((res) => res.json())
         .then((allgeneralvisitantes) => setDataVisitante(allgeneralvisitantes));
 
-      fetch('http://10.50.91.88:8008/allgeneralvetados')
+      fetch('${API_URL}/allgeneralvetados')
         .then((res) => res.json())
         .then((allgeneralvetados) => setDataVetado(allgeneralvetados));
 
       // Fetch para obtener todos los huéspedes
-      fetch('http://10.50.91.88:8008/allhuespedes')
+      fetch('${API_URL}/allhuespedes')
         .then((res) => res.json())
         .then((huespedesData) => setHuespedes(huespedesData));
 
       // Fetch para obtener todos los huéspedes
-      fetch('http://10.50.91.88:8008/allvisitantes')
+      fetch('${API_URL}/allvisitantes')
         .then((res) => res.json())
         .then((visitantesData) => setVisitantes(visitantesData));
 
       // Fetch para obtener todos los vetados
-      fetch('http://10.50.91.88:8008/allvetados')
+      fetch('${API_URL}/allvetados')
         .then((res) => res.json())
         .then((vetadosData) => setVetados(vetadosData));
       
       // Fetch para obtener todos los pagos
-      fetch('http://10.50.91.88:8008/allingresos')
+      fetch('${API_URL}/allingresos')
         .then((res) => res.json())
         .then((allingresos) => setDataIngreso(allingresos));
     } else {
@@ -142,27 +139,27 @@ const today = new Date();
       const formattedStartDate = startDate.toISOString();
       const formattedEndDate = adjustedEndDate.toISOString();
 
-      fetch(`http://10.50.91.88:8008/allusers?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
+      fetch(`${API_URL}/allusers?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allusers) => setData(allusers))
         .catch((error) => console.error('Error fetching user data:', error));
 
-      fetch(`http://10.50.91.88:8008/allgeneralhuespedes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
+      fetch(`${API_URL}/allgeneralhuespedes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralhuespedes) => setDataHuesped(allgeneralhuespedes))
         .catch((error) => console.error('Error fetching user data:', error));
 
-      fetch(`http://10.50.91.88:8008/allgeneralvisitantes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
+      fetch(`${API_URL}/allgeneralvisitantes?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralvisitantes) => setDataVisitante(allgeneralvisitantes))
         .catch((error) => console.error('Error fetching user data:', error));
 
-      fetch(`http://10.50.91.88:8008/allgeneralvetados?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
+      fetch(`${API_URL}/allgeneralvetados?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allgeneralvetados) => setDataVetado(allgeneralvetados))
         .catch((error) => console.error('Error fetching user data:', error));
       
-      fetch(`http://10.50.91.88:8008/allingresos?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
+      fetch(`${API_URL}/allingresos?startDate=${formattedStartDate}&endDate=${formattedEndDate}`)
         .then((res) => res.json())
         .then((allingresos) => setDataIngreso(allingresos))
         .catch((error) => console.error('Error fetching user data:', error));
@@ -195,7 +192,7 @@ const today = new Date();
   useEffect(() => {
     if (huespedSeleccionado !== 'Huesped') {
       const [id_huesped] = huespedSeleccionado.split(" - "); // Extraer el ID del huésped seleccionado
-      fetch(`http://10.50.91.88:8008/userinfo/${id_huesped}`)
+      fetch(`${API_URL}/userinfo/${id_huesped}`)
         .then((res) => res.json())
         .then((userInfo) => setDataUser(userInfo))
         .catch((error) => console.error('Error fetching user info:', error));
@@ -205,7 +202,7 @@ const today = new Date();
   useEffect(() => {
     if (visitanteSeleccionado !== 'Visitante') {
       const [id_visitante] = visitanteSeleccionado.split(" - "); // Extraer el ID del visitante seleccionado
-      fetch(`http://10.50.91.88:8008/userinfo/${id_visitante}`)
+      fetch(`${API_URL}/userinfo/${id_visitante}`)
         .then((res) => res.json())
         .then((userInfo) => setDataUser(userInfo))
         .catch((error) => console.error('Error fetching user info:', error));
@@ -215,7 +212,7 @@ const today = new Date();
   useEffect(() => {
     if (vetadoSeleccionado !== 'Vetado') {
       const [id_vetado] = vetadoSeleccionado.split(" - "); // Extraer el ID del visitante seleccionado
-      fetch(`http://10.50.91.88:8008/userinfo/${id_vetado}`)
+      fetch(`${API_URL}/userinfo/${id_vetado}`)
         .then((res) => res.json())
         .then((userInfo) => setDataUser(userInfo))
         .catch((error) => console.error('Error fetching user info:', error));

@@ -7,6 +7,7 @@ import {IoKey} from "react-icons/io5";
 import {FaUserCircle, FaPlus} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
+import { API_URL } from '../../App';
 
 const ProfileAdmin = () => {
 
@@ -17,7 +18,7 @@ const ProfileAdmin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://10.50.91.88:8008/signout/',{
+      const response = await fetch('${API_URL}/signout/',{
         method: "DELETE",
         headers:{
           'Content-type': 'application/json; charset=UTF-8',
@@ -46,7 +47,7 @@ const ProfileAdmin = () => {
   
     //Llamada a la función para información de usuario
     useEffect(() => {
-      fetch('http://10.50.91.88:8008/infouser', {
+      fetch('${API_URL}/infouser', {
         method: 'POST',
         body: JSON.stringify({id_u: id_u}),
         headers: {
