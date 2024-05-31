@@ -2,6 +2,9 @@ import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState} from 'react';
 import {useAuth} from '../../auth/AuthProvider';
+import {MdFaceUnlock} from "react-icons/md";
+import {useNavigate} from "react-router-dom";
+import {FaRegAddressCard} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
 import { API_URL } from '../../App';
@@ -15,7 +18,8 @@ const UserNewAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c: "", apellidos_c: "", fecha_i: 0, lugar_o: "", nombre_p: "", apellidos_p: "", carnet: "", nombre_a: "", nivel_se: 0, notas_c: 0, sexo: ""})
 
   useEffect(() => {
-    fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
+    fetch('http://localhost:8008/clienteInfo/' + props.id_cliente)
+    // fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setinfoCliente(data);

@@ -5,6 +5,7 @@ import {useAuth } from '../../auth/AuthProvider';
 import {successToast} from '../universal/MyToast';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
+import { API_URL } from '../../App';
 
 const LoginAdmin = () => {
 
