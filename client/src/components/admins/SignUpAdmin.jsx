@@ -96,7 +96,7 @@ const SignUpAdmin = () => {
         <div><input value={username} onChange={(e) => usernameChange(e)} className="login_inputs universal_limit_input" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input></div>
         <div><input value={password} onChange={(e) => passwordChange(e)} className="login_inputs universal_limit_input" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input></div>
         
-        <p className='universal_text_error universal_limit_input'>{ErrorMessage}</p>
+        <p className='universal_text_error'>{ErrorMessage}</p>
         {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Form.Check
