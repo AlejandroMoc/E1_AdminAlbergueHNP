@@ -3,7 +3,6 @@ import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth } from '../../auth/AuthProvider';
 import {successToast} from '../universal/MyToast';
-
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
 
@@ -23,7 +22,7 @@ const LoginAdmin = () => {
 
     try {
       //console.log(e)
-      const response = await fetch("http://192.168.100.81:8008/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'

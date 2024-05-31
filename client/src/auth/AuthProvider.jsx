@@ -1,7 +1,6 @@
 import React, {useContext, createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-// import {r } from "tar";
-// import type {AuthResponse, AccessTokenResponse, User} from "../types/types"
+import { API_URL } from "../App";
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -147,7 +146,7 @@ const AuthProvider = ({children }) => {
     //console.log(refreshToken);
     try {
       
-      const response = await fetch("http://192.168.100.81:8008/refreshtoken", {
+      const response = await fetch(`${API_URL}/refreshtoken`, {
         method: "POST",
         headers: {
           'Content-type': 'application/json',
@@ -192,7 +191,7 @@ const AuthProvider = ({children }) => {
   //Parece que esta función ni se usa
   async function getUserInfo(accessToken){
     try {
-      const response = await fetch ("http://192.168.100.81:8008/user",{
+      const response = await fetch ("${API_URL}/user",{
         method: "GET",
         headers: {
           'Content-type': "application/json; charset=UTF-8",
@@ -242,7 +241,7 @@ const AuthProvider = ({children }) => {
 async function retrieveUserInfo(accessToken) {
   try {
     //console.log('Entra')
-    const response = await fetch(`http://192.168.100.81:8008/user`, {
+    const response = await fetch(`${API_URL}/user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

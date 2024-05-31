@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {FaUser} from "react-icons/fa";
 import {Outlet } from 'react-router-dom';
 import logohnp from '../../assets/vectors/logo_hnp.svg';
+import { API_URL } from '../../App';
 
 const Navbar = () => {
   //Para manejo de sesiones
@@ -14,7 +15,7 @@ const Navbar = () => {
 
   //Llamada a la función para información de usuario
   useEffect(() => {
-    fetch('http://192.168.100.81:8008/infouser', {
+    fetch(`${API_URL}/infouser`, {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {

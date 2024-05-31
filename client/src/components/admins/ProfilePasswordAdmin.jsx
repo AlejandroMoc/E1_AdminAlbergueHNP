@@ -5,6 +5,7 @@ import {IoKey} from "react-icons/io5";
 import {useAuth} from '../../auth/AuthProvider';
 import {Link} from "react-router-dom";
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import { API_URL } from '../../App';
 
 const ProfilePasswordAdmin = () => {
 
@@ -16,41 +17,41 @@ const ProfilePasswordAdmin = () => {
   const [actual_password, setActualPassword] = useState("");
   const apChange = (event) => {
     setActualPassword(event.target.value)
-    setChangeErrorMessage('')
+    setErrorMessage('')
   }
 
   const [new_password1, setNewPassword1] = useState("");
   const p1Change = (event) => {
     setNewPassword1(event.target.value)
-    setChangeErrorMessage('')
+    setErrorMessage('')
   }
 
   const [new_password2, setNewPassword2] = useState("");
   const p2Change = (event) => {
     setNewPassword2(event.target.value)
-    setChangeErrorMessage('')
+    setErrorMessage('')
   }
 
   //Mensajes de error y éxito
-  const [changeErrorMessage, setChangeErrorMessage] = useState('');
+  const [ErrorMessage, setErrorMessage] = useState('');
   const [changeSuccessMessage, setChangeSuccessMessage] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (!new_password1 || !new_password2 || !actual_password){
-      setChangeErrorMessage('ALERTA: Se deben ingresar los campos.');
+      setErrorMessage('ALERTA: Se deben ingresar los campos.');
     }
     else if (new_password1 !== new_password2){
-      setChangeErrorMessage('ALERTA: Las contraseñas nuevas deben ser iguales.');
+      setErrorMessage('ALERTA: Las contraseñas nuevas deben ser iguales.');
     }
     else if (new_password1 === actual_password || new_password2 === actual_password){
-      setChangeErrorMessage('ALERTA: La contraseña nueva no puede ser igual a la anterior.');
+      setErrorMessage('ALERTA: La contraseña nueva no puede ser igual a la anterior.');
     }
     else{
 
       try {
-        const response = await fetch("http://192.168.100.81:8008/changepass", {
+        const response = await fetch(`${API_URL}/changepass`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=UTF-8'
@@ -73,7 +74,7 @@ const ProfilePasswordAdmin = () => {
           // goTo("/");
         } else {
           //console.log("Something went wrong");
-          setChangeErrorMessage('Credenciales incorrectas. Intente de nuevo.');
+          setErrorMessage('Credenciales incorrectas. Intente de nuevo.');
           errorToast()
           // const json = await response.json() as AuthResponseError;
           // const json: AuthResponseError = await response.json();
@@ -97,7 +98,7 @@ const ProfilePasswordAdmin = () => {
         <p><input className="universal_limit_input universal_marginbottom" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
         <p><input className="universal_limit_input universal_marginbottom" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
         
-        <p className='universal_text_error universal_limit_input'>{changeErrorMessage}</p>
+        <p className='universal_text_error universal_limit_input'>{ErrorMessage}</p>
         {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Link to="/profile"><p><button className="App_buttoncancel universal_limit_input">Cancelar</button></p></Link>

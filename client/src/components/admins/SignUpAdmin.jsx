@@ -2,41 +2,42 @@ import React from 'react';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
+import { API_URL } from '../../App';
 import "./LoginAdmin.scss";
 import logohnp from '../../assets/vectors/logo_hnp.svg';
-// import {AuthResponseError } from '../../types/types';
+
 
 const SignUpAdmin = () => {
   const [username, setUsername] = useState("");
   const usernameChange = (event) => {
     setUsername(event.target.value)
-    setChangeErrorMessage('')
+    setErrorMessage('')
   }
 
   const [password, setPassword] = useState("");
   const passwordChange = (event) => {
     setPassword(event.target.value)
-    setChangeErrorMessage('')
+    setErrorMessage('')
   }
 
   const [isAdmin, setIsAdmin] = useState(false);
 
   //Mensaje de error y éxito
-  const [changeErrorMessage, setChangeErrorMessage] = useState('');
+  const [ErrorMessage, setErrorMessage] = useState('');
   const [changeSuccessMessage, setChangeSuccessMessage] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (!username || !password) {
-      setChangeErrorMessage('ALERTA: Se deben ingresar los campos.');
+      setErrorMessage('ALERTA: Se deben ingresar los campos.');
     }
     else if (username === password) {
-      setChangeErrorMessage('ALERTA: Los campos no pueden ser iguales.');
+      setErrorMessage('ALERTA: Los campos no pueden ser iguales.');
     }
     else {
       try {
-        const response = await fetch("http://192.168.100.81:8008/signup", {
+        const response = await fetch(`${API_URL}/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=UTF-8'
@@ -58,7 +59,7 @@ const SignUpAdmin = () => {
           // goTo("/");
         } else {
           //console.log("Something went wrong");
-          setChangeErrorMessage('Usuario Existente');
+          setErrorMessage('Usuario Existente');
           errorToast()
           // const json = await response.json() as AuthResponseError;
           // const json: AuthResponseError = await response.json();
@@ -95,7 +96,7 @@ const SignUpAdmin = () => {
         <div><input value={username} onChange={(e) => usernameChange(e)} className="login_inputs universal_limit_input" type="text" minLength="8" maxLength="16" placeholder="Usuario"></input></div>
         <div><input value={password} onChange={(e) => passwordChange(e)} className="login_inputs universal_limit_input" type="password" minLength="8" maxLength="16" placeholder="Contraseña"></input></div>
         
-        <p className='universal_text_error universal_limit_input'>{changeErrorMessage}</p>
+        <p className='universal_text_error universal_limit_input'>{ErrorMessage}</p>
         {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Form.Check
