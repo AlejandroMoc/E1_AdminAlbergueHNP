@@ -1,8 +1,14 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState} from 'react';
+import {LuUser} from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from '../../auth/AuthProvider';
+import {FiHome} from "react-icons/fi";
+import {MdFaceUnlock} from "react-icons/md";
+import {FaRegAddressCard} from "react-icons/fa";
+import {IoMdAddCircleOutline} from "react-icons/io";
+import {IoMdRemoveCircleOutline} from "react-icons/io";
 import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
 import { API_URL } from '../../App';
 
