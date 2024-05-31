@@ -1,5 +1,5 @@
 const db = require('../db_connection');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
 //Funciones para generación de Tokens

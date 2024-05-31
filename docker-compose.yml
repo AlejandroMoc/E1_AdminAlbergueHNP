@@ -3,12 +3,17 @@
 
 version: '3'
 services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_USER: postgres
-      POSTGRES_DB: gestionAlbergue
+  # db:
+  #   image: postgres
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: admin123
+  #     POSTGRES_DB: gestionAlbergue
+  #   ports:
+  #     8080
+  #   volumes:
+  #     db:/var/lib/postgres
 
   app-frontend:
     image: gestion-front-image
@@ -17,11 +22,19 @@ services:
     restart: always
   
   # app-backend:
+  #   depends_on:
+  #     db
   #   image: gestion-back-image
-  #   # volumes:
-  #   #   - my-vol:/app/client
-  #   ports:
-  #     - "8008:8008"
+  #   # ports:
+  #   #   - "8008:8008"
+  #   environment:
+  #     - DB_HOST=db
+  #     - DB_USER=postgres
+  #     - DB_PASSWORD=admin123
+  #     - DB_NAME=gestionAlbergue
+  #     - DB_PORT=8008
+  #   stdin_open: true
+  #   tty: true
 
 # volumes:
 #   my-vol:

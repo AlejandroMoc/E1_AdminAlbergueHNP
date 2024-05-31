@@ -26,7 +26,7 @@ const infoUserAdmin = (props) => {
 
   //Llamada a la función para información de usuario
   useEffect(() => {
-    fetch('http://10.50.91.88:8008/infouser', {
+    fetch('http://192.168.100.81:8008/infouser', {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {
@@ -42,7 +42,7 @@ const infoUserAdmin = (props) => {
   const [refresh, setRefresh] = useState(false)
 
   useEffect(() =>{
-    fetch('http://10.50.91.88:8008/clienteInfo/'+props.id_cliente)
+    fetch('http://192.168.100.81:8008/clienteInfo/'+props.id_cliente)
     .then((res) => res.json())
     .then((data) => {setinfoCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
@@ -53,7 +53,7 @@ const infoUserAdmin = (props) => {
     const [huespedCliente, setHuespedCliente] = useState({id_cama:0, fecha_i:0})
 
     useEffect(() =>{
-      fetch('http://10.50.91.88:8008/huespedInfo/'+props.id_cliente)
+      fetch('http://192.168.100.81:8008/huespedInfo/'+props.id_cliente)
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); console.log(data)});
  }, [props.id_cliente, refresh])
@@ -63,7 +63,7 @@ const infoUserAdmin = (props) => {
 const [deudaCliente, setDeudaCliente] = useState({deudacliente:0})
 
 useEffect(() =>{
-  fetch('http://10.50.91.88:8008/deudaCliente/'+props.id_cliente)
+  fetch('http://192.168.100.81:8008/deudaCliente/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setDeudaCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
@@ -73,7 +73,7 @@ useEffect(() =>{
 const [servicioCliente, setservicioCliente] = useState({servicio1:0, servicio2:0, servicio3:0, servicio4:0, servicio5:0})
 
 useEffect(() =>{
-  fetch('http://10.50.91.88:8008/servicioEU/'+props.id_cliente)
+  fetch('http://192.168.100.81:8008/servicioEU/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setservicioCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
@@ -91,7 +91,7 @@ const [tipoCliente, settipoCliente] = useState({tipo_cliente:0})
 //FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
 
 useEffect(() =>{
-  fetch('http://10.50.91.88:8008/tipoCliente/'+props.id_cliente)
+  fetch('http://192.168.100.81:8008/tipoCliente/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {settipoCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
@@ -113,7 +113,7 @@ const handlepagoChange = (event) => {
 }
 const handleBtRegistroClick = async () => {
       try {
-        await fetch('http://10.50.91.88:8008/registrarPago', {
+        await fetch('http://192.168.100.81:8008/registrarPago', {
           method: 'POST',
           body: JSON.stringify({id_cliente:props.id_cliente, pago:pago}),
           headers: {
@@ -146,7 +146,7 @@ const [vetadoCliente, setvetadoCliente] = useState({vetadobool:0})
 //FORMATO QUE DEMUESTRE O NO ELEMENTOS DEPENDIENDO DEL VALOR DEL CLIENTE 
 
 useEffect(() => {
-  fetch('http://10.50.91.88:8008/vetado/' + props.id_cliente)
+  fetch('http://192.168.100.81:8008/vetado/' + props.id_cliente)
     .then((res) => res.json())
     .then((data) => {
       // Convertir el valor a minúsculas antes de almacenarlo en el estado
@@ -161,7 +161,7 @@ const showVetadoSelect = vetadoCliente.vetadobool;
 
   //Llamada a la función de vetar
   const vetarCliente = (id_u, id_c, n_v) => {
-    fetch('http://10.50.91.88:8008/banclient', {
+    fetch('http://192.168.100.81:8008/banclient', {
         method: 'POST',
         body: JSON.stringify({id_u: id_u, id_c: id_c, n_v: n_v}),
         headers: {
@@ -184,7 +184,7 @@ const showVetadoSelect = vetadoCliente.vetadobool;
 
   //Llamada a la función de desvetar
   const desvetarCliente = (id_c) => {
-    fetch('http://10.50.91.88:8008/unbanclient', {
+    fetch('http://192.168.100.81:8008/unbanclient', {
         method: 'POST',
         body: JSON.stringify({id_c: id_c}),
         headers: {
@@ -218,7 +218,7 @@ const showVetadoSelect = vetadoCliente.vetadobool;
 const [vetadoNota, setvetadoNota] = useState({notas_v:""})
 const goTo = useNavigate();
 useEffect(() =>{
-  fetch('http://10.50.91.88:8008/notasVeto/'+props.id_cliente)
+  fetch('http://192.168.100.81:8008/notasVeto/'+props.id_cliente)
   .then((res) => res.json())
   .then((data) => {setvetadoNota(data); console.log(data)});
 }, [props.id_cliente, refresh])

@@ -4,7 +4,7 @@ const pgp = require('pg-promise')();
 const cn={
     host: 'localhost',
     port: '5432',
-    database: 'gestionAlbergue_datos',
+    database: 'gestionAlbergue',
     user:'postgres',
     password:'admin123',
     allowExitOnIdle:true

@@ -72,7 +72,7 @@ const zona_3 = "ZONA DE AISLADOS";
 ############################################################################################*/
 
 function update(setInfoM, setInfoH, setInfoA){
-  fetch('http://10.50.91.88:8008/beds')
+  fetch('http://192.168.100.81:8008/beds')
   .then((res) => res.json())
   .then((info) => {setInfoM(info[0]); setInfoH(info[1]); setInfoA(info[2]);})
   .catch((error) => console.error('Error UseEffect Actualizar InfoCamas', error));
@@ -99,7 +99,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
   useEffect(() => {
     if(monto_UE_Pagar != 0 && cliente_UE_Pagar != 0 && notas_UE_Pagar != ""){
-    fetch('http://10.50.91.88:8008/beds/pagar' , {
+    fetch('http://192.168.100.81:8008/beds/pagar' , {
       method: 'POST',
       body: JSON.stringify({id_cliente: cliente_UE_Pagar, notas_p: notas_UE_Pagar, monto_t: monto_UE_Pagar}),
       headers: {
@@ -136,7 +136,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   useEffect(() => {
     if(cliente_UE_RegServicio != 0){
       if(cantidadS1_UE_RegServicio != 0){
-        fetch('http://10.50.91.88:8008/beds/regServacio' , {
+        fetch('http://192.168.100.81:8008/beds/regServacio' , {
         method: 'POST',
         body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 3, cant: cantidadS1_UE_RegServicio}),
         headers: {
@@ -161,7 +161,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       }
     
       if(cantidadS2_UE_RegServicio != 0){
-        fetch('http://10.50.91.88:8008/beds/regServacio' , {
+        fetch('http://192.168.100.81:8008/beds/regServacio' , {
         method: 'POST',
         body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 4, cant: cantidadS2_UE_RegServicio}),
         headers: {
@@ -186,7 +186,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       }
   
       if(cantidadS3_UE_RegServicio != 0){
-        fetch('http://10.50.91.88:8008/beds/regServacio' , {
+        fetch('http://192.168.100.81:8008/beds/regServacio' , {
         method: 'POST',
         body: JSON.stringify({id_cliente: cliente_UE_RegServicio, id_servicio: 5, cant: cantidadS3_UE_RegServicio}),
         headers: {
@@ -266,7 +266,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
   useEffect(() => {
     if(cliente_UE_RegSalida != 0){
-    fetch('http://10.50.91.88:8008/beds/regSalida' , {
+    fetch('http://192.168.100.81:8008/beds/regSalida' , {
       method: 'POST',
       body: JSON.stringify({id_cliente: cliente_UE_RegSalida}),
       headers: {
@@ -302,7 +302,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 
   useEffect(() => {
     if (cama_UE_EliminarCama !== 0) {
-      fetch('http://10.50.91.88:8008/beds/eliminarCama', {
+      fetch('http://192.168.100.81:8008/beds/eliminarCama', {
         method: 'POST',
         body: JSON.stringify({id_cama: cama_UE_EliminarCama }),
         headers: {
@@ -524,7 +524,7 @@ const RoomAdmin = () => {
   // Primer UseEffect para cargar las camas al entrar a /beds.
   useEffect(() => {
     update(setInfoM, setInfoH, setInfoA)
-    fetch('http://10.50.91.88:8008/infouser', {
+    fetch('http://192.168.100.81:8008/infouser', {
       method: 'POST',
       body: JSON.stringify({id_u: id_u}),
       headers: {
@@ -540,7 +540,7 @@ const RoomAdmin = () => {
   const [zona, setZona] = useState(0);
   useEffect(() => {
     if(zona != 0){
-      fetch('http://10.50.91.88:8008/beds/addCama' , {
+      fetch('http://192.168.100.81:8008/beds/addCama' , {
         method: 'POST',
         body: JSON.stringify({id_zona: zona}),
         headers: {

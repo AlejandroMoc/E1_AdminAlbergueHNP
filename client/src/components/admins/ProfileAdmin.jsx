@@ -17,7 +17,7 @@ const ProfileAdmin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://10.50.91.88:8008/signout/',{
+      const response = await fetch('http://192.168.100.81:8008/signout/',{
         method: "DELETE",
         headers:{
           'Content-type': 'application/json; charset=UTF-8',
@@ -46,7 +46,7 @@ const ProfileAdmin = () => {
   
     //Llamada a la función para información de usuario
     useEffect(() => {
-      fetch('http://10.50.91.88:8008/infouser', {
+      fetch('http://192.168.100.81:8008/infouser', {
         method: 'POST',
         body: JSON.stringify({id_u: id_u}),
         headers: {

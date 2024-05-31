@@ -2,13 +2,20 @@
 #DESPUES SE CREAN LAS IMAGENES CON EL COMANDO EN LA CARPETA SERVER
 #docker image build -t gestion-back-image:latest .
 
-FROM node:16
+# Etapa 1: Instalar dependencias
+FROM node:16-alpine AS dependencies
 
 WORKDIR /server
 
 COPY package*.json /server/
 RUN npm install
 
+# Etapa 2: Copiar el código fuente
+FROM node:16-alpine
+
+WORKDIR /server
+
+COPY --from=dependencies /server/node_modules /server/node_modules
 COPY . /server/
 
 EXPOSE 8008
