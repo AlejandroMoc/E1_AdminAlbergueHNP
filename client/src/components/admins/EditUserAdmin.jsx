@@ -5,7 +5,6 @@ import {useAuth} from '../../auth/AuthProvider';
 import {MdFaceUnlock} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import {FaRegAddressCard} from "react-icons/fa";
-import {useNavigate} from "react-router-dom";
 import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
 import { API_URL } from '../../App';
 
