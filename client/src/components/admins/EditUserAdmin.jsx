@@ -1,11 +1,17 @@
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState} from 'react';
+import {LuUser} from "react-icons/lu";
+import {FiHome} from "react-icons/fi";
 import {useAuth} from '../../auth/AuthProvider';
 import {MdFaceUnlock} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import {FaRegAddressCard} from "react-icons/fa";
+// import {IoMdAddCircleOutline} from "react-icons/io";
+// import {IoMdRemoveCircleOutline} from "react-icons/io";
 import MyToastContainer, {successToast, errorToast, errorCarnet} from '../universal/MyToast';
+//import {registerNewPatient} from '../../../../server/queries/UsernewQueries';
+
 import { API_URL } from '../../App';
 
 const UserNewAdmin = (props) => {
