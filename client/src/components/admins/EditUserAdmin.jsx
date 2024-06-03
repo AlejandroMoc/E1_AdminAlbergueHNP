@@ -23,8 +23,8 @@ const UserNewAdmin = (props) => {
   const [infoCliente, setinfoCliente] = useState({nombre_c: "", apellidos_c: "", fecha_i: 0, lugar_o: "", nombre_p: "", apellidos_p: "", carnet: "", nombre_a: "", nivel_se: 0, notas_c: 0, sexo: ""})
 
   useEffect(() => {
-    fetch('http://localhost:8008/clienteInfo/' + props.id_cliente)
-    // fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
+    //fetch('http://localhost:8008/clienteInfo/' + props.id_cliente)
+    fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
         setinfoCliente(data);
