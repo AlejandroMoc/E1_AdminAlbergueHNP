@@ -13,127 +13,21 @@ import { useReactToPrint } from "react-to-print";
 import { API_URL } from "../../App";
 
 const ReportsAdmin = () => {
-	// Estado para almacenar las fechas
-	const componentPDF = useRef();
-	const [startDate, setStartDate] = useState(null);
-	const [endDate, setEndDate] = useState(null);
-	const [esUsuario, setEsUsuario] = useState(false);
-	const [UsuarioSeleccionado, setUsuarioSeleccionado] = useState("Usuario"); // Estado para almacenar el nombre del Usuario seleccionado
-	const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
-	const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
-	const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
-	const [data, setData] = useState([
-		{
-			id_cliente: 0,
-			tipo_usuario: "",
-			nombre_c: "",
-			apellidos_c: "",
-			sexo: "",
-			lugar_o: "",
-			fecha_i: "",
-			fecha_s: "",
-			cantidad_regadera: "",
-			cantidad_bano: "",
-			cantidad_desayuno: "",
-			cantidad_comida: "",
-			cantidad_cena: "",
-			notas_cliente: "",
-			notas_v: "",
-			total_deuda: "",
-			carnet: "",
-		},
-	]); // Estado para almacenar los datos de la consulta
-	const [datahuesped, setDataHuesped] = useState([
-		{
-			id_cliente: 0,
-			tipo_usuario: "",
-			nombre_c: "",
-			apellidos_c: "",
-			sexo: "",
-			lugar_o: "",
-			fecha_i: "",
-			fecha_s: "",
-			cantidad_regadera: "",
-			cantidad_bano: "",
-			cantidad_desayuno: "",
-			cantidad_comida: "",
-			cantidad_cena: "",
-			notas_cliente: "",
-			notas_v: "",
-			total_deuda: "",
-			carnet: "",
-		},
-	]); // Estado para almacenar los datos de la consulta
-	const [datavisitante, setDataVisitante] = useState([
-		{
-			id_cliente: 0,
-			tipo_usuario: "",
-			nombre_c: "",
-			apellidos_c: "",
-			sexo: "",
-			lugar_o: "",
-			fecha_i: "",
-			fecha_s: "",
-			cantidad_regadera: "",
-			cantidad_bano: "",
-			cantidad_desayuno: "",
-			cantidad_comida: "",
-			cantidad_cena: "",
-			notas_cliente: "",
-			notas_v: "",
-			total_deuda: "",
-			carnet: "",
-		},
-	]); // Estado para almacenar los datos de la consulta
-	const [datavetado, setDataVetado] = useState([
-		{
-			id_cliente: 0,
-			tipo_usuario: "",
-			nombre_c: "",
-			apellidos_c: "",
-			sexo: "",
-			lugar_o: "",
-			fecha_i: "",
-			fecha_s: "",
-			cantidad_regadera: "",
-			cantidad_bano: "",
-			cantidad_desayuno: "",
-			cantidad_comida: "",
-			cantidad_cena: "",
-			notas_cliente: "",
-			notas_v: "",
-			total_deuda: "",
-			carnet: "",
-		},
-	]); // Estado para almacenar los datos de la consulta
-	const [datauser, setDataUser] = useState([
-		{
-			id_cliente: 0,
-			tipo_usuario: "",
-			nombre_c: "",
-			apellidos_c: "",
-			sexo: "",
-			lugar_o: "",
-			fecha_i: "",
-			fecha_s: "",
-			cantidad_regadera: "",
-			cantidad_bano: "",
-			cantidad_desayuno: "",
-			cantidad_comida: "",
-			cantidad_cena: "",
-			notas_cliente: "",
-			notas_v: "",
-			total_deuda: "",
-			carnet: "",
-		},
-	]); // Estado para almacenar los datos de la consulta
-	const [dataingreso, setDataIngreso] = useState({
-		fecha_inicio: "",
-		fecha_fin: "",
-		total_pagado: "",
-		total_condonado: "",
-		ingresos_reales: "",
-	}); // Estado para almacenar los datos de la consulta
+  // Estado para almacenar las fechas
+  const componentPDF = useRef();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [esUsuario, setEsUsuario] = useState(false);
+  const [UsuarioSeleccionado, setUsuarioSeleccionado] = useState('Usuario'); // Estado para almacenar el nombre del Usuario seleccionado
+  const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
+  const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
+  const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
+  const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' , carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: '', cama: '' }]); // Estado para almacenar los datos de la consulta
+  const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: ''}]); // Estado para almacenar los datos de la consulta
+  const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '', carnet: '', cama: '' }]); // Estado para almacenar los datos de la consulta
+  const [dataingreso, setDataIngreso] = useState({fecha_inicio: '', fecha_fin:'', total_pagado: '', total_condonado:'', ingresos_reales:''}); // Estado para almacenar los datos de la consulta
 
 	// Estado para almacenar el nombre del Huesped seleccionado
 	const [huespedSeleccionado, setHuespedSeleccionado] = useState("Huesped");
@@ -1053,973 +947,392 @@ const ReportsAdmin = () => {
 						</Table>
 					)}
 
-					{/* Mostrar los datos en una tabla si esGeneral está marcado */}
-					{esGeneral && (
-						<Table striped bordered hover>
-							<thead>
-								<tr>
-									<th>
-										<p>No. Cliente</p>
-									</th>
-									<th>
-										<p>Tipo de Usuario</p>
-									</th>
-									<th>
-										<p>Nombre</p>
-									</th>
-									<th>
-										<p>Apellidos</p>
-									</th>
-									<th>
-										<p>Sexo</p>
-									</th>
-									<th>
-										<p>Lugar de Origen</p>
-									</th>
-									<th>
-										<p>No.Carnet</p>
-									</th>
-									<th>
-										<p>Fecha de Ingreso</p>
-									</th>
-									<th>
-										<p>Fecha de Salida</p>
-									</th>
-									{/* Agregar las columnas adicionales según el servicio seleccionado */}
-									{esServicio && serviciosSeleccionados.desayuno && (
-										<th>
-											<p>Cantidad Desayuno</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.comida && (
-										<th>
-											<p>Cantidad Comida</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.cena && (
-										<th>
-											<p>Cantidad Cena</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.baño && (
-										<th>
-											<p>Cantidad Baño</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.regadera && (
-										<th>
-											<p>Cantidad Regadera</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.deuda && (
-										<th>
-											<p>Total Deuda</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.notas_cliente && (
-										<th>
-											<p>Notas de cliente</p>
-										</th>
-									)}
-								</tr>
-							</thead>
-							<tbody>
-								{data.map((item) => (
-									<tr key={item.id_cliente}>
-										<td>
-											<p>{item.id_cliente}</p>
-										</td>
-										<td>
-											<p>{item.tipo_usuario}</p>
-										</td>
-										<td>
-											<p>{item.nombre_c}</p>
-										</td>
-										<td>
-											<p>{item.apellidos_c}</p>
-										</td>
-										<td>
-											<p>{item.sexo}</p>
-										</td>
-										<td>
-											<p>{item.lugar_o}</p>
-										</td>
-										<td>
-											<p>{item.carnet}</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-											</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-											</p>
-										</td>
-										{/* Agregar las celdas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<td>{item.cantidad_desayuno}</td>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<td>{item.cantidad_comida}</td>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<td>{item.cantidad_cena}</td>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<td>{item.cantidad_bano}</td>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<td>{item.cantidad_regadera}</td>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<td>${item.total_deuda}</td>
-										)}
-										{esServicio && serviciosSeleccionados.vetados && (
-											<td>{item.vetado}</td>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<td>{item.notas_cliente}</td>
-										)}
-									</tr>
-								))}
-							</tbody>
-						</Table>
-					)}
+        {/* Mostrar los datos en una tabla si esGeneral está marcado */}
+        {esGeneral && (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Huespedes está marcado sin seleccionar ningun huesped */}
-					{esUsuario &&
-						mostrarHuespedes &&
-						huespedSeleccionado == "Huesped" && (
-							<Table striped bordered hover>
-								<thead>
-									<tr>
-										<th>
-											<p>No. Cliente</p>
-										</th>
-										<th>
-											<p>Tipo de Usuario</p>
-										</th>
-										<th>
-											<p>Nombre</p>
-										</th>
-										<th>
-											<p>Apellidos</p>
-										</th>
-										<th>
-											<p>Sexo</p>
-										</th>
-										<th>
-											<p>Lugar de Origen</p>
-										</th>
-										<th>
-											<p>No.Carnet</p>
-										</th>
-										<th>
-											<p>Fecha de Ingreso</p>
-										</th>
-										<th>
-											<p>Fecha de Salida</p>
-										</th>
-										{/* Agregar las columnas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<th>
-												<p>Cantidad Desayuno</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<th>
-												<p>Cantidad Comida</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<th>
-												<p>Cantidad Cena</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<th>
-												<p>Cantidad Baño</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<th>
-												<p>Cantidad Regadera</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<th>
-												<p>Total Deuda</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<th>
-												<p>Notas de cliente</p>
-											</th>
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{datahuesped.map((item) => (
-										<tr key={item.id_cliente}>
-											<td>
-												<p>{item.id_cliente}</p>
-											</td>
-											<td>
-												<p>{item.tipo_usuario}</p>
-											</td>
-											<td>
-												<p>{item.nombre_c}</p>
-											</td>
-											<td>
-												<p>{item.apellidos_c}</p>
-											</td>
-											<td>
-												<p>{item.sexo}</p>
-											</td>
-											<td>
-												<p>{item.lugar_o}</p>
-											</td>
-											<td>
-												<p>{item.carnet}</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-												</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-												</p>
-											</td>
-											{/* Agregar las celdas adicionales según el servicio seleccionado */}
-											{esServicio && serviciosSeleccionados.desayuno && (
-												<td>{item.cantidad_desayuno}</td>
-											)}
-											{esServicio && serviciosSeleccionados.comida && (
-												<td>{item.cantidad_comida}</td>
-											)}
-											{esServicio && serviciosSeleccionados.cena && (
-												<td>{item.cantidad_cena}</td>
-											)}
-											{esServicio && serviciosSeleccionados.baño && (
-												<td>{item.cantidad_bano}</td>
-											)}
-											{esServicio && serviciosSeleccionados.regadera && (
-												<td>{item.cantidad_regadera}</td>
-											)}
-											{esServicio && serviciosSeleccionados.deuda && (
-												<td>${item.total_deuda}</td>
-											)}
-											{esServicio && serviciosSeleccionados.vetados && (
-												<td>{item.vetado}</td>
-											)}
-											{esServicio && serviciosSeleccionados.notas_cliente && (
-												<td>{item.notas_cliente}</td>
-											)}
-										</tr>
-									))}
-								</tbody>
-							</Table>
-						)}
+              </tr>
+            </thead>
+            <tbody>
+              {(data.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado sin seleccionar ningun visitante */}
-					{esUsuario &&
-						mostrarVisitantes &&
-						visitanteSeleccionado == "Visitante" && (
-							<Table striped bordered hover>
-								<thead>
-									<tr>
-										<th>
-											<p>No. Cliente</p>
-										</th>
-										<th>
-											<p>Tipo de Usuario</p>
-										</th>
-										<th>
-											<p>Nombre</p>
-										</th>
-										<th>
-											<p>Apellidos</p>
-										</th>
-										<th>
-											<p>Sexo</p>
-										</th>
-										<th>
-											<p>Lugar de Origen</p>
-										</th>
-										<th>
-											<p>No.Carnet</p>
-										</th>
-										<th>
-											<p>Fecha de Ingreso</p>
-										</th>
-										<th>
-											<p>Fecha de Salida</p>
-										</th>
-										{/* Agregar las columnas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<th>
-												<p>Cantidad Desayuno</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<th>
-												<p>Cantidad Comida</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<th>
-												<p>Cantidad Cena</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<th>
-												<p>Cantidad Baño</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<th>
-												<p>Cantidad Regadera</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<th>
-												<p>Total Deuda</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<th>
-												<p>Notas de cliente</p>
-											</th>
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{datavisitante.map((item) => (
-										<tr key={item.id_cliente}>
-											<td>
-												<p>{item.id_cliente}</p>
-											</td>
-											<td>
-												<p>{item.tipo_usuario}</p>
-											</td>
-											<td>
-												<p>{item.nombre_c}</p>
-											</td>
-											<td>
-												<p>{item.apellidos_c}</p>
-											</td>
-											<td>
-												<p>{item.sexo}</p>
-											</td>
-											<td>
-												<p>{item.lugar_o}</p>
-											</td>
-											<td>
-												<p>{item.carnet}</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-												</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-												</p>
-											</td>
-											{/* Agregar las celdas adicionales según el servicio seleccionado */}
-											{esServicio && serviciosSeleccionados.desayuno && (
-												<td>{item.cantidad_desayuno}</td>
-											)}
-											{esServicio && serviciosSeleccionados.comida && (
-												<td>{item.cantidad_comida}</td>
-											)}
-											{esServicio && serviciosSeleccionados.cena && (
-												<td>{item.cantidad_cena}</td>
-											)}
-											{esServicio && serviciosSeleccionados.baño && (
-												<td>{item.cantidad_bano}</td>
-											)}
-											{esServicio && serviciosSeleccionados.regadera && (
-												<td>{item.cantidad_regadera}</td>
-											)}
-											{esServicio && serviciosSeleccionados.deuda && (
-												<td>${item.total_deuda}</td>
-											)}
-											{esServicio && serviciosSeleccionados.vetados && (
-												<td>{item.vetado}</td>
-											)}
-											{esServicio && serviciosSeleccionados.notas_cliente && (
-												<td>{item.notas_cliente}</td>
-											)}
-										</tr>
-									))}
-								</tbody>
-							</Table>
-						)}
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado sin seleccionar ningun vetado */}
-					{esUsuario && mostrarVetados && vetadoSeleccionado == "Vetado" && (
-						<Table striped bordered hover>
-							<thead>
-								<tr>
-									<th>
-										<p>No. Cliente</p>
-									</th>
-									<th>
-										<p>Tipo de Usuario</p>
-									</th>
-									<th>
-										<p>Nombre</p>
-									</th>
-									<th>
-										<p>Apellidos</p>
-									</th>
-									<th>
-										<p>Sexo</p>
-									</th>
-									<th>
-										<p>Lugar de Origen</p>
-									</th>
-									<th>
-										<p>No.Carnet</p>
-									</th>
-									<th>
-										<p>Fecha de Ingreso</p>
-									</th>
-									<th>
-										<p>Fecha de Veto</p>
-									</th>
-									<th>
-										<p>Motivo de Veto</p>
-									</th>
-									{/* Agregar las columnas adicionales según el servicio seleccionado */}
-									{esServicio && serviciosSeleccionados.desayuno && (
-										<th>
-											<p>Cantidad Desayuno</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.comida && (
-										<th>
-											<p>Cantidad Comida</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.cena && (
-										<th>
-											<p>Cantidad Cena</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.baño && (
-										<th>
-											<p>Cantidad Baño</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.regadera && (
-										<th>
-											<p>Cantidad Regadera</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.deuda && (
-										<th>
-											<p>Total Deuda</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.notas_cliente && (
-										<th>
-											<p>Notas de cliente</p>
-										</th>
-									)}
-								</tr>
-							</thead>
-							<tbody>
-								{datavetado.map((item) => (
-									<tr key={item.id_cliente}>
-										<td>
-											<p>{item.id_cliente}</p>
-										</td>
-										<td>
-											<p>{item.tipo_usuario}</p>
-										</td>
-										<td>
-											<p>{item.nombre_c}</p>
-										</td>
-										<td>
-											<p>{item.apellidos_c}</p>
-										</td>
-										<td>
-											<p>{item.sexo}</p>
-										</td>
-										<td>
-											<p>{item.lugar_o}</p>
-										</td>
-										<td>
-											<p>{item.carnet}</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-											</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-											</p>
-										</td>
-										<td>
-											<p>{item.notas_v}</p>
-										</td>
-										{/* Agregar las celdas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<td>{item.cantidad_desayuno}</td>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<td>{item.cantidad_comida}</td>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<td>{item.cantidad_cena}</td>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<td>{item.cantidad_bano}</td>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<td>{item.cantidad_regadera}</td>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<td>${item.total_deuda}</td>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<td>{item.notas_cliente}</td>
-										)}
-									</tr>
-								))}
-							</tbody>
-						</Table>
-					)}
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Huespedes está marcado sin seleccionar ningun huesped */}
+        {esUsuario && mostrarHuespedes && huespedSeleccionado == 'Huesped' &&(
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>                
+                <th><p>No.Carnet</p></th>
+                <th><p>No.Cama</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+              </tr>
+            </thead>
+            <tbody>
+              {(datahuesped.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.cama}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Huesped está marcado y se selecciona un Huesped */}
-					{esUsuario &&
-						mostrarHuespedes &&
-						huespedSeleccionado !== "Huesped" && (
-							<Table striped bordered hover>
-								<thead>
-									<tr>
-										<th>
-											<p>No. Cliente</p>
-										</th>
-										<th>
-											<p>Tipo de Usuario</p>
-										</th>
-										<th>
-											<p>Nombre</p>
-										</th>
-										<th>
-											<p>Apellidos</p>
-										</th>
-										<th>
-											<p>Sexo</p>
-										</th>
-										<th>
-											<p>Lugar de Origen</p>
-										</th>
-										<th>
-											<p>No.Carnet</p>
-										</th>
-										<th>
-											<p>Fecha de Ingreso</p>
-										</th>
-										<th>
-											<p>Fecha de Salida</p>
-										</th>
-										{/* Agregar las columnas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<th>
-												<p>Cantidad Desayuno</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<th>
-												<p>Cantidad Comida</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<th>
-												<p>Cantidad Cena</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<th>
-												<p>Cantidad Baño</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<th>
-												<p>Cantidad Regadera</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<th>
-												<p>Total Deuda</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<th>
-												<p>Notas de cliente</p>
-											</th>
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{datauser.map((item) => (
-										<tr key={item.id_cliente}>
-											<td>
-												<p>{item.id_cliente}</p>
-											</td>
-											<td>
-												<p>{item.tipo_usuario}</p>
-											</td>
-											<td>
-												<p>{item.nombre_c}</p>
-											</td>
-											<td>
-												<p>{item.apellidos_c}</p>
-											</td>
-											<td>
-												<p>{item.sexo}</p>
-											</td>
-											<td>
-												<p>{item.lugar_o}</p>
-											</td>
-											<td>
-												<p>{item.carnet}</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-												</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-												</p>
-											</td>
-											{/* Agregar las celdas adicionales según el servicio seleccionado */}
-											{esServicio && serviciosSeleccionados.desayuno && (
-												<td>{item.cantidad_desayuno}</td>
-											)}
-											{esServicio && serviciosSeleccionados.comida && (
-												<td>{item.cantidad_comida}</td>
-											)}
-											{esServicio && serviciosSeleccionados.cena && (
-												<td>{item.cantidad_cena}</td>
-											)}
-											{esServicio && serviciosSeleccionados.baño && (
-												<td>{item.cantidad_bano}</td>
-											)}
-											{esServicio && serviciosSeleccionados.regadera && (
-												<td>{item.cantidad_regadera}</td>
-											)}
-											{esServicio && serviciosSeleccionados.deuda && (
-												<td>${item.total_deuda}</td>
-											)}
-											{esServicio && serviciosSeleccionados.notas_cliente && (
-												<td>{item.notas_cliente}</td>
-											)}
-										</tr>
-									))}
-								</tbody>
-							</Table>
-						)}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado y se selecciona un Visitante */}
-					{esUsuario &&
-						mostrarVisitantes &&
-						visitanteSeleccionado !== "Visitante" && (
-							<Table striped bordered hover>
-								<thead>
-									<tr>
-										<th>
-											<p>No. Cliente</p>
-										</th>
-										<th>
-											<p>Tipo de Usuario</p>
-										</th>
-										<th>
-											<p>Nombre</p>
-										</th>
-										<th>
-											<p>Apellidos</p>
-										</th>
-										<th>
-											<p>Sexo</p>
-										</th>
-										<th>
-											<p>Lugar de Origen</p>
-										</th>
-										<th>
-											<p>No.Carnet</p>
-										</th>
-										<th>
-											<p>Fecha de Ingreso</p>
-										</th>
-										<th>
-											<p>Fecha de Salida</p>
-										</th>
-										{/* Agregar las columnas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<th>
-												<p>Cantidad Desayuno</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<th>
-												<p>Cantidad Comida</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<th>
-												<p>Cantidad Cena</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<th>
-												<p>Cantidad Baño</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<th>
-												<p>Cantidad Regadera</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<th>
-												<p>Total Deuda</p>
-											</th>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<th>
-												<p>Notas de cliente</p>
-											</th>
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{datauser.map((item) => (
-										<tr key={item.id_cliente}>
-											<td>
-												<p>{item.id_cliente}</p>
-											</td>
-											<td>
-												<p>{item.tipo_usuario}</p>
-											</td>
-											<td>
-												<p>{item.nombre_c}</p>
-											</td>
-											<td>
-												<p>{item.apellidos_c}</p>
-											</td>
-											<td>
-												<p>{item.sexo}</p>
-											</td>
-											<td>
-												<p>{item.lugar_o}</p>
-											</td>
-											<td>
-												<p>{item.carnet}</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-												</p>
-											</td>
-											<td>
-												<p>
-													{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-												</p>
-											</td>
-											{/* Agregar las celdas adicionales según el servicio seleccionado */}
-											{esServicio && serviciosSeleccionados.desayuno && (
-												<td>{item.cantidad_desayuno}</td>
-											)}
-											{esServicio && serviciosSeleccionados.comida && (
-												<td>{item.cantidad_comida}</td>
-											)}
-											{esServicio && serviciosSeleccionados.cena && (
-												<td>{item.cantidad_cena}</td>
-											)}
-											{esServicio && serviciosSeleccionados.baño && (
-												<td>{item.cantidad_bano}</td>
-											)}
-											{esServicio && serviciosSeleccionados.regadera && (
-												<td>{item.cantidad_regadera}</td>
-											)}
-											{esServicio && serviciosSeleccionados.deuda && (
-												<td>${item.total_deuda}</td>
-											)}
-											{esServicio && serviciosSeleccionados.notas_cliente && (
-												<td>{item.notas_cliente}</td>
-											)}
-										</tr>
-									))}
-								</tbody>
-							</Table>
-						)}
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado sin seleccionar ningun visitante */}
+        {esUsuario && mostrarVisitantes && visitanteSeleccionado=='Visitante' && (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+              </tr>
+            </thead>
+            <tbody>
+              {(datavisitante.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.vetados && <td>{item.vetado}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
 
-					{/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado y se selecciona un Vetado */}
-					{esUsuario && mostrarVetados && vetadoSeleccionado !== "Vetado" && (
-						<Table striped bordered hover>
-							<thead>
-								<tr>
-									<th>
-										<p>No. Cliente</p>
-									</th>
-									<th>
-										<p>Tipo de Usuario</p>
-									</th>
-									<th>
-										<p>Nombre</p>
-									</th>
-									<th>
-										<p>Apellidos</p>
-									</th>
-									<th>
-										<p>Sexo</p>
-									</th>
-									<th>
-										<p>Lugar de Origen</p>
-									</th>
-									<th>
-										<p>No.Carnet</p>
-									</th>
-									<th>
-										<p>Fecha de Ingreso</p>
-									</th>
-									<th>
-										<p>Fecha de Veto</p>
-									</th>
-									<th>
-										<p>Motivo de Veto</p>
-									</th>
-									{/* Agregar las columnas adicionales según el servicio seleccionado */}
-									{esServicio && serviciosSeleccionados.desayuno && (
-										<th>
-											<p>Cantidad Desayuno</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.comida && (
-										<th>
-											<p>Cantidad Comida</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.cena && (
-										<th>
-											<p>Cantidad Cena</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.baño && (
-										<th>
-											<p>Cantidad Baño</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.regadera && (
-										<th>
-											<p>Cantidad Regadera</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.deuda && (
-										<th>
-											<p>Total Deuda</p>
-										</th>
-									)}
-									{esServicio && serviciosSeleccionados.notas_cliente && (
-										<th>
-											<p>Notas de cliente</p>
-										</th>
-									)}
-								</tr>
-							</thead>
-							<tbody>
-								{datauser.map((item) => (
-									<tr key={item.id_cliente}>
-										<td>
-											<p>{item.id_cliente}</p>
-										</td>
-										<td>
-											<p>{item.tipo_usuario}</p>
-										</td>
-										<td>
-											<p>{item.nombre_c}</p>
-										</td>
-										<td>
-											<p>{item.apellidos_c}</p>
-										</td>
-										<td>
-											<p>{item.sexo}</p>
-										</td>
-										<td>
-											<p>{item.lugar_o}</p>
-										</td>
-										<td>
-											<p>{item.carnet}</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_i ? handleDateFormat(item.fecha_i) : ""}
-											</p>
-										</td>
-										<td>
-											<p>
-												{item.fecha_s ? handleDateFormat(item.fecha_s) : ""}
-											</p>
-										</td>
-										<td>
-											<p>{item.notas_v}</p>
-										</td>
-										{/* Agregar las celdas adicionales según el servicio seleccionado */}
-										{esServicio && serviciosSeleccionados.desayuno && (
-											<td>{item.cantidad_desayuno}</td>
-										)}
-										{esServicio && serviciosSeleccionados.comida && (
-											<td>{item.cantidad_comida}</td>
-										)}
-										{esServicio && serviciosSeleccionados.cena && (
-											<td>{item.cantidad_cena}</td>
-										)}
-										{esServicio && serviciosSeleccionados.baño && (
-											<td>{item.cantidad_bano}</td>
-										)}
-										{esServicio && serviciosSeleccionados.regadera && (
-											<td>{item.cantidad_regadera}</td>
-										)}
-										{esServicio && serviciosSeleccionados.deuda && (
-											<td>${item.total_deuda}</td>
-										)}
-										{esServicio && serviciosSeleccionados.notas_cliente && (
-											<td>{item.notas_cliente}</td>
-										)}
-									</tr>
-								))}
-							</tbody>
-						</Table>
-					)}
-				</div>
-			</div>
-			<div className="reports_button_export">
-				{/* Botón de exportar reporte a PDF */}
-				<button
-					type="button"
-					className="App_buttonaccept"
-					onClick={generatePDF}
-				>
-					Generar PDF
-				</button>
-			</div>
-			<MyToastContainer />
-		</div>
-	);
+
+      {/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado sin seleccionar ningun vetado */}
+       {esUsuario && mostrarVetados && vetadoSeleccionado=='Vetado' && (
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+
+              <th><p>No. Cliente</p></th>
+              <th><p>Tipo de Usuario</p></th>
+              <th><p>Nombre</p></th>
+              <th><p>Apellidos</p></th>
+              <th><p>Sexo</p></th>
+              <th><p>Lugar de Origen</p></th>
+              <th><p>No.Carnet</p></th>
+              <th><p>Fecha de Ingreso</p></th>
+              <th><p>Fecha de Veto</p></th>
+              <th><p>Motivo de Veto</p></th>
+              {/* Agregar las columnas adicionales según el servicio seleccionado */}
+              {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+              {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+              {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+              {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+              {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+              {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+              {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+
+            </tr>
+          </thead>
+          <tbody>
+            {(datavetado.map((item) => (
+              <tr key={item.id_cliente}>
+                <td><p>{item.id_cliente}</p></td>
+                <td><p>{item.tipo_usuario}</p></td>
+                <td><p>{item.nombre_c}</p></td>
+                <td><p>{item.apellidos_c}</p></td>
+                <td><p>{item.sexo}</p></td>
+                <td><p>{item.lugar_o}</p></td>
+                <td><p>{item.carnet}</p></td>
+                <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                <td><p>{item.notas_v}</p></td>
+                {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+
+              </tr>
+            )))}
+          </tbody>
+        </Table>
+        )}
+
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Huesped está marcado y se selecciona un Huesped */}
+        {esUsuario && mostrarHuespedes && huespedSeleccionado !== 'Huesped' &&(
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>No.Cama</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+
+              </tr>
+            </thead>
+            <tbody>
+              {(datauser.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.cama}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
+
+        {/* Mostrar los datos en una tabla si esUsuario y el checkbox Visitante está marcado y se selecciona un Visitante */}
+        {esUsuario && mostrarVisitantes && visitanteSeleccionado !== 'Visitante' &&(
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Salida</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+
+              </tr>
+            </thead>
+            <tbody>
+              {(datauser.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
+
+      {/* Mostrar los datos en una tabla si esUsuario y el checkbox Vetado está marcado y se selecciona un Vetado */}
+      {esUsuario && mostrarVetados && vetadoSeleccionado !== 'Vetado' &&(
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th><p>No. Cliente</p></th>
+                <th><p>Tipo de Usuario</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Apellidos</p></th>
+                <th><p>Sexo</p></th>
+                <th><p>Lugar de Origen</p></th>
+                <th><p>No.Carnet</p></th>
+                <th><p>Fecha de Ingreso</p></th>
+                <th><p>Fecha de Veto</p></th>
+                <th><p>Motivo de Veto</p></th>
+                {/* Agregar las columnas adicionales según el servicio seleccionado */}
+                {esServicio && serviciosSeleccionados.desayuno && <th><p>Cantidad Desayuno</p></th>}
+                {esServicio && serviciosSeleccionados.comida && <th><p>Cantidad Comida</p></th>}
+                {esServicio && serviciosSeleccionados.cena && <th><p>Cantidad Cena</p></th>}
+                {esServicio && serviciosSeleccionados.baño && <th><p>Cantidad Baño</p></th>}
+                {esServicio && serviciosSeleccionados.regadera && <th><p>Cantidad Regadera</p></th>}
+                {esServicio && serviciosSeleccionados.deuda && <th><p>Total Deuda</p></th>}
+                {esServicio && serviciosSeleccionados.notas_cliente && <th><p>Notas de cliente</p></th>}
+
+              </tr>
+            </thead>
+            <tbody>
+              {(datauser.map((item) => (
+                <tr key={item.id_cliente}>
+                  <td><p>{item.id_cliente}</p></td>
+                  <td><p>{item.tipo_usuario}</p></td>
+                  <td><p>{item.nombre_c}</p></td>
+                  <td><p>{item.apellidos_c}</p></td>
+                  <td><p>{item.sexo}</p></td>
+                  <td><p>{item.lugar_o}</p></td>
+                  <td><p>{item.carnet}</p></td>
+                  <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
+                  <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
+                  <td><p>{item.notas_v}</p></td>
+                  {/* Agregar las celdas adicionales según el servicio seleccionado */}
+                  {esServicio && serviciosSeleccionados.desayuno && <td>{item.cantidad_desayuno}</td>}
+                  {esServicio && serviciosSeleccionados.comida && <td>{item.cantidad_comida}</td>}
+                  {esServicio && serviciosSeleccionados.cena && <td>{item.cantidad_cena}</td>}
+                  {esServicio && serviciosSeleccionados.baño && <td>{item.cantidad_bano}</td>}
+                  {esServicio && serviciosSeleccionados.regadera && <td>{item.cantidad_regadera}</td>}
+                  {esServicio && serviciosSeleccionados.deuda && <td>${item.total_deuda}</td>}
+                  {esServicio && serviciosSeleccionados.notas_cliente && <td>{item.notas_cliente}</td>}
+
+                </tr>
+              )))}
+            </tbody>
+          </Table>
+        )}
+
+
+      </div>
+      </div>
+      <div className="reports_button_export">
+        {/* Botón de exportar reporte a PDF */}
+        <button type="button" className="App_buttonaccept" onClick={generatePDF}>
+          Generar PDF
+        </button>
+      </div>
+      <MyToastContainer />
+    </div>
+  );
 };
 
 export default ReportsAdmin;

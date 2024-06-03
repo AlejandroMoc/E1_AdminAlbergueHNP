@@ -6,7 +6,7 @@ const cn={
     port: '5432',
     database: 'gestionAlbergue',
     user:'postgres',
-    password:'admin123',
+    password:'chicha91.',
     allowExitOnIdle:true
 }
 

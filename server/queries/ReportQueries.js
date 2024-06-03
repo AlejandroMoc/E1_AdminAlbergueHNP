@@ -212,7 +212,11 @@ const getUserInfo = async (userId) => {
             CASE
                 WHEN cliente.paciente = TRUE THEN paciente.carnet
                 ELSE cliente.carnet
-            END AS "carnet"
+            END AS "carnet",
+            CASE
+                WHEN h.id_cliente IS NOT NULL THEN (SELECT id_cama FROM huesped WHERE id_cliente = cliente.id_cliente)
+                ELSE NULL
+            END AS cama -- Nueva columna para el id_cama cuando es huesped
         FROM
             cliente
         LEFT JOIN
@@ -253,7 +257,7 @@ const getUserInfo = async (userId) => {
              FROM pago
              GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
         WHERE
-            cliente.id_cliente = $1
+            cliente.id_cliente = $1        
         
         `,
             [userId]
@@ -369,79 +373,81 @@ const getAllGeneralVisitantes = async (startDate, endDate) => {
 const getAllGeneralHuespedes = async (startDate, endDate) => {
     try {
         let query = `
-            SELECT
-            cliente.id_cliente,
-            'Huesped' AS tipo_usuario,
-            cliente.nombre_c,
-            cliente.apellidos_c,
-            CASE
-                WHEN cliente.sexo THEN 'Masculino'
-                ELSE 'Femenino'
-            END AS sexo,
-            cliente.lugar_o,
-            COALESCE(h.fecha_i, l.fecha_i) AS fecha_i,
-            l.fecha_s,
-            COALESCE(sc_regadera.cantidad, 0) AS cantidad_regadera,
-            COALESCE(sc_bano.cantidad, 0) AS cantidad_bano,
-            COALESCE(sc_desayuno.cantidad, 0) AS cantidad_desayuno,
-            COALESCE(sc_comida.cantidad, 0) AS cantidad_comida,
-            COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
-            cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
-            COALESCE(total_deuda.total, 0) AS total_deuda,
-            CASE
-                WHEN cliente.paciente = TRUE THEN paciente.carnet
-                ELSE cliente.carnet
-            END AS "carnet"
-        FROM
-            (
-                SELECT id_cliente, fecha_i
-                FROM huesped
-                UNION
-                SELECT id_cliente, fecha_i
-                FROM logsalidas
-            ) AS hl
-        INNER JOIN
-            cliente ON cliente.id_cliente = hl.id_cliente
-        LEFT JOIN
-            huesped h ON cliente.id_cliente = h.id_cliente
-        LEFT JOIN
-            logsalidas l ON cliente.id_cliente = l.id_cliente
-        LEFT JOIN
-            (SELECT id_cliente, SUM(cant) AS cantidad
-            FROM servcliente
-            WHERE id_servicio = 1
-            GROUP BY id_cliente) AS sc_regadera ON cliente.id_cliente = sc_regadera.id_cliente
-        LEFT JOIN
-            (SELECT id_cliente, SUM(cant) AS cantidad
-            FROM servcliente
-            WHERE id_servicio = 2
-            GROUP BY id_cliente) AS sc_bano ON cliente.id_cliente = sc_bano.id_cliente
-        LEFT JOIN
-            (SELECT id_cliente, SUM(cant) AS cantidad
-            FROM servcliente
-            WHERE id_servicio = 3
-            GROUP BY id_cliente) AS sc_desayuno ON cliente.id_cliente = sc_desayuno.id_cliente
-        LEFT JOIN
-            (SELECT id_cliente, SUM(cant) AS cantidad
-            FROM servcliente
-            WHERE id_servicio = 4
-            GROUP BY id_cliente) AS sc_comida ON cliente.id_cliente = sc_comida.id_cliente
-        LEFT JOIN
-            (SELECT id_cliente, SUM(cant) AS cantidad
-            FROM servcliente
-            WHERE id_servicio = 5
-            GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
-        LEFT JOIN
-            vetado v ON cliente.id_cliente = v.id_cliente
-        LEFT JOIN
-            paciente ON cliente.carnet = paciente.carnet
-        LEFT JOIN
-            (SELECT id_cliente, ABS(SUM(monto_t)) AS total
-            FROM pago
-            GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
-        WHERE
-            v.id_cliente IS NULL
-            ORDER BY cliente.id_cliente ASC
+        SELECT
+        cliente.id_cliente,
+        'Huesped' AS tipo_usuario,
+        cliente.nombre_c,
+        cliente.apellidos_c,
+        CASE
+            WHEN cliente.sexo THEN 'Masculino'
+            ELSE 'Femenino'
+        END AS sexo,
+        cliente.lugar_o,
+        COALESCE(h.fecha_i, l.fecha_i) AS fecha_i,
+        l.fecha_s,
+        COALESCE(sc_regadera.cantidad, 0) AS cantidad_regadera,
+        COALESCE(sc_bano.cantidad, 0) AS cantidad_bano,
+        COALESCE(sc_desayuno.cantidad, 0) AS cantidad_desayuno,
+        COALESCE(sc_comida.cantidad, 0) AS cantidad_comida,
+        COALESCE(sc_cena.cantidad, 0) AS cantidad_cena,
+        cliente.notas_c AS notas_cliente, -- Modificación aquí para obtener las notas de cliente
+        COALESCE(total_deuda.total, 0) AS total_deuda,
+        CASE
+            WHEN cliente.paciente = TRUE THEN paciente.carnet
+            ELSE cliente.carnet
+        END AS "carnet",
+        h.id_cama AS "cama" -- Nueva columna para el número de cama
+    FROM
+        (
+            SELECT id_cliente, fecha_i
+            FROM huesped
+            UNION
+            SELECT id_cliente, fecha_i
+            FROM logsalidas
+        ) AS hl
+    INNER JOIN
+        cliente ON cliente.id_cliente = hl.id_cliente
+    LEFT JOIN
+        huesped h ON cliente.id_cliente = h.id_cliente
+    LEFT JOIN
+        logsalidas l ON cliente.id_cliente = l.id_cliente
+    LEFT JOIN
+        (SELECT id_cliente, SUM(cant) AS cantidad
+        FROM servcliente
+        WHERE id_servicio = 1
+        GROUP BY id_cliente) AS sc_regadera ON cliente.id_cliente = sc_regadera.id_cliente
+    LEFT JOIN
+        (SELECT id_cliente, SUM(cant) AS cantidad
+        FROM servcliente
+        WHERE id_servicio = 2
+        GROUP BY id_cliente) AS sc_bano ON cliente.id_cliente = sc_bano.id_cliente
+    LEFT JOIN
+        (SELECT id_cliente, SUM(cant) AS cantidad
+        FROM servcliente
+        WHERE id_servicio = 3
+        GROUP BY id_cliente) AS sc_desayuno ON cliente.id_cliente = sc_desayuno.id_cliente
+    LEFT JOIN
+        (SELECT id_cliente, SUM(cant) AS cantidad
+        FROM servcliente
+        WHERE id_servicio = 4
+        GROUP BY id_cliente) AS sc_comida ON cliente.id_cliente = sc_comida.id_cliente
+    LEFT JOIN
+        (SELECT id_cliente, SUM(cant) AS cantidad
+        FROM servcliente
+        WHERE id_servicio = 5
+        GROUP BY id_cliente) AS sc_cena ON cliente.id_cliente = sc_cena.id_cliente
+    LEFT JOIN
+        vetado v ON cliente.id_cliente = v.id_cliente
+    LEFT JOIN
+        paciente ON cliente.carnet = paciente.carnet
+    LEFT JOIN
+        (SELECT id_cliente, ABS(SUM(monto_t)) AS total
+        FROM pago
+        GROUP BY id_cliente) AS total_deuda ON cliente.id_cliente = total_deuda.id_cliente
+    WHERE
+        v.id_cliente IS NULL
+    ORDER BY
+        cliente.id_cliente ASC
         `;
 
         let params = [];
