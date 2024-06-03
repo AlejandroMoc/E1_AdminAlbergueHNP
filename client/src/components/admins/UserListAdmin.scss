@@ -1,92 +1,92 @@
 .userlist_container_flex {
-  // background-color: #d84949;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+	// background-color: #d84949;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .userlist_container_upper {
-  // background-color: #058844;
-  // justify-content: space-evenly;
-  justify-content: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+	// background-color: #058844;
+	// justify-content: space-evenly;
+	justify-content: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
 }
 
 .userlist_container_lower {
-  //background-color: #058844;
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: center;
-  width: 100%;
-  text-align: left;
+	//background-color: #058844;
+	// display: flex;
+	// flex-wrap: wrap;
+	// justify-content: center;
+	width: 100%;
+	text-align: left;
 }
 
 .userlist_pagination {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .userlist_toggle_dropdown {
-  background-color: #f2f2f2;
-  height: 40px;
-  border-width: 0px;
+	background-color: #f2f2f2;
+	height: 40px;
+	border-width: 0px;
 }
 
 .userlist_dropdown_custommenu {
-  width: 100%;
+	width: 100%;
 }
 
 .userlist_padding_formcheck {
-  padding-left: 4vh;
-  padding-right: 4vh;
+	padding-left: 4vh;
+	padding-right: 4vh;
 }
 
 .userlist_inputdebt {
-  background-color: #f2f2f2;
-  text-align: center;
-  height: 40px;
-  width: 200px;
+	background-color: #f2f2f2;
+	text-align: center;
+	height: 40px;
+	width: 200px;
 }
 
 .userlist_container_inputs {
-  display: flex;
-  align-items: baseline;
+	display: flex;
+	align-items: baseline;
 }
 
 .userlist_container_inputs .container_dash {
-  color: #090909;
-  margin: 0 2vh 0 2vh;
+	color: #090909;
+	margin: 0 2vh 0 2vh;
 }
 
 .userlist_container_radio {
-  margin: 2vh 2vh 2vh 0;
+	margin: 2vh 2vh 2vh 0;
 }
 
 .userlist_color_personlink {
-  color: #376faa !important;
+	color: #005000 !important;
 }
 
 .userlist_text_noresults {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  text-align: center;
-  padding: 15vh 0;
-  height: 50vh;
-  // vertical-align: baseline;
-  margin: auto;
-  // transform: translate(50%, 50%);
-  font-weight: bold;
-  font-size: small;
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	text-align: center;
+	padding: 15vh 0;
+	height: 50vh;
+	// vertical-align: baseline;
+	margin: auto;
+	// transform: translate(50%, 50%);
+	font-weight: bold;
+	font-size: small;
 }
 
 .userlist_filter_carnet {
-  background-color: #f2f2f2;
-  display: flex;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  align-self: center;
+	background-color: #f2f2f2;
+	display: flex;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	align-self: center;
 }

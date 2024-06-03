@@ -1,3 +1,6 @@
+
+
+
 //Importar elementos
 import React from 'react';
 import "./UniversalAdmin.scss";
@@ -42,6 +45,8 @@ const HomeAdmin = () => {
     `Confía en tu potencial, ${auth.getUser()?.nombre_u || ""}.`,
     `Confío en ti, ${auth.getUser()?.nombre_u || ""}.`,
     `A veces se gana, ${auth.getUser()?.nombre_u || ""}.`,
+    `A veces se gana, a veces se pierde, ${auth.getUser()?.nombre_u || ""}.`,
+    `A veces se gana, a veces se aprende, ${auth.getUser()?.nombre_u || ""}.`,
     `El cielo está en la tierra, ${auth.getUser()?.nombre_u || ""}.`,
     `No dejes para mañana lo que puedes hacer hoy, ${auth.getUser()?.nombre_u || ""}.`,
     `Un paso a la vez, ${auth.getUser()?.nombre_u || ""}.`,

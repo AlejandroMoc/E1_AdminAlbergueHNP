@@ -1,24 +1,24 @@
-.Toastify__close-button{
-    width: 10% !important;
-    margin-right: 5px !important;
+.Toastify__close-button {
+	width: 10% !important;
+	margin-right: 5px !important;
 }
 
-.toastify_color{
-    --toastify-color-light: #fafafa;
-    --toastify-color-dark: #090909;
-    --toastify-color-info: #4383c7;
-    --toastify-color-success: #058844;
-    // --toastify-color-warning: #f1c40f;
-    --toastify-color-error: #d84949;
+.toastify_color {
+	--toastify-color-light: #fafafa;
+	--toastify-color-dark: #090909;
+	--toastify-color-info: #006400;
+	--toastify-color-success: #058844;
+	// --toastify-color-warning: #f1c40f;
+	--toastify-color-error: #d84949;
 
-    --toastify-icon-color-info: #4383c7;;
-    --toastify-icon-color-success: #058844;
-    // --toastify-icon-color-warning: var(--toastify-color-warning);
-    --toastify-icon-color-error: #d84949;
+	--toastify-icon-color-info: #006400;
+	--toastify-icon-color-success: #058844;
+	// --toastify-icon-color-warning: var(--toastify-color-warning);
+	--toastify-icon-color-error: #d84949;
 
-    // --toastify-color-progress-dark: #bb86fc;
-    --toastify-color-progress-info: #4383c7;;
-    --toastify-color-progress-success: #058844;
-    // --toastify-color-progress-warning: var(--toastify-color-warning);
-    --toastify-color-progress-error: #d84949;
+	// --toastify-color-progress-dark: #bb86fc;
+	--toastify-color-progress-info: #006400;
+	--toastify-color-progress-success: #058844;
+	// --toastify-color-progress-warning: var(--toastify-color-warning);
+	--toastify-color-progress-error: #d84949;
 }
