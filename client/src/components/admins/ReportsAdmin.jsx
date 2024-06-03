@@ -23,10 +23,10 @@ const ReportsAdmin = () => {
   const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
   const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
   const [data, setData] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '' , carnet: ''}]); // Estado para almacenar los datos de la consulta
-  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datahuesped, setDataHuesped] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: '', cama: '' }]); // Estado para almacenar los datos de la consulta
   const [datavisitante, setDataVisitante] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente: '', notas_v:'', total_deuda: '', carnet: ''}]); // Estado para almacenar los datos de la consulta
   const [datavetado, setDataVetado] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'', notas_v:'',total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
-  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '', carnet: '' }]); // Estado para almacenar los datos de la consulta
+  const [datauser, setDataUser] = useState([{id_cliente: 0, tipo_usuario: '', nombre_c: '', apellidos_c: '', sexo: '', lugar_o: '', fecha_i: '', fecha_s: '', cantidad_regadera: '', cantidad_bano: '', cantidad_desayuno: '', cantidad_comida: '', cantidad_cena: '', notas_cliente:'',notas_v:'', total_deuda: '', carnet: '', cama: '' }]); // Estado para almacenar los datos de la consulta
   const [dataingreso, setDataIngreso] = useState({fecha_inicio: '', fecha_fin:'', total_pagado: '', total_condonado:'', ingresos_reales:''}); // Estado para almacenar los datos de la consulta
 
   // Estado para almacenar el nombre del Huesped seleccionado
@@ -821,7 +821,7 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
@@ -874,13 +874,14 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
                 <th><p>Sexo</p></th>
-                <th><p>Lugar de Origen</p></th>
+                <th><p>Lugar de Origen</p></th>                
                 <th><p>No.Carnet</p></th>
+                <th><p>No.Cama</p></th>
                 <th><p>Fecha de Ingreso</p></th>
                 <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -903,6 +904,7 @@ const getCurrentDateTime = () => {
                   <td><p>{item.sexo}</p></td>
                   <td><p>{item.lugar_o}</p></td>
                   <td><p>{item.carnet}</p></td>
+                  <td><p>{item.cama}</p></td>
                   <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i) : ''}</p></td>
                   <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s) : ''}</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -926,7 +928,7 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
@@ -979,7 +981,7 @@ const getCurrentDateTime = () => {
           <thead>
             <tr>
 
-              <th><p>ID Cliente</p></th>
+              <th><p>No. Cliente</p></th>
               <th><p>Tipo de Usuario</p></th>
               <th><p>Nombre</p></th>
               <th><p>Apellidos</p></th>
@@ -1033,13 +1035,14 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
                 <th><p>Sexo</p></th>
                 <th><p>Lugar de Origen</p></th>
                 <th><p>No.Carnet</p></th>
+                <th><p>No.Cama</p></th>
                 <th><p>Fecha de Ingreso</p></th>
                 <th><p>Fecha de Salida</p></th>
                 {/* Agregar las columnas adicionales según el servicio seleccionado */}
@@ -1063,6 +1066,7 @@ const getCurrentDateTime = () => {
                   <td><p>{item.sexo}</p></td>
                   <td><p>{item.lugar_o}</p></td>
                   <td><p>{item.carnet}</p></td>
+                  <td><p>{item.cama}</p></td>
                   <td><p>{item.fecha_i ? handleDateFormat(item.fecha_i): ''}</p></td>
                   <td><p>{item.fecha_s ? handleDateFormat(item.fecha_s):'' }</p></td>
                   {/* Agregar las celdas adicionales según el servicio seleccionado */}
@@ -1085,7 +1089,7 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
@@ -1137,7 +1141,7 @@ const getCurrentDateTime = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th><p>ID Cliente</p></th>
+                <th><p>No. Cliente</p></th>
                 <th><p>Tipo de Usuario</p></th>
                 <th><p>Nombre</p></th>
                 <th><p>Apellidos</p></th>
