@@ -1,19 +1,23 @@
+//Importar elementos
 import React from 'react';
 import "./UniversalAdmin.scss";
 import "./HomeAdmin.scss";
-
-//Importar elementos
+//Importar íconos
 import {RiUserAddFill} from "react-icons/ri";
 import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
+//Importar más elementos
 import {Link} from "react-router-dom";
 import {useAuth} from '../../auth/AuthProvider';
 
+//Función de componente de administración
 const HomeAdmin = () => {
 
+  //Verificar autenticación del sistema
   const auth = useAuth();
 
+  //Mensajes aleatorios de bienvenida
   const welcomeMessages = [
     `¡Te damos la bienvenida, ${auth.getUser()?.nombre_u || ""}!`,
     `Ten un buen día, ${auth.getUser()?.nombre_u || ""}.`,
@@ -42,9 +46,13 @@ const HomeAdmin = () => {
     `No dejes para mañana lo que puedes hacer hoy, ${auth.getUser()?.nombre_u || ""}.`,
     `Un paso a la vez, ${auth.getUser()?.nombre_u || ""}.`,
     `Hoy eres el cambio, ${auth.getUser()?.nombre_u || ""}.`,
+    `Que todo lo bueno te siga, te encuentre, y se quede contigo ${auth.getUser()?.nombre_u || ""}.`,
+    `¡Lorem Ipsum, ${auth.getUser()?.nombre_u || ""}!`,
   ];
   
+  //Randomizador para mensaje de bienvenida
   const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
+  //Elegir un mensaje de bienvenida
   const randomWelcomeMessage = welcomeMessages[randomIndex];
 
   return (

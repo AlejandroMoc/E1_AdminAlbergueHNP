@@ -98,7 +98,7 @@ const ProfilePasswordAdmin = () => {
         <p><input className="universal_limit_input universal_marginbottom" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
         <p><input className="universal_limit_input universal_marginbottom" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
         
-        <p className='universal_text_error universal_limit_input'>{ErrorMessage}</p>
+        <p className='universal_text_error'>{ErrorMessage}</p>
         {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Link to="/profile"><p><button className="App_buttoncancel universal_limit_input">Cancelar</button></p></Link>
