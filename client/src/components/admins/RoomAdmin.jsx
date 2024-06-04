@@ -54,6 +54,7 @@ import {MdOutlineFastfood } from "react-icons/md"; // Servicios
 import {LuUserMinus, LuUserPlus, LuUser} from "react-icons/lu"; // Nombre, Añadir Usuario, Registrar Salida
 import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cama, Carnet
 
+//Texto usado para las zonas
 const zona_1 = "ZONA DE MUJERES";
 const zona_2 = "ZONA DE HOMBRES";
 const zona_3 = "ZONA DE AISLADOS";

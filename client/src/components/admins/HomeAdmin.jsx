@@ -60,6 +60,7 @@ const HomeAdmin = () => {
   //Elegir un mensaje de bienvenida
   const randomWelcomeMessage = welcomeMessages[randomIndex];
 
+  //Función de regreso
   return (
     <div className='App_minheight'>
       <br/>
