@@ -1,9 +1,11 @@
+//Importar elementos
 import React, {useEffect,useState} from 'react';
 import {useAuth} from '../../auth/AuthProvider';
 import './UserNewAdmin.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
 import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
+//Importar íconos
 import {LuUser} from "react-icons/lu";
 import {LuCalendarDays} from "react-icons/lu";
 import {FiHome} from "react-icons/fi";
@@ -11,6 +13,7 @@ import {MdFaceUnlock} from "react-icons/md";
 import {FaRegAddressCard} from "react-icons/fa";
 import {RiHospitalLine} from "react-icons/ri";
 import {MdOutlineNotInterested} from "react-icons/md"; //Usuario vetado
+import {FaBan} from "react-icons/fa"; //Vetado
 import {MdOutlineEdit} from "react-icons/md"; //Boton Editar
 import {LiaCoinsSolid} from "react-icons/lia";
 import {PiGenderIntersexLight} from "react-icons/pi"; //GENERO 
@@ -226,7 +229,7 @@ useEffect(() =>{
 
 //Función para ir a la pagina de editar
 const handleEditar = async () => {
-      goTo("/edituser/"+props.id_cliente);
+      goTo("/edituser/" + props.id_cliente);
   //window.location.href = '/edituser/'+props.id_cliente;
 };
 
@@ -239,11 +242,21 @@ const handleEditar = async () => {
       <div className='user_spaciator'></div>
 
       {/*Botón de edición*/}
-      {/*TODO corregir posición*/}
-                {/* <button className='App_buttonaccept' onClick={handleEditar}><span className="user_span_space_icon" id="basic-addon1"></span> Editar</button> */}
       {adminInfo.admin && (
-          <button className='App_buttonaccept userinfo_position_buttonedit' onClick={handleEditar}><MdOutlineEdit/> Editar</button>
+        <button className='App_buttonaccept userinfo_position_buttonedit' onClick={handleEditar}><MdOutlineEdit/> Editar</button>
       )}
+
+      {(!showVetadoSelect) && (
+        <button className="App_buttonaccept userinfo_position_buttonban" onClick={handleVetar}><FaBan/> Vetar</button>
+      )}
+
+      {showVetadoSelect  && adminInfo.admin && (
+        <button className="App_buttonaccept userinfo_position_buttonban" onClick={handleDesVetar}> <FaBan/> Desvetar</button>
+      )}
+
+      <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
+        ¿Estas Seguro?
+      </Popup>
 
       <div className="user_container_general">
         <div className="container user_container_column">
@@ -370,19 +383,9 @@ const handleEditar = async () => {
             <div className="mb-3">
             <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
           </div>
-          {adminInfo.admin && (
-            <div className="input-group mb-3 ">
-              <button className="App_buttonaccept userinfo_button_ban" onClick={handleDesVetar}>Desvetar</button>
-            </div>
-          )}
+
           </div>)}
-          {(!showVetadoSelect) && (
-          <div className="input-group mb-3 ">
-            <button className="App_buttonaccept userinfo_button_ban" onClick={handleVetar}>Vetar</button>
-          </div>)}
-          <Popup trigger={showPopUp.trigger} type={showPopUp.type} id={showPopUp.id} fun={showPopUp.fun} setTrigger={setShowPopUp}>
-            ¿Estas Seguro?
-          </Popup>
+
           <MyToastContainer />
         </div>
       </div>

@@ -14,14 +14,14 @@ Carnet solamente números✅
 
 //Registro
 Error al registrar y que no haya nada en campos✅
-Numeros de cama aislados como A1, A2, etc
+Numeros de cama aislados como A1, A2, etc✅
 En el autollenado quitar "Este campo es obl" en información del familiar
 
 
 ¿El cliente es un paciente? a el familiar es un paciente✅
 
 
-handleChange if es paciente, tambien que se escriba en el nombre del familiar
+handleChange if es paciente, tambien que se escriba en el nombre del familiar✅
 
 Checar transacción de registro de visitantes de única vez (no se cobra 20)
 

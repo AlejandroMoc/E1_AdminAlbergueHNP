@@ -51,7 +51,8 @@ const HomeAdmin = () => {
     `No dejes para mañana lo que puedes hacer hoy, ${auth.getUser()?.nombre_u || ""}.`,
     `Un paso a la vez, ${auth.getUser()?.nombre_u || ""}.`,
     `Hoy eres el cambio, ${auth.getUser()?.nombre_u || ""}.`,
-    `Que todo lo bueno te siga, te encuentre, y se quede contigo ${auth.getUser()?.nombre_u || ""}.`,
+    `Que todo lo bueno te siga, te encuentre, y se quede contigo, ${auth.getUser()?.nombre_u || ""}.`,
+    `Sé una mejor versión de ti diario, ${auth.getUser()?.nombre_u || ""}.`,
     `¡Lorem Ipsum, ${auth.getUser()?.nombre_u || ""}!`,
   ];
   

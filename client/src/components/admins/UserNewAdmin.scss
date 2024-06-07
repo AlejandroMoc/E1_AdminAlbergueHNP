@@ -61,12 +61,12 @@
 }
 
 .user_select_beds {
-	// width: 60%;
 	font-size: medium;
 	border: 1px solid #ccc;
 	border-radius: 1vhpx;
 	background-color: #f2f2f2;
 	cursor: pointer;
+	width: 100vw;
 }
 
 .user_container_general {
@@ -133,16 +133,12 @@
 //InfoUser
 .user_justified {
 	text-align: justify;
-	// margin-left: 6vh;
 }
 
 .userinfo_position_buttonedit {
-	// position: absolute;
-	//TODO cambiar width de botones a %
-	// width: 5%;
-	// margin-left: 32vh;
-	// margin-top: 2vh;
-	margin-left: 4vh;
+	//TODO cambiar width de botones a % o vw
+	// margin-left: 4vw;
+	margin-left: 16vw;
 	margin-bottom: 2vh;
 }
 
@@ -158,20 +154,19 @@
 
 .userinfo_adjust_debt {
 	width: 39% !important;
-	// height: auto;
 }
 
 .userinfo_adjust_debt_input {
 	width: 20%;
 }
 
-.userinfo_button_ban {
-	margin-top: 10%;
-	margin-left: 50%;
+.userinfo_position_buttonban {
 	background-color: #c2c2c2;
+	margin-left: 4vh;
+	margin-bottom: 2vh;
 }
 
-.userinfo_button_ban:hover {
+.userinfo_position_buttonban:hover {
 	background-color: #9d9d9d;
 }
 

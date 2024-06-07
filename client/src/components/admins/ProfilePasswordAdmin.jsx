@@ -115,9 +115,9 @@ const ProfilePasswordAdmin = () => {
         <p className= 'universal_header_text universal_marginbottom' to="/"><IoKey/>Cambiar contraseña</p>
 
         {/*Inputs de contraseña actual y antigua*/}
-        <p><input className="universal_limit_input universal_marginbottom" value={actual_password} onChange={(e)=>apChange(e)} type="password" id="oldpass" name="oldpassword" minLength="8" maxLength="16" required placeholder="Contraseña actual" /></p>
-        <p><input className="universal_limit_input universal_marginbottom" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" required placeholder="Nueva Contraseña" /></p>
-        <p><input className="universal_limit_input universal_marginbottom" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" required placeholder="Confirmar Nueva Contraseña" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={actual_password} onChange={(e)=>apChange(e)} type="password" id="oldpass" name="oldpassword" minLength="8" maxLength="16" onkeypress="return event.charCode != 32" required placeholder="Contraseña actual" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={new_password1} onChange={(e)=>p1Change(e)} type="password" id="pass" name="password" minLength="8" maxLength="16" onkeypress="return event.charCode != 32" required placeholder="Nueva Contraseña" /></p>
+        <p><input className="universal_limit_input universal_marginbottom" value={new_password2} onChange={(e)=>p2Change(e)} type="password" id="pass2" name="password2" minLength="8" maxLength="16" onkeypress="return event.charCode != 32" required placeholder="Confirmar Nueva Contraseña" /></p>
         
         {/*Mensaje de error y de éxito (se puede habilitar el de éxito)*/}
         <p className='universal_text_error'>{ErrorMessage}</p>

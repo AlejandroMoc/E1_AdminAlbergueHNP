@@ -478,29 +478,29 @@ const UserNewAdmin = (props) => {
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FiHome /></span>
-            <input type="text" className={`userinfo_span_info form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} value={lugar_o}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${lugar_oError ? 'is-invalid' : ''}`} placeholder="Lugar de Origen" aria-label="Username" aria-describedby="basic-addon1" onChange={handleLugar_OChange} minLength="8" maxLength="24" value={lugar_o}></input>
             {lugar_oError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
-            <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} value={nombre_p}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_pError ? 'is-invalid' : ''}`} placeholder="Nombre del Paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_PChange} minLength="8" maxLength="24" value={nombre_p}></input>
             {nombre_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><MdFaceUnlock /></span>
-            <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_PChange} value={apellidos_p}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_pError ? 'is-invalid' : ''}`} placeholder="Apellidos del paciente" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_PChange} minLength="8" maxLength="24" value={apellidos_p}></input>
             {apellidos_pError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><FaRegAddressCard /></span>
             
-            <input type="number" min="0" minLength="8" maxLength="16" className={`userinfo_span_info form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} value={carnet}></input>
+            <input type="number" min="0" className={`userinfo_span_info form-control user_space_reg ${carnetError ? 'is-invalid' : ''}`} placeholder="Carnet (8 a 16 caracteres)" aria-label="Username" aria-describedby="basic-addon1" onChange={handleCarnetChange} minLength="8" maxLength="16" value={carnet}></input>
             {carnetError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="user_label_x" onChange={handleId_areaCChange}>
             <span><p>Área de Paciente: </p></span>
             <select className="form-select user_select_beds sm" aria-label="Default select example">
-              <option selected><p>X</p></option>
+              <option selected><p>Seleccione un área</p></option>
               {(
                 area.map((item) => (
                   <option key={item.id_area} value={item.id_area}>{item.nombre_a}</option>
@@ -514,6 +514,7 @@ const UserNewAdmin = (props) => {
 
           <h4>Información del Familiar</h4>
           <span className="user_span_sociolevel" id="basic-addon1">¿El familiar es un paciente?</span>
+          <p>Es decir, si el familiar registrado es el paciente de arriba.</p>
           <div className="input-group mb-3 checkerito" onChange={handlePaciente_Change}>
             <div className="form-check">
               <input className="form-check-input universal_checkbox_HM" type="radio" name="pacient" id="flexRadioDefaultNivelSoc" value={true} />
@@ -530,12 +531,12 @@ const UserNewAdmin = (props) => {
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-            <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} value={nombre_c} disabled={isPaciente}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${nombre_cError ? 'is-invalid' : ''}`} placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1" onChange={handleNombre_CChange} minLength="8" maxLength="24" value={nombre_c} disabled={isPaciente}></input>
             {nombre_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3 ">
             <span className="input-group-text user_span_space_icon" id="basic-addon1"><LuUser /></span>
-            <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} value={apellidos_c} disabled={isPaciente}></input>
+            <input type="text" className={`userinfo_span_info form-control user_space_reg ${apellidos_cError ? 'is-invalid' : ''}`} placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1" onChange={handleApellidos_CChange} minLength="8" maxLength="24" value={apellidos_c} disabled={isPaciente}></input>
             {apellidos_cError && <div className="invalid-feedback text-start">Este campo es obligatorio</div>}
           </div>
           <div className="input-group mb-3" onChange={handleSexoChange}>
@@ -594,7 +595,7 @@ const UserNewAdmin = (props) => {
         <div className="user_space_not user_container_column">
           <div className="input-group mb-3 "></div>
           <div className="mb-3" onChange={handleNotas_CChange}>
-            <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " value={notas_c}></textarea>
+            <textarea className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3" placeholder="Notas: " maxLength="560" value={notas_c}></textarea>
           </div>
           <div className="input-group mb-3">
             <div className="user_div_radio">
@@ -603,6 +604,7 @@ const UserNewAdmin = (props) => {
                 <label className="form-check-label universal_label_radio" for="flexRadioDefault1">
                   <span className="universal_text_HM">Huésped</span>
                 </label>
+                
               </div>
               <div className="form-check" onChange={handleRadioChange}>
                 <input className="form-check-input universal_checkbox_HM" type="radio" name="huesEU" id="flexRadioDefaultHuesEU" value={false}></input>
@@ -624,13 +626,12 @@ const UserNewAdmin = (props) => {
                     if (item.id_zona === id_zona_vetados) {
                       contador++;
                       return <option key={item.id_cama} value={item.id_cama}>{aisladoLetras[contador]}</option>;
-                   } else {
+                    } else {
                       return <option key={item.id_cama} value={item.id_cama}>{item.id_cama}</option>;
-                   }
-                 }
+                    }
+                  }
                   return null;
-               })}
-
+                })}
               </select>
 
             </div>

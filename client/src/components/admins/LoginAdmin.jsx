@@ -76,9 +76,9 @@ const LoginAdmin = () => {
           <h3>¡Te damos la bienvenida!</h3>
           <p className='universal_text_error'>{loginErrorMessage}</p>
           {/* <br/> */}
-          <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs universal_limit_input" type="text"  minLength="8" maxLength="16" placeholder="Usuario"></input>
+          <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs universal_limit_input" type="text"  minLength="8" maxLength="16" onkeypress="return event.charCode != 32" placeholder="Usuario"></input>
           <br/>
-          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs universal_limit_input" type="password"  minLength="8" maxLength="16" placeholder="Contraseña"></input>
+          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs universal_limit_input" type="password"  minLength="8" maxLength="16" onkeypress="return event.charCode != 32" placeholder="Contraseña"></input>
           <br/>
           <button className="login_inputs App_buttonaccept universal_limit_input">Iniciar sesión </button>
       </form>
