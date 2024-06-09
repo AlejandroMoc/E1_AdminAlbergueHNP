@@ -16,7 +16,7 @@ import { API_URL } from '../../App';
 
 const UserNewAdmin = (props) => {
   //Para pasar a dashboard
-  const goTo = useNavigate();
+  // const //goTo = useNavigate();
 
   const id_u = useAuth().getUser().id_usuario
   //Fetch para jalar información desde info cliente
@@ -183,7 +183,7 @@ const UserNewAdmin = (props) => {
           successToast()
           // window.location.href = '/dashboard';
           setTimeout(() => {
-            goTo('/infouser/' + props.id_cliente);
+            //goTo('/infouser/' + props.id_cliente);
          }, 1000);
        } catch (error) {
           console.error('Error al registrar entrada unica:', error);
@@ -202,7 +202,7 @@ const UserNewAdmin = (props) => {
           successToast()
           //window.location.href = '/';
           setTimeout(() => {
-            goTo('/infouser/' + props.id_cliente);
+            //goTo('/infouser/' + props.id_cliente);
          }, 1000);
        } catch (error) {
           console.error('Error al registrar el paciente:', error);

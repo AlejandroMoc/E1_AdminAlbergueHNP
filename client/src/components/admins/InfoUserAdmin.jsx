@@ -309,7 +309,7 @@ const handleEditar = async () => {
               </div>
             </div>
             )}
-              {showNumbersSelect === false&& (
+              {showNumbersSelect === false && (
               <div>
                 <label className="form-check-label user_span_notesicon" for="flexRadioDefault1">
                   <span>Entrada Única</span>
@@ -368,8 +368,8 @@ const handleEditar = async () => {
             <span className="input-group-text userinfo_span_info userinfo_span_baninfo" id="basic-addon1">Usuario Vetado</span>
             </div>
             <div className="mb-3">
-            <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
-          </div>
+              <span className="form-control  user_input_notas" id="exampleFormControlTextarea1" rows="3"> Razón del Veto:  {vetadoNota.notas_v}</span>
+            </div>
           {adminInfo.admin && (
             <div className="input-group mb-3 ">
               <button className="App_buttonaccept userinfo_button_ban" onClick={handleDesVetar}>Desvetar</button>

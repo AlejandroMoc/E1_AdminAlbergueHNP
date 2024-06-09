@@ -69,7 +69,13 @@ const ProfileAdmin = () => {
             <td>
                 <FaUserCircle size="60%"/>
                 <h1 className="universal_header_texttitle">{auth.getUser()?.nombre_u || "Admin"}</h1>
-                {adminInfo.admin ? <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom"><FaPlus/> Crear un administrador</button></p></Link> : ''}
+                {useAuth().getUser().admin ?
+                  <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom">
+                    <FaPlus/>Crear un administrador</button></p>
+                  </Link>
+                  : 
+                  ''
+                }
                 <Link to="/changepassword"><p><button className="App_buttonaccept universal_marginbottom"><IoKey/> Cambiar contraseña</button></p></Link>
                 <p><button className="App_buttoncancel" onClick={handleSignOut}>Cerrar sesión</button></p>
             </td>

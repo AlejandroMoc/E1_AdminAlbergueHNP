@@ -49,7 +49,7 @@ const LoginAdmin = () => {
       } else {
         setLoginErrorMessage('Credenciales incorrectas. Intente de nuevo');
         //console.log("Something went wrong");
-        successToast();
+        errorToast();
         // const json = await response.json() as AuthResponseError;
         // const json: AuthResponseError = await response.json();
       }

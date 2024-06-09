@@ -62,7 +62,7 @@ import { FaTrashAlt, FaBan, FaCheck } from 'react-icons/fa'; //Eliminar, Vetar y
 #
 ############################################################################################*/
 
-const vetarCliente = (id_u, id_c, n_v) => {
+export const vetarCliente = (id_u, id_c, n_v) => {
   fetch(`${API_URL}/banclient`, {
     method: 'POST',
     body: JSON.stringify({ id_u: id_u, id_c: id_c, n_v: n_v }),
@@ -91,7 +91,7 @@ const vetarCliente = (id_u, id_c, n_v) => {
 #
 ############################################################################################*/
 
-const desvetarCliente = (id_c) => {
+export const desvetarCliente = (id_c) => {
   fetch(`${API_URL}/unbanclient`, {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
@@ -120,7 +120,7 @@ const desvetarCliente = (id_c) => {
 #
 ############################################################################################*/
 
-const eliminarCliente = (id_c) => {
+export const eliminarCliente = (id_c) => {
   fetch(`${API_URL}/deleteclient`, {
     method: 'POST',
     body: JSON.stringify({ id_c: id_c }),
@@ -150,7 +150,7 @@ const eliminarCliente = (id_c) => {
 #
 ############################################################################################*/
 
-const handleDateFormat = (date) => {
+export const handleDateFormat = (date) => {
   const dbDate = new Date(date)
   const localDate = dbDate.toLocaleString()
   // console.log(typeof(localDate))
@@ -167,7 +167,7 @@ const handleDateFormat = (date) => {
 #
 ############################################################################################*/
 
-const handleKeyDown = (e) => {
+export const handleKeyDown = (e) => {
   // Verificar si la tecla presionada es una letra
   if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
     // Si es una letra, prevenir la acción predeterminada
@@ -473,7 +473,7 @@ const UserListAdmin = () => {
             <th><p>Deuda</p></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-testid='table-body'>
           {(filterText.length == 0 ?
             paginatedData : data
           ).map((item, i) => (item.carnet.toUpperCase().includes(filterText) && //SE PUEDE MEJORAR, PERO ES FUNCIONAL
@@ -549,7 +549,7 @@ const UserListAdmin = () => {
           <div>
             {/* Div para datepicker */}
             <div className='userlist_container_inputs'>
-              <div>
+              <div data-testid='hola'>
                 <DatePicker
                   disabled={select_View == 10 ? true : false}
                   className='universal_input_date'
@@ -575,7 +575,7 @@ const UserListAdmin = () => {
                 />
               </div>
             </div>
-            <div className='universal_text_error'>
+            <div className='universal_text_error' data-testid='date-error-message'>
               <p>{dateErrorMessage}</p>
             </div>
           </div>
@@ -617,7 +617,7 @@ const UserListAdmin = () => {
                 </div>
               </div>
             </div>
-            <div className='universal_text_error'>
+            <div className='universal_text_error' data-testid='debt-error-message'>
               <p>{debtErrorMessage}</p>
             </div>
           </div>
@@ -656,7 +656,7 @@ const UserListAdmin = () => {
           {data.length !== 0 ? (
             constTable()
           ) : (
-            <div className='userlist_text_noresults'>
+            <div className='userlist_text_noresults' data-testid='no-result-message'>
               <h1>No existen resultados que coincidan.</h1>
             </div>
           )}

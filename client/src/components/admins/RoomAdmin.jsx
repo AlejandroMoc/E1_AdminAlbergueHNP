@@ -66,7 +66,7 @@ const zona_3 = "ZONA DE AISLADOS";
 #
 ############################################################################################*/
 
-function update(setInfoM, setInfoH, setInfoA){
+export function update(setInfoM, setInfoH, setInfoA){
   fetch(`${API_URL}/beds`)
   .then((res) => res.json())
   .then((info) => {setInfoM(info[0]); setInfoH(info[1]); setInfoA(info[2]);})
@@ -84,7 +84,7 @@ function update(setInfoM, setInfoH, setInfoA){
 #
 ############################################################################################*/
 
-function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, apellidos, balance, txtBalance, setInfoM, setInfoH, setInfoA, admin}){
+export function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, apellidos, balance, txtBalance, setInfoM, setInfoH, setInfoA, admin}){
   //idCama y numCama son lo mismo, excepto cuando se trata de los Aislados, por las letras, por eso son 2 variables.
 
   // UseEffect para Pagar
@@ -92,7 +92,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
   const [cliente_UE_Pagar, setCliente_UE_Pagar] = useState(0);
   const [notas_UE_Pagar, setNotas_UE_Pagar] = useState("");
 
-  useEffect(() => {
+  useEffect(() => { 
     if(monto_UE_Pagar != 0 && cliente_UE_Pagar != 0 && notas_UE_Pagar != ""){
     fetch(`${API_URL}/beds/pagar` , {
       method: 'POST',
@@ -348,11 +348,11 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       </Menu.Item>
       
       <Menu.SubMenu key="pago" icon={<RiMoneyDollarCircleLine size="20px" />} title={<span className="rooms_text_infosubtitles">{txtBalance+"$"+balance}</span>}>
-        <Menu.Item key="subItemPago" onClick={(event) => event.stopPropagation()}>
+        <Menu.Item data-testid='payment-menu' key="subItemPago" onClick={(event) => event.stopPropagation()}>
           <div className="input-group mb-3 rooms_width_infoinputs">
             <span className="input-group-text" id="basic-addon1" onClick={() => {setCliente_UE_Pagar(idCliente); if(document.getElementById("inputPagar").value==''){setMonto_UE_Pagar(txtBalance == "A favor: " ? 0 : balance);} else{setMonto_UE_Pagar(parseInt(document.getElementById("inputPagar").value))}; if(notas_UE_Pagar == ""){setNotas_UE_Pagar("Pago")}; document.getElementById("inputPagar").value = "";}}>Pagar</span>
             <input type="number" className="form-control" placeholder={txtBalance == "A favor: " ? "$0.00" : "$"+balance} aria-label="Username" aria-describedby="basic-addon1" id="inputPagar" />
-          </div>
+          </div>                                                      
           <div className="form-check">
             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={() => {setNotas_UE_Pagar("Pago (Condonado)")}}/>
             <label className="form-check-label rooms_text_condpay" for="flexCheckDefault">
@@ -363,11 +363,11 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
       </Menu.SubMenu>
       
       <Menu.SubMenu key="regServicio" icon={<MdOutlineFastfood size="20px" />} title={<span className="rooms_text_infosubtitles">Servicios</span>}>
-        <Menu.Item key="subItemReg" onClick={(event) => event.stopPropagation()}>
+        <Menu.Item data-testid='services-menu' key="subItemReg" onClick={(event) => event.stopPropagation()}>
         <div className="input-group mb-3 rooms_width_infoinputs">
-          <span className="input-group-text" onClick={sumaServicio1}>+</span>
-          <span className="input-group-text" onClick={restaServicio1}>-</span>
-          <input type="text" className="form-control" value={servicio1Clicked ? countServicio1 : ''}  placeholder={servicio1Clicked ? '' : 'Desayuno: 0'} aria-label="Amount (to the nearest dollar)" id='des' readonly/>
+          <span className="input-group-text" onClick={sumaServicio1} data-testid='breakfast-plus'>+</span>
+          <span className="input-group-text" onClick={restaServicio1} data-testid='breakfast-minus'>-</span>
+          <input data-testid='breakfast-value' type="text" className="form-control" value={servicio1Clicked ? countServicio1 : ''}  placeholder={servicio1Clicked ? '' : 'Desayuno: 0'} aria-label="Amount (to the nearest dollar)" id='des' readonly/>
         </div>
         <div className="input-group mb-3 rooms_width_infoinputs">
           <span className="input-group-text" onClick={sumaServicio2}>+</span>
@@ -457,7 +457,7 @@ function Cama({idCama, idCliente, color, iconocama, numCama, nombre, carnet, ape
 #
 ############################################################################################*/
 
-function IndicadorZona({tituloZona}){
+export function IndicadorZona({tituloZona}){
   return(
     <div className="rooms_text_subtitles container rooms_container">
       <span className="rooms_text_titles">{tituloZona}</span>

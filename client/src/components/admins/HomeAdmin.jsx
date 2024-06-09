@@ -75,7 +75,7 @@ const HomeAdmin = () => {
                 <table className='home_text_squarebutton2'>
                     <tbody>
                       <tr><td><RiUserAddFill size="28%"/></td></tr>
-                      <tr><td>Registro de<br/>Nuevo Cliente</td></tr>
+                      <tr><td>Registro de Nuevo Cliente</td></tr>
                     </tbody>
                 </table>
               </Link>
@@ -87,7 +87,7 @@ const HomeAdmin = () => {
                 <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoIosBed size="28%"/></td></tr>
-                    <tr><td>Administración<br/>de Camas</td></tr>
+                    <tr><td>Administración de Camas</td></tr>
                   </tbody>
                 </table>
               </Link>
@@ -101,7 +101,7 @@ const HomeAdmin = () => {
                 <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoIosListBox size="28%"/></td></tr>
-                    <tr><td>Administración<br/>de Clientes</td></tr>
+                    <tr><td>Administración de Clientes</td></tr>
                   </tbody>
                 </table>
               </Link>
@@ -113,7 +113,7 @@ const HomeAdmin = () => {
                 <table className='home_text_squarebutton2'>
                   <tbody>
                     <tr><td><IoDocumentAttach size="28%"/></td></tr>
-                    <tr><td>Generación de<br/>Nuevo Reporte</td></tr>
+                    <tr><td>Generación de Nuevo Reporte</td></tr>
                   </tbody>
                 </table>
               </Link>

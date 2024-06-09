@@ -23,8 +23,8 @@ const MyPagination = ({
     };
 
     const onPreviousPageClick = () => {
-        if (currentPage <= 1) {
-            return (changePage(currentPage => currentPage = 1));
+        if (currentPage <= 1) { 
+            return;
         } else {
             changePage(currentPage => currentPage - 1);
         }
