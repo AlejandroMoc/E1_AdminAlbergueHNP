@@ -53,6 +53,14 @@ const HomeAdmin = () => {
     `Hoy eres el cambio, ${auth.getUser()?.nombre_u || ""}.`,
     `Que todo lo bueno te siga, te encuentre, y se quede contigo, ${auth.getUser()?.nombre_u || ""}.`,
     `Sé una mejor versión de ti diario, ${auth.getUser()?.nombre_u || ""}.`,
+    `El tiempo nos cambia, ${auth.getUser()?.nombre_u || ""}.`,
+    `Todos tenemos nuestra parte, ${auth.getUser()?.nombre_u || ""}.`,
+    `Que este día esté lleno de bendiciones, ${auth.getUser()?.nombre_u || ""}.`,
+    `Tus ojos son el brillo de mis ojos, ${auth.getUser()?.nombre_u || ""}.`,
+    `El universo conspira siempre a tu favor, ${auth.getUser()?.nombre_u || ""}.`,
+    `Sin lluvia no habría arcoíris, ${auth.getUser()?.nombre_u || ""}.`,
+    `Alguien te está pensando ahora mismo, ${auth.getUser()?.nombre_u || ""}.`,
+    `Vive la vida como la has imaginado, ${auth.getUser()?.nombre_u || ""}.`,
     `¡Lorem Ipsum, ${auth.getUser()?.nombre_u || ""}!`,
   ];
   
