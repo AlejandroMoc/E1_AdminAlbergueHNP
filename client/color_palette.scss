@@ -1,0 +1,32 @@
+//Paleta de colores
+.colors {
+	//Verdes (primarios)
+	color: #7fb17f;
+	color: #006400;
+	color: #005000;
+	color: #003c00;
+
+	//Rojos
+	color: #7c2e2e;
+	color: #d84949;
+	color: #ee7171;
+
+	//Blancos y grises
+	color: #fafafa;
+	color: #f2f2f2; 	//Fondo de dropdown y filtros de deuda
+	color: #dedede;
+	color: #c2c2c2;
+	color: #9d9d9d; 	//Para botón de vetar en hover
+
+	//Color negro
+	color: #090909;
+
+	//Color verde    	//El color verde original del sistema
+	color: #058844;
+
+	//Renombrar colores
+	color: #eafeff;
+
+	//TODO meterlos en variables tipo asi
+	// --bs-table-color: var(--bs-emphasis-color);
+}

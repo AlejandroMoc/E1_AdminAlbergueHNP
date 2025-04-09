@@ -1,16 +1,10 @@
 ##Notas para despues de la presentación
 
 Corregir que no aparece error de apellidos y de carnet
-
 Pag Reportes
-
 Fechas no funcionan
-
-
 Pag clientes
 Renombrar a entrada unica y visitante (o como se llamara)
-
-
 
 #Lista de usuarios
 Cuando paga en una cama azul, a veces lo hace, a veces no
@@ -18,12 +12,9 @@ Cuando paga en una cama azul, a veces lo hace, a veces no
 #TODO
 Quitar consolelogs
 Revisar EXHAUSTIVAMENTE el CSS
-
 Revisar EXHAUSTIVAMENTE la pag en celular y corregir CSS
 
 Crear variable universal para la URL
-
-#Notas para instalacion
 
 10.50.120.145/E1_AdminAlbergueHNP/client
 http://10.50.82.151/E1_AdminAlbergueHNP/client

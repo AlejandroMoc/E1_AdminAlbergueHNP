@@ -1,5 +1,6 @@
-#PRIMERO INSTALAN DOCKER EN LA COMPU
-#DESPUES SE CREAN LAS IMAGENES CON EL COMANDO EN LA CARPETA CLIENT
+#Primero instalar Docker en la computadora
+
+#Después crear las imágenes en la carpeta client con el siguiente comando:
 #docker image build -t gestion-front-image:latest .
 
 # Etapa 1: Build
