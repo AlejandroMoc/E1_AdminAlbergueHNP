@@ -43,7 +43,6 @@ Renombrar a entrada unica y visitante (o como se llamara)
 Cuando paga en una cama azul, a veces lo hace, a veces no
 
 #TODO
-Quitar consolelogs
 Revisar EXHAUSTIVAMENTE el CSS
 Revisar EXHAUSTIVAMENTE la pag en celular y corregir CSS
 
