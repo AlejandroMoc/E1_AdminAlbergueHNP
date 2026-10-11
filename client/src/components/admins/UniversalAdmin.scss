@@ -17,10 +17,11 @@
 .universal_header_texttitle {
   margin-top: 2vh;
   margin-bottom: 2vh;
+  font-size: var(--font-xl);
 }
 
 .universal_header_text {
-  font-size: calc(8px + 2vmin);
+  font-size: var(--font-xl);
 }
 
 .universal_input_date {
@@ -59,7 +60,7 @@
 
 .universal_label_radio {
   margin-right: 5px;
-  font-size: large;
+  font-size: var(--font-md);
 }
 
 .universal_checkbox_HM {
@@ -73,7 +74,7 @@
 
 .universal_text_error {
   color: var(--color-error) !important;
-  font-size: small;
+  font-size: var(--font-xs);
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
@@ -81,7 +82,7 @@
 
 .universal_text_success {
   color: var(--color-success) !important;
-  font-size: small;
+  font-size: var(--font-xs);
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;

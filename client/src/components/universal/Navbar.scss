@@ -1,9 +1,7 @@
 .navbar {
 	background: linear-gradient(to right, var(--theme-dark), var(--theme-hover));
 	display: flex;
-	font-size: calc(5px + 2vmin);
-	// width: 100vw;
-	// font-size: larger;
+	font-size: var(--font-lg);
 }
 
 .navbar_left {

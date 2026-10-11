@@ -22,7 +22,7 @@
 	margin-bottom: 1rem !important;
 	margin-top: -67% !important;
 	font-weight: bold;
-	font-size: x-large;
+	font-size: var(--font-xl);
 	color: var(--color-ink);
 	text-decoration: none;
 	text-align: center;
@@ -42,7 +42,7 @@
 }
 
 #rooms_logo_addbed {
-	font-size: 200%;
+	font-size: var(--font-2xl);
 	color: var(--color-ink);
 	border-width: 0px;
 	width: 100%;
@@ -56,7 +56,7 @@
 .rooms_text_titles {
 	margin-left: 10px;
 	font-weight: bold;
-	font-size: larger;
+	font-size: var(--font-lg);
 }
 
 .rooms_text_subtitles {
@@ -69,23 +69,23 @@
 }
 
 .rooms_text_disponibility {
-	font-size: large;
+	font-size: var(--font-md);
 	font-style: italic;
 }
 
 .rooms_circle_red {
 	color: var(--color-cancel);
-	font-size: small;
+	font-size: var(--font-xs);
 }
 
 .rooms_circle_gray {
 	color: var(--color-gray-mid);
-	font-size: small;
+	font-size: var(--font-xs);
 }
 
 .rooms_circle_blue {
 	color: var(--theme-primary);
-	font-size: small;
+	font-size: var(--font-xs);
 }
 
 .rooms_spacing_disponibility {
@@ -95,11 +95,11 @@
 
 .rooms_text_infotitle {
 	font-weight: bold;
-	font-size: x-large;
+	font-size: var(--font-xl);
 }
 
 .rooms_text_infosubtitles {
-	font-size: large;
+	font-size: var(--font-md);
 }
 
 .rooms_width_infoinputs {

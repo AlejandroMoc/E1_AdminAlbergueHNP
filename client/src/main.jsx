@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import './index.css';
 import '../color_palette.scss';
+import '../typography.scss';
 
 import App from './App';
 import AuthProvider from './auth/AuthProvider';

@@ -5,7 +5,7 @@
 
 .user_span_space_icon {
 	// background-color: var(--color-white);
-	font-size: xx-large;
+	font-size: var(--font-2xl);
 	// align-content: baseline;
 	// text-align: center;
 	// min-width: 8vh;
@@ -16,7 +16,7 @@
 }
 
 .user_span_sociolevel {
-	font-size: larger;
+	font-size: var(--font-lg);
 	margin-bottom: 15px;
 }
 
@@ -52,7 +52,7 @@
 
 .user_label_x {
 	text-align: left;
-	font-size: larger;
+	font-size: var(--font-lg);
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -61,7 +61,7 @@
 }
 
 .user_select_beds {
-	font-size: medium;
+	font-size: var(--font-sm);
 	border: 1px solid var(--color-border);
 	border-radius: 1vhpx;
 	background-color: var(--color-gray-light);
@@ -78,12 +78,12 @@
 }
 
 .user_span_notesicon {
-	font-size: larger;
+	font-size: var(--font-lg);
 }
 
 .user_span_notestext {
 	background-color: var(--color-white);
-	font-size: larger;
+	font-size: var(--font-lg);
 	// width: 50vh;
 }
 
@@ -144,7 +144,7 @@
 
 .userinfo_span_info {
 	height: 62px;
-	font-size: larger;
+	font-size: var(--font-lg);
 	width: 85% !important;
 }
 

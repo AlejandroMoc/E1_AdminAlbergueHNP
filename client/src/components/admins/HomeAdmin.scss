@@ -1,6 +1,4 @@
 .home_text_squarebutton {
-  // color: var(--color-ink);
-  font-size: calc(10px + 2vmin);
   text-decoration: none;
   font-style: italic;
   font-weight: 500;
@@ -23,7 +21,8 @@
 .home_text_squarebutton2 {
   margin-left: auto;
   margin-right: auto;
-    min-height: 150px;
+  min-height: 150px;
+  font-size: var(--font-xl);
 }
 
 .home_welcomemessage {
@@ -31,6 +30,5 @@
   max-width: 50%;
   margin-left: auto;
   margin-right: auto;
-  font-size: xx-large;
-  font-size: calc(8px + 3vmin);
+  font-size: var(--font-2xl);
 }
