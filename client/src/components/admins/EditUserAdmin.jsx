@@ -93,21 +93,6 @@ const UserNewAdmin = (props) => {
  }, [])
 
 
-  useEffect(() => {
-    if (isVisitantePrevio === true) {
-      fetch(`${API_URL}/allclientinfo`, {
-        method: 'POST',
-        body: JSON.stringify({nombre: nombre_c, apellidos: apellidos_c}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-       }
-     })
-        .then((res) => res.json())
-        .catch((error) => console.error('Error fetching data:', error));
-      setIsVisitantePrevio(false);
-   }
- })
-
   const [nombre_cError, setNombre_CError] = useState(false);
   const [apellidos_cError, setApellidos_CError] = useState(false);
   const [sexoError, setSexoError] = useState(false);
@@ -116,7 +101,6 @@ const UserNewAdmin = (props) => {
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
   const [generalError, setGeneralError] = useState('')
-
 
 
   const validateFields = () => {
@@ -215,6 +199,22 @@ const UserNewAdmin = (props) => {
     setApellidos_C(event.target.value);
     setApellidos_C(apellidoscString);
  }
+
+  useEffect(() => {
+    if (isVisitantePrevio === true) {
+      fetch(`${API_URL}/allclientinfo`, {
+        method: 'POST',
+        body: JSON.stringify({nombre: nombre_c, apellidos: apellidos_c}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error('Error fetching data:', error));
+      setIsVisitantePrevio(false);
+    }
+  }, [isVisitantePrevio, nombre_c, apellidos_c]);
+
 
   const [apellidos_p, setApellidos_P] = useState([]);
   const handleApellidos_PChange = (event) => {
