@@ -1,4 +1,24 @@
 //Paleta de colores
+
+//Tema verde
+:root,
+[data-theme="green"] {
+	--theme-primary: #7fb17f;
+	--theme-hover: #006400;
+	--theme-active: #005000;
+	--theme-dark: #003c00;
+	--theme-gradient-end: #7fb17f;
+}
+
+//Tema azul
+[data-theme="blue"] {
+	--theme-primary: #8cbcfc;
+	--theme-hover: #4383c7;
+	--theme-active: #376faa;
+	--theme-dark: #1d4e63;
+	--theme-gradient-end: #8cbcfc;
+}
+
 .colors {
 	//Verdes (primarios)
 	color: #7fb17f;
