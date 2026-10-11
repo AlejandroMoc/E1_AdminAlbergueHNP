@@ -1,5 +1,8 @@
-import React, {useContext, createContext, useState, useEffect } from "react";
+// React
+import {useContext, createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+
+// Components
 import { API_URL } from "../App";
 
 const AuthContext = createContext({

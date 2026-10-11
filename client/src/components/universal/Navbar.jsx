@@ -1,11 +1,18 @@
-import React, {useEffect, useState } from 'react';
-import "./Navbar.scss";
-import {useAuth } from '../../auth/AuthProvider';
+// React
+import {useEffect, useState } from 'react';
 import {Link} from "react-router-dom";
-import {FaUser} from "react-icons/fa";
 import {Outlet } from 'react-router-dom';
-import logohnp from '../../assets/vectors/logo_hnp.svg';
+
+// Components
+import {useAuth } from '../../auth/AuthProvider';
 import { API_URL } from '../../App';
+
+// CSS
+import "./Navbar.scss";
+
+// Icons
+import logohnp from '../../assets/vectors/logo_hnp.svg';
+import {FaUser} from "react-icons/fa";
 
 const Navbar = () => {
   //Para manejo de sesiones

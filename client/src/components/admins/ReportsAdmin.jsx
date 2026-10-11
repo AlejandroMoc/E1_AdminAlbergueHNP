@@ -1,16 +1,20 @@
-import React, { useEffect, useState, useRef } from "react";
+// React
+import { useEffect, useState, useRef } from "react";
+import Table from "react-bootstrap/Table";
+import Dropdown from "react-bootstrap/Dropdown";
+import DatePicker from "react-datepicker";
+import { useReactToPrint } from "react-to-print";
+
+// Components
+import MyToastContainer, { successToast } from "../universal/MyToast";
+import { API_URL } from "../../App";
+
+// CSS
 import "./HomeAdmin.scss";
 import "./ReportsAdmin.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../universal/MyToast.scss";
-
-import Table from "react-bootstrap/Table";
-import Dropdown from "react-bootstrap/Dropdown";
-import DatePicker from "react-datepicker";
-import MyToastContainer, { successToast } from "../universal/MyToast";
 import "react-datepicker/dist/react-datepicker.css";
-import { useReactToPrint } from "react-to-print";
-import { API_URL } from "../../App";
 
 const ReportsAdmin = () => {
 	// Estado para almacenar las fechas

@@ -1,13 +1,17 @@
-//Importar elementos
-import React from 'react';
-import "./UniversalAdmin.scss";
+// React
 import {useState } from 'react';
+import {Link} from "react-router-dom";
+
+// Components
 import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
 import { API_URL } from '../../App';
-//Importar íconos
-import {IoKey} from "react-icons/io5";
 import {useAuth} from '../../auth/AuthProvider';
-import {Link} from "react-router-dom";
+
+// CSS
+import "./UniversalAdmin.scss";
+
+// Icons
+import {IoKey} from "react-icons/io5";
 
 //Función de admin
 const ProfilePasswordAdmin = () => {

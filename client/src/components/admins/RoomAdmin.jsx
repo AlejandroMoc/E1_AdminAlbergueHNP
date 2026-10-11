@@ -31,21 +31,21 @@
 
 // React
 import {Link } from "react-router-dom";
-import React, {useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
+import {Dropdown, Menu } from 'antd';
+
+// Components
 import {useAuth } from '../../auth/AuthProvider';
 import { API_URL } from "../../App";
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import Popup from '../universal/Popup';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RoomAdmin.scss';
 import '../universal/MyToast.scss';
 
-// Elementos Externos
-import {Dropdown, Menu } from 'antd';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import Popup from '../universal/Popup';
-
-// Iconografía
+// Icons
 import iconocama from '../../assets/vectors/icon_bed.svg';
 import {IoAddCircleOutline  } from "react-icons/io5"; // Añadir Cama
 import {FaCircle } from "react-icons/fa6"; // Círculos indicadores (gris, azúl y rojo)

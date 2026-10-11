@@ -1,11 +1,17 @@
-import React from 'react';
+// React
 import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
+
+// Components
 import {useAuth } from '../../auth/AuthProvider';
 import {successToast} from '../universal/MyToast';
-import "./LoginAdmin.scss";
-import logohnp from '../../assets/vectors/logo_hnp.svg';
 import { API_URL } from '../../App';
+
+// CSS
+import "./LoginAdmin.scss";
+
+// Icons
+import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const LoginAdmin = () => {
 

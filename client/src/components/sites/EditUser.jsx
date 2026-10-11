@@ -1,9 +1,9 @@
-import React from "react";
+// React
+import {useParams } from "react-router-dom";
 
-//Importar componentes
+// Components
 import EditUserAdmin from '../admins/EditUserAdmin';
 import Footer from '../universal/Footer';
-import {useParams } from "react-router-dom";
 
 const EditUser = () => {
 	const{id_cliente} = useParams();

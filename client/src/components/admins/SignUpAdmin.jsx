@@ -1,11 +1,16 @@
-import React from 'react';
+// React
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
+
+// Components
 import MyToastContainer, { successToast, errorToast } from '../universal/MyToast';
 import { API_URL } from '../../App';
-import "./LoginAdmin.scss";
-import logohnp from '../../assets/vectors/logo_hnp.svg';
 
+// CSS
+import "./LoginAdmin.scss";
+
+// Icons
+import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const SignUpAdmin = () => {
   const [username, setUsername] = useState("");

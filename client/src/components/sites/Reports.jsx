@@ -1,7 +1,6 @@
 //Generacion de reportes
-import React from "react";
 
-//Importar componentes
+// Components
 import Footer from '../universal/Footer';
 import ReportsAdmin from "../admins/ReportsAdmin";
 

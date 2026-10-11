@@ -1,18 +1,18 @@
+// React
+import {Link} from "react-router-dom";
 
+// Components
+import {useAuth} from '../../auth/AuthProvider';
 
-
-//Importar elementos
-import React from 'react';
-import "./UniversalAdmin.scss";
+// CSS
 import "./HomeAdmin.scss";
-//Importar íconos
+import "./UniversalAdmin.scss";
+
+// Icons
 import {RiUserAddFill} from "react-icons/ri";
 import {IoDocumentAttach} from "react-icons/io5";
 import {IoIosBed} from "react-icons/io";
 import {IoIosListBox} from "react-icons/io";
-//Importar más elementos
-import {Link} from "react-router-dom";
-import {useAuth} from '../../auth/AuthProvider';
 
 //Función de componente de administración
 const HomeAdmin = () => {

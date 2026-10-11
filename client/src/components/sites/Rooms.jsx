@@ -1,8 +1,6 @@
 //Pagina de habitaciones
 
-import React from "react";
-
-//Importar componentes
+// Components
 import Footer from '../universal/Footer';
 import RoomAdmin from "../admins/RoomAdmin";
 

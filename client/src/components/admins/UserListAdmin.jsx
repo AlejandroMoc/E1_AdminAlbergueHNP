@@ -31,12 +31,18 @@ _.-"^`  //   \    `^"-.,__
 ############################################################################################*/
 
 // React
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Dropdown from "react-bootstrap/Dropdown";
 import DatePicker from "react-datepicker";
+import { Menu, Dropdown as DP } from "antd";
+
+// Components
+import Popup from "../universal/Popup";
+import MyPagination from "../universal/MyPagination";
+import MyToastContainer, {successToast, errorToast} from "../universal/MyToast";
 import { useAuth } from "../../auth/AuthProvider";
 import { API_URL } from "../../App";
 
@@ -45,16 +51,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./UserListAdmin.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Elementos Externos
-import Popup from "../universal/Popup";
-import MyPagination from "../universal/MyPagination";
-import MyToastContainer, {
-  successToast,
-  errorToast,
-} from "../universal/MyToast";
-import { Menu, Dropdown as DP } from "antd";
-
-// Iconografía
+// Icons
 import { FaTrashAlt, FaBan, FaCheck } from "react-icons/fa"; //Eliminar, Vetar y DesVetar
 
 /*###########################################################################################

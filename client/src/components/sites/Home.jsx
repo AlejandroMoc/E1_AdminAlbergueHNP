@@ -1,6 +1,4 @@
-import React from "react";
-
-//Importar componentes
+// Components
 import HomeAdmin from '../admins/HomeAdmin';
 import Footer from '../universal/Footer';
 

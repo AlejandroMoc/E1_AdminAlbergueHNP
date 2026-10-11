@@ -1,7 +1,9 @@
-//Importar CSS y elementos correspondientes
+// Components
+import { AppRouter } from "./components/universal/AppRouter";
+
+// CSS
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AppRouter } from "./components/universal/AppRouter";
 
 //Constante de URL
 // export const API_URL = "http://192.168.1.68:8008";

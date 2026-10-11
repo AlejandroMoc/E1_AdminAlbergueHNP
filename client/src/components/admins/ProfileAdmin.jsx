@@ -1,15 +1,20 @@
-import React, {useEffect, useState } from 'react';
+// React
+import {useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
+
+// Components
+import {useAuth } from '../../auth/AuthProvider';
+import { useTheme } from '../../theme/ThemeContext';
+import { API_URL } from '../../App';
+
+// CSS
 import "./UniversalAdmin.scss";
 import "./HomeAdmin.scss";
 import "./ProfileAdmin.scss";
 
-//Importar elementos
+// Icons
 import {IoKey} from "react-icons/io5";
 import {FaUserCircle, FaPlus} from "react-icons/fa";
-import {Link} from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
-import { useTheme } from '../../theme/ThemeContext';
-import { API_URL } from '../../App';
 
 //Función para admin
 const ProfileAdmin = () => {

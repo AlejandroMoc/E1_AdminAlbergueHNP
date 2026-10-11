@@ -1,11 +1,18 @@
-//Importar elementos
-import React, {useEffect,useState} from 'react';
+// React
+import {useEffect,useState} from 'react';
+import {useNavigate} from "react-router-dom";
+
+// Components
 import {useAuth} from '../../auth/AuthProvider';
-import './UserNewAdmin.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
 import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
-//Importar íconos
+import { API_URL } from '../../App';
+
+// CSS
+import './UserNewAdmin.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Icons
 import {LuUser} from "react-icons/lu";
 import {LuCalendarDays} from "react-icons/lu";
 import {FiHome} from "react-icons/fi";
@@ -18,8 +25,6 @@ import {MdOutlineEdit} from "react-icons/md"; //Boton Editar
 import {LiaCoinsSolid} from "react-icons/lia";
 import {PiGenderIntersexLight} from "react-icons/pi"; //GENERO 
 import {LuBedDouble} from "react-icons/lu"; //Cama
-import {useNavigate} from "react-router-dom";
-import { API_URL } from '../../App';
 
 const infoUserAdmin = (props) => {
   //Para manejo de sesiones

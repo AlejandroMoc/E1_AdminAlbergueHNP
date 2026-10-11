@@ -1,7 +1,6 @@
 //Inicio de Sesión
-import React from "react";
 
-//Importar componentes
+// Components
 import Footer from '../universal/Footer';
 import SignUpAdmin from "../admins/SignUpAdmin";
 

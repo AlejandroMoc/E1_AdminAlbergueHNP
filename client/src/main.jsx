@@ -1,15 +1,18 @@
+// React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter } from 'react-router-dom';
 
-import './index.css';
-import '../color_palette.scss';
-import '../typography.scss';
-
+// Components
 import App from './App';
 import AuthProvider from './auth/AuthProvider';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter } from 'react-router-dom';
 import {ThemeProvider} from './theme/ThemeContext';
+
+// CSS
+import './index.css';
+import '../color_palette.scss';
+import '../typography.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

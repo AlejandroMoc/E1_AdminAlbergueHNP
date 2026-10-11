@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+// React
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const THEMES = ["green", "blue"];
 const STORAGE_KEY = "theme";

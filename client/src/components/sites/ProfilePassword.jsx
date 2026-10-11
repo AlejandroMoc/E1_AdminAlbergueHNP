@@ -1,7 +1,6 @@
 //Pagina de administración de perfil
-import React from "react";
 
-//Importar componentes
+// Components
 import Footer from '../universal/Footer';
 import ProfilePasswordAdmin from "../admins/ProfilePasswordAdmin";
 

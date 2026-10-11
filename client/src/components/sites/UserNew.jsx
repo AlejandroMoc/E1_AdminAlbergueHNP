@@ -1,10 +1,11 @@
 //Creación de usuarios
-import React from "react";
 
-//Importar componentes
+// React
+import {useParams } from "react-router-dom";
+
+// Components
 import Footer from '../universal/Footer';
 import UserNewAdmin from "../admins/UserNewAdmin";
-import {useParams } from "react-router-dom";
 
 const UserNew = () => {
 	const{id_cama} = useParams();

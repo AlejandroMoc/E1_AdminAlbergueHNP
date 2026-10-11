@@ -1,8 +1,7 @@
-
+// React
 import {Routes, Route, Navigate} from "react-router-dom";
-import React, {useEffect } from 'react';
 
-//Importar páginas
+// Components
 import EditUser from "../sites/EditUser";
 import Home from "../sites/Home";
 import UserNew from "../sites/UserNew";

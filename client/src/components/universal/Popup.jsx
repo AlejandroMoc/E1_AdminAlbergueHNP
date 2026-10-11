@@ -1,6 +1,11 @@
-import React, {useState } from 'react';
-import './Popup.scss'
+// React
+import {useState } from 'react';
+
+// Components
 import {useAuth } from '../../auth/AuthProvider';
+
+// CSS
+import './Popup.scss'
 
 const Popup = (props) => {
     const id_u = useAuth().getUser().id_usuario
