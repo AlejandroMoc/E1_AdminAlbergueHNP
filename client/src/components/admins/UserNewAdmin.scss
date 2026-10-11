@@ -1,22 +1,15 @@
 .user_space_reg {
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	height: 62px;
 }
 
 .user_span_space_icon {
-	// background-color: #fafafa;
-	font-size: xx-large;
-	// align-content: baseline;
-	// text-align: center;
-	// min-width: 8vh;
-	//95%-85%
+	font-size: var(--font-2xl);
 	width: 15%;
-	// width: 8vh;
-	// margin: 0;
 }
 
 .user_span_sociolevel {
-	font-size: larger;
+	font-size: var(--font-lg);
 	margin-bottom: 15px;
 }
 
@@ -24,16 +17,14 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	//align-items: center;
 	justify-content: left;
-	//background-color: #d84949;
 	width: 100%;
 	height: 100%;
 }
 
 .user_input_notas {
-	border: solid 1px black;
-	background-color: #fafafa;
+	border: solid 1px var(--color-ink);
+	background-color: var(--color-white);
 	height: 100px;
 	width: 100%;
 	padding-top: 10px;
@@ -41,7 +32,6 @@
 
 .user_space_not {
 	margin-top: 40px;
-	//background-color: #d84949;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -52,7 +42,7 @@
 
 .user_label_x {
 	text-align: left;
-	font-size: larger;
+	font-size: var(--font-lg);
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -61,10 +51,10 @@
 }
 
 .user_select_beds {
-	font-size: medium;
-	border: 1px solid #ccc;
+	font-size: var(--font-sm);
+	border: 1px solid var(--color-border);
 	border-radius: 1vhpx;
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	cursor: pointer;
 	width: 100vw;
 }
@@ -78,16 +68,14 @@
 }
 
 .user_span_notesicon {
-	font-size: larger;
+	font-size: var(--font-lg);
 }
 
 .user_span_notestext {
-	background-color: #fafafa;
-	font-size: larger;
-	// width: 50vh;
+	background-color: var(--color-white);
+	font-size: var(--font-lg);
 }
 
-//TODO activar este CSS
 .user_span_notesleft {
 	width: 40%;
 }
@@ -137,19 +125,18 @@
 
 .userinfo_position_buttonedit {
 	//TODO cambiar width de botones a % o vw
-	// margin-left: 4vw;
 	margin-left: 16vw;
 	margin-bottom: 2vh;
 }
 
 .userinfo_span_info {
 	height: 62px;
-	font-size: larger;
+	font-size: var(--font-lg);
 	width: 85% !important;
 }
 
 .userinfo_span_baninfo {
-	color: #090909;
+	color: var(--color-ink);
 }
 
 .userinfo_adjust_debt {
@@ -161,18 +148,18 @@
 }
 
 .userinfo_position_buttonban {
-	background-color: #c2c2c2;
+	background-color: var(--color-gray-mid);
 	margin-left: 4vh;
 	margin-bottom: 2vh;
 }
 
 .userinfo_position_buttonban:hover {
-	background-color: #9d9d9d;
+	background-color: var(--color-gray-muted);
 }
 
 .userinfo_button_edit {
 	position: absolute;
-	color: #003c00;
+	color: var(--theme-dark);
 	top: 10px;
 	left: 45px;
 	width: 7% !important;

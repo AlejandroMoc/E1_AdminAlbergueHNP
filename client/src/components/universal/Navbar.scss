@@ -1,9 +1,7 @@
 .navbar {
-	background: linear-gradient(to right, #003c00, #006400);
+	background: linear-gradient(to right, var(--theme-dark), var(--theme-hover));
 	display: flex;
-	font-size: calc(5px + 2vmin);
-	// width: 100vw;
-	// font-size: larger;
+	font-size: var(--font-lg);
 }
 
 .navbar_left {
@@ -28,12 +26,11 @@
 	text-decoration: none;
 	font-weight: bold;
 	margin: 10px 20px 20px 10px;
-	color: #fafafa !important;
+	color: var(--color-white) !important;
 }
 
 .navbar_text:hover {
-	// transform: scale(1.05);
-	color: #c2c2c2 !important;
+	color: var(--color-gray-mid) !important;
 }
 
 .navbar_logo {
@@ -45,7 +42,6 @@
 
 .navbar_logo:hover {
 	transform: scale(1.2);
-	// filter: brightness(95%);
 	filter: invert(0%) sepia(0%) saturate(0) hue-rotate(68deg) brightness(95)
 		contrast(50%);
 }

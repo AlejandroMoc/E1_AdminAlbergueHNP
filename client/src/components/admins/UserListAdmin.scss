@@ -1,13 +1,10 @@
 .userlist_container_flex {
-	// background-color: #d84949;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
 .userlist_container_upper {
-	// background-color: #058844;
-	// justify-content: space-evenly;
 	justify-content: flex-start;
 	display: flex;
 	flex-wrap: wrap;
@@ -15,10 +12,6 @@
 }
 
 .userlist_container_lower {
-	//background-color: #058844;
-	// display: flex;
-	// flex-wrap: wrap;
-	// justify-content: center;
 	width: 100%;
 	text-align: left;
 }
@@ -30,7 +23,7 @@
 }
 
 .userlist_toggle_dropdown {
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	height: 40px;
 	border-width: 0px;
 }
@@ -45,7 +38,7 @@
 }
 
 .userlist_inputdebt {
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	text-align: center;
 	height: 40px;
 	width: 200px;
@@ -57,7 +50,7 @@
 }
 
 .userlist_container_inputs .container_dash {
-	color: #090909;
+	color: var(--color-ink);
 	margin: 0 2vh 0 2vh;
 }
 
@@ -66,25 +59,20 @@
 }
 
 .userlist_color_personlink {
-	color: #006400 !important;
+	color: var(--theme-hover) !important;
 }
 
 .userlist_text_noresults {
-	// position: absolute;
-	// top: 50%;
-	// left: 50%;
 	text-align: center;
 	padding: 15vh 0;
 	height: 50vh;
-	// vertical-align: baseline;
 	margin: auto;
-	// transform: translate(50%, 50%);
 	font-weight: bold;
-	font-size: small;
+	font-size: var(--font-xs);
 }
 
 .userlist_filter_carnet {
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	display: flex;
 	margin-top: 1%;
 	margin-bottom: 1%;

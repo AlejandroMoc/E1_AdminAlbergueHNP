@@ -31,21 +31,21 @@
 
 // React
 import {Link } from "react-router-dom";
-import React, {useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
+import {Dropdown, Menu } from 'antd';
+
+// Components
 import {useAuth } from '../../auth/AuthProvider';
 import { API_URL } from "../../App";
+import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
+import Popup from '../universal/Popup';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RoomAdmin.scss';
 import '../universal/MyToast.scss';
 
-// Elementos Externos
-import {Dropdown, Menu } from 'antd';
-import MyToastContainer, {successToast, errorToast } from '../universal/MyToast';
-import Popup from '../universal/Popup';
-
-// Iconografía
+// Icons
 import iconocama from '../../assets/vectors/icon_bed.svg';
 import {IoAddCircleOutline  } from "react-icons/io5"; // Añadir Cama
 import {FaCircle } from "react-icons/fa6"; // Círculos indicadores (gris, azúl y rojo)
@@ -54,10 +54,10 @@ import {MdOutlineFastfood } from "react-icons/md"; // Servicios
 import {LuUserMinus, LuUserPlus, LuUser} from "react-icons/lu"; // Nombre, Añadir Usuario, Registrar Salida
 import {FaRegTrashAlt, FaRegAddressCard } from "react-icons/fa"; // Eliminar Cama, Carnet
 
-//Texto usado para las zonas
-const zona_1 = "ZONA DE MUJERES";
-const zona_2 = "ZONA DE HOMBRES";
-const zona_3 = "ZONA DE AISLADOS";
+//Zonas
+const zona_1 = "Mujeres";
+const zona_2 = "Hombres";
+const zona_3 = "Aislados";
 
 /*###########################################################################################
 #
@@ -515,7 +515,6 @@ const RoomAdmin = () => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
   const [adminInfo, setAdminInfo] = useState([])
-  // console.log(id_u)
 
   // Primer UseEffect para cargar las camas al entrar a /beds.
   useEffect(() => {

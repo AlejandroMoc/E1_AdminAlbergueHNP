@@ -1,0 +1,20 @@
+.profile_theme_group {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.profile_theme_option {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: var(--font-md);
+	cursor: pointer;
+}
+
+.profile_theme_option input[type="radio"] {
+	width: auto;
+	accent-color: var(--theme-hover);
+}

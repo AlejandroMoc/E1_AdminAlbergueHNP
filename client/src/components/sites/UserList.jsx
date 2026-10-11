@@ -1,7 +1,6 @@
 //Administracion de usuarios ya existentes
-import React from "react";
 
-//Importar componentes
+// Components
 import Footer from '../universal/Footer';
 import UserListAdmin from "../admins/UserListAdmin";
 

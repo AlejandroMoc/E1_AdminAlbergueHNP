@@ -65,7 +65,6 @@ const getNewAdmin = async (nombre_u, contrasena, admin) => {
       `INSERT INTO usuario (nombre_u, contrasena, admin) VALUES ($1, $2, $3)`,
       [nombre_u, hashedPassword, admin]
     );
-    //console.log("Se insertó nuevo admin");
   } catch (error) {
     throw error;
   }
@@ -80,7 +79,6 @@ const getNewLogin = async (nombre_u, contrasena) => {
     if (!existingUser) {
       throw new Error("Las credenciales son incorrectas.");
     }
-    //console.log(existingUser.contrasena);
 
     const passwordMatch = await bcrypt.compare(
       contrasena,
@@ -89,8 +87,6 @@ const getNewLogin = async (nombre_u, contrasena) => {
     if (!passwordMatch) {
       throw new Error("Las credenciales son incorrectas.");
     }
-    //console.log("Inicio de sesión exitoso");
-    //console.log(existingUser);
 
     const accessToken = await createAccessToken(existingUser);
     const refreshToken = await createRefreshToken(existingUser);
@@ -162,7 +158,6 @@ const changeAdminPassword = async (
     if (!existingUser) {
       throw new Error("Las credenciales son incorrectas.");
     }
-    //console.log("aaasas",existingUser.contrasena);
 
     const newpasswordsMatch = new_password1 === new_password2;
     if (!newpasswordsMatch) {
@@ -177,8 +172,6 @@ const changeAdminPassword = async (
       throw new Error("Las credenciales son incorrectas.");
     }
 
-    //console.log("Existe el usuario, ahora a cambiar la contraseña");
-    //console.log(existingUser);
 
     //Cambiar contraseña
     const newHashedPassword = await bcrypt.hash(new_password1, 10);
@@ -188,25 +181,8 @@ const changeAdminPassword = async (
       [nombre_u, newHashedPassword]
     );
 
-    //console.log("The admin password was succesfully updated (from query)");
 
     return resultito2;
-    // try {
-    //   const hashedPassword = await bcrypt.hash(contrasena, 10);
-    //   const existingUser = await db.oneOrNone(
-    //     'SELECT * FROM usuario WHERE nombre_u = $1',
-    //     [nombre_u]
-    //   );
-    //   if (existingUser) {
-    //     throw new Error('El nombre de usuario ya está en uso.');
-    //   }
-    //   await db.none(`INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,[nombre_u, hashedPassword]);
-    //   console.log("Se insertó nuevo admin");
-    // } catch (error) {
-    //   throw error;
-    // }
-
-    // return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
   } catch (error) {
     throw error;
   }

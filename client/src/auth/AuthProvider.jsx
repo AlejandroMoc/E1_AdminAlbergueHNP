@@ -1,5 +1,8 @@
-import React, {useContext, createContext, useState, useEffect } from "react";
+// React
+import {useContext, createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+
+// Components
 import { API_URL } from "../App";
 
 const AuthContext = createContext({
@@ -9,14 +12,13 @@ const AuthContext = createContext({
     _accessToken,
     _refreshToken,
   ) => {},
-  saveUser: (userData) => {},
+  saveUser: (_userData) => {},
   getRefreshToken: () => {},
   getUser: () => ({}),
   signOut: () => {},
 });
 
 const AuthProvider = ({children }) => {
-  // const [user, setUser] = useState<User>();
   const [user, setUser] = useState();
   //CESAR parece que el setAccessToken no está funcionando bien porque no agarra nada en accessToken
   const [accessToken, setAccessToken] = useState("");
@@ -30,8 +32,6 @@ const AuthProvider = ({children }) => {
 
   function saveUser(userData) {
     setAccessTokenAndRefreshToken(
-    // saveSessionInfo(
-      // userData.user, 
       userData.accessToken,
       userData.refreshToken
     );
@@ -71,8 +71,6 @@ const AuthProvider = ({children }) => {
   }
 
   function getUser() {
-    // console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
-    // console.log(user);
     return user;
   }
 
@@ -115,14 +113,14 @@ const AuthProvider = ({children }) => {
               setIsAuthenticated(true);
               setIsLoading(false);
             })
-            .catch((error) => {
+            .catch(() => {
               setIsLoading(false);
             });
         } else {
           setIsLoading(false);
         }
       }
-    } catch (error) {
+    } catch {
       setIsLoading(false);
     }
   }
@@ -181,7 +179,6 @@ const AuthProvider = ({children }) => {
 
 async function retrieveUserInfo(accessToken) {
   try {
-    //console.log('Entra')
     const response = await fetch(`${API_URL}/user`, {
       method: "GET",
       headers: {
@@ -192,11 +189,9 @@ async function retrieveUserInfo(accessToken) {
 
     if (response.ok) {
       const json = await response.json();
-      //console.log('Retrieve Info json: ',json);
       return json;
     }
   } catch (error) {
-    //console.log(error);
   }
 }
 

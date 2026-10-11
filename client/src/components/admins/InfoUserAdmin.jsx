@@ -1,11 +1,18 @@
-//Importar elementos
-import React, {useEffect,useState} from 'react';
+// React
+import {useEffect,useState} from 'react';
+import {useNavigate} from "react-router-dom";
+
+// Components
 import {useAuth} from '../../auth/AuthProvider';
-import './UserNewAdmin.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../universal/Popup';
 import MyToastContainer, {successToast, errorToast} from '../universal/MyToast';
-//Importar íconos
+import { API_URL } from '../../App';
+
+// CSS
+import './UserNewAdmin.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Icons
 import {LuUser} from "react-icons/lu";
 import {LuCalendarDays} from "react-icons/lu";
 import {FiHome} from "react-icons/fi";
@@ -18,14 +25,11 @@ import {MdOutlineEdit} from "react-icons/md"; //Boton Editar
 import {LiaCoinsSolid} from "react-icons/lia";
 import {PiGenderIntersexLight} from "react-icons/pi"; //GENERO 
 import {LuBedDouble} from "react-icons/lu"; //Cama
-import {useNavigate} from "react-router-dom";
-import { API_URL } from '../../App';
 
 const infoUserAdmin = (props) => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
   const [adminInfo, setAdminInfo] = useState([])
-  // console.log(id_u)
 
   //Llamada a la función para información de usuario
   useEffect(() => {
@@ -49,10 +53,8 @@ const infoUserAdmin = (props) => {
     .then((res) => res.json())
     .then((data) => {setinfoCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
-// console.log("FECHA Inicio: "+infoCliente.fecha_i)
 
 //FETCH PARA TIPO DE USUARIO "HUESPED"-----------------------------------------
-    //console.log("VERDADERO HUESPED");
     const [huespedCliente, setHuespedCliente] = useState({id_cama:0, fecha_i:0})
 
     useEffect(() =>{
@@ -60,7 +62,6 @@ const infoUserAdmin = (props) => {
       .then((res) => res.json())
       .then((data) => {setHuespedCliente(data); console.log(data)});
  }, [props.id_cliente, refresh])
-  //console.log("ID CAMA"+huespedCliente.id_cama)
 
 //FETCH PARA CALCULAR DEUDA DEL CLIENTE. 
 const [deudaCliente, setDeudaCliente] = useState({deudacliente:0})
@@ -70,8 +71,6 @@ useEffect(() =>{
   .then((res) => res.json())
   .then((data) => {setDeudaCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
-//console.log("DEUDA DEL CLIENTE"+deudaCliente.deudacliente)
-//console.log("SEXO: "+infoCliente.sexo)
 //FETCH PARA CALCULAR CANTIDAD DE CADA SERVICIO 
 const [servicioCliente, setservicioCliente] = useState({servicio1:0, servicio2:0, servicio3:0, servicio4:0, servicio5:0})
 
@@ -80,8 +79,6 @@ useEffect(() =>{
   .then((res) => res.json())
   .then((data) => {setservicioCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
-// console.log("DEUDA DEL CLIENTE"+deudaCliente.deudacliente)
-// console.log("SErvicio: "+servicioCliente.servicio1)
 
 const placeholderText = deudaCliente.deudacliente < 0
 ? `${Math.abs(deudaCliente.deudacliente)}`
@@ -98,7 +95,6 @@ useEffect(() =>{
   .then((res) => res.json())
   .then((data) => {settipoCliente(data); console.log(data)});
 }, [props.id_cliente, refresh])
-// console.log("TipoCLIENTE"+tipoCliente.tipo_cliente)
 
 const showNumbersSelect = tipoCliente.tipo_cliente;
 
@@ -155,12 +151,9 @@ useEffect(() => {
       // Convertir el valor a minúsculas antes de almacenarlo en el estado
       const vetadobool = data.vetadobool.toLowerCase() === 'true';
       setvetadoCliente({vetadobool: vetadobool});
-      // console.log(data);
    });
 }, [props.id_cliente, refresh]);
-// console.log("VETADO "+vetadoCliente.vetadobool)
 const showVetadoSelect = vetadoCliente.vetadobool;
-// console.log(showVetadoSelect)
 
   //Llamada a la función de vetar
   const vetarCliente = (id_u, id_c, n_v) => {
@@ -225,7 +218,6 @@ useEffect(() =>{
   .then((res) => res.json())
   .then((data) => {setvetadoNota(data); console.log(data)});
 }, [props.id_cliente, refresh])
-// console.log("Notas del vetado"+vetadoNota.notas_v)
 
 //Función para ir a la pagina de editar
 const handleEditar = async () => {
@@ -260,10 +252,6 @@ const handleEditar = async () => {
 
       <div className="user_container_general">
         <div className="container user_container_column">
-        {/* {!showNumbersSelect && (
-          <div className="input-group mb-3 ">
-            <span className="input-group-text userinfo_span_info" id="basic-addon1">Es Paciente</span>
-          </div>)} */}
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">

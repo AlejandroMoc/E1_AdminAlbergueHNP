@@ -4,21 +4,17 @@
 }
 
 .toastify_color {
-	--toastify-color-light: #fafafa;
-	--toastify-color-dark: #090909;
-	--toastify-color-info: #006400;
-	--toastify-color-success: #058844;
-	// --toastify-color-warning: #f1c40f;
-	--toastify-color-error: #d84949;
+	--toastify-color-light: var(--color-white);
+	--toastify-color-dark: var(--color-ink);
+	--toastify-color-info: var(--theme-hover);
+	--toastify-color-success: var(--color-success);
+	--toastify-color-error: var(--color-error);
 
-	--toastify-icon-color-info: #006400;
-	--toastify-icon-color-success: #058844;
-	// --toastify-icon-color-warning: var(--toastify-color-warning);
-	--toastify-icon-color-error: #d84949;
+	--toastify-icon-color-info: var(--theme-hover);
+	--toastify-icon-color-success: var(--color-success);
+	--toastify-icon-color-error: var(--color-error);
 
-	// --toastify-color-progress-dark: #bb86fc;
-	--toastify-color-progress-info: #006400;
-	--toastify-color-progress-success: #058844;
-	// --toastify-color-progress-warning: var(--toastify-color-warning);
-	--toastify-color-progress-error: #d84949;
+	--toastify-color-progress-info: var(--theme-hover);
+	--toastify-color-progress-success: var(--color-success);
+	--toastify-color-progress-error: var(--color-error);
 }

@@ -1,13 +1,8 @@
 const router = require("express").Router();
 const { getNewAdmin } = require("../queries/LoginQueries.js");
 
-// router.get("/",(req,res)=>{
-//     res.send("signup");
-// });
-
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
-  // console.log(username, ' ', password)
   if (!username || !password) {
     return res.status(400).send("Fields are required");
   }

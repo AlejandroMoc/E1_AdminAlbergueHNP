@@ -8,7 +8,7 @@
 .universal_header_table2 {
   margin-top: 105px;
   padding: 20px;
-  background-color: #fafafa;
+  background-color: var(--color-white);
   border-radius: 1vh;
   width: 25vw;
   min-width: 250px;
@@ -17,17 +17,18 @@
 .universal_header_texttitle {
   margin-top: 2vh;
   margin-bottom: 2vh;
+  font-size: var(--font-xl);
 }
 
 .universal_header_text {
-  font-size: calc(8px + 2vmin);
+  font-size: var(--font-xl);
 }
 
 .universal_input_date {
-  border: 0px solid #ccc;
+  border: 0px solid var(--color-border);
   border-radius: 1vh;
   padding: 1vh;
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-light);
   width: 200px;
   text-align: center;
   height: 40px;
@@ -48,9 +49,9 @@
 }
 
 .universal_toggle_dropdown {
-  background-color: #f2f2f2 !important;
-  color: #090909 !important;
-  border-color: #dedede !important;
+  background-color: var(--color-gray-light) !important;
+  color: var(--color-ink) !important;
+  border-color: var(--color-gray-border) !important;
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -59,11 +60,11 @@
 
 .universal_label_radio {
   margin-right: 5px;
-  font-size: large;
+  font-size: var(--font-md);
 }
 
 .universal_checkbox_HM {
-  border-color: #c2c2c2;
+  border-color: var(--color-gray-mid);
 }
 
 .universal_text_HM {
@@ -72,16 +73,16 @@
 }
 
 .universal_text_error {
-  color: #d84949 !important;
-  font-size: small;
+  color: var(--color-error) !important;
+  font-size: var(--font-xs);
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .universal_text_success {
-  color: #058844 !important;
-  font-size: small;
+  color: var(--color-success) !important;
+  font-size: var(--font-xs);
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;

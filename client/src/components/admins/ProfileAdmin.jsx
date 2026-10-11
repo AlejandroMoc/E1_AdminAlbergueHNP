@@ -1,19 +1,27 @@
-import React, {useEffect, useState } from 'react';
+// React
+import {useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
+
+// Components
+import {useAuth } from '../../auth/AuthProvider';
+import { useTheme } from '../../theme/ThemeContext';
+import { API_URL } from '../../App';
+
+// CSS
 import "./UniversalAdmin.scss";
 import "./HomeAdmin.scss";
+import "./ProfileAdmin.scss";
 
-//Importar elementos
+// Icons
 import {IoKey} from "react-icons/io5";
 import {FaUserCircle, FaPlus} from "react-icons/fa";
-import {Link} from "react-router-dom";
-import {useAuth } from '../../auth/AuthProvider';
-import { API_URL } from '../../App';
 
 //Función para admin
 const ProfileAdmin = () => {
 
   //Verificar autenticación
   const auth = useAuth();
+  const { theme, setTheme } = useTheme();
 
   //Función que se manda a llamar al presionar botón de cierre de sesión
   async function handleSignOut(e){
@@ -32,22 +40,17 @@ const ProfileAdmin = () => {
       //Si la solicitud es correcta, cerrar la sesión
       if (response.ok){
         auth.signOut();
-        // const goTo = useNavigate();
-        // goTo("/login");
       }
 
     //En caso contrario, enviar error de solicitud
     } catch (error){
       res.status(500).json({ error: 'An error occurred while processing the request.' });
-      // errorToast()
-      //console.log(error);
     }
   }
 
     //Constantes para obtener información de administrador y establecer información de administrador
     const id_u = useAuth().getUser().id_usuario
     const [adminInfo, setAdminInfo] = useState([])
-    // console.log(id_u)
   
     //Llamada a la función para información de usuario
     useEffect(() => {
@@ -78,6 +81,30 @@ const ProfileAdmin = () => {
               {/*Botones de creación de administrador y cambio de contraseña */}
               {adminInfo.admin ? <Link to="/adminnew"><p><button className="App_buttonaccept universal_marginbottom"><FaPlus/> Crear un administrador</button></p></Link> : ''}
               <Link to="/changepassword"><p><button className="App_buttonaccept universal_marginbottom"><IoKey/> Cambiar contraseña</button></p></Link>
+
+              {/*Selector de tema de color*/}
+              <div className="profile_theme_group universal_marginbottom" role="radiogroup" aria-label="Tema de color">
+                <span>Tema:</span>
+                <label className="profile_theme_option">
+                  <input
+                    type="radio"
+                    name="theme"
+                    value="green"
+                    checked={theme === "green"}
+                    onChange={() => setTheme("green")}
+                  /> Verde
+                </label>
+                <label className="profile_theme_option">
+                  <input
+                    type="radio"
+                    name="theme"
+                    value="blue"
+                    checked={theme === "blue"}
+                    onChange={() => setTheme("blue")}
+                  /> Azul
+                </label>
+              </div>
+
               {/*Botón de cierre de sesión*/}
               <p><button className="App_buttoncancel" onClick={handleSignOut}>Cerrar sesión</button></p>
             </td>

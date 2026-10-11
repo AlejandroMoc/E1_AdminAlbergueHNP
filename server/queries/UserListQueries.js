@@ -29,7 +29,6 @@ const unbanClient = async (id_cliente) => {
 
 const deleteClient = async (id_cliente) => {
   try {
-    //console.log('DELETE ', id_cliente)
     const delet = await db.none(
       `DELETE FROM cliente
             WHERE id_cliente = $1`,
@@ -99,12 +98,10 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
           }
         })
         .join(" AND ");
-      //console.log('filterquery: ', filterConditions)
     }
     if (debtRange.length !== 0) {
       i[1] = 1;
       filterDebt = `total BETWEEN ${debtRange[0]} AND ${debtRange[1]}`;
-      //console.log('debtquery: ', filterDebt)
     }
     if (dateRange.length !== 0) {
       i[2] = 1;
@@ -115,7 +112,6 @@ const genWhereClause = (select_Filters, select_View, debtRange, dateRange) => {
       } else {
         filterDate = `fecha_u BETWEEN '${dateRange[0]}' AND '${dateRange[1]}'`;
       }
-      //console.log('datequery: ', filterDate)
     }
 
     if (i[0] == 1 && i[1] == 1 && i[2] == 1) {
@@ -147,15 +143,11 @@ const getClientsByFilter = async (
       debtRange,
       dateRange
     );
-    //console.log(whereClause)
     if (select_View == 10) {
-      //console.log('ENTRA1')
       const clients = await db.any(
         "SELECT * FROM getClientsByFilterGeneral_func($1)",
         [whereClause]
       );
-      //console.log('LO HIZO')
-      //console.log(clients)
       return clients;
     } else if (select_View == 7) {
       const clients = await db.any(

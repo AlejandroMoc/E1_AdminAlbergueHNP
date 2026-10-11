@@ -1,9 +1,9 @@
-import React from "react";
+// React
+import {useParams } from "react-router-dom";
 
-//Importar componentes
+// Components
 import InfoUserAdmin from '../admins/InfoUserAdmin';
 import Footer from '../universal/Footer';
-import {useParams } from "react-router-dom";
 
 const InfoUser = () => {
 	const{id_cliente} = useParams();

@@ -1,4 +1,5 @@
-import React, {useEffect } from "react";
+// React
+import {useEffect } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import PropTypes from "prop-types";
 
@@ -24,7 +25,7 @@ const MyPagination = ({
 
     const onPreviousPageClick = () => {
         if (currentPage <= 1) {
-            return (changePage(currentPage => currentPage = 1));
+            return (changePage(1));
         } else {
             changePage(currentPage => currentPage - 1);
         }

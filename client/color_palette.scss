@@ -1,32 +1,42 @@
 //Paleta de colores
-.colors {
-	//Verdes (primarios)
-	color: #7fb17f;
-	color: #006400;
-	color: #005000;
-	color: #003c00;
 
-	//Rojos
-	color: #7c2e2e;
-	color: #d84949;
-	color: #ee7171;
+//Tema verde
+:root,
+[data-theme="green"] {
+	--theme-primary: #7fb17f;
+	--theme-hover: #006400;
+	--theme-active: #005000;
+	--theme-dark: #003c00;
+	--theme-gradient-end: #7fb17f;
+}
 
-	//Blancos y grises
-	color: #fafafa;
-	color: #f2f2f2; 	//Fondo de dropdown y filtros de deuda
-	color: #dedede;
-	color: #c2c2c2;
-	color: #9d9d9d; 	//Para botón de vetar en hover
+//Tema azul
+[data-theme="blue"] {
+	--theme-primary: #8cbcfc;
+	--theme-hover: #4383c7;
+	--theme-active: #376faa;
+	--theme-dark: #1d4e63;
+	--theme-gradient-end: #8cbcfc;
+}
 
-	//Color negro
-	color: #090909;
 
-	//Color verde    	//El color verde original del sistema
-	color: #058844;
+//Colores fijos
+:root {
+	// Negro
+	--color-ink: #090909;
 
-	//Renombrar colores
-	color: #eafeff;
+	// Blancos y grises
+	--color-white: #fafafa;
+	--color-gray-light: #f2f2f2;
+	--color-gray-border: #dedede;
+	--color-gray-mid: #c2c2c2;
+	--color-gray-muted: #9d9d9d;
+	--color-border: #ccc;
+	--color-mist: #eafeff;
 
-	//TODO meterlos en variables tipo asi
-	// --bs-table-color: var(--bs-emphasis-color);
+	// Otros
+	--color-success: #058844;
+	--color-error: #d84949;
+	--color-cancel: #ee7171;
+	--color-cancel-active: #7c2e2e;
 }

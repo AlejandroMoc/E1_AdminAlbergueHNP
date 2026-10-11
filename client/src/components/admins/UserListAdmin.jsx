@@ -31,12 +31,18 @@ _.-"^`  //   \    `^"-.,__
 ############################################################################################*/
 
 // React
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Dropdown from "react-bootstrap/Dropdown";
 import DatePicker from "react-datepicker";
+import { Menu, Dropdown as DP } from "antd";
+
+// Components
+import Popup from "../universal/Popup";
+import MyPagination from "../universal/MyPagination";
+import MyToastContainer, {successToast, errorToast} from "../universal/MyToast";
 import { useAuth } from "../../auth/AuthProvider";
 import { API_URL } from "../../App";
 
@@ -45,16 +51,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./UserListAdmin.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Elementos Externos
-import Popup from "../universal/Popup";
-import MyPagination from "../universal/MyPagination";
-import MyToastContainer, {
-  successToast,
-  errorToast,
-} from "../universal/MyToast";
-import { Menu, Dropdown as DP } from "antd";
-
-// Iconografía
+// Icons
 import { FaTrashAlt, FaBan, FaCheck } from "react-icons/fa"; //Eliminar, Vetar y DesVetar
 
 /*###########################################################################################
@@ -150,7 +147,6 @@ const eliminarCliente = (id_c) => {
 const handleDateFormat = (date) => {
   const dbDate = new Date(date);
   const localDate = dbDate.toLocaleString();
-  // console.log(typeof(localDate))
   return localDate;
 };
 
@@ -185,7 +181,6 @@ const UserListAdmin = () => {
   // UseEffect para Información de Sesión
   const id_u = useAuth().getUser().id_usuario;
   const [adminInfo, setAdminInfo] = useState([]);
-  // console.log(id_u)
 
   useEffect(() => {
     fetch(`${API_URL}/infouser`, {
@@ -222,7 +217,6 @@ const UserListAdmin = () => {
       dateRange.length != 0 ||
       debtRange.length != 0
     ) {
-      // console.log('ENTRA')
       fetch(`${API_URL}/someclients`, {
         method: "POST",
         body: JSON.stringify({
@@ -281,14 +275,12 @@ const UserListAdmin = () => {
       setDateRange([]);
     }
     set_Select_View(event.target.value);
-    // console.log(select_View)
   };
 
   // Para Control de Fecha
   const [fecha1, setFecha1] = useState(null);
   const [fecha2, setFecha2] = useState(null);
   const before = new Date("2020-01-01T00:00:00Z");
-  const today = new Date();
 
   const handleDateChange = (startDate, endDate) => {
     setFecha1(startDate);
@@ -379,11 +371,6 @@ const UserListAdmin = () => {
   // Para Control de Carnet
   const handleChange = (event) => {
     setFilterText(event.target.value.toUpperCase());
-    // const tmpData = data.filter((item) => (
-    //   item.carnet.toUpperCase().includes(event.target.value)
-    // ))
-    // console.log(tmpData)
-    // setData(tmpData)
   };
 
   // Para Paginación
@@ -395,7 +382,6 @@ const UserListAdmin = () => {
     currentPage * pageSize
   );
 
-  //console.log(paginatedData)
 
   // Para Mensajes de Error
   const [dateErrorMessage, setDateErrorMessage] = useState("");
@@ -459,15 +445,12 @@ const UserListAdmin = () => {
 
   const handleMenuClick = (event, id) => {
     if (event.key == "vetar") {
-      //console.log('Vetar')
       setShowPopUp({ trigger: true, type: 1, id: id, fun: vetarCliente });
       // setType(0)
     } else if (event.key == "noVetar") {
-      //console.log('Des-Vetar?')
       setShowPopUp({ trigger: true, type: 0, id: id, fun: desvetarCliente });
       // setType(1)
     } else if (event.key == "eliminar") {
-      //console.log('Eliminar')
       setShowPopUp({ trigger: true, type: 0, id: id, fun: eliminarCliente });
       // setType(2)
     }
@@ -565,7 +548,7 @@ const UserListAdmin = () => {
                   )}
                   trigger={["contextMenu"]}
                 >
-                  <tr key={i} style={{ background: "#fff" }}>
+                  <tr key={i} style={{ background: "var(--color-white)" }}>
                     {select_View == 10 ? (
                       <td>
                         <p>{item.nombre_u ? item.nombre_u : "-"}</p>

@@ -1,11 +1,17 @@
-import React from 'react';
+// React
 import {useState } from 'react';
 import {Navigate, useNavigate} from "react-router-dom";
+
+// Components
 import {useAuth } from '../../auth/AuthProvider';
 import {successToast} from '../universal/MyToast';
-import "./LoginAdmin.scss";
-import logohnp from '../../assets/vectors/logo_hnp.svg';
 import { API_URL } from '../../App';
+
+// CSS
+import "./LoginAdmin.scss";
+
+// Icons
+import logohnp from '../../assets/vectors/logo_hnp.svg';
 
 const LoginAdmin = () => {
 
@@ -22,7 +28,6 @@ const LoginAdmin = () => {
     e.preventDefault();
 
     try {
-      //console.log(e)
       const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: {
@@ -35,26 +40,17 @@ const LoginAdmin = () => {
       });
   
       if (response.ok) {
-        //console.log("Login successful");
-        // setErrorResponse("");
-        // const json = (await response.json()) as AuthResponse;
         const json = await response.json();
-        //console.log("Response JSON:", json);
         
         if (json.body.accessToken && json.body.refreshToken) {
-          //console.log("Sí me voy al /dashboard en LoginAdmin.jsx 44");
           auth.saveUser(json.body);
           goTo("/dashboard");
         }
       } else {
         setLoginErrorMessage('Credenciales incorrectas. Intente de nuevo');
-        //console.log("Something went wrong");
         successToast();
-        // const json = await response.json() as AuthResponseError;
-        // const json: AuthResponseError = await response.json();
       }
     } catch (error) {
-      //console.log(error);
     }
   }
 
@@ -75,7 +71,6 @@ const LoginAdmin = () => {
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
           <h3>¡Te damos la bienvenida!</h3>
           <p className='universal_text_error'>{loginErrorMessage}</p>
-          {/* <br/> */}
           <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs universal_limit_input" type="text"  minLength="8" maxLength="16" onKeyPress={(e) => e.charCode === 32 && e.preventDefault()} placeholder="Usuario"></input>
           <br/>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs universal_limit_input" type="password"  minLength="8" maxLength="16" onKeyPress={(e) => e.charCode === 32 && e.preventDefault()} placeholder="Contraseña"></input>

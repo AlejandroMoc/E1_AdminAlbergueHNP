@@ -1,0 +1,17 @@
+//Escala tipográfica del sistema — usar vía var(--font-*), no valores sueltos.
+//Texto de componentes en rem (respeta el tamaño de fuente del usuario,
+//a diferencia de px/vh). Solo los encabezados fluidos usan calc() con
+//unidades de viewport, manteniendo el patrón existente (piso en px + vmin/vh).
+
+:root {
+	//Escala fija
+	--font-xs: 0.75rem;
+	--font-sm: 0.875rem;
+	--font-md: 1rem;
+	--font-lg: 1.2rem;
+	--font-xl: 1.5rem;
+	--font-2xl: 2rem;
+
+	//Tamaños fluidos
+	--font-fluid-nav: calc(5px + 2vmin);
+}

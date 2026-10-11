@@ -1,13 +1,11 @@
 .home_text_squarebutton {
-  // color: #090909;
-  font-size: calc(10px + 2vmin);
   text-decoration: none;
   font-style: italic;
   font-weight: 500;
 }
 
 .home_squarebutton {
-  background-color: #fafafa;
+  background-color: var(--color-white);
   border-radius: 1vh;
   height: 20vw;
   width: 20vw;
@@ -16,14 +14,14 @@
 
 .home_squarebutton:hover {
   transform: scale(1.05);
-  // filter: brightness(95%);
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-light);
 }
 
 .home_text_squarebutton2 {
   margin-left: auto;
   margin-right: auto;
-    min-height: 150px;
+  min-height: 150px;
+  font-size: var(--font-xl);
 }
 
 .home_welcomemessage {
@@ -31,6 +29,5 @@
   max-width: 50%;
   margin-left: auto;
   margin-right: auto;
-  font-size: xx-large;
-  font-size: calc(8px + 3vmin);
+  font-size: var(--font-2xl);
 }
