@@ -33,11 +33,6 @@ const Navbar = () => {
     .catch((error) => console.error('Error fetching data:', error))
   }, [])
 
-  // const [navToggle, setNavToggle] = useState(false);
-  // const navHandler = () => {
-  //     setNavToggle(prevData => !prevData);
-  // }
-  
   return ( 
     <>
       <nav className = "navbar d-flex flex-row">

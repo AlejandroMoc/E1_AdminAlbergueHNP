@@ -41,9 +41,8 @@ const ProfilePasswordAdmin = () => {
     setErrorMessage('')
   }
 
-  //Mensajes de error y éxito
+  //Mensaje de error
   const [ErrorMessage, setErrorMessage] = useState('');
-  const [changeSuccessMessage, setChangeSuccessMessage] = useState('');
 
   //Función para formulario de cambio de contraseña
   async function handleSubmit(e) {
@@ -82,22 +81,17 @@ const ProfilePasswordAdmin = () => {
     
         //Si la solicitud es exitosa
         if (response.ok) {
-          //Mencionar que se cambió la contraseña con éxito
-          setChangeSuccessMessage('Se cambió la contraseña correctamente.');
           //Vaciar datos de los inputs
           setActualPassword('')
           setNewPassword1('')
           setNewPassword2('')
           //Mostrar toast de exito
           successToast()
-          // goTo("/");
         
         //En caso contrario mostrar Toast de error
         } else {
           setErrorMessage('Credenciales incorrectas. Intente de nuevo.');
           errorToast()
-          // const json = await response.json() as AuthResponseError;
-          // const json: AuthResponseError = await response.json();
         }
   
       //Finalmente cachar cualquier otro error
@@ -122,7 +116,6 @@ const ProfilePasswordAdmin = () => {
         
         {/*Mensaje de error y de éxito (se puede habilitar el de éxito)*/}
         <p className='universal_text_error'>{ErrorMessage}</p>
-        {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         {/*Botón de cancelación de cambio de contraseña, el cual redirige a la página de perfil*/}
         <Link to="/profile"><p><button className="App_buttoncancel universal_limit_input">Cancelar</button></p></Link>

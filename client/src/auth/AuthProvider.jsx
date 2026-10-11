@@ -12,14 +12,13 @@ const AuthContext = createContext({
     _accessToken,
     _refreshToken,
   ) => {},
-  saveUser: (userData) => {},
+  saveUser: (_userData) => {},
   getRefreshToken: () => {},
   getUser: () => ({}),
   signOut: () => {},
 });
 
 const AuthProvider = ({children }) => {
-  // const [user, setUser] = useState<User>();
   const [user, setUser] = useState();
   //CESAR parece que el setAccessToken no está funcionando bien porque no agarra nada en accessToken
   const [accessToken, setAccessToken] = useState("");
@@ -33,8 +32,6 @@ const AuthProvider = ({children }) => {
 
   function saveUser(userData) {
     setAccessTokenAndRefreshToken(
-    // saveSessionInfo(
-      // userData.user, 
       userData.accessToken,
       userData.refreshToken
     );
@@ -116,14 +113,14 @@ const AuthProvider = ({children }) => {
               setIsAuthenticated(true);
               setIsLoading(false);
             })
-            .catch((error) => {
+            .catch(() => {
               setIsLoading(false);
             });
         } else {
           setIsLoading(false);
         }
       }
-    } catch (error) {
+    } catch {
       setIsLoading(false);
     }
   }

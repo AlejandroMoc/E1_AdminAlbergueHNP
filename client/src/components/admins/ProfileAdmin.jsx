@@ -40,14 +40,11 @@ const ProfileAdmin = () => {
       //Si la solicitud es correcta, cerrar la sesión
       if (response.ok){
         auth.signOut();
-        // const goTo = useNavigate();
-        // goTo("/login");
       }
 
     //En caso contrario, enviar error de solicitud
     } catch (error){
       res.status(500).json({ error: 'An error occurred while processing the request.' });
-      // errorToast()
     }
   }
 

@@ -23,14 +23,10 @@ const UserNewAdmin = (props) => {
 
   const id_u = useAuth().getUser().id_usuario
   //Fetch para jalar información desde info cliente
-  const [infoCliente, setinfoCliente] = useState({nombre_c: "", apellidos_c: "", fecha_i: 0, lugar_o: "", nombre_p: "", apellidos_p: "", carnet: "", nombre_a: "", nivel_se: 0, notas_c: 0, sexo: ""})
-
   useEffect(() => {
     fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
-    // fetch(`${API_URL}/clienteInfo/` + props.id_cliente)
       .then((res) => res.json())
       .then((data) => {
-        setinfoCliente(data);
         setNombre_P(data.nombre_p);
         setApellidos_P(data.apellidos_p);
         setLugar_O(data.lugar_o);
@@ -97,7 +93,6 @@ const UserNewAdmin = (props) => {
  }, [])
 
 
-  const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '', id_cliente: 0, paciente: null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
       fetch(`${API_URL}/allclientinfo`, {
@@ -108,7 +103,6 @@ const UserNewAdmin = (props) => {
        }
      })
         .then((res) => res.json())
-        .then((client) => setClient(client))
         .catch((error) => console.error('Error fetching data:', error));
       setIsVisitantePrevio(false);
    }
@@ -117,12 +111,10 @@ const UserNewAdmin = (props) => {
   const [nombre_cError, setNombre_CError] = useState(false);
   const [apellidos_cError, setApellidos_CError] = useState(false);
   const [sexoError, setSexoError] = useState(false);
-  const [nivel_seError, setNivel_SEError] = useState(false);
   const [lugar_oError, setLugar_OError] = useState(false);
   const [nombre_pError, setNombre_PError] = useState(false);
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
-  const [id_areaError, setId_areaCError] = useState(false);
   const [generalError, setGeneralError] = useState('')
 
 
@@ -131,12 +123,10 @@ const UserNewAdmin = (props) => {
     setNombre_CError(nombre_c === '');
     setApellidos_CError(apellidos_c === '');
     setSexoError(sexo === null);
-    setNivel_SEError(nivel_se === 0);
     setLugar_OError(lugar_o === '');
     setNombre_PError(nombre_p === '');
     setApellidos_PError(apellidos_p === '');
     setCarnetError(carnet === '');
-    setId_areaCError(id_area === '');
     return !(
       nombre_c === '' ||
       apellidos_c === '' ||
@@ -149,17 +139,9 @@ const UserNewAdmin = (props) => {
       id_area === ''
     );
  };
-  const handleSelectChange = (event) => {
-    const selectedId = event.target.value;
-    setNumeroA(selectedId);
- };
-
   const [isVisitantePrevio, setIsVisitantePrevio] = useState(false);
-  const handleIsVisitantePrevioChange = (event) => {
-    setIsVisitantePrevio(event.target.checked)
- }
 
-  const [btRegistro, setBtRegistro] = useState(false);
+  const [btRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
       if (!carnetExist) {// Verificamos si el carnet no existe
@@ -325,28 +307,12 @@ const UserNewAdmin = (props) => {
     obtenerEstadoCarnet();
  }, [carnet]);
 
-  const handleRegister = () => {
-    // Aquí pondrías la lógica para registrar el carnet
-    // Por ahora, solo mostraremos un mensaje de éxito simulado
-    toast.success('Carnet registrado correctamente', {
-      position: toast.POSITION.TOP_RIGHT
-   });
- };
   const [notas_c, setNotas_C] = useState('')
   const handleNotas_CChange = (event) => {
     setNotas_C(event.target.value)
  }
 
-  const [showServices, setShowServices] = useState(false);
-  const [showBedNumber, setShowBedNumber] = useState(true);
-  const [tipo_cliente, setTipoCliente] = useState('');
 
-  const handleRadioChange = (event) => {
-    const isGuest = event.target.value === 'true';
-    setShowServices(!isGuest);
-    setShowBedNumber(isGuest);
-    setTipoCliente(event.target.value);
- };
 
 
 
@@ -362,59 +328,11 @@ const UserNewAdmin = (props) => {
  }
 
   const [shower, setShower] = useState(0);
-  const [bathroom, setBathroom] = useState(0);
-  const [breakfast, setBreakfast] = useState(0);
-  const [meal, setMeal] = useState(0);
-  const [dinner, setDinner] = useState(0);
 
-  const handleSetShower = (sh) => {
-    if (sh === 1) {
-      setShower(pShower => pShower + 1);
-   }
-    else if (sh === 0 && shower != 0) {
-      setShower(pShower => pShower - 1);
-   }
- }
-
-  const handleSetBathroom = (ba) => {
-    if (ba === 1) {
-      setBathroom(pBathroom => pBathroom + 1);
-   }
-    else if (ba === 0 && bathroom != 0) {
-      setBathroom(pBathroom => pBathroom - 1);
-   }
- }
-
-  const handleSetBreakfast = (br) => {
-    if (br === 1) {
-      setBreakfast(pBreakfast => pBreakfast + 1);
-   }
-    else if (br === 0 && breakfast != 0) {
-      setBreakfast(pBreakfast => pBreakfast - 1);
-   }
- }
-
-  const handleSetMeal = (me) => {
-    if (me === 1) {
-      setMeal(pMeal => pMeal + 1);
-   }
-    else if (me === 0 && meal != 0) {
-      setMeal(pMeal => pMeal - 1);
-   }
- }
-
-  const handleSetDinner = (di) => {
-    if (di === 1) {
-      setDinner(pDinner => pDinner + 1);
-   }
-    else if (di === 0 && dinner != 0) {
-      setDinner(pDinner => pDinner - 1);
-   }
- }
-  const [id_zona_vetados, setIdZonaVetados] = useState(3);
-  const [id_zona_hombres, setIdZonaHombres] = useState(2);
-  const [id_zona_mujeres, setIdZonaMujeres] = useState(1);
-  const [id_zona, setIdZona] = useState(null);
+  const [id_zona_vetados] = useState(3);
+  const [id_zona_hombres] = useState(2);
+  const [id_zona_mujeres] = useState(1);
+  const [, setIdZona] = useState(null);
 
   //FETCH PARA TIPO CLIENTE:
   const [tipoCliente, settipoCliente] = useState({tipo_cliente: 0})
@@ -432,9 +350,7 @@ const UserNewAdmin = (props) => {
       <div className='user_spaciator'></div>
 
       <div className="user_container_general">
-        {/* <div className="user_container_row"> */}
         <div className="container user_container_column">
-          {/* <div className="user_container_column"> */}
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 " onChange={handleLugar_OChange}>

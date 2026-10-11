@@ -40,8 +40,6 @@ const LoginAdmin = () => {
       });
   
       if (response.ok) {
-        // setErrorResponse("");
-        // const json = (await response.json()) as AuthResponse;
         const json = await response.json();
         
         if (json.body.accessToken && json.body.refreshToken) {
@@ -51,8 +49,6 @@ const LoginAdmin = () => {
       } else {
         setLoginErrorMessage('Credenciales incorrectas. Intente de nuevo');
         successToast();
-        // const json = await response.json() as AuthResponseError;
-        // const json: AuthResponseError = await response.json();
       }
     } catch (error) {
     }
@@ -75,7 +71,6 @@ const LoginAdmin = () => {
           <div><img src={logohnp} className="login_header_logo" alt="logo"/></div>
           <h3>¡Te damos la bienvenida!</h3>
           <p className='universal_text_error'>{loginErrorMessage}</p>
-          {/* <br/> */}
           <input value={nombre_u} onChange={(e)=>setUsername(e.target.value)} className="login_inputs universal_limit_input" type="text"  minLength="8" maxLength="16" onKeyPress={(e) => e.charCode === 32 && e.preventDefault()} placeholder="Usuario"></input>
           <br/>
           <input value={password} onChange={(e)=>setPassword(e.target.value)} className="login_inputs universal_limit_input" type="password"  minLength="8" maxLength="16" onKeyPress={(e) => e.charCode === 32 && e.preventDefault()} placeholder="Contraseña"></input>

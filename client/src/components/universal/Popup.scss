@@ -12,13 +12,8 @@
 }
 
 .popup_inner {
-    // background-color: aquamarine;
     border-radius: 1vh;
-    //position: relative;
     padding: 32px;
-    //width: 50%;
-    //height: 40%;
-    //max-width: 640px;
     background-color: var(--color-white);
     z-index: 10;
     display: flex;
@@ -30,23 +25,12 @@
 
 .popup_inner .notas_container {
     margin-top: 10px;
-    // background-color: aquamarine;
-    //position: absolute;
-    //bottom: 70px;
-    //left: 85px;
 }
 
 .popup_inner .cancel-btn {
-    // background-color: var(--color-ink);
-    //position: absolute;
-    //bottom: 16px;
-    //left: 25px;
 }
 
 .popup_inner .accept-btn {
-    //position: absolute;
-    //bottom: 16px;
-    //right: 25px;
 }
 
 .popup_spacing{

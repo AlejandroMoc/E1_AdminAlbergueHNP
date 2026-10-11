@@ -27,9 +27,8 @@ const SignUpAdmin = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
 
-  //Mensaje de error y éxito
+  //Mensaje de error
   const [ErrorMessage, setErrorMessage] = useState('');
-  const [changeSuccessMessage, setChangeSuccessMessage] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -55,16 +54,12 @@ const SignUpAdmin = () => {
         });
 
         if (response.ok) {
-          setChangeSuccessMessage('Se creó el usuario correctamente.');
           setUsername('')
           setPassword('')
           successToast()
-          // goTo("/");
         } else {
           setErrorMessage('Usuario Existente');
           errorToast()
-          // const json = await response.json() as AuthResponseError;
-          // const json: AuthResponseError = await response.json();
         }
       } catch (error) {
         errorToast()
@@ -74,15 +69,8 @@ const SignUpAdmin = () => {
 
   }
 
-  // if (auth.isAuthenticated) {
-  //   return <Navigate to="/dashboard"/>
-  // }
-
   return (
     <div className=' login_padding_form'>
-      {/* <h1>Administrador del Albergue</h1>
-      <h2>Hospital del Niño Poblano</h2>
-      */}
 
       <form className='login_table' onSubmit={handleSubmit}>
         <div><img src={logohnp} className="login_header_logo" alt="logo" /></div>
@@ -93,7 +81,6 @@ const SignUpAdmin = () => {
         <div><input value={password} onChange={(e) => passwordChange(e)} className="login_inputs universal_limit_input" type="password" minLength="8" maxLength="16" placeholder="Contraseña" onKeyPress="return event.charCode != 32"></input></div>
         
         <p className='universal_text_error'>{ErrorMessage}</p>
-        {/* <p className='universal_text_success'>{changeSuccessMessage}</p> */}
 
         <Form.Check
           className='login_checkbox_admin'

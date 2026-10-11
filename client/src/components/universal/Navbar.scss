@@ -30,7 +30,6 @@
 }
 
 .navbar_text:hover {
-	// transform: scale(1.05);
 	color: var(--color-gray-mid) !important;
 }
 
@@ -43,7 +42,6 @@
 
 .navbar_logo:hover {
 	transform: scale(1.2);
-	// filter: brightness(95%);
 	filter: invert(0%) sepia(0%) saturate(0) hue-rotate(68deg) brightness(95)
 		contrast(50%);
 }

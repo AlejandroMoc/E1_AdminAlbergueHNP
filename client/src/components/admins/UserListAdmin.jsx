@@ -281,7 +281,6 @@ const UserListAdmin = () => {
   const [fecha1, setFecha1] = useState(null);
   const [fecha2, setFecha2] = useState(null);
   const before = new Date("2020-01-01T00:00:00Z");
-  const today = new Date();
 
   const handleDateChange = (startDate, endDate) => {
     setFecha1(startDate);
@@ -372,10 +371,6 @@ const UserListAdmin = () => {
   // Para Control de Carnet
   const handleChange = (event) => {
     setFilterText(event.target.value.toUpperCase());
-    // const tmpData = data.filter((item) => (
-    //   item.carnet.toUpperCase().includes(event.target.value)
-    // ))
-    // setData(tmpData)
   };
 
   // Para Paginación

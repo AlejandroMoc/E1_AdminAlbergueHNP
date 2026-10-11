@@ -64,7 +64,6 @@ const UserNewAdmin = (props) => {
  }, [])
 
 
-  const [client, setClient] = useState([{sexo: null, nivel_se: 0, lugar_o: '', nombre_p: '', apellidos_p: '', carnet: '', id_area: 0, notas_c: '', id_cliente: 0, paciente: null}])
   useEffect(() => {
     if (isVisitantePrevio === true) {
       fetch(`${API_URL}/allclientinfo`, {
@@ -75,7 +74,6 @@ const UserNewAdmin = (props) => {
        }
      })
         .then((res) => res.json())
-        .then((client) => setClient(client))
         .catch((error) => console.error('Error fetching data:', error));
       setIsVisitantePrevio(false);
    }
@@ -83,26 +81,20 @@ const UserNewAdmin = (props) => {
 
   const [nombre_cError, setNombre_CError] = useState(false);
   const [apellidos_cError, setApellidos_CError] = useState(false);
-  const [sexoError, setSexoError] = useState(false);
-  const [nivel_seError, setNivel_SEError] = useState(false);
   const [lugar_oError, setLugar_OError] = useState(false);
   const [nombre_pError, setNombre_PError] = useState(false);
   const [apellidos_pError, setApellidos_PError] = useState(false);
   const [carnetError, setCarnetError] = useState(false);
-  const [id_areaError, setId_areaCError] = useState(false);
   const [generalError, setGeneralError] = useState('')
 
 
   const validateFields = () => {
     setNombre_CError(nombre_c === '');
     setApellidos_CError(apellidos_c === '');
-    setSexoError(sexo === null);
-    setNivel_SEError(nivel_se === 0);
     setLugar_OError(lugar_o === '');
     setNombre_PError(nombre_p === '');
     setApellidos_PError(apellidos_p === '');
     setCarnetError(carnet === '');
-    setId_areaCError(id_area === '');
     return !(
       nombre_c === '' ||
       apellidos_c === '' ||
@@ -115,20 +107,12 @@ const UserNewAdmin = (props) => {
       id_area === ''
     );
  };
-  const handleSelectChange = (event) => {
-    const selectedId = event.target.value;
-    setNumeroA(selectedId);
- };
 
   const [isVisitantePrevio, setIsVisitantePrevio] = useState(false);
-  const handleIsVisitantePrevioChange = (event) => {
-    setIsVisitantePrevio(event.target.checked)
- }
 
-  const [btRegistro, setBtRegistro] = useState(false);
+  const [btRegistro] = useState(false);
   const handleBtRegistroClick = async () => {
     if (validateFields()) {
-      // if (!carnetExist) {// Verificamos si el carnet no existe
       if (showServices) {
         try {
           await fetch(`${API_URL}/registerEntradaUnica`, {
@@ -273,10 +257,6 @@ const UserNewAdmin = (props) => {
    }
  }, [nombre_p, apellidos_p, isPaciente]);
 
-  const [id_cliente, setId_cliente] = useState(0)
-  const handleId_clienteChange = (event) => {
-    setNivel_SE(event.target.value)
- }
 
   const [lugar_o, setLugar_O] = useState('')
   const handleLugar_OChange = (event) => {
@@ -285,7 +265,7 @@ const UserNewAdmin = (props) => {
 
 
   const [carnet, setCarnet] = useState('');
-  const [carnetExist, setCarnetExist] = useState(null);
+  const [, setCarnetExist] = useState(null);
 
   const handleCarnetChange = (event) => {
     setCarnet(event.target.value);
@@ -312,13 +292,6 @@ const UserNewAdmin = (props) => {
     obtenerEstadoCarnet();
  }, [carnet]);
 
-  const handleRegister = () => {
-    // Aquí pondrías la lógica para registrar el carnet
-    // Por ahora, solo mostraremos un mensaje de éxito simulado
-    toast.success('Carnet registrado correctamente', {
-      position: toast.POSITION.TOP_RIGHT
-   });
- };
 
   const [notas_c, setNotas_C] = useState('')
   const handleNotas_CChange = (event) => {
@@ -327,7 +300,7 @@ const UserNewAdmin = (props) => {
 
   const [showServices, setShowServices] = useState(false);
   const [showBedNumber, setShowBedNumber] = useState(true);
-  const [tipo_cliente, setTipoCliente] = useState('');
+  const [, setTipoCliente] = useState('');
 
   const handleRadioChange = (event) => {
     const isGuest = event.target.value === 'true';
@@ -342,20 +315,6 @@ const UserNewAdmin = (props) => {
   const handleId_CamaCChange = (event) => {
     setId_CamaC(event.target.value)
  }
-  /*
-  { const [huespedCliente, setHuespedCliente] = useState({id_zona:0})
-    if (id_cama === undefined){
-   } else{
-
-      useEffect(() =>{
-      fetch(`${API_URL}/zonabed/'+props.id_cama)
-      .then((res) => res.json())
-      .then((data) => {setHuespedCliente(data); 
-        setHuespedCliente(data);
-      
-   }, [props.id_cama])
-   }
-  */
 
   const [id_area, setId_areaC] = useState('')
   const handleId_areaCChange = (event) => {
@@ -380,7 +339,6 @@ const UserNewAdmin = (props) => {
     const costos = cshower + cbathroom + cbreakfast + cmeal + cdinner;
     setCosto(costos)
  }, [shower, bathroom, breakfast, meal, dinner]);
-
 
   const handleSetShower = (sh) => {
     if (sh === 1) {
@@ -427,10 +385,10 @@ const UserNewAdmin = (props) => {
    }
  }
 
-  const [id_zona_vetados, setIdZonaVetados] = useState(3);
-  const [id_zona_hombres, setIdZonaHombres] = useState(2);
-  const [id_zona_mujeres, setIdZonaMujeres] = useState(1);
-  const [id_zona, setIdZona] = useState(null);
+  const [id_zona_vetados] = useState(3);
+  const [id_zona_hombres] = useState(2);
+  const [id_zona_mujeres] = useState(1);
+  const [, setIdZona] = useState(null);
 
   // Arreglo para la numeración de camas aisladas. A1, A2, B1, B2, ...
   const aisladoLetras = [];
@@ -597,7 +555,7 @@ const UserNewAdmin = (props) => {
               <span>Número de Cama: </span>
               <select className="form-select user_select_beds sm" aria-label="Default select example">
                 <option selected>{id_cama}</option> {/*AQUÍ TENDRÍA QUE IR LA ID DE CAMA SELECCIONADA EN LA PANTALLA DE GESTION*/}
-                {bed.map((item, index) => {
+                {bed.map((item) => {
                   if ((sexoUsuario === true && item.id_zona === id_zona_hombres) ||
                     (sexoUsuario === false && item.id_zona === id_zona_mujeres) ||
                     item.id_zona === id_zona_vetados) {

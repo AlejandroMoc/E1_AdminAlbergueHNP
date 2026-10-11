@@ -67,7 +67,6 @@ const {
   getAllGeneralVetados,
   getAllIngresos,
 } = require("./queries/ReportQueries.js");
-const { verify } = require("jsonwebtoken");
 
 //TODO urgente reubicar rutas en archivos separados en vez de tener todo aqui
 
@@ -93,7 +92,7 @@ app.get("/carnetExist/:carnet", async (req, res) => {
   }
 });
 
-app.get("/alldispbeds", async (req, res) => {
+app.get("/alldispbeds", async (_req, res) => {
   try {
     const beds = await getAllDispBeds();
     res.json(beds);
@@ -272,7 +271,7 @@ app.post("/updateinfoEntrada", async (req, res) => {
   }
 });
 
-app.get("/allareas", async (req, res) => {
+app.get("/allareas", async (_req, res) => {
   try {
     const areas = await getAllAreas();
     res.json(areas);
@@ -306,7 +305,7 @@ app.get("/allusers", async (req, res) => {
 });
 
 // Nueva función para obtener todos los huéspedes
-app.get("/allhuespedes", async (req, res) => {
+app.get("/allhuespedes", async (_req, res) => {
   try {
     const allHuespedes = await getAllHuespedes();
     res.json(allHuespedes);
@@ -317,7 +316,7 @@ app.get("/allhuespedes", async (req, res) => {
 });
 
 // Nueva función para obtener todos los huéspedes
-app.get("/allvisitantes", async (req, res) => {
+app.get("/allvisitantes", async (_req, res) => {
   try {
     const allVisitantes = await getAllVisitantes();
     res.json(allVisitantes);
@@ -328,7 +327,7 @@ app.get("/allvisitantes", async (req, res) => {
 });
 
 // Nueva función para obtener todos los huéspedes
-app.get("/allvetados", async (req, res) => {
+app.get("/allvetados", async (_req, res) => {
   try {
     const allVetados = await getAllVetados();
     res.json(allVetados);
@@ -419,7 +418,7 @@ app.get("/allingresos", async (req, res) => {
 });
 
 //Funciones para UserListAdmin
-app.get("/allclients", async (req, res) => {
+app.get("/allclients", async (_req, res) => {
   try {
     const clients = await getAllClients();
     res.json(clients);
@@ -560,7 +559,7 @@ app.get("/notasVeto/:id_cliente", async (req, res) => {
 //USERINFO ----------- PAGINA INFORMACIÓN DE CLIENTE---------------------------------------------------
 
 //BEDS ----------- PAGINA CAMAS-----------------
-app.get("/beds", async (req, res) => {
+app.get("/beds", async (_req, res) => {
   try {
     const info = await getInfo();
     res.json(info);

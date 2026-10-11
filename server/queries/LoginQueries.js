@@ -183,21 +183,6 @@ const changeAdminPassword = async (
 
 
     return resultito2;
-    // try {
-    //   const hashedPassword = await bcrypt.hash(contrasena, 10);
-    //   const existingUser = await db.oneOrNone(
-    //     'SELECT * FROM usuario WHERE nombre_u = $1',
-    //     [nombre_u]
-    //   );
-    //   if (existingUser) {
-    //     throw new Error('El nombre de usuario ya está en uso.');
-    //   }
-    //   await db.none(`INSERT INTO usuario (nombre_u, contrasena) VALUES ($1, $2)`,[nombre_u, hashedPassword]);
-    // } catch (error) {
-    //   throw error;
-    // }
-
-    // return {existingUser: getUserInfo(existingUser), accessToken, refreshToken };
   } catch (error) {
     throw error;
   }

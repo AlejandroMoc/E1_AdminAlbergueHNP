@@ -8,7 +8,6 @@ export const ProtectedRoute = () => {
 
     const auth = useAuth();
 
-    // return auth.isAuthenticated? <Outlet/> : <Navigate to="/login"/>
     return auth.isAuthenticated ? (     
         <>
           {console.log("Sí está autenticado. Entonces se va al Outlet...")}

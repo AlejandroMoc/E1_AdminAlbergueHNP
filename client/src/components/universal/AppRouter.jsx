@@ -14,36 +14,13 @@ import Login from "../sites/Login";
 import SignUp from "../sites/SignUp";
 import InfoUser from "../sites/InfoUser";
 import Navbar from "./Navbar";
-import {useAuth } from '../../auth/AuthProvider';
 import {ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
     // //Vacía información
-    const auth = useAuth();
 
     //Solucion que parece que vamos a tener que usar
     //Cada que recargas la pagina se sale la sesion
-    // const handleSignOut = async () => {
-    //     try {
-    //     const response = await fetch(`${API_URL}/signout/`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //         'Content-type': 'application/json; charset=UTF-8',
-    //         Authorization: `Bearer ${auth.getRefreshToken()}`,
-    //         },
-    //     });
-
-    //     if (response.ok) {
-    //         auth.signOut();
-    //     } else {
-    //     }
-    //     } catch (error) {
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     handleSignOut();
-    // }, []);
 
     return (
         <>
@@ -59,7 +36,6 @@ export const AppRouter = () => {
                         <Route path="/usernew/:id_cama" element={<UserNew />} /> 
                         <Route path="/adminnew" element={<SignUp />} />
                         <Route path="/infouser/:id_cliente" element={<InfoUser/>}/>
-                        {/* <Route path="infouser" element={<InfoUser />}/> */}
                         <Route path="/userlist" element={<UserList />}/>
                         <Route path="/beds" element={<Rooms />}/>
                         <Route path="/profile" element={<Profile />}/>
@@ -68,7 +44,6 @@ export const AppRouter = () => {
                         <Route path="/edituser/:id_cliente" element={<EditUser/>}/>
                         
                         {/* TODO crear 404? */}
-                        {/* <Route path="*" element={<Navigate to="/login" />}/> */}
                     </Route>
                 </Route>
 

@@ -252,10 +252,6 @@ const handleEditar = async () => {
 
       <div className="user_container_general">
         <div className="container user_container_column">
-        {/* {!showNumbersSelect && (
-          <div className="input-group mb-3 ">
-            <span className="input-group-text userinfo_span_info" id="basic-addon1">Es Paciente</span>
-          </div>)} */}
 
           <h4>Información del Paciente</h4>
           <div className="input-group mb-3 ">

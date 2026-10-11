@@ -22,7 +22,6 @@ const ReportsAdmin = () => {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
 	const [esUsuario, setEsUsuario] = useState(false);
-	const [UsuarioSeleccionado, setUsuarioSeleccionado] = useState("Usuario"); // Estado para almacenar el nombre del Usuario seleccionado
 	const [esGeneral, setEsGeneral] = useState(true); // Nuevo estado para el checkbox "General"
 	const [esServicio, setEsServicio] = useState(false); // Nuevo estado para el checkbox "Servicios"
 	const [esIngreso, setEsIngreso] = useState(false); // Nuevo estado para el checkbox "Servicios"
@@ -456,7 +455,6 @@ const ReportsAdmin = () => {
 		pageStyle:
 			"@page {size: auto; margin: 0mm 5mm 0mm 5mm; } @media print {body {-webkit-print-color-adjust: exact; } }",
 		onAfterPrint: () => successToast(), //Se agrega el toast de proceso exitoso al generar el reporte en PDF
-		// onAfterPrint: () => alert("Reporte guardado en PDF.")
 	});
 
 	// Función para obtener la fecha y hora actual en el formato deseado
@@ -507,9 +505,6 @@ const ReportsAdmin = () => {
 			setMostrarHuespedes(true);
 			setMostrarVisitantes(false);
 			setMostrarVetados(false);
-		} else {
-			// Si se está desmarcando Usuario, restablece el Usuario seleccionado a un valor predeterminado
-			setUsuarioSeleccionado("Usuario");
 		}
 		setEsUsuario(!esUsuario);
 	};
@@ -597,9 +592,6 @@ const ReportsAdmin = () => {
 			...prevState,
 			[servicio]: !prevState[servicio],
 		  }));
-		//   setAllServicesSelected(
-		// 	Object.values(serviciosSeleccionados).every((value) => value)
-		//   );
 		  setAllServicesSelected(false);
 		}
 	  };
