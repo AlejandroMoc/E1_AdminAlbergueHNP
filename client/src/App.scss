@@ -95,7 +95,7 @@ input {
 }
 
 .App_background_blue {
-	background: linear-gradient(to right, #eafeff, #7fb17f);
+	background: linear-gradient(to right, #eafeff, var(--theme-gradient-end));
 }
 
 .App_background_picture {
@@ -106,14 +106,14 @@ input {
 
 //Clases globales para botones
 .App_buttonaccept {
-	background-color: #7fb17f;
+	background-color: var(--theme-primary);
 	// margin-bottom: 1rem;
 }
 .App_buttonaccept:hover {
-	background-color: #006400;
+	background-color: var(--theme-hover);
 }
 .App_buttonaccept:active {
-	background-color: #005000;
+	background-color: var(--theme-active);
 }
 
 .App_buttoncancel {
