@@ -565,7 +565,7 @@ const UserListAdmin = () => {
                   )}
                   trigger={["contextMenu"]}
                 >
-                  <tr key={i} style={{ background: "#fff" }}>
+                  <tr key={i} style={{ background: "var(--color-white)" }}>
                     {select_View == 10 ? (
                       <td>
                         <p>{item.nombre_u ? item.nombre_u : "-"}</p>

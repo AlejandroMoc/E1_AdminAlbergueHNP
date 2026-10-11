@@ -1,16 +1,16 @@
 .footer {
     display: flex;
     flex-direction: column;
-    background-color: #090909;
+    background-color: var(--color-ink);
     text-align: center;
     padding: 1rem;
 }
 
 .footer_text {
-    color: #fafafa !important;
+    color: var(--color-white) !important;
     font-size: calc(1.5px + 2vh);
 }
 
 .footer_link {
-    color: #058844 !important;
+    color: var(--color-success) !important;
 }

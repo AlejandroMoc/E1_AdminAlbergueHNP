@@ -1,10 +1,10 @@
 .user_space_reg {
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	height: 62px;
 }
 
 .user_span_space_icon {
-	// background-color: #fafafa;
+	// background-color: var(--color-white);
 	font-size: xx-large;
 	// align-content: baseline;
 	// text-align: center;
@@ -26,14 +26,14 @@
 	flex-direction: row;
 	//align-items: center;
 	justify-content: left;
-	//background-color: #d84949;
+	//background-color: var(--color-error);
 	width: 100%;
 	height: 100%;
 }
 
 .user_input_notas {
-	border: solid 1px black;
-	background-color: #fafafa;
+	border: solid 1px var(--color-ink);
+	background-color: var(--color-white);
 	height: 100px;
 	width: 100%;
 	padding-top: 10px;
@@ -41,7 +41,7 @@
 
 .user_space_not {
 	margin-top: 40px;
-	//background-color: #d84949;
+	//background-color: var(--color-error);
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -62,9 +62,9 @@
 
 .user_select_beds {
 	font-size: medium;
-	border: 1px solid #ccc;
+	border: 1px solid var(--color-border);
 	border-radius: 1vhpx;
-	background-color: #f2f2f2;
+	background-color: var(--color-gray-light);
 	cursor: pointer;
 	width: 100vw;
 }
@@ -82,7 +82,7 @@
 }
 
 .user_span_notestext {
-	background-color: #fafafa;
+	background-color: var(--color-white);
 	font-size: larger;
 	// width: 50vh;
 }
@@ -149,7 +149,7 @@
 }
 
 .userinfo_span_baninfo {
-	color: #090909;
+	color: var(--color-ink);
 }
 
 .userinfo_adjust_debt {
@@ -161,13 +161,13 @@
 }
 
 .userinfo_position_buttonban {
-	background-color: #c2c2c2;
+	background-color: var(--color-gray-mid);
 	margin-left: 4vh;
 	margin-bottom: 2vh;
 }
 
 .userinfo_position_buttonban:hover {
-	background-color: #9d9d9d;
+	background-color: var(--color-gray-muted);
 }
 
 .userinfo_button_edit {

@@ -19,7 +19,7 @@
     //width: 50%;
     //height: 40%;
     //max-width: 640px;
-    background-color: white;
+    background-color: var(--color-white);
     z-index: 10;
     display: flex;
     flex: wrap;
@@ -37,7 +37,7 @@
 }
 
 .popup_inner .cancel-btn {
-    // background-color: #090909;
+    // background-color: var(--color-ink);
     //position: absolute;
     //bottom: 16px;
     //left: 25px;
