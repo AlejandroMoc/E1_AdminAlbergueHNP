@@ -74,8 +74,6 @@ const AuthProvider = ({children }) => {
   }
 
   function getUser() {
-    // console.log("MADRE MIAAAAA ESTO YA FUNCIONABAAAA");
-    // console.log(user);
     return user;
   }
 
@@ -184,7 +182,6 @@ const AuthProvider = ({children }) => {
 
 async function retrieveUserInfo(accessToken) {
   try {
-    //console.log('Entra')
     const response = await fetch(`${API_URL}/user`, {
       method: "GET",
       headers: {
@@ -195,11 +192,9 @@ async function retrieveUserInfo(accessToken) {
 
     if (response.ok) {
       const json = await response.json();
-      //console.log('Retrieve Info json: ',json);
       return json;
     }
   } catch (error) {
-    //console.log(error);
   }
 }
 

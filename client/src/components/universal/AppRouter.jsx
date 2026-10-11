@@ -36,10 +36,8 @@ export const AppRouter = () => {
     //     if (response.ok) {
     //         auth.signOut();
     //     } else {
-    //         console.error('Sign out failed');
     //     }
     //     } catch (error) {
-    //     console.error('Error during sign out:', error);
     //     }
     // };
 

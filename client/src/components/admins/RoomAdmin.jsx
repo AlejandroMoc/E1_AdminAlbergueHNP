@@ -515,7 +515,6 @@ const RoomAdmin = () => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
   const [adminInfo, setAdminInfo] = useState([])
-  // console.log(id_u)
 
   // Primer UseEffect para cargar las camas al entrar a /beds.
   useEffect(() => {

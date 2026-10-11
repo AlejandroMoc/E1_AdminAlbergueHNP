@@ -55,15 +55,12 @@ const SignUpAdmin = () => {
         });
 
         if (response.ok) {
-          //console.log("User created successfully", response);
           setChangeSuccessMessage('Se creó el usuario correctamente.');
-          //console.log("Sí me voy a / en SignUpAdmin.jsx 36");
           setUsername('')
           setPassword('')
           successToast()
           // goTo("/");
         } else {
-          //console.log("Something went wrong");
           setErrorMessage('Usuario Existente');
           errorToast()
           // const json = await response.json() as AuthResponseError;
@@ -71,7 +68,6 @@ const SignUpAdmin = () => {
         }
       } catch (error) {
         errorToast()
-        //console.log(error);
       }
     }
 

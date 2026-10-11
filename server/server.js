@@ -75,7 +75,6 @@ const { verify } = require("jsonwebtoken");
 app.post("/infouser", async (req, res) => {
   try {
     const id_u = req.body.id_u;
-    //console.log(id_u)
     const user = await infoUser(id_u);
     res.json(user);
   } catch (error) {
@@ -128,7 +127,6 @@ app.post("/registerNewPatient", async (req, res) => {
     const id_cama = req.body.id_cama;
     const paciente = req.body.paciente;
     const checked = req.body.checked;
-    // console.log(apellidos_c)
     const pacienteR = await registerNewPatient(
       id_u,
       carnet,
@@ -147,7 +145,6 @@ app.post("/registerNewPatient", async (req, res) => {
     );
     res.json(pacienteR);
   } catch (error) {
-    //console.log(error.hint)
     res.status(500).json({ error: error.hint });
   }
 });
@@ -174,7 +171,6 @@ app.post("/registerEntradaUnica", async (req, res) => {
     const checked = req.body.checked;
     const cantidad = req.body.cantidad;
     const costo = req.body.costo;
-    // console.log(apellidos_c)
     const pacienteU = await registerEntradaUnica(
       id_u,
       carnet,
@@ -199,7 +195,6 @@ app.post("/registerEntradaUnica", async (req, res) => {
     );
     res.json(pacienteU);
   } catch (error) {
-    //console.log(error.hint)
     res.status(500).json({ error: error.hint });
   }
 });
@@ -220,7 +215,6 @@ app.post("/updateinfocliente", async (req, res) => {
     const id_cama = req.body.id_cama;
     const paciente = req.body.paciente;
     const id_cliente = req.body.id_cliente;
-    // console.log(apellidos_c)
     const pacienteR = await updateInfocliente(
       id_u,
       carnet,
@@ -257,7 +251,6 @@ app.post("/updateinfoEntrada", async (req, res) => {
     const nivel_se = req.body.nivel_se;
     const paciente = req.body.paciente;
     const id_cliente = req.body.id_cliente;
-    // console.log(apellidos_c)
     const pacienteR = await updateInfoentrada(
       id_u,
       carnet,
@@ -392,8 +385,6 @@ app.post("/allclientinfo", async (req, res) => {
   try {
     const nombre_c = req.body.nombre;
     const apellidos_c = req.body.apellidos;
-    // console.log(nombre_c)
-    // console.log(apellidos_c)
     const client = await getAllClientInfo(nombre_c, apellidos_c);
     res.json(client);
   } catch (error) {
@@ -444,17 +435,12 @@ app.post("/someclients", async (req, res) => {
     const select_View = req.body.views;
     const debtRange = req.body.debts;
     const dateRange = req.body.dates;
-    //console.log('select_Filters:', select_Filters);
-    //console.log('view: ', select_View)
-    //console.log('debt: ', debtRange)
-    //console.log('date: ', dateRange)
     const clients = await getClientsByFilter(
       select_Filters,
       select_View,
       debtRange,
       dateRange
     );
-    //console.log('clientes:', clients)
     res.json(clients);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -466,11 +452,7 @@ app.post("/banclient", async (req, res) => {
     const id_usuario = req.body.id_u;
     const id_cliente = req.body.id_c;
     const notas_v = req.body.n_v;
-    //console.log(id_usuario)
-    //console.log(id_cliente)
-    //console.log(notas_v)
     const ban = await banClient(id_usuario, id_cliente, notas_v);
-    // console.log(ban)
     res.json(ban);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -480,7 +462,6 @@ app.post("/banclient", async (req, res) => {
 app.post("/unbanclient", async (req, res) => {
   try {
     const id_cliente = req.body.id_c;
-    //console.log(id_cliente)
     const unban = await unbanClient(id_cliente);
     res.json(unban);
   } catch (error) {
@@ -491,7 +472,6 @@ app.post("/unbanclient", async (req, res) => {
 app.post("/deleteclient", async (req, res) => {
   try {
     const id_cliente = req.body.id_c;
-    //console.log(id_cliente)
     const delet = await deleteClient(id_cliente);
     res.json(delet);
   } catch (error) {
@@ -632,5 +612,4 @@ app.post("/beds/regServacio", (req, res) => {
 //Para LogIn y Signup se han importado las rutas arriba
 
 app.listen(port, () => {
-  //console.log('Servidor corriendo en el puerto')
 });

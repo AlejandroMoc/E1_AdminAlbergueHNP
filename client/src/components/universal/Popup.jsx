@@ -9,11 +9,9 @@ import './Popup.scss'
 
 const Popup = (props) => {
     const id_u = useAuth().getUser().id_usuario
-    // console.log(id_u)
 
     const [notas_v, setNotas_V] = useState('')
     const handleNotas_VChange = (event) => {
-        // console.log(event.target.value)
         setNotas_V(event.target.value)
     }
     
@@ -41,7 +39,6 @@ const Popup = (props) => {
             </div>
         ) : ""
     } else if (props.type == 1) {
-        // console.log(props.id)
         return (props.trigger) ? (
             <div className='popup_container'>
                 <div className='popup_inner'>

@@ -7,8 +7,6 @@ import {useAuth } from "../../auth/AuthProvider";
 export const ProtectedRoute = () => {
 
     const auth = useAuth();
-    //console.log('AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
-    //console.log('Está autenticado?',auth.isAuthenticated);
 
     // return auth.isAuthenticated? <Outlet/> : <Navigate to="/login"/>
     return auth.isAuthenticated ? (     

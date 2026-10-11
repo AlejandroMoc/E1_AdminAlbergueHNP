@@ -201,7 +201,6 @@ const ReportsAdmin = () => {
 	const handleDateFormat = (date) => {
 		const dbDate = new Date(date);
 		const localDate = dbDate.toLocaleString();
-		// console.log(localDate)
 		return localDate;
 	};
 

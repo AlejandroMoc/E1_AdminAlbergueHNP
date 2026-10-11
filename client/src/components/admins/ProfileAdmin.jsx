@@ -48,14 +48,12 @@ const ProfileAdmin = () => {
     } catch (error){
       res.status(500).json({ error: 'An error occurred while processing the request.' });
       // errorToast()
-      //console.log(error);
     }
   }
 
     //Constantes para obtener información de administrador y establecer información de administrador
     const id_u = useAuth().getUser().id_usuario
     const [adminInfo, setAdminInfo] = useState([])
-    // console.log(id_u)
   
     //Llamada a la función para información de usuario
     useEffect(() => {

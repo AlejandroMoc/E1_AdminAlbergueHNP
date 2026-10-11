@@ -18,7 +18,6 @@ const Navbar = () => {
   //Para manejo de sesiones
   const id_u = useAuth().getUser().id_usuario
   const [adminInfo, setAdminInfo] = useState([])
-  // console.log(id_u)
 
   //Llamada a la función para información de usuario
   useEffect(() => {

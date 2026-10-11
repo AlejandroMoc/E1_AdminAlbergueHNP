@@ -83,7 +83,6 @@ const ProfilePasswordAdmin = () => {
         //Si la solicitud es exitosa
         if (response.ok) {
           //Mencionar que se cambió la contraseña con éxito
-          // console.log("Password changed succesfully",response);
           setChangeSuccessMessage('Se cambió la contraseña correctamente.');
           //Vaciar datos de los inputs
           setActualPassword('')
@@ -95,7 +94,6 @@ const ProfilePasswordAdmin = () => {
         
         //En caso contrario mostrar Toast de error
         } else {
-          //console.log("Something went wrong");
           setErrorMessage('Credenciales incorrectas. Intente de nuevo.');
           errorToast()
           // const json = await response.json() as AuthResponseError;
@@ -105,7 +103,6 @@ const ProfilePasswordAdmin = () => {
       //Finalmente cachar cualquier otro error
       } catch (error) {
         errorToast()
-        //console.log(error);
       }
     }
   }
